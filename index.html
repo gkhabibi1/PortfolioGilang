@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gilang Habib Azky Pratama - Portfolio</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- AOS CSS (Scroll Animations) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Swiper CSS (For Advanced Sliders) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    
+    <!-- Custom Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'agency-blue': '#1D4ED8',
+                        'agency-neon': '#ddff00', /* Warna baru yang di-request */
+                        'agency-dark': '#111111',
+                        'agency-gray': '#1F2937'
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                        'display': ['Oswald', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Oswald:wght@500;700&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; background-color: #111111; color: #ffffff; overflow-x: hidden; }
+        h1, h2, h3, .font-display { font-family: 'Oswald', sans-serif; text-transform: uppercase; }
+
+        /* Marquee */
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+            background-color: #ddff00; /* Warna baru */
+            padding: 15px 0;
+            display: flex;
+            align-items: center;
+        }
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+        }
+        .marquee-content img {
+            display: inline-block;
+            height: 40px;
+            margin: 0 40px;
+            filter: grayscale(100%) contrast(200%);
+            opacity: 0.8;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Custom Swiper Styles */
+        .swiper-button-next, .swiper-button-prev {
+            color: #ddff00 !important;
+        }
+        .swiper-pagination-bullet-active {
+            background-color: #ddff00 !important;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- HERO SECTION -->
+    <header class="bg-agency-blue min-h-screen flex flex-col justify-center relative overflow-hidden px-6 lg:px-20 py-12">
+        <nav class="absolute top-0 left-0 w-full p-6 flex justify-between items-center z-20">
+            <div class="text-2xl font-display font-bold text-agency-neon">GILANG.</div>
+            <a href="#contact" class="border border-agency-neon text-agency-neon px-6 py-2 rounded-full hover:bg-agency-neon hover:text-agency-blue transition-all">LET'S TALK</a>
+        </nav>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center mt-16 z-10">
+            <div data-aos="fade-right" data-aos-duration="1000">
+                <h2 class="text-agency-neon text-xl tracking-widest mb-4">CONTENT CREATOR & WEB DEVELOPER</h2>
+                <h1 class="text-6xl lg:text-9xl font-display font-bold leading-none mb-6">
+                    CREATIVE<br>
+                    <span class="text-transparent" style="-webkit-text-stroke: 2px #ddff00;">AGENCY</span>
+                </h1>
+                <p class="text-xl mb-8 max-w-lg text-blue-100">
+                    Hi, I'm Gilang Habib Azky Pratama H.P. Based in Solo, Indonesia, I blend technical web development with engaging content creation to elevate digital experiences.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#portfolio" class="bg-agency-neon text-agency-blue font-bold px-8 py-4 rounded-full hover:scale-105 transition-transform">EXPLORE WORK</a>
+                </div>
+            </div>
+
+            <div class="relative flex justify-center items-center" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
+                <div class="relative max-w-md lg:max-w-lg w-full">
+                    <!-- FOTO PROFIL -->
+                    <img src="https://ik.imagekit.io/e2yna5qg8/Untitled%20design%20(2)_11zon.png" alt="Gilang Habib Azky Pratama" class="w-full h-auto max-h-[550px] lg:max-h-[650px] object-contain rounded-3xl shadow-2xl relative z-10 mx-auto">
+                    <div class="absolute -top-10 -right-10 w-40 h-40 bg-agency-neon rounded-full mix-blend-overlay filter blur-3xl opacity-50 z-0"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- LOGO MARQUEE -->
+    <section class="border-y-4 border-agency-dark">
+        <div class="marquee-container">
+            <div class="marquee-content">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Client 1">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Client 2">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="Client 3">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Spotify_logo_without_text.svg" alt="Client 4">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Client 5">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Client 1">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Client 2">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="Client 3">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Spotify_logo_without_text.svg" alt="Client 4">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Client 5">
+            </div>
+        </div>
+    </section>
+
+    <!-- TOOLS & SKILLS -->
+    <section class="py-20 px-6 lg:px-20 bg-agency-dark">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <h2 class="text-4xl font-display text-white">MY ARSENAL</h2>
+            <p class="text-gray-400 mt-4">The software & tools I use to bring ideas to life.</p>
+        </div>
+        
+        <div class="flex flex-wrap justify-center gap-6" data-aos="flip-up" data-aos-duration="1000">
+            <span class="px-6 py-3 border border-gray-600 rounded-full text-lg hover:border-agency-neon hover:text-agency-neon transition-colors cursor-default">Figma</span>
+            <span class="px-6 py-3 border border-gray-600 rounded-full text-lg hover:border-agency-neon hover:text-agency-neon transition-colors cursor-default">CapCut</span>
+            <span class="px-6 py-3 border border-gray-600 rounded-full text-lg hover:border-agency-neon hover:text-agency-neon transition-colors cursor-default">Premiere Pro</span>
+            <span class="px-6 py-3 border border-gray-600 rounded-full text-lg hover:border-agency-neon hover:text-agency-neon transition-colors cursor-default">After Effects</span>
+            <span class="px-6 py-3 border border-gray-600 rounded-full text-lg hover:border-agency-neon hover:text-agency-neon transition-colors cursor-default">Canva</span>
+            <span class="px-6 py-3 border border-gray-600 rounded-full text-lg hover:border-agency-neon hover:text-agency-neon transition-colors cursor-default">Webflow / WordPress</span>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section id="portfolio" class="py-20 bg-[#151515]">
+        
+        <!-- 01. VIDEO CLIPPING -->
+        <div class="px-6 lg:px-20 mb-32">
+            <div class="border-b border-gray-700 pb-4 mb-10" data-aos="fade-right">
+                <h2 class="text-5xl font-display text-agency-neon">01. VIDEO CLIPPING</h2>
+                <p class="text-gray-400 mt-2">Optimized short-form content for TikTok, Reels, and Shorts.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Video Item 1 -->
+                <div class="bg-agency-gray rounded-2xl overflow-hidden group" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://via.placeholder.com/400x500/111/ddff00?text=Short+Clip+1" class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">Viral Affiliate Clips</h3>
+                        <p class="text-gray-400 text-sm">High-retention hooks and fast-paced clipping to maximize conversions.</p>
+                    </div>
+                </div>
+                <!-- Video Item 2 -->
+                <div class="bg-agency-gray rounded-2xl overflow-hidden group" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://via.placeholder.com/400x500/111/ddff00?text=Short+Clip+2" class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">Podcast Highlights</h3>
+                        <p class="text-gray-400 text-sm">Extracting the most engaging 60 seconds from long-form content.</p>
+                    </div>
+                </div>
+                <!-- Video Item 3 -->
+                <div class="bg-agency-gray rounded-2xl overflow-hidden group" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://via.placeholder.com/400x500/111/ddff00?text=Short+Clip+3" class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">Product Teasers</h3>
+                        <p class="text-gray-400 text-sm">Snappy cuts with trending audio for brand awareness campaigns.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 02. VIDEO EDITING -->
+        <div class="px-6 lg:px-20 mb-32">
+            <div class="border-b border-gray-700 pb-4 mb-10 flex flex-col items-end text-right" data-aos="fade-left">
+                <h2 class="text-5xl font-display text-white">02. VIDEO EDITING</h2>
+                <p class="text-gray-400 mt-2">Cinematic storytelling, color grading, and dynamic motion graphics.</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Edit Item 1 -->
+                <div class="bg-agency-gray rounded-2xl overflow-hidden group" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="relative h-80 bg-gray-800 flex items-center justify-center">
+                        <img src="https://via.placeholder.com/800x600/1a1a1a/ffffff?text=Event+Highlights" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-3xl font-display mb-2">STIE Surakarta Events</h3>
+                        <p class="text-gray-400">Full-scale editing involving multi-cam sync, audio mixing, and narrative flow.</p>
+                    </div>
+                </div>
+                <!-- Edit Item 2 -->
+                <div class="bg-agency-gray rounded-2xl overflow-hidden group" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="relative h-80 bg-gray-800 flex items-center justify-center">
+                        <img src="https://via.placeholder.com/800x600/1a1a1a/ffffff?text=Commercial+Video" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-3xl font-display mb-2">YouTube Vlogs & Tech</h3>
+                        <p class="text-gray-400">Engaging pacing, lower thirds, and B-roll integration for long-form creators.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 03. GRAPHIC DESIGN & 04. UI DESIGN -->
+        <div class="px-6 lg:px-20 mb-32 grid grid-cols-1 lg:grid-cols-2 gap-16">
+            
+            <!-- Graphic Design Column -->
+            <div data-aos="flip-left" data-aos-duration="1000">
+                <div class="border-b border-gray-700 pb-4 mb-8">
+                    <h2 class="text-4xl font-display text-agency-neon">03. GRAPHIC DESIGN</h2>
+                </div>
+                <div class="space-y-10">
+                    <div>
+                        <img src="https://via.placeholder.com/600x400/1f2937/ddff00?text=Social+Media+Post" class="w-full rounded-2xl hover:shadow-[0_0_20px_rgba(221,255,0,0.3)] transition-shadow">
+                        <h4 class="text-xl font-bold mt-4">Social Media Carousels</h4>
+                        <p class="text-gray-400 text-sm mt-1">High-engagement educational posts for Instagram & LinkedIn.</p>
+                    </div>
+                    <div>
+                        <img src="https://via.placeholder.com/600x400/1f2937/ddff00?text=Event+Poster" class="w-full rounded-2xl hover:shadow-[0_0_20px_rgba(221,255,0,0.3)] transition-shadow">
+                        <h4 class="text-xl font-bold mt-4">Event Posters (ACFION)</h4>
+                        <p class="text-gray-400 text-sm mt-1">Print and digital flyers designed for maximum click-through rates.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- UI Design Column -->
+            <div data-aos="flip-right" data-aos-duration="1000" data-aos-delay="200">
+                <div class="border-b border-gray-700 pb-4 mb-8">
+                    <h2 class="text-4xl font-display text-white">04. UI DESIGN</h2>
+                </div>
+                <div class="space-y-10">
+                    <div>
+                        <img src="https://ik.imagekit.io/e2yna5qg8/Screenshot_12.png" alt="Web Application UI" class="w-full h-56 sm:h-64 object-cover object-top rounded-2xl hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-shadow">
+                        <h4 class="text-xl font-bold mt-4">Modern Web Application UI</h4>
+                        <p class="text-gray-400 text-sm mt-1">User-centric layouts focusing on typography, whitespace, and accessibility.</p>
+                    </div>
+                    <div>
+                        <img src="https://ik.imagekit.io/e2yna5qg8/Dekstop%20Vietnam_11zon.jpg" alt="Landing Page Design" class="w-full h-56 sm:h-64 object-cover object-top rounded-2xl hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-shadow">
+                        <h4 class="text-xl font-bold mt-4">Landing Page Layouts</h4>
+                        <p class="text-gray-400 text-sm mt-1">Conversion-optimized structures created for engaging digital experiences.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 05. WEBSITE DEVELOPMENT (NOW WITH SLIDER) -->
+        <div class="px-6 lg:px-20">
+            <div class="bg-agency-blue rounded-3xl p-10 lg:p-20 relative overflow-hidden" data-aos="fade-up">
+                <div class="relative z-10 md:w-full text-center mb-12">
+                    <h2 class="text-5xl font-display text-agency-neon mb-6">05. WEBSITE DEVELOPMENT</h2>
+                    <p class="text-xl text-blue-100 max-w-2xl mx-auto">From design to deployment. Building responsive, high-performance websites integrated with modern technology to power up your digital presence.</p>
+                    
+                    <ul class="flex flex-wrap justify-center gap-6 mt-8 text-white text-lg">
+                        <li class="flex items-center gap-2"><span class="text-agency-neon">✔</span> Pembuatan Company Profile</li>
+                        <li class="flex items-center gap-2"><span class="text-agency-neon">✔</span> E-Commerce & Landing Pages</li>
+                        <li class="flex items-center gap-2"><span class="text-agency-neon">✔</span> Interactive Web Animations</li>
+                    </ul>
+                </div>
+
+                <!-- Swiper Carousel for Web Portfolio -->
+                <div class="swiper web-portfolio-swiper w-full pb-14">
+                    <div class="swiper-wrapper">
+                        <!-- Web Proj 1 -->
+                        <div class="swiper-slide">
+                            <div class="bg-agency-dark p-4 rounded-2xl border-2 border-agency-neon">
+                                <img src="https://ik.imagekit.io/e2yna5qg8/Dekstop%20Vietnam_11zon.jpg" alt="Vietnam Destination Web" class="w-full h-56 sm:h-64 md:h-72 object-cover object-top rounded-xl mb-4 hover:scale-[1.02] transition-transform duration-300">
+                                <h3 class="text-xl font-bold text-white text-center">Vietnam Destination Website</h3>
+                            </div>
+                        </div>
+                        <!-- Web Proj 2 -->
+                        <div class="swiper-slide">
+                            <div class="bg-agency-dark p-4 rounded-2xl border-2 border-gray-600 hover:border-agency-neon transition-colors">
+                                <img src="https://ik.imagekit.io/e2yna5qg8/Screenshot_12.png" alt="Company Profile Web" class="w-full h-56 sm:h-64 md:h-72 object-cover object-top rounded-xl mb-4 hover:scale-[1.02] transition-transform duration-300">
+                                <h3 class="text-xl font-bold text-white text-center">Company Profile & Platform</h3>
+                            </div>
+                        </div>
+                        <!-- Web Proj 3 -->
+                        <div class="swiper-slide">
+                            <div class="bg-agency-dark p-4 rounded-2xl border-2 border-gray-600 hover:border-agency-neon transition-colors">
+                                <img src="https://ik.imagekit.io/e2yna5qg8/Screenshot_13.png" alt="Interactive Web Design" class="w-full h-56 sm:h-64 md:h-72 object-cover object-top rounded-xl mb-4 hover:scale-[1.02] transition-transform duration-300">
+                                <h3 class="text-xl font-bold text-white text-center">Creative Web & Dashboard</h3>
+                            </div>
+                        </div>
+                        <!-- Web Proj 4 -->
+                        <div class="swiper-slide">
+                            <div class="bg-agency-dark p-4 rounded-2xl border-2 border-gray-600 hover:border-agency-neon transition-colors">
+                                <img src="https://ik.imagekit.io/e2yna5qg8/Screenshot_9.png" alt="Modern SaaS Web" class="w-full h-56 sm:h-64 md:h-72 object-cover object-top rounded-xl mb-4 hover:scale-[1.02] transition-transform duration-300">
+                                <h3 class="text-xl font-bold text-white text-center">Modern Web Portal</h3>
+                            </div>
+                        </div>
+                        <!-- Web Proj 5 -->
+                        <div class="swiper-slide">
+                            <div class="bg-agency-dark p-4 rounded-2xl border-2 border-gray-600 hover:border-agency-neon transition-colors">
+                                <img src="https://ik.imagekit.io/e2yna5qg8/Screenshot_11.png" alt="E-Commerce Landing Page" class="w-full h-56 sm:h-64 md:h-72 object-cover object-top rounded-xl mb-4 hover:scale-[1.02] transition-transform duration-300">
+                                <h3 class="text-xl font-bold text-white text-center">E-Commerce & Service Web</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Swiper Controls -->
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contact" class="bg-agency-dark py-12 px-6 lg:px-20 text-center border-t border-gray-800">
+        <h2 class="text-4xl font-display text-white mb-6">LET'S CREATE SOMETHING EXTRAORDINARY.</h2>
+        <a href="mailto:your.email@example.com" class="inline-block bg-agency-neon text-agency-dark font-bold text-xl px-10 py-4 rounded-full hover:bg-white transition-colors">START A PROJECT</a>
+        <p class="text-gray-500 mt-12 text-sm">© 2026 Gilang Habib Azky Pratama H.P. All rights reserved.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
+    <script>
+        // Initialize Scroll Animations (AOS)
+        AOS.init({
+            once: true, 
+            offset: 100, 
+        });
+
+        // Initialize Swiper Slider for Web Development Section
+        const swiper = new Swiper('.web-portfolio-swiper', {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            loop: true,
+            autoplay: {
+                delay: 3500,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                // Saat ukuran layar 768px (Tablet) ke atas, tampilkan 2 slide sekaligus
+                768: {
+                    slidesPerView: 2,
+                }
+            }
+        });
+    </script>
+</body>
+</html>
