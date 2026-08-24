@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jasa Pembuatan Website UMKM 500K - Solusi Go Digital Praktis</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Swiper CSS (Slider) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    
+    <!-- AOS CSS (Scroll Animations) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        neon: '#ddff00',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .btn-cta {
+            background-color: #ddff00;
+            color: #111;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px -4px rgba(221, 255, 0, 0.45);
+        }
+        .browser-mockup {
+            border-radius: 0.75rem;
+            overflow: hidden;
+            border: 1px solid rgba(229, 231, 235, 0.8);
+            background: #ffffff;
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        .browser-mockup:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 35px -8px rgba(0, 0, 0, 0.15);
+        }
+        .browser-header {
+            background: #f1f5f9;
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        .swiper-slide {
+            height: auto;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800 font-sans overflow-x-hidden antialiased">
+
+    <!-- HERO SECTION -->
+    <section class="relative bg-gradient-to-b from-gray-50 via-white to-gray-50 pt-12 pb-20 md:py-24 px-4 overflow-hidden">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+            
+            <!-- Left Text Content (Rata Kiri) -->
+            <div class="text-left" data-aos="fade-right">
+                <span class="inline-flex items-center gap-2 bg-yellow-100 text-yellow-900 px-4 py-2 rounded-full text-sm font-bold mb-6 border border-yellow-200">
+                    ⚡ Promo Terbatas — Spesial UMKM Indonesia
+                </span>
+                <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-6">
+                    Omset Mentok Karena Bisnismu Belum Meyakinkan di Google?
+                </h1>
+                <p class="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed">
+                    Tingkatkan kredibilitas bisnismu sekarang! Jasa pembuatan website Company Profile profesional mulai dari <span class="font-extrabold text-gray-900 bg-yellow-200 px-2 py-0.5 rounded">Rp 500.000</span> (Sudah Termasuk GRATIS Domain & Hosting).
+                </p>
+                
+                <div class="flex flex-wrap items-center gap-4 mb-10 text-sm font-semibold text-gray-700">
+                    <span class="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-lg shadow-sm border border-gray-200">⚡ 1 Hari Jadi</span>
+                    <span class="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-lg shadow-sm border border-gray-200">🛡️ Bebas Ribet Teknis</span>
+                    <span class="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-lg shadow-sm border border-gray-200">📱 Mobile Friendly</span>
+                </div>
+
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+                    <a href="#pricing" class="btn-cta text-center font-bold px-8 py-4 rounded-xl text-lg shadow-lg inline-block">
+                        👉 Pesan Web Promo 500K
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Image Mockup (Tempat Gambar) -->
+            <div class="relative" data-aos="fade-left">
+                <div class="absolute -top-6 -left-6 w-72 h-72 bg-yellow-200 rounded-full filter blur-3xl opacity-50 -z-10"></div>
+                <div class="absolute -bottom-6 -right-6 w-72 h-72 bg-blue-200 rounded-full filter blur-3xl opacity-50 -z-10"></div>
+                
+                <div class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white bg-gray-900 group">
+                    <img src="images/hero-mockup.jpg" alt="Mockup Website UMKM 500K" class="w-full h-auto object-cover transform group-hover:scale-105 transition duration-500">
+                    <div class="absolute bottom-4 left-4 bg-gray-900/90 text-white p-3 rounded-xl backdrop-blur-md border border-gray-700 flex items-center gap-3">
+                        <div class="w-3 h-3 rounded-full bg-green-500 animate-ping"></div>
+                        <span class="text-xs font-semibold">100+ UMKM Telah Menggunakan Website Ini</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PROBLEM SECTION -->
+    <section class="py-20 px-4 max-w-6xl mx-auto">
+        <div class="text-center max-w-3xl mx-auto mb-14" data-aos="fade-up">
+            <span class="text-red-600 font-bold text-sm tracking-wider uppercase bg-red-100 px-3 py-1 rounded-full">Kendalanya Bisnis Offline & Online</span>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mt-3">Coba Cek, Apakah Bisnis Anda Mengalami Ini?</h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-gradient-to-b from-red-50 to-white p-8 rounded-2xl border border-red-100 shadow-sm hover:shadow-md transition group" data-aos="fade-up" data-aos-delay="100">
+                <div class="w-12 h-12 bg-red-500 text-white rounded-xl flex items-center justify-center font-bold text-xl mb-6 group-hover:scale-110 transition">
+                    ❌
+                </div>
+                <h3 class="font-bold text-xl text-gray-900 mb-3">Tidak Punya Website Resmi</h3>
+                <p class="text-gray-600 leading-relaxed">Sering ditanya <i>"Ada website resminya nggak Kak?"</i> dan Anda bingung atau merasa ragu saat jawabnya.</p>
+            </div>
+
+            <div class="bg-gradient-to-b from-red-50 to-white p-8 rounded-2xl border border-red-100 shadow-sm hover:shadow-md transition group" data-aos="fade-up" data-aos-delay="200">
+                <div class="w-12 h-12 bg-red-500 text-white rounded-xl flex items-center justify-center font-bold text-xl mb-6 group-hover:scale-110 transition">
+                    ❌
+                </div>
+                <h3 class="font-bold text-xl text-gray-900 mb-3">Kalah Saing di Google</h3>
+                <p class="text-gray-600 leading-relaxed">Kompetitor sudah kebanjiran orderan dari halaman pertama Google, sedangkan bisnis Anda belum muncul di mana-mana.</p>
+            </div>
+
+            <div class="bg-gradient-to-b from-red-50 to-white p-8 rounded-2xl border border-red-100 shadow-sm hover:shadow-md transition group" data-aos="fade-up" data-aos-delay="300">
+                <div class="w-12 h-12 bg-red-500 text-white rounded-xl flex items-center justify-center font-bold text-xl mb-6 group-hover:scale-110 transition">
+                    ❌
+                </div>
+                <h3 class="font-bold text-xl text-gray-900 mb-3">Repot Jelaskan Bisnis</h3>
+                <p class="text-gray-600 leading-relaxed">Capek dan menyita waktu harus menjelaskan detail profil & brosur dari nol setiap kali ada calon pembeli baru yang menghubungi.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOLUTION SECTION -->
+    <section class="py-20 bg-gray-900 text-white px-4 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-[#ddff00]/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-6xl mx-auto relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16" data-aos="zoom-in">
+                <span class="bg-[#ddff00] text-gray-900 font-extrabold text-xs tracking-widest uppercase px-4 py-1.5 rounded-full inline-block mb-4">
+                    🚀 SOLUSI PRAKTIS & EFEKTIF
+                </span>
+                <h2 class="text-3xl md:text-5xl font-extrabold leading-tight mb-6">Solusi Digital Praktis: Pembuatan Company Profile</h2>
+                <p class="text-gray-300 text-lg leading-relaxed">Tampilkan wajah terbaik bisnis Anda kepada dunia. Kami spesialis membangun Website Company Profile yang modern, rapi, dan responsif. Solusi tepat untuk meningkatkan <i>trust</i> pelanggan, tanpa ribet hal teknis.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="glass-card p-6 rounded-2xl border border-gray-800 hover:border-[#ddff00]/50 transition" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-3xl mb-4">🏆</div>
+                    <h3 class="text-lg font-bold mb-2">10x Lebih Terpercaya</h3>
+                    <p class="text-gray-400 text-sm">Bisnis Anda langsung terlihat profesional & bonafide di mata calon klien.</p>
+                </div>
+                <div class="glass-card p-6 rounded-2xl border border-gray-800 hover:border-[#ddff00]/50 transition" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-3xl mb-4">🌐</div>
+                    <h3 class="text-lg font-bold mb-2">Buka 24 Jam di Google</h3>
+                    <p class="text-gray-400 text-sm">Pelanggan bisa melihat produk & jasa Anda kapan saja, bahkan saat Anda tidur.</p>
+                </div>
+                <div class="glass-card p-6 rounded-2xl border border-gray-800 hover:border-[#ddff00]/50 transition" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-3xl mb-4">⚡</div>
+                    <h3 class="text-lg font-bold mb-2">Tanpa Ribet Hal Teknis</h3>
+                    <p class="text-gray-400 text-sm">Tinggal siapkan foto & materi, tim kami yang siap mengurus semuanya sampai tayang.</p>
+                </div>
+                <div class="glass-card p-6 rounded-2xl border border-gray-800 hover:border-[#ddff00]/50 transition" data-aos="fade-up" data-aos-delay="400">
+                    <div class="text-3xl mb-4">💬</div>
+                    <h3 class="text-lg font-bold mb-2">Integrasi WhatsApp</h3>
+                    <p class="text-gray-400 text-sm">Tombol pesan langsung yang menghubungkan pembeli ke WhatsApp Anda secara instan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO SECTION -->
+    <section class="py-20 px-4 max-w-7xl mx-auto overflow-hidden">
+        <div class="text-center max-w-3xl mx-auto mb-12" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Ratusan Desain Tersedia, Tinggal Sesuaikan dengan Bisnis Anda!</h2>
+            <p class="text-gray-600 text-lg">Pilihan desain company profile modern terlengkap untuk berbagai bidang industri.</p>
+        </div>
+        
+        <!-- Swiper Container with Real Web Mockup Preview Cards -->
+        <div class="swiper mySwiper" data-aos="fade-up">
+            <div class="swiper-wrapper pb-14">
+                
+                <!-- Slide 1: Construction -->
+                <div class="swiper-slide">
+                    <div class="browser-mockup w-full">
+                        <div class="browser-header">
+                            <div class="dot bg-red-400"></div>
+                            <div class="dot bg-yellow-400"></div>
+                            <div class="dot bg-green-400"></div>
+                            <span class="text-xs text-gray-400 ml-2 font-mono">kontraktor-konstruksi.com</span>
+                        </div>
+                        <div class="relative overflow-hidden group">
+                            <img src="images/portfolio-1.jpg" alt="Preview Web Konstruksi" class="w-full h-56 object-cover object-top group-hover:scale-105 transition duration-500">
+                            <div class="p-4 bg-white border-t border-gray-100">
+                                <span class="bg-blue-100 text-blue-800 text-xs font-bold px-2.5 py-1 rounded-full">Jasa Konstruksi</span>
+                                <h4 class="font-bold text-gray-900 mt-2">Company Profile Konstruksi</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2: Cafe / F&B -->
+                <div class="swiper-slide">
+                    <div class="browser-mockup w-full">
+                        <div class="browser-header">
+                            <div class="dot bg-red-400"></div>
+                            <div class="dot bg-yellow-400"></div>
+                            <div class="dot bg-green-400"></div>
+                            <span class="text-xs text-gray-400 ml-2 font-mono">kopisenja-artisan.id</span>
+                        </div>
+                        <div class="relative overflow-hidden group">
+                            <img src="images/portfolio-2.jpg" alt="Preview Web Cafe F&B" class="w-full h-56 object-cover object-top group-hover:scale-105 transition duration-500">
+                            <div class="p-4 bg-white border-t border-gray-100">
+                                <span class="bg-amber-100 text-amber-800 text-xs font-bold px-2.5 py-1 rounded-full">F&B / Cafe</span>
+                                <h4 class="font-bold text-gray-900 mt-2">Company Profile Kuliner</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 3: Business Consulting -->
+                <div class="swiper-slide">
+                    <div class="browser-mockup w-full">
+                        <div class="browser-header">
+                            <div class="dot bg-red-400"></div>
+                            <div class="dot bg-yellow-400"></div>
+                            <div class="dot bg-green-400"></div>
+                            <span class="text-xs text-gray-400 ml-2 font-mono">connect-consulting.biz.id</span>
+                        </div>
+                        <div class="relative overflow-hidden group">
+                            <img src="images/portfolio-3.jpg" alt="Preview Web Konsultan" class="w-full h-56 object-cover object-top group-hover:scale-105 transition duration-500">
+                            <div class="p-4 bg-white border-t border-gray-100">
+                                <span class="bg-indigo-100 text-indigo-800 text-xs font-bold px-2.5 py-1 rounded-full">Konsultan Bisnis</span>
+                                <h4 class="font-bold text-gray-900 mt-2">Company Profile Professional</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 4: Automotive -->
+                <div class="swiper-slide">
+                    <div class="browser-mockup w-full">
+                        <div class="browser-header">
+                            <div class="dot bg-red-400"></div>
+                            <div class="dot bg-yellow-400"></div>
+                            <div class="dot bg-green-400"></div>
+                            <span class="text-xs text-gray-400 ml-2 font-mono">bengkel-redspeed.com</span>
+                        </div>
+                        <div class="relative overflow-hidden group">
+                            <img src="images/portfolio-4.jpg" alt="Preview Web Otomotif" class="w-full h-56 object-cover object-top group-hover:scale-105 transition duration-500">
+                            <div class="p-4 bg-white border-t border-gray-100">
+                                <span class="bg-red-100 text-red-800 text-xs font-bold px-2.5 py-1 rounded-full">Bengkel & Otomotif</span>
+                                <h4 class="font-bold text-gray-900 mt-2">Company Profile Bengkel</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- Pagination -->
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIAL SECTION WITH WHATSAPP CHAT SCREENSHOT PROOF -->
+    <section class="py-20 bg-gray-50 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center max-w-3xl mx-auto mb-14" data-aos="fade-up">
+                <span class="bg-green-100 text-green-800 font-bold text-xs tracking-wider uppercase px-3 py-1 rounded-full">Bukti Chat Tanggapan Klien</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mt-3">Apa Kata Mereka yang Sudah "Go Digital"?</h2>
+                <p class="text-gray-600 mt-2">Tangkapan layar asli percakapan ulasan dari klien-klien yang sudah merasakan manfaat hasilnya.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                
+                <!-- Testimonial 1: Pak Hendra -->
+                <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden flex flex-col justify-between hover:shadow-xl transition group" data-aos="fade-up" data-aos-delay="100">
+                    <div>
+                        <!-- Screenshot Header / Image -->
+                        <div class="relative overflow-hidden bg-gray-100 border-b border-gray-100 cursor-pointer">
+                            <span class="absolute top-3 left-3 bg-green-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-full z-10 shadow">
+                                💬 Bukti Chat Real
+                            </span>
+                            <img src="images/hendra-ss.jpg" 
+                                 onerror="this.src='https://ik.imagekit.io/e2yna5qg8/Hendra_11zon.jpg'"
+                                 alt="Testimoni Chat Pak Hendra" 
+                                 class="w-full h-80 object-cover object-top group-hover:scale-105 transition duration-500">
+                        </div>
+
+                        <div class="p-6">
+                            <div class="flex text-yellow-400 text-base mb-3">⭐⭐⭐⭐⭐</div>
+                            <p class="text-gray-700 italic text-sm leading-relaxed mb-4">
+                                "Sangat merasa terbantu! Sejak punya website resmi, calon pembeli & mitra bisnis jauh lebih percaya untuk kerja sama. Omset penjualan kami meningkat signifikan!"
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="p-6 pt-0 flex items-center gap-3">
+                        <img src="images/client-1.jpg" alt="Bpk Hendra" class="w-12 h-12 rounded-full object-cover border-2 border-yellow-400 shadow-sm">
+                        <div>
+                            <h4 class="font-bold text-gray-900 text-sm">Bpk. Hendra Wijaya</h4>
+                            <p class="text-xs text-gray-500">Owner Adijaya Construction</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2: Bu Siti -->
+                <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden flex flex-col justify-between hover:shadow-xl transition group" data-aos="fade-up" data-aos-delay="200">
+                    <div>
+                        <!-- Screenshot Header / Image -->
+                        <div class="relative overflow-hidden bg-gray-100 border-b border-gray-100 cursor-pointer">
+                            <span class="absolute top-3 left-3 bg-green-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-full z-10 shadow">
+                                💬 Bukti Chat Real
+                            </span>
+                            <img src="images/siti-ss.jpg" 
+                                 onerror="this.src='https://ik.imagekit.io/e2yna5qg8/Siti_11zon.jpg'"
+                                 alt="Testimoni Chat Bu Siti" 
+                                 class="w-full h-80 object-cover object-top group-hover:scale-105 transition duration-500">
+                        </div>
+
+                        <div class="p-6">
+                            <div class="flex text-yellow-400 text-base mb-3">⭐⭐⭐⭐⭐</div>
+                            <p class="text-gray-700 italic text-sm leading-relaxed mb-4">
+                                "Puas sekali dengan desainnya! Walaupun harganya sangat terjangkau cuma 500rb-an, pengerjaannya kilat 1 hari langsung tayang dan hasilnya mewah banget, gak kelihatan murahan!"
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="p-6 pt-0 flex items-center gap-3">
+                        <img src="images/client-2.jpg" alt="Siti Rahma" class="w-12 h-12 rounded-full object-cover border-2 border-yellow-400 shadow-sm">
+                        <div>
+                            <h4 class="font-bold text-gray-900 text-sm">Siti Rahmawati</h4>
+                            <p class="text-xs text-gray-500">Owner Kopi Senja Cafe</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3: Pak Fajar -->
+                <div class="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden flex flex-col justify-between hover:shadow-xl transition group" data-aos="fade-up" data-aos-delay="300">
+                    <div>
+                        <!-- Screenshot Header / Image -->
+                        <div class="relative overflow-hidden bg-gray-100 border-b border-gray-100 cursor-pointer">
+                            <span class="absolute top-3 left-3 bg-green-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-full z-10 shadow">
+                                💬 Bukti Chat Real
+                            </span>
+                            <img src="images/fajar-ss.jpg" 
+                                 onerror="this.src='https://ik.imagekit.io/e2yna5qg8/Fajar_11zon.jpg'"
+                                 alt="Testimoni Chat Pak Fajar" 
+                                 class="w-full h-80 object-cover object-top group-hover:scale-105 transition duration-500">
+                        </div>
+
+                        <div class="p-6">
+                            <div class="flex text-yellow-400 text-base mb-3">⭐⭐⭐⭐⭐</div>
+                            <p class="text-gray-700 italic text-sm leading-relaxed mb-4">
+                                "Dari dulu pengen banget punya website usaha sendiri biar lebih PD pas promosi lebih gencar di medsos & pasang iklan. Tim pengerjaannya sangat komunikatif dan membantu!"
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="p-6 pt-0 flex items-center gap-3">
+                        <img src="images/client-3.jpg" alt="Fajar Pratama" class="w-12 h-12 rounded-full object-cover border-2 border-yellow-400 shadow-sm">
+                        <div>
+                            <h4 class="font-bold text-gray-900 text-sm">Fajar Pratama</h4>
+                            <p class="text-xs text-gray-500">Founder Connect Consulting</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING & COUNTDOWN SECTION -->
+    <section id="pricing" class="py-20 bg-white px-4">
+        <div class="max-w-xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-200" data-aos="fade-up">
+            <div class="bg-gray-900 text-white text-center py-6">
+                <h3 class="text-2xl font-extrabold">Paket Spesial UMKM</h3>
+                <p class="text-gray-400 text-sm mt-1">Kualitas Premium, Harga Paling Terjangkau</p>
+            </div>
+            <div class="p-8">
+                <div class="text-center mb-8">
+                    <span class="text-gray-400 line-through text-xl font-semibold">Rp 1.500.000</span>
+                    <div class="text-5xl font-extrabold text-gray-900 mt-2 mb-2">Rp 500.000</div>
+                    <span class="text-xs bg-green-100 text-green-800 font-bold px-3 py-1 rounded-full">Hemat 66% Hari Ini</span>
+                </div>
+                
+                <ul class="space-y-4 mb-8">
+                    <li class="flex items-center font-medium text-gray-700"><span class="text-green-500 mr-3 text-lg">✅</span> GRATIS Domain (.com / .id ada tambahan 100K)</li>
+                    <li class="flex items-center font-medium text-gray-700"><span class="text-green-500 mr-3 text-lg">✅</span> FREE High-Speed Hosting & Unlimited Bandwidth</li>
+                    <li class="flex items-center font-medium text-gray-700"><span class="text-green-500 mr-3 text-lg">✅</span> Pengerjaan Cepat 1 Hari Jadi</li>
+                    <li class="flex items-center font-medium text-gray-700"><span class="text-green-500 mr-3 text-lg">✅</span> Desain Responsif & Mobile Friendly</li>
+                    <li class="flex items-center font-medium text-gray-700"><span class="text-green-500 mr-3 text-lg">✅</span> Loading Cepat & Basic SEO Google</li>
+                    <li class="flex items-center font-medium text-gray-700"><span class="text-green-500 mr-3 text-lg">✅</span> Tombol Chat Langsung Terhubung ke WhatsApp</li>
+                </ul>
+
+                <!-- CTA Button -->
+                <a href="https://wa.me/6285764187873?text=Halo%20kak%20saya%20ingin%20ambil%20promonya!" 
+                   target="_blank"
+                   class="btn-cta block w-full text-center font-extrabold py-4 rounded-xl text-lg shadow-lg">
+                   🟢 Ya, Saya Mau Web 500K!
+                </a>
+            </div>
+            
+            <!-- Countdown Container -->
+            <div class="bg-red-50 p-6 text-center border-t border-red-100">
+                <p class="text-red-600 font-extrabold mb-3">🔥 Kuota Promo Berakhir Dalam:</p>
+                <div class="flex justify-center gap-4 text-center">
+                    <div class="bg-white p-3 rounded-xl shadow-sm w-20 border border-red-100">
+                        <div id="hours" class="text-2xl font-extrabold text-gray-900">00</div>
+                        <div class="text-xs text-gray-500 font-medium">Jam</div>
+                    </div>
+                    <div class="bg-white p-3 rounded-xl shadow-sm w-20 border border-red-100">
+                        <div id="minutes" class="text-2xl font-extrabold text-gray-900">00</div>
+                        <div class="text-xs text-gray-500 font-medium">Menit</div>
+                    </div>
+                    <div class="bg-white p-3 rounded-xl shadow-sm w-20 border border-red-100">
+                        <div id="seconds" class="text-2xl font-extrabold text-gray-900">00</div>
+                        <div class="text-xs text-gray-500 font-medium">Detik</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SCARCITY SECTION (NEW - Kuota Promo Terbatas) -->
+    <section class="py-16 bg-gradient-to-r from-red-900 via-gray-900 to-red-950 text-white px-4 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto text-center relative z-10" data-aos="zoom-in">
+            <span class="bg-red-500 text-white font-extrabold text-xs tracking-widest uppercase px-4 py-1.5 rounded-full inline-block mb-4 animate-pulse">
+                ⚠️ SLOTS SANGAT TERBATAS
+            </span>
+            <h2 class="text-3xl md:text-4xl font-extrabold mb-6">Kuota Promo Terbatas!</h2>
+            <p class="text-gray-300 text-lg leading-relaxed max-w-2xl mx-auto mb-8">
+                Untuk menjaga kualitas pengerjaan dan pelayanan terbaik, promo Harga <span class="font-bold text-[#ddff00]">Rp 500.000 + GRATIS Domain</span> ini HANYA berlaku untuk 10 Klien Pertama di minggu ini.
+            </p>
+
+            <!-- Scarcity Slot Card -->
+            <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-red-500/40 max-w-lg mx-auto mb-8">
+                <div class="flex justify-between items-center text-sm font-bold mb-2">
+                    <span class="text-red-400">🔥 Sisa kuota saat ini:</span>
+                    <span class="text-yellow-300 text-base">4 Slot tersisa</span>
+                </div>
+                <div class="w-full bg-gray-800 rounded-full h-3.5 p-0.5 overflow-hidden">
+                    <div class="bg-gradient-to-r from-yellow-400 to-red-500 h-full rounded-full w-[60%] animate-pulse"></div>
+                </div>
+                <p class="text-xs text-gray-400 mt-2 text-right">6 dari 10 Slot Telah Terisi</p>
+            </div>
+
+            <a href="https://wa.me/6285764187873?text=Halo%20kak%20saya%20ingin%20ambil%20promonya!" 
+               target="_blank"
+               class="btn-cta inline-block font-extrabold px-10 py-4 rounded-xl text-lg shadow-xl">
+               ⚡ Ambil Slot Promo 500K Sekarang
+            </a>
+        </div>
+    </section>
+
+    <!-- FLOATING POPUP NOTIFICATION -->
+    <div id="sales-popup" class="fixed bottom-6 left-6 bg-white p-4 rounded-xl shadow-2xl border-l-4 border-[#ddff00] transform translate-y-32 opacity-0 transition-all duration-500 ease-out z-50 flex items-center gap-4 max-w-xs">
+        <div class="bg-green-100 p-2 rounded-full">
+            <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+        </div>
+        <div>
+            <p class="text-xs text-gray-500 mb-1">Baru saja mendaftar...</p>
+            <p class="text-sm font-semibold text-gray-800"><span id="buyer-name">Ridho</span> telah memesan Web 500K</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    
+    <script>
+        // 1. Initialize AOS Animations
+        AOS.init({ once: true, duration: 800 });
+
+        // 2. Initialize Swiper (Portfolio Slider with Real Web Mockup)
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 1.1,
+            spaceBetween: 20,
+            centeredSlides: false,
+            loop: true,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            breakpoints: {
+                640: { slidesPerView: 2, spaceBetween: 24 },
+                1024: { slidesPerView: 3, spaceBetween: 30 },
+            },
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            }
+        });
+
+        // 3. Daily Countdown Timer (Resets at midnight 00:00 - ends 23:59)
+        function updateCountdown() {
+            const now = new Date();
+            const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59);
+            const diff = midnight - now;
+
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('hours').innerText = h.toString().padStart(2, '0');
+            document.getElementById('minutes').innerText = m.toString().padStart(2, '0');
+            document.getElementById('seconds').innerText = s.toString().padStart(2, '0');
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // 4. Fake Sales Popup Notification
+        const names = ["Ridho", "Budi", "Sarah", "Agus", "Diana", "Fajar", "Lestari", "Hendra"];
+        const intervals = [8000, 10000, 12000];
+        let intervalIndex = 0;
+
+        function showNotification() {
+            const popup = document.getElementById('sales-popup');
+            const nameElement = document.getElementById('buyer-name');
+            
+            const randomName = names[Math.floor(Math.random() * names.length)];
+            nameElement.innerText = randomName;
+
+            popup.classList.remove('translate-y-32', 'opacity-0');
+            
+            setTimeout(() => {
+                popup.classList.add('translate-y-32', 'opacity-0');
+            }, 4000);
+
+            const nextInterval = intervals[intervalIndex % intervals.length];
+            intervalIndex++;
+            setTimeout(showNotification, nextInterval);
+        }
+
+        setTimeout(showNotification, 4000);
+    </script>
+</body>
+</html>
