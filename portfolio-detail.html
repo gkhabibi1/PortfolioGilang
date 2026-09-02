@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Detail Karya - Gilang Habib Azky Pratama Portfolio</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'agency-blue': '#1D4ED8',
+                        'agency-neon': '#ddff00',
+                        'agency-dark': '#0f1117',
+                        'agency-card': '#181b24',
+                        'agency-gray': '#1F2937'
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                        'display': ['Oswald', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Oswald:wght@500;700&display=swap');
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #0f1117; 
+            color: #ffffff; 
+            overflow-x: hidden;
+        }
+        h1, h2, h3, .font-display { 
+            font-family: 'Oswald', sans-serif; 
+            text-transform: uppercase; 
+        }
+
+        .glass-card {
+            background: rgba(24, 27, 36, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .neon-glow {
+            box-shadow: 0 0 25px rgba(221, 255, 0, 0.25);
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col justify-between selection:bg-agency-neon selection:text-agency-dark">
+
+    <!-- TOP HEADER / NAV -->
+    <header class="sticky top-0 z-50 glass-card border-b border-gray-800/80 px-6 lg:px-16 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3 group text-gray-300 hover:text-agency-neon transition-colors font-medium text-sm sm:text-base">
+                <div class="w-9 h-9 rounded-full bg-agency-card border border-gray-700 flex items-center justify-center group-hover:border-agency-neon transition-colors">
+                    <i class="fa-solid fa-arrow-left text-xs sm:text-sm"></i>
+                </div>
+                <span>Kembali ke Beranda</span>
+            </a>
+
+            <a href="index.html" class="text-xl sm:text-2xl font-display font-bold text-agency-neon tracking-wider">
+                GILANG.
+            </a>
+
+            <a href="index.html#contact" class="hidden sm:inline-flex items-center gap-2 bg-agency-neon text-agency-dark font-bold text-xs uppercase px-5 py-2.5 rounded-full hover:bg-white transition-all shadow-md">
+                <i class="fa-solid fa-paper-plane text-xs"></i>
+                <span>Hubungi Saya</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="max-w-7xl mx-auto px-6 lg:px-16 py-10 lg:py-16 w-full flex-grow">
+        
+        <!-- BREADCRUMB & METADATA -->
+        <div class="mb-8" data-aos="fade-up">
+            <div class="flex flex-wrap items-center gap-3 text-xs sm:text-sm font-semibold uppercase tracking-wider mb-4">
+                <span id="detail-category" class="bg-agency-neon/10 text-agency-neon border border-agency-neon/30 px-3 py-1 rounded-full">
+                    Category
+                </span>
+                <span class="text-gray-500">•</span>
+                <span id="detail-year" class="text-gray-400">
+                    2024
+                </span>
+                <span class="text-gray-500">•</span>
+                <span id="detail-client" class="text-gray-400">
+                    Client Name
+                </span>
+            </div>
+            
+            <h1 id="detail-title" class="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
+                Project Title
+            </h1>
+        </div>
+
+        <!-- MEDIA DISPLAY SECTION (IMAGE OR VIDEO) -->
+        <div class="mb-12" data-aos="zoom-in" data-aos-duration="600">
+            <div class="glass-card rounded-3xl p-3 sm:p-4 border border-gray-800 shadow-2xl overflow-hidden relative">
+                
+                <!-- Container image view -->
+                <div id="media-image-container" class="hidden relative rounded-2xl overflow-hidden group bg-black/40">
+                    <img id="detail-image" src="" alt="Detail Karya" class="w-full h-auto max-h-[70vh] object-contain mx-auto rounded-2xl">
+                    <div class="absolute bottom-4 right-4 opacity-90">
+                        <a id="full-image-link" href="#" target="_blank" class="bg-agency-dark/90 hover:bg-agency-neon hover:text-agency-dark text-white px-4 py-2 rounded-xl border border-gray-700 text-xs font-semibold flex items-center gap-2 transition-all">
+                            <i class="fa-solid fa-expand"></i> Resolusi Penuh
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Container video view -->
+                <div id="media-video-container" class="hidden relative aspect-video w-full rounded-2xl overflow-hidden bg-black">
+                    <iframe id="detail-video-iframe" class="w-full h-full border-0 rounded-2xl" src="" title="Video Player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- PROJECT INFO GRID -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+            
+            <!-- Left 2 Cols: Description & Key Highlights -->
+            <div class="lg:col-span-2 space-y-8" data-aos="fade-up">
+                <div class="glass-card p-8 rounded-3xl border border-gray-800">
+                    <h2 class="text-2xl font-display text-agency-neon mb-4 flex items-center gap-3">
+                        <i class="fa-solid fa-file-lines text-lg"></i>
+                        <span>Tentang Proyek Ini</span>
+                    </h2>
+                    <p id="detail-full-desc" class="text-gray-300 text-base sm:text-lg leading-relaxed font-light">
+                        Deskripsi lengkap mengenai karya portofolio.
+                    </p>
+                </div>
+
+                <!-- Action Button if Live URL exists -->
+                <div id="live-url-container" class="hidden glass-card p-8 rounded-3xl border border-agency-neon/30 bg-agency-blue/10 flex flex-col sm:flex-row items-center justify-between gap-6">
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-1">Ingin Lihat Hasil Langsung?</h3>
+                        <p class="text-sm text-gray-300">Kunjungi demo langsung / link live project dari karya ini.</p>
+                    </div>
+                    <a id="detail-live-btn" href="#" target="_blank" class="w-full sm:w-auto text-center bg-agency-neon text-agency-dark font-bold px-8 py-4 rounded-2xl hover:bg-white transition-transform hover:scale-105 shadow-lg flex items-center justify-center gap-3">
+                        <span>Buka Live Website</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-sm"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right 1 Col: Tech Stack & Specs -->
+            <div class="space-y-8" data-aos="fade-up" data-aos-delay="200">
+                <div class="glass-card p-8 rounded-3xl border border-gray-800 space-y-6">
+                    <div>
+                        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-2">Software / Software Stack</h3>
+                        <div id="detail-tools" class="flex flex-wrap gap-2 pt-1">
+                            <!-- Tools badges dynamically populated -->
+                        </div>
+                    </div>
+
+                    <hr class="border-gray-800">
+
+                    <div>
+                        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-1">Kategori Karya</h3>
+                        <p id="detail-category-full" class="text-white font-medium text-lg">Website Development</p>
+                    </div>
+
+                    <hr class="border-gray-800">
+
+                    <div>
+                        <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-1">Klien / Proyek</h3>
+                        <p id="detail-client-full" class="text-white font-medium text-base">Client Name</p>
+                    </div>
+
+                    <hr class="border-gray-800">
+
+                    <!-- Share project link button -->
+                    <button onclick="shareProject()" class="w-full border border-gray-700 hover:border-agency-neon text-gray-300 hover:text-agency-neon font-semibold px-4 py-3 rounded-xl transition-all flex items-center justify-center gap-2 text-sm">
+                        <i class="fa-solid fa-share-nodes"></i>
+                        <span>Bagikan Karya Ini</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- OTHER PORTFOLIO PROJECTS CAROUSEL / LIST -->
+        <section class="mt-20 border-t border-gray-800 pt-16" data-aos="fade-up">
+            <div class="flex justify-between items-end mb-8">
+                <div>
+                    <h2 class="text-3xl font-display text-white">Karya Lainnya</h2>
+                    <p class="text-gray-400 text-sm mt-1">Lihat hasil karya menarik lainnya dari Gilang.</p>
+                </div>
+                <a href="index.html#portfolio" class="text-agency-neon text-sm font-semibold hover:underline flex items-center gap-1">
+                    <span>Lihat Semua Karya</span>
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+            </div>
+
+            <div id="related-projects-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Dynamically filled with other portfolio items -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-agency-dark border-t border-gray-800/80 py-10 px-6 text-center text-gray-500 text-sm">
+        <p>© 2026 Gilang Habib Azky Pratama H.P. All rights reserved.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/portfolio-data.js"></script>
+    <script>
+        AOS.init({ once: true });
+
+        // Load project from URL params
+        const urlParams = new URLSearchParams(window.location.search);
+        const projectId = urlParams.get('id') || 'vietnam-destination-web';
+        const project = getPortfolioById(projectId);
+
+        if (project) {
+            document.getElementById('page-title').innerText = `${project.title} - Portofolio Gilang Habib`;
+            document.getElementById('detail-title').innerText = project.title;
+            document.getElementById('detail-category').innerText = project.categoryName;
+            document.getElementById('detail-category-full').innerText = project.categoryName;
+            document.getElementById('detail-year').innerText = project.year || '2024';
+            document.getElementById('detail-client').innerText = project.client || 'Client';
+            document.getElementById('detail-client-full').innerText = project.client || 'Client';
+            document.getElementById('detail-full-desc').innerText = project.fullDesc;
+
+            // Media display
+            if (project.type === 'video' && project.videoEmbed) {
+                const videoContainer = document.getElementById('media-video-container');
+                videoContainer.classList.remove('hidden');
+                document.getElementById('detail-video-iframe').src = project.videoEmbed;
+            } else {
+                const imgContainer = document.getElementById('media-image-container');
+                imgContainer.classList.remove('hidden');
+                document.getElementById('detail-image').src = project.mediaUrl || project.thumbnail;
+                document.getElementById('full-image-link').href = project.mediaUrl || project.thumbnail;
+            }
+
+            // Tools Badges
+            const toolsContainer = document.getElementById('detail-tools');
+            toolsContainer.innerHTML = '';
+            if (project.tools && project.tools.length > 0) {
+                project.tools.forEach(tool => {
+                    const badge = document.createElement('span');
+                    badge.className = 'px-3 py-1.5 bg-agency-card text-agency-neon border border-gray-700 text-xs font-semibold rounded-lg';
+                    badge.innerText = tool;
+                    toolsContainer.appendChild(badge);
+                });
+            }
+
+            // Live URL button
+            if (project.liveUrl && project.liveUrl !== '#') {
+                const liveContainer = document.getElementById('live-url-container');
+                liveContainer.classList.remove('hidden');
+                document.getElementById('detail-live-btn').href = project.liveUrl;
+            }
+
+            // Populate Related Projects
+            const relatedGrid = document.getElementById('related-projects-grid');
+            relatedGrid.innerHTML = '';
+            const otherProjects = portfolioItems.filter(item => item.id !== project.id).slice(0, 3);
+            otherProjects.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'glass-card rounded-2xl overflow-hidden group hover:border-agency-neon/50 transition-all duration-300 flex flex-col justify-between';
+                card.innerHTML = `
+                    <div>
+                        <div class="relative h-48 overflow-hidden bg-black/40">
+                            <img src="${item.thumbnail}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-3 left-3 bg-agency-dark/90 text-agency-neon text-xs font-semibold px-3 py-1 rounded-full border border-gray-700 uppercase">
+                                ${item.categoryName}
+                            </span>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-bold text-lg text-white group-hover:text-agency-neon transition-colors line-clamp-1">${item.title}</h3>
+                            <p class="text-gray-400 text-xs mt-2 line-clamp-2">${item.shortDesc}</p>
+                        </div>
+                    </div>
+                    <div class="p-5 pt-0">
+                        <a href="portfolio-detail.html?id=${item.id}" class="w-full py-2.5 bg-agency-card hover:bg-agency-neon hover:text-agency-dark text-white rounded-xl font-semibold text-xs transition-colors border border-gray-700 flex items-center justify-center gap-2">
+                            <span>Lihat Detail</span>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                    </div>
+                `;
+                relatedGrid.appendChild(card);
+            });
+        }
+
+        function shareProject() {
+            if (navigator.share) {
+                navigator.share({
+                    title: project.title,
+                    text: project.shortDesc,
+                    url: window.location.href,
+                }).catch(err => console.log('Share error:', err));
+            } else {
+                navigator.clipboard.writeText(window.location.href);
+                alert('Tautan proyek berhasil disalin ke clipboard!');
+            }
+        }
+    </script>
+</body>
+</html>

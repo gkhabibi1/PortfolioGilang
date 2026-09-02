@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="facebook-domain-verification" content="0rw4el7jsz7416o7tu1a29jzv3u6xn" />
     <title>Gilang Habib Azky Pratama - Portfolio</title>
+
     <!-- Meta Pixel Code -->
     <script>
     !function(f,b,e,v,n,t,s)
@@ -22,13 +23,16 @@
     src="https://www.facebook.com/tr?id=2023230351729936&ev=PageView&noscript=1"
     /></noscript>
     <!-- End Meta Pixel Code -->
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- AOS CSS (Scroll Animations) -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <!-- Swiper CSS (For Advanced Sliders) -->
+    <!-- Swiper CSS (For Sliders) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <!-- Custom Configuration -->
     <script>
         tailwind.config = {
@@ -36,8 +40,9 @@
                 extend: {
                     colors: {
                         'agency-blue': '#1D4ED8',
-                        'agency-neon': '#ddff00', /* Warna baru yang di-request */
-                        'agency-dark': '#111111',
+                        'agency-neon': '#ddff00',
+                        'agency-dark': '#0b0c10',
+                        'agency-card': '#14161f',
                         'agency-gray': '#1F2937'
                     },
                     fontFamily: {
@@ -49,30 +54,61 @@
         }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Oswald:wght@500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Oswald:wght@500;600;700&display=swap');
         
-        body { font-family: 'Inter', sans-serif; background-color: #111111; color: #ffffff; overflow-x: hidden; }
-        h1, h2, h3, .font-display { font-family: 'Oswald', sans-serif; text-transform: uppercase; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #0b0c10; 
+            color: #ffffff; 
+            overflow-x: hidden; 
+        }
+        h1, h2, h3, .font-display { 
+            font-family: 'Oswald', sans-serif; 
+            text-transform: uppercase; 
+        }
 
-        /* Marquee */
+        /* Modern Glassmorphism Styling */
+        .glass-header {
+            background: rgba(11, 12, 16, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-card {
+            background: rgba(20, 22, 31, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card:hover {
+            border-color: rgba(221, 255, 0, 0.4);
+            transform: translateY(-4px);
+        }
+
+        /* Marquee Animation */
         .marquee-container {
             overflow: hidden;
             white-space: nowrap;
-            background-color: #ddff00; /* Warna baru */
-            padding: 15px 0;
+            background-color: #ddff00;
+            padding: 14px 0;
             display: flex;
             align-items: center;
         }
         .marquee-content {
-            display: inline-block;
-            animation: marquee 20s linear infinite;
+            display: flex;
+            align-items: center;
+            animation: marquee 22s linear infinite;
         }
         .marquee-content img {
-            display: inline-block;
-            height: 40px;
-            margin: 0 40px;
+            height: 36px;
+            margin: 0 45px;
             filter: grayscale(100%) contrast(200%);
-            opacity: 0.8;
+            opacity: 0.85;
+            transition: opacity 0.3s;
+        }
+        .marquee-content img:hover {
+            opacity: 1;
         }
         @keyframes marquee {
             0% { transform: translateX(0); }
@@ -86,236 +122,208 @@
         .swiper-pagination-bullet-active {
             background-color: #ddff00 !important;
         }
+
+        /* Category Filter Buttons active state */
+        .filter-btn.active {
+            background-color: #ddff00;
+            color: #0b0c10;
+            border-color: #ddff00;
+            font-weight: 700;
+            box-shadow: 0 0 15px rgba(221, 255, 0, 0.3);
+        }
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased selection:bg-agency-neon selection:text-agency-dark">
+
+    <!-- STICKY NAVBAR -->
+    <nav class="fixed top-0 left-0 w-full z-50 glass-header px-6 lg:px-20 py-4 transition-all duration-300">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#" class="text-2xl font-display font-bold text-agency-neon tracking-wider">GILANG.</a>
+            
+            <div class="hidden md:flex items-center gap-8 text-sm uppercase tracking-wider font-medium text-gray-300">
+                <a href="#about" class="hover:text-agency-neon transition-colors">Tentang Saya</a>
+                <a href="#portfolio" class="hover:text-agency-neon transition-colors">Portofolio</a>
+                <a href="#arsenal" class="hover:text-agency-neon transition-colors">Skills & Tools</a>
+                <a href="#services" class="hover:text-agency-neon transition-colors">Layanan</a>
+            </div>
+
+            <a href="#contact" data-meta-event="Contact" data-meta-name="Let's Talk Header" class="border border-agency-neon text-agency-neon px-6 py-2 rounded-full hover:bg-agency-neon hover:text-agency-dark transition-all text-xs font-bold uppercase tracking-wider shadow-[0_0_15px_rgba(221,255,0,0.15)]">
+                LET'S TALK
+            </a>
+        </div>
+    </nav>
 
     <!-- HERO SECTION -->
-    <header class="bg-agency-blue min-h-screen flex flex-col justify-center relative overflow-hidden px-6 lg:px-20 py-12">
-        <nav class="absolute top-0 left-0 w-full p-6 flex justify-between items-center z-20">
-            <div class="text-2xl font-display font-bold text-agency-neon">GILANG.</div>
-            <a href="#contact" data-meta-event="Contact" data-meta-name="Let's Talk Header" class="border border-agency-neon text-agency-neon px-6 py-2 rounded-full hover:bg-agency-neon hover:text-agency-blue transition-all">LET'S TALK</a>
-        </nav>
+    <header id="about" class="min-h-screen flex flex-col justify-center relative overflow-hidden px-6 lg:px-20 pt-28 pb-16 bg-gradient-to-b from-[#11162b] via-[#0b0c10] to-[#0b0c10]">
+        
+        <!-- Ambient Glowing Background Elements -->
+        <div class="absolute -top-40 -left-40 w-96 h-96 bg-agency-blue rounded-full filter blur-[120px] opacity-30 pointer-events-none"></div>
+        <div class="absolute top-1/3 -right-20 w-80 h-80 bg-agency-neon rounded-full filter blur-[130px] opacity-15 pointer-events-none"></div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center mt-16 z-10">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center z-10 w-full">
             <div data-aos="fade-right" data-aos-duration="1000">
-                <h2 class="text-agency-neon text-xl tracking-widest mb-4">CONTENT CREATOR & WEB DEVELOPER</h2>
-                <h1 class="text-6xl lg:text-9xl font-display font-bold leading-none mb-6">
-                    CREATIVE<br>
-                    <span class="text-transparent" style="-webkit-text-stroke: 2px #ddff00;">AGENCY</span>
+                
+                <!-- Badge -->
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-agency-neon/10 border border-agency-neon/30 text-agency-neon text-xs font-bold tracking-widest uppercase mb-6 shadow-sm">
+                    <span class="w-2 h-2 rounded-full bg-agency-neon animate-pulse"></span>
+                    Available for Projects & Freelance
+                </div>
+
+                <h1 class="text-5xl sm:text-6xl lg:text-8xl font-display font-bold leading-none mb-6">
+                    DIGITAL<br>
+                    <span class="text-transparent" style="-webkit-text-stroke: 2px #ddff00;">CREATOR</span>
                 </h1>
-                <p class="text-xl mb-8 max-w-lg text-blue-100">
-                    Hi, I'm Gilang Habib Azky Pratama H.P. Based in Solo, Indonesia, I blend technical web development with engaging content creation to elevate digital experiences.
+                
+                <p class="text-lg sm:text-xl mb-8 max-w-xl text-gray-300 font-light leading-relaxed">
+                    Halo, Saya <strong class="text-white font-semibold">Gilang Habib Azky Pratama H.P.</strong> Berbasis di Solo, Indonesia. Saya menggabungkan keahlian <span class="text-agency-neon font-medium">Web Development</span> & <span class="text-agency-neon font-medium">Content Creation</span> untuk menghasilkan karya digital berkualitas tinggi.
                 </p>
-                <div class="flex gap-4">
-                    <a href="#portfolio" class="bg-agency-neon text-agency-blue font-bold px-8 py-4 rounded-full hover:scale-105 transition-transform">EXPLORE WORK</a>
+
+                <div class="flex flex-wrap gap-4 items-center">
+                    <a href="#portfolio" class="bg-agency-neon text-agency-dark font-bold px-8 py-4 rounded-full hover:scale-105 transition-transform shadow-[0_0_20px_rgba(221,255,0,0.3)] flex items-center gap-2">
+                        <span>JELAJAHI PORTOFOLIO</span>
+                        <i class="fa-solid fa-arrow-down text-sm"></i>
+                    </a>
+                    <a href="#contact" class="border border-gray-700 hover:border-agency-neon text-white hover:text-agency-neon px-7 py-4 rounded-full transition-all font-semibold text-sm">
+                        Hubungi Langsung
+                    </a>
                 </div>
             </div>
 
-            <div class="relative flex justify-center items-center" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
+            <!-- Profile Image Showcase -->
+            <div class="relative flex justify-center items-center" data-aos="fade-left" data-aos-duration="1200">
                 <div class="relative max-w-md lg:max-w-lg w-full">
-                    <!-- FOTO PROFIL -->
-                    <img src="https://ik.imagekit.io/e2yna5qg8/Untitled%20design%20(2)_11zon.png" alt="Gilang Habib Azky Pratama" class="w-full h-auto max-h-[550px] lg:max-h-[650px] object-contain rounded-3xl shadow-2xl relative z-10 mx-auto">
-                    <div class="absolute -top-10 -right-10 w-40 h-40 bg-agency-neon rounded-full mix-blend-overlay filter blur-3xl opacity-50 z-0"></div>
+                    <div class="glass-card p-3 rounded-3xl border border-gray-800 shadow-2xl relative z-10">
+                        <img src="https://ik.imagekit.io/e2yna5qg8/Untitled%20design%20(2)_11zon.png" alt="Gilang Habib Azky Pratama" class="w-full h-auto max-h-[500px] lg:max-h-[580px] object-cover rounded-2xl mx-auto">
+                    </div>
+                    <!-- Decorative back glow -->
+                    <div class="absolute -bottom-6 -right-6 w-48 h-48 bg-agency-neon/20 rounded-full blur-2xl z-0"></div>
                 </div>
             </div>
         </div>
     </header>
 
     <!-- LOGO MARQUEE -->
-    <section class="border-y-4 border-agency-dark">
+    <section class="border-y border-gray-800">
         <div class="marquee-container">
             <div class="marquee-content">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Client 1">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Client 2">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="Client 3">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Spotify_logo_without_text.svg" alt="Client 4">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Client 5">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Client 1">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Client 2">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="Client 3">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Spotify_logo_without_text.svg" alt="Client 4">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Client 5">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Spotify_logo_without_text.svg" alt="Spotify">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram">
+                <!-- Repeat for smooth loop -->
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Spotify_logo_without_text.svg" alt="Spotify">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram">
             </div>
         </div>
     </section>
 
-    <!-- TOOLS & SKILLS -->
-    <section class="py-20 px-6 lg:px-20 bg-agency-dark">
-        <div class="text-center mb-16" data-aos="fade-up">
-            <h2 class="text-4xl font-display text-white">MY ARSENAL</h2>
-            <p class="text-gray-400 mt-4">The software & tools I use to bring ideas to life.</p>
-        </div>
-        
-        <div class="flex flex-wrap justify-center gap-6" data-aos="flip-up" data-aos-duration="1000">
-            <span class="px-6 py-3 border border-gray-600 rounded-full text-lg hover:border-agency-neon hover:text-agency-neon transition-colors cursor-default">Figma</span>
-            <span class="px-6 py-3 border border-gray-600 rounded-full text-lg hover:border-agency-neon hover:text-agency-neon transition-colors cursor-default">CapCut</span>
-            <span class="px-6 py-3 border border-gray-600 rounded-full text-lg hover:border-agency-neon hover:text-agency-neon transition-colors cursor-default">Premiere Pro</span>
-            <span class="px-6 py-3 border border-gray-600 rounded-full text-lg hover:border-agency-neon hover:text-agency-neon transition-colors cursor-default">After Effects</span>
-            <span class="px-6 py-3 border border-gray-600 rounded-full text-lg hover:border-agency-neon hover:text-agency-neon transition-colors cursor-default">Canva</span>
-            <span class="px-6 py-3 border border-gray-600 rounded-full text-lg hover:border-agency-neon hover:text-agency-neon transition-colors cursor-default">Webflow / WordPress</span>
-        </div>
-    </section>
-
-    <!-- PORTFOLIO -->
-    <section id="portfolio" class="py-20 bg-[#151515]">
-        
-        <!-- 01. VIDEO CLIPPING -->
-        <div class="px-6 lg:px-20 mb-32">
-            <div class="border-b border-gray-700 pb-4 mb-10" data-aos="fade-right">
-                <h2 class="text-5xl font-display text-agency-neon">01. VIDEO CLIPPING</h2>
-                <p class="text-gray-400 mt-2">Optimized short-form content for TikTok, Reels, and Shorts.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Video Item 1 -->
-                <div class="bg-agency-gray rounded-2xl overflow-hidden group" data-aos="fade-up" data-aos-delay="100">
-                    <img src="https://via.placeholder.com/400x500/111/ddff00?text=Short+Clip+1" class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold mb-2">Viral Affiliate Clips</h3>
-                        <p class="text-gray-400 text-sm">High-retention hooks and fast-paced clipping to maximize conversions.</p>
-                    </div>
-                </div>
-                <!-- Video Item 2 -->
-                <div class="bg-agency-gray rounded-2xl overflow-hidden group" data-aos="fade-up" data-aos-delay="200">
-                    <img src="https://via.placeholder.com/400x500/111/ddff00?text=Short+Clip+2" class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold mb-2">Podcast Highlights</h3>
-                        <p class="text-gray-400 text-sm">Extracting the most engaging 60 seconds from long-form content.</p>
-                    </div>
-                </div>
-                <!-- Video Item 3 -->
-                <div class="bg-agency-gray rounded-2xl overflow-hidden group" data-aos="fade-up" data-aos-delay="300">
-                    <img src="https://via.placeholder.com/400x500/111/ddff00?text=Short+Clip+3" class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold mb-2">Product Teasers</h3>
-                        <p class="text-gray-400 text-sm">Snappy cuts with trending audio for brand awareness campaigns.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 02. VIDEO EDITING -->
-        <div class="px-6 lg:px-20 mb-32">
-            <div class="border-b border-gray-700 pb-4 mb-10 flex flex-col items-end text-right" data-aos="fade-left">
-                <h2 class="text-5xl font-display text-white">02. VIDEO EDITING</h2>
-                <p class="text-gray-400 mt-2">Cinematic storytelling, color grading, and dynamic motion graphics.</p>
-            </div>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <!-- Edit Item 1 -->
-                <div class="bg-agency-gray rounded-2xl overflow-hidden group" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="relative h-80 bg-gray-800 flex items-center justify-center">
-                        <img src="https://via.placeholder.com/800x600/1a1a1a/ffffff?text=Event+Highlights" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-3xl font-display mb-2">STIE Surakarta Events</h3>
-                        <p class="text-gray-400">Full-scale editing involving multi-cam sync, audio mixing, and narrative flow.</p>
-                    </div>
-                </div>
-                <!-- Edit Item 2 -->
-                <div class="bg-agency-gray rounded-2xl overflow-hidden group" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="relative h-80 bg-gray-800 flex items-center justify-center">
-                        <img src="https://via.placeholder.com/800x600/1a1a1a/ffffff?text=Commercial+Video" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
-                    </div>
-                    <div class="p-8">
-                        <h3 class="text-3xl font-display mb-2">YouTube Vlogs & Tech</h3>
-                        <p class="text-gray-400">Engaging pacing, lower thirds, and B-roll integration for long-form creators.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 03. GRAPHIC DESIGN & 04. UI DESIGN -->
-        <div class="px-6 lg:px-20 mb-32 grid grid-cols-1 lg:grid-cols-2 gap-16">
+    <!-- HIGHLIGHTED PORTFOLIO SECTION -->
+    <section id="portfolio" class="py-24 px-6 lg:px-20 bg-[#0b0c10]">
+        <div class="max-w-7xl mx-auto">
             
-            <!-- Graphic Design Column -->
-            <div data-aos="flip-left" data-aos-duration="1000">
-                <div class="border-b border-gray-700 pb-4 mb-8">
-                    <h2 class="text-4xl font-display text-agency-neon">03. GRAPHIC DESIGN</h2>
+            <!-- Section Header -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6" data-aos="fade-up">
+                <div>
+                    <h2 class="text-4xl sm:text-6xl font-display font-bold text-white tracking-tight">
+                        KARYA <span class="text-agency-neon">PORTOFOLIO</span>
+                    </h2>
+                    <p class="text-gray-400 mt-3 text-base max-w-xl">
+                        Koleksi proyek pilihan dalam Web Development, UI/UX Design, Video Editing, Graphic Design, dan Video Short Clipping. Klik karya untuk melihat detail & media lengkap.
+                    </p>
                 </div>
-                <div class="space-y-10">
-                    <div>
-                        <img src="https://via.placeholder.com/600x400/1f2937/ddff00?text=Social+Media+Post" class="w-full rounded-2xl hover:shadow-[0_0_20px_rgba(221,255,0,0.3)] transition-shadow">
-                        <h4 class="text-xl font-bold mt-4">Social Media Carousels</h4>
-                        <p class="text-gray-400 text-sm mt-1">High-engagement educational posts for Instagram & LinkedIn.</p>
-                    </div>
-                    <div>
-                        <img src="https://via.placeholder.com/600x400/1f2937/ddff00?text=Event+Poster" class="w-full rounded-2xl hover:shadow-[0_0_20px_rgba(221,255,0,0.3)] transition-shadow">
-                        <h4 class="text-xl font-bold mt-4">Event Posters (ACFION)</h4>
-                        <p class="text-gray-400 text-sm mt-1">Print and digital flyers designed for maximum click-through rates.</p>
-                    </div>
+
+                <div class="text-xs font-medium text-gray-500 flex items-center gap-2">
+                    <i class="fa-solid fa-circle-info text-agency-neon"></i>
+                    <span>Klik karya untuk membuka Lightbox / Halaman Baru</span>
                 </div>
             </div>
 
-            <!-- UI Design Column -->
-            <div data-aos="flip-right" data-aos-duration="1000" data-aos-delay="200">
-                <div class="border-b border-gray-700 pb-4 mb-8">
-                    <h2 class="text-4xl font-display text-white">04. UI DESIGN</h2>
-                </div>
-                <div class="space-y-10">
-                    <div>
-                        <img src="https://ik.imagekit.io/e2yna5qg8/Screenshot_12.png" alt="Web Application UI" class="w-full h-56 sm:h-64 object-cover object-top rounded-2xl hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-shadow">
-                        <h4 class="text-xl font-bold mt-4">Modern Web Application UI</h4>
-                        <p class="text-gray-400 text-sm mt-1">User-centric layouts focusing on typography, whitespace, and accessibility.</p>
-                    </div>
-                    <div>
-                        <img src="https://ik.imagekit.io/e2yna5qg8/Dekstop%20Vietnam_11zon.jpg" alt="Landing Page Design" class="w-full h-56 sm:h-64 object-cover object-top rounded-2xl hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-shadow">
-                        <h4 class="text-xl font-bold mt-4">Landing Page Layouts</h4>
-                        <p class="text-gray-400 text-sm mt-1">Conversion-optimized structures created for engaging digital experiences.</p>
-                    </div>
-                </div>
+            <!-- CATEGORY FILTER BUTTONS -->
+            <div class="flex flex-wrap gap-3 mb-12" data-aos="fade-up" data-aos-delay="100">
+                <button onclick="filterPortfolio('all')" class="filter-btn active px-6 py-2.5 rounded-full border border-gray-700 text-sm transition-all">
+                    Semua Karya
+                </button>
+                <button onclick="filterPortfolio('website')" class="filter-btn px-6 py-2.5 rounded-full border border-gray-700 text-sm text-gray-300 hover:border-agency-neon transition-all">
+                    💻 Website Dev
+                </button>
+                <button onclick="filterPortfolio('uiux')" class="filter-btn px-6 py-2.5 rounded-full border border-gray-700 text-sm text-gray-300 hover:border-agency-neon transition-all">
+                    🎨 UI/UX Design
+                </button>
+                <button onclick="filterPortfolio('video')" class="filter-btn px-6 py-2.5 rounded-full border border-gray-700 text-sm text-gray-300 hover:border-agency-neon transition-all">
+                    🎬 Video Editing
+                </button>
+                <button onclick="filterPortfolio('clipping')" class="filter-btn px-6 py-2.5 rounded-full border border-gray-700 text-sm text-gray-300 hover:border-agency-neon transition-all">
+                    📱 Short Clips
+                </button>
+                <button onclick="filterPortfolio('graphic')" class="filter-btn px-6 py-2.5 rounded-full border border-gray-700 text-sm text-gray-300 hover:border-agency-neon transition-all">
+                    🖼️ Graphic Design
+                </button>
             </div>
+
+            <!-- DYNAMIC PORTFOLIO GRID -->
+            <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Javascript will dynamically render items here -->
+            </div>
+
         </div>
+    </section>
 
-        <!-- 05. WEBSITE DEVELOPMENT (NOW WITH SLIDER) -->
-        <div class="px-6 lg:px-20">
-            <div class="bg-agency-blue rounded-3xl p-10 lg:p-20 relative overflow-hidden" data-aos="fade-up">
-                <div class="relative z-10 md:w-full text-center mb-12">
-                    <h2 class="text-5xl font-display text-agency-neon mb-6">05. WEBSITE DEVELOPMENT</h2>
-                    <p class="text-xl text-blue-100 max-w-2xl mx-auto">From design to deployment. Building responsive, high-performance websites integrated with modern technology to power up your digital presence.</p>
-                    
-                    <ul class="flex flex-wrap justify-center gap-6 mt-8 text-white text-lg">
-                        <li class="flex items-center gap-2"><span class="text-agency-neon">✔</span> Pembuatan Company Profile</li>
-                        <li class="flex items-center gap-2"><span class="text-agency-neon">✔</span> E-Commerce & Landing Pages</li>
-                        <li class="flex items-center gap-2"><span class="text-agency-neon">✔</span> Interactive Web Animations</li>
-                    </ul>
+    <!-- FEATURED WEBSITE DEVELOPMENT SLIDER -->
+    <section class="py-20 px-6 lg:px-20 bg-[#11141e] border-y border-gray-800">
+        <div class="max-w-7xl mx-auto">
+            <div class="bg-agency-blue/90 rounded-3xl p-8 sm:p-12 lg:p-16 relative overflow-hidden shadow-2xl" data-aos="fade-up">
+                
+                <div class="relative z-10 text-center mb-10">
+                    <h2 class="text-4xl sm:text-5xl font-display text-agency-neon mb-4">FEATURED WEB PROJECTS</h2>
+                    <p class="text-lg text-blue-100 max-w-2xl mx-auto font-light">
+                        Dari landing page UMKM hingga platform aplikasi web modern berkinerja tinggi.
+                    </p>
                 </div>
 
-                <!-- Swiper Carousel for Web Portfolio -->
+                <!-- Swiper Carousel -->
                 <div class="swiper web-portfolio-swiper w-full pb-14">
                     <div class="swiper-wrapper">
-                        <!-- Web Proj 1 -->
+                        <!-- Slide 1 -->
                         <div class="swiper-slide">
-                            <div class="bg-agency-dark p-4 rounded-2xl border-2 border-agency-neon">
-                                <img src="https://ik.imagekit.io/e2yna5qg8/Dekstop%20Vietnam_11zon.jpg" alt="Vietnam Destination Web" class="w-full h-56 sm:h-64 md:h-72 object-cover object-top rounded-xl mb-4 hover:scale-[1.02] transition-transform duration-300">
-                                <h3 class="text-xl font-bold text-white text-center">Vietnam Destination Website</h3>
+                            <div class="bg-agency-dark p-4 rounded-2xl border border-agency-neon/50">
+                                <img src="https://ik.imagekit.io/e2yna5qg8/Dekstop%20Vietnam_11zon.jpg" alt="Vietnam Destination Web" class="w-full h-56 object-cover object-top rounded-xl mb-4">
+                                <h3 class="text-lg font-bold text-white text-center">Vietnam Destination Website</h3>
+                                <div class="mt-3 flex justify-center">
+                                    <a href="portfolio-detail.html?id=vietnam-destination-web" target="_blank" class="text-xs text-agency-neon hover:underline font-semibold flex items-center gap-1">
+                                        <span>Buka Detail</span>
+                                        <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                        <!-- Web Proj 2 -->
+                        <!-- Slide 2 -->
                         <div class="swiper-slide">
-                            <div class="bg-agency-dark p-4 rounded-2xl border-2 border-gray-600 hover:border-agency-neon transition-colors">
-                                <img src="https://ik.imagekit.io/e2yna5qg8/Screenshot_12.png" alt="Company Profile Web" class="w-full h-56 sm:h-64 md:h-72 object-cover object-top rounded-xl mb-4 hover:scale-[1.02] transition-transform duration-300">
-                                <h3 class="text-xl font-bold text-white text-center">Company Profile & Platform</h3>
+                            <div class="bg-agency-dark p-4 rounded-2xl border border-gray-700">
+                                <img src="https://ik.imagekit.io/e2yna5qg8/Screenshot_12.png" alt="Company Profile Web" class="w-full h-56 object-cover object-top rounded-xl mb-4">
+                                <h3 class="text-lg font-bold text-white text-center">Company Profile Platform</h3>
+                                <div class="mt-3 flex justify-center">
+                                    <a href="portfolio-detail.html?id=company-profile-platform" target="_blank" class="text-xs text-agency-neon hover:underline font-semibold flex items-center gap-1">
+                                        <span>Buka Detail</span>
+                                        <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                        <!-- Web Proj 3 -->
+                        <!-- Slide 3 -->
                         <div class="swiper-slide">
-                            <div class="bg-agency-dark p-4 rounded-2xl border-2 border-gray-600 hover:border-agency-neon transition-colors">
-                                <img src="https://ik.imagekit.io/e2yna5qg8/Screenshot_13.png" alt="Interactive Web Design" class="w-full h-56 sm:h-64 md:h-72 object-cover object-top rounded-xl mb-4 hover:scale-[1.02] transition-transform duration-300">
-                                <h3 class="text-xl font-bold text-white text-center">Creative Web & Dashboard</h3>
-                            </div>
-                        </div>
-                        <!-- Web Proj 4 -->
-                        <div class="swiper-slide">
-                            <div class="bg-agency-dark p-4 rounded-2xl border-2 border-gray-600 hover:border-agency-neon transition-colors">
-                                <img src="https://ik.imagekit.io/e2yna5qg8/Screenshot_9.png" alt="Modern SaaS Web" class="w-full h-56 sm:h-64 md:h-72 object-cover object-top rounded-xl mb-4 hover:scale-[1.02] transition-transform duration-300">
-                                <h3 class="text-xl font-bold text-white text-center">Modern Web Portal</h3>
-                            </div>
-                        </div>
-                        <!-- Web Proj 5 -->
-                        <div class="swiper-slide">
-                            <div class="bg-agency-dark p-4 rounded-2xl border-2 border-gray-600 hover:border-agency-neon transition-colors">
-                                <img src="https://ik.imagekit.io/e2yna5qg8/Screenshot_11.png" alt="E-Commerce Landing Page" class="w-full h-56 sm:h-64 md:h-72 object-cover object-top rounded-xl mb-4 hover:scale-[1.02] transition-transform duration-300">
-                                <h3 class="text-xl font-bold text-white text-center">E-Commerce & Service Web</h3>
+                            <div class="bg-agency-dark p-4 rounded-2xl border border-gray-700">
+                                <img src="https://ik.imagekit.io/e2yna5qg8/Screenshot_11.png" alt="E-Commerce Landing Page" class="w-full h-56 object-cover object-top rounded-xl mb-4">
+                                <h3 class="text-lg font-bold text-white text-center">E-Commerce UMKM Promo</h3>
+                                <div class="mt-3 flex justify-center">
+                                    <a href="portfolio-detail.html?id=ecommerce-service-web" target="_blank" class="text-xs text-agency-neon hover:underline font-semibold flex items-center gap-1">
+                                        <span>Buka Detail</span>
+                                        <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -324,52 +332,264 @@
                     <div class="swiper-button-next"></div>
                     <div class="swiper-button-prev"></div>
                 </div>
+
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer id="contact" class="bg-agency-dark py-12 px-6 lg:px-20 text-center border-t border-gray-800">
-        <h2 class="text-4xl font-display text-white mb-6">LET'S CREATE SOMETHING EXTRAORDINARY.</h2>
-        <a href="mailto:your.email@example.com" data-meta-event="Lead" data-meta-name="Start a Project Footer" class="inline-block bg-agency-neon text-agency-dark font-bold text-xl px-10 py-4 rounded-full hover:bg-white transition-colors">START A PROJECT</a>
-        <p class="text-gray-500 mt-12 text-sm">© 2026 Gilang Habib Azky Pratama H.P. All rights reserved.</p>
+    <!-- TOOLS & SKILLS (MY ARSENAL) -->
+    <section id="arsenal" class="py-20 px-6 lg:px-20 bg-[#0b0c10]">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-display text-white">MY ARSENAL & TOOLS</h2>
+                <p class="text-gray-400 mt-3 text-base">Perangkat lunak dan teknologi utama yang saya gunakan setiap hari.</p>
+            </div>
+            
+            <div class="flex flex-wrap justify-center gap-4 sm:gap-6" data-aos="zoom-in" data-aos-duration="1000">
+                <div class="glass-card px-6 py-3.5 rounded-full text-base font-medium flex items-center gap-3 border border-gray-800 hover:border-agency-neon hover:text-agency-neon transition-colors cursor-default">
+                    <i class="fa-brands fa-figma text-agency-neon"></i> Figma
+                </div>
+                <div class="glass-card px-6 py-3.5 rounded-full text-base font-medium flex items-center gap-3 border border-gray-800 hover:border-agency-neon hover:text-agency-neon transition-colors cursor-default">
+                    <i class="fa-solid fa-scissors text-agency-neon"></i> CapCut Pro
+                </div>
+                <div class="glass-card px-6 py-3.5 rounded-full text-base font-medium flex items-center gap-3 border border-gray-800 hover:border-agency-neon hover:text-agency-neon transition-colors cursor-default">
+                    <i class="fa-solid fa-film text-agency-neon"></i> Premiere Pro
+                </div>
+                <div class="glass-card px-6 py-3.5 rounded-full text-base font-medium flex items-center gap-3 border border-gray-800 hover:border-agency-neon hover:text-agency-neon transition-colors cursor-default">
+                    <i class="fa-solid fa-wand-magic-sparkles text-agency-neon"></i> After Effects
+                </div>
+                <div class="glass-card px-6 py-3.5 rounded-full text-base font-medium flex items-center gap-3 border border-gray-800 hover:border-agency-neon hover:text-agency-neon transition-colors cursor-default">
+                    <i class="fa-brands fa-html5 text-agency-neon"></i> HTML5 & CSS3
+                </div>
+                <div class="glass-card px-6 py-3.5 rounded-full text-base font-medium flex items-center gap-3 border border-gray-800 hover:border-agency-neon hover:text-agency-neon transition-colors cursor-default">
+                    <i class="fa-brands fa-js text-agency-neon"></i> JavaScript ES6+
+                </div>
+                <div class="glass-card px-6 py-3.5 rounded-full text-base font-medium flex items-center gap-3 border border-gray-800 hover:border-agency-neon hover:text-agency-neon transition-colors cursor-default">
+                    <i class="fa-solid fa-code text-agency-neon"></i> Tailwind CSS
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER & CONTACT -->
+    <footer id="contact" class="bg-[#08090d] py-16 px-6 lg:px-20 border-t border-gray-800/80 text-center">
+        <div class="max-w-4xl mx-auto" data-aos="fade-up">
+            <h2 class="text-4xl sm:text-6xl font-display font-bold text-white mb-6">LET'S CREATE SOMETHING EXTRAORDINARY.</h2>
+            <p class="text-gray-400 text-base mb-8 max-w-lg mx-auto">Punya ide proyek menarik atau ingin konsultasi kebutuhan pembuatan website & konten video?</p>
+            
+            <a href="mailto:gilanghabib@gmail.com" data-meta-event="Lead" data-meta-name="Start a Project Footer" class="inline-flex items-center gap-3 bg-agency-neon text-agency-dark font-bold text-lg px-10 py-5 rounded-full hover:bg-white transition-all shadow-[0_0_25px_rgba(221,255,0,0.3)] hover:scale-105">
+                <span>START A PROJECT</span>
+                <i class="fa-solid fa-paper-plane text-sm"></i>
+            </a>
+
+            <div class="mt-12 flex justify-center gap-6 text-gray-400 text-xl">
+                <a href="#" class="hover:text-agency-neon transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="hover:text-agency-neon transition-colors"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#" class="hover:text-agency-neon transition-colors"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="#" class="hover:text-agency-neon transition-colors"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#" class="hover:text-agency-neon transition-colors"><i class="fa-brands fa-github"></i></a>
+            </div>
+
+            <p class="text-gray-600 mt-12 text-xs">© 2026 Gilang Habib Azky Pratama H.P. All rights reserved.</p>
+        </div>
     </footer>
 
-    <!-- Scripts -->
+    <!-- INTERACTIVE LIGHTBOX MODAL -->
+    <div id="portfolio-modal" class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+        <div class="glass-card w-full max-w-4xl rounded-3xl border border-gray-700 overflow-hidden shadow-2xl relative my-auto animate-in fade-in zoom-in duration-300">
+            
+            <!-- Close Button -->
+            <button onclick="closeModal()" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black/70 hover:bg-agency-neon hover:text-agency-dark text-white flex items-center justify-center transition-all border border-gray-600">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <!-- Modal Media View (Video or Image) -->
+            <div id="modal-media-wrapper" class="w-full bg-black/80 flex items-center justify-center min-h-[300px] max-h-[60vh] relative overflow-hidden">
+                <!-- Dynamic Content inserted via JS -->
+            </div>
+
+            <!-- Modal Content Body -->
+            <div class="p-6 sm:p-8">
+                <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
+                    <div>
+                        <span id="modal-category" class="bg-agency-neon/10 text-agency-neon border border-agency-neon/30 text-xs font-semibold px-3 py-1 rounded-full uppercase">Category</span>
+                        <h3 id="modal-title" class="text-2xl sm:text-3xl font-bold text-white mt-2">Project Title</h3>
+                    </div>
+
+                    <a id="modal-detail-page-btn" href="#" target="_blank" class="bg-agency-neon text-agency-dark hover:bg-white font-bold text-xs sm:text-sm px-6 py-3 rounded-full transition-all shadow-md flex items-center gap-2">
+                        <span>Buka Halaman Detail</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                    </a>
+                </div>
+
+                <p id="modal-desc" class="text-gray-300 text-sm sm:text-base leading-relaxed mb-6 font-light">
+                    Deskripsi karya portofolio.
+                </p>
+
+                <div class="flex flex-wrap items-center justify-between border-t border-gray-800 pt-4 gap-4">
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs text-gray-400 font-semibold uppercase">Tools:</span>
+                        <div id="modal-tools" class="flex flex-wrap gap-2"></div>
+                    </div>
+
+                    <div id="modal-live-link-container" class="hidden">
+                        <a id="modal-live-link" href="#" target="_blank" class="text-agency-neon hover:underline text-xs font-semibold flex items-center gap-1">
+                            <span>Lihat Live Site</span>
+                            <i class="fa-solid fa-external-link text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="js/portfolio-data.js"></script>
     <script src="js/meta-capi-client.js"></script>
     
     <script>
-        // Initialize Scroll Animations (AOS)
-        AOS.init({
-            once: true, 
-            offset: 100, 
-        });
+        // Initialize AOS
+        AOS.init({ once: true, offset: 100 });
 
-        // Initialize Swiper Slider for Web Development Section
+        // Initialize Swiper
         const swiper = new Swiper('.web-portfolio-swiper', {
             slidesPerView: 1,
             spaceBetween: 30,
             loop: true,
-            autoplay: {
-                delay: 3500,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            breakpoints: {
-                // Saat ukuran layar 768px (Tablet) ke atas, tampilkan 2 slide sekaligus
-                768: {
-                    slidesPerView: 2,
-                }
+            autoplay: { delay: 3500, disableOnInteraction: false },
+            pagination: { el: '.swiper-pagination', clickable: true },
+            navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+            breakpoints: { 768: { slidesPerView: 2 } }
+        });
+
+        // Render Portfolio Grid
+        function renderPortfolio(items) {
+            const grid = document.getElementById('portfolio-grid');
+            grid.innerHTML = '';
+
+            items.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = 'glass-card rounded-3xl overflow-hidden group border border-gray-800 hover:border-agency-neon/50 transition-all duration-300 flex flex-col justify-between';
+                card.setAttribute('data-aos', 'fade-up');
+                card.setAttribute('data-aos-delay', (index % 3) * 100);
+
+                const isVideo = item.type === 'video';
+
+                card.innerHTML = `
+                    <div>
+                        <!-- Thumbnail & Overlay -->
+                        <div class="relative h-64 sm:h-72 overflow-hidden bg-black/60 cursor-pointer" onclick="openModal('${item.id}')">
+                            <img src="${item.thumbnail}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100">
+                            
+                            <span class="absolute top-4 left-4 bg-agency-dark/90 text-agency-neon text-xs font-semibold px-3 py-1 rounded-full border border-gray-700 uppercase tracking-wider">
+                                ${item.categoryName}
+                            </span>
+
+                            <!-- Center Overlay Icon -->
+                            <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all flex items-center justify-center">
+                                <div class="w-14 h-14 rounded-full bg-agency-dark/90 border border-agency-neon/60 text-agency-neon flex items-center justify-center group-hover:scale-110 group-hover:bg-agency-neon group-hover:text-agency-dark transition-all shadow-xl">
+                                    <i class="${isVideo ? 'fa-solid fa-play ml-1' : 'fa-solid fa-magnifying-glass-plus'} text-lg"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card Content -->
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white group-hover:text-agency-neon transition-colors line-clamp-1 cursor-pointer" onclick="openModal('${item.id}')">
+                                ${item.title}
+                            </h3>
+                            <p class="text-gray-400 text-xs sm:text-sm mt-2 line-clamp-2 font-light">
+                                ${item.shortDesc}
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Card Actions -->
+                    <div class="p-6 pt-0 flex items-center justify-between gap-3 border-t border-gray-800/60 mt-2">
+                        <button onclick="openModal('${item.id}')" class="text-xs font-semibold text-gray-300 hover:text-agency-neon transition-colors flex items-center gap-1.5">
+                            <i class="fa-solid fa-eye"></i> Quick Preview
+                        </button>
+                        
+                        <a href="portfolio-detail.html?id=${item.id}" target="_blank" class="bg-agency-card hover:bg-agency-neon hover:text-agency-dark border border-gray-700 text-white font-semibold text-xs px-4 py-2 rounded-xl transition-all flex items-center gap-1.5">
+                            <span>Detail Halaman</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Filter Functionality
+        function filterPortfolio(category) {
+            // Update active button state
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const filteredItems = getPortfolioByCategory(category);
+            renderPortfolio(filteredItems);
+        }
+
+        // Modal Lightbox Functions
+        function openModal(id) {
+            const item = getPortfolioById(id);
+            if (!item) return;
+
+            document.getElementById('modal-title').innerText = item.title;
+            document.getElementById('modal-category').innerText = item.categoryName;
+            document.getElementById('modal-desc').innerText = item.fullDesc || item.shortDesc;
+            document.getElementById('modal-detail-page-btn').href = `portfolio-detail.html?id=${item.id}`;
+
+            // Render Media
+            const mediaWrapper = document.getElementById('modal-media-wrapper');
+            if (item.type === 'video' && item.videoEmbed) {
+                mediaWrapper.innerHTML = `
+                    <iframe class="w-full aspect-video h-[400px] border-0 rounded-t-2xl" src="${item.videoEmbed}?autoplay=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                `;
+            } else {
+                mediaWrapper.innerHTML = `
+                    <img src="${item.mediaUrl || item.thumbnail}" alt="${item.title}" class="w-full h-auto max-h-[50vh] object-contain mx-auto p-4">
+                `;
             }
+
+            // Render Tools
+            const toolsWrapper = document.getElementById('modal-tools');
+            toolsWrapper.innerHTML = '';
+            if (item.tools) {
+                item.tools.forEach(t => {
+                    const tag = document.createElement('span');
+                    tag.className = 'px-2.5 py-1 bg-gray-800 text-agency-neon text-[11px] font-semibold rounded-md border border-gray-700';
+                    tag.innerText = t;
+                    toolsWrapper.appendChild(tag);
+                });
+            }
+
+            // Live Link
+            const liveContainer = document.getElementById('modal-live-link-container');
+            if (item.liveUrl && item.liveUrl !== '#') {
+                liveContainer.classList.remove('hidden');
+                document.getElementById('modal-live-link').href = item.liveUrl;
+            } else {
+                liveContainer.classList.add('hidden');
+            }
+
+            document.getElementById('portfolio-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('portfolio-modal');
+            modal.classList.add('hidden');
+            document.getElementById('modal-media-wrapper').innerHTML = ''; // Stop video playback
+            document.body.style.overflow = 'auto';
+        }
+
+        // Initial Render on Load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderPortfolio(portfolioItems);
         });
     </script>
 </body>
