@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Korindo Terpal - Pabrik Terpal PE, PP & PVC di Surabaya</title>
+  
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Tailwind CSS CDN with custom branding palette -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f0f7ff',
+              100: '#e0effe',
+              200: '#bae0fd',
+              500: '#0082f5',
+              600: '#006cd4',
+              700: '#0052a3',
+              800: '#0a3871',
+              900: '#0b274e',
+              navy: '#0b1d3a',
+              softblue: '#ebf4ff'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Halus untuk scrollbar dan animasi hover */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  </style>
+</head>
+
+<body class="bg-[#f8fafc] text-slate-800 font-sans antialiased overflow-x-hidden">
+
+  <!-- Main Navigation (Top Announcement Bar telah dihilangkan) -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm transition-all">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <!-- Logo Korindo Terpal (Teks duplikat dihilangkan agar logo gambar tampil proporsional dan tidak menabrak menu) -->
+      <a href="#" class="flex items-center group">
+        <div class="h-12 max-w-[220px] flex items-center justify-center group-hover:scale-105 transition duration-200">
+          <img 
+            id="site-logo"
+            src="https://ik.imagekit.io/e2yna5qg8/logo%20(4).png" 
+            alt="Logo Korindo Terpal" 
+            class="h-10 sm:h-12 w-auto max-h-12 object-contain"
+            onerror="this.onerror=null; this.src='https://placehold.co/180x48/006cd4/ffffff?text=KORINDO+TERPAL'"
+          />
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <div class="hidden lg:flex items-center space-x-8 font-semibold text-sm text-slate-600">
+        <a href="#hero" class="text-brand-600 transition">Beranda</a>
+        <a href="#profil" class="hover:text-brand-600 transition">Profil & Jejak</a>
+        <a href="#produk" class="hover:text-brand-600 transition">Produk Unggulan</a>
+        <a href="#proses" class="hover:text-brand-600 transition">Proses Produksi</a>
+        <a href="#proyek" class="hover:text-brand-600 transition">Proyek Strategis</a>
+        <a href="#kontak" class="hover:text-brand-600 transition">Kontak</a>
+      </div>
+
+      <!-- Header CTA Button -->
+      <div class="hidden sm:flex items-center gap-3">
+        <a href="https://wa.me/628114140297?text=Halo%20Korindo%20Terpal,%20saya%20ingin%20konsultasi%20kebutuhan%20terpal" 
+           target="_blank"
+           class="bg-brand-navy hover:bg-brand-800 text-white font-semibold text-sm px-6 py-2.5 rounded-full shadow-lg shadow-brand-navy/15 transition-all duration-200 flex items-center gap-2 hover:translate-y-[-1px]">
+          <i class="fa-brands fa-whatsapp text-emerald-400 text-base"></i>
+          <span>Hubungi Kami</span>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Toggle Button -->
+      <button id="mobileMenuBtn" class="lg:hidden text-slate-700 hover:text-brand-600 text-2xl focus:outline-none" aria-label="Toggle Menu">
+        <i class="fa-solid fa-bars" id="menuIcon"></i>
+      </button>
+    </nav>
+
+    <!-- Mobile Dropdown Navigation Menu -->
+    <div id="mobileMenu" class="hidden lg:hidden bg-white border-b border-slate-200 px-6 py-4 space-y-3 font-medium text-slate-700 shadow-xl">
+      <a href="#hero" class="block py-2 text-brand-600 font-semibold">Beranda</a>
+      <a href="#profil" class="block py-2 hover:text-brand-600">Profil & Jejak</a>
+      <a href="#produk" class="block py-2 hover:text-brand-600">Produk Unggulan</a>
+      <a href="#proses" class="block py-2 hover:text-brand-600">Proses Produksi</a>
+      <a href="#proyek" class="block py-2 hover:text-brand-600">Proyek Strategis</a>
+      <a href="#kontak" class="block py-2 hover:text-brand-600">Kontak Pabrik</a>
+      <div class="pt-2">
+        <a href="https://wa.me/628114140297" target="_blank" class="w-full bg-brand-navy text-white text-center py-3 rounded-xl font-semibold flex items-center justify-center gap-2">
+          <i class="fa-brands fa-whatsapp text-emerald-400"></i> Hubungi Sales WhatsApp
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section (Full Background Image) -->
+  <section id="hero" class="relative min-h-[640px] lg:min-h-[750px] flex items-center overflow-hidden">
+    
+    <!-- GAMBAR LATAR BELAKANG HERO: Gambar Terpal Korindo -->
+    <img 
+      id="img-hero-main"
+      src="https://ik.imagekit.io/e2yna5qg8/Terpal.png" 
+      alt="Material Terpal Berkualitas Korindo Terpal" 
+      class="absolute inset-0 w-full h-full object-cover object-center"
+      onerror="this.src='https://placehold.co/1920x1080/0b1d3a/ffffff?text=Korindo+Terpal'"
+    />
+
+    <!-- Overlay Gradien Lembut:
+         Menjaga tampilan terpal tetap terlihat jelas dengan kontras teks putih yang tajam -->
+    <div class="absolute inset-0 bg-gradient-to-r from-brand-navy/95 via-brand-navy/75 to-brand-navy/30"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-transparent to-brand-navy/20"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-24 w-full">
+      <div class="max-w-3xl space-y-7">
+        
+        <!-- Trust Badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-white text-xs font-bold uppercase tracking-wider shadow-sm">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          Pabrik Terpal Terpercaya di Indonesia
+        </div>
+
+        <!-- Heading -->
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.12] tracking-tight drop-shadow-md">
+          Pabrik Terpal <br />
+          <span class="text-sky-300">PE, PP & PVC</span> di Surabaya
+        </h1>
+
+        <!-- Deskripsi -->
+        <p class="text-base sm:text-lg text-slate-200 font-medium leading-relaxed max-w-2xl drop-shadow-sm">
+          Produsen terpal Korea dan terpal UV berkualitas tinggi dengan teknologi mutakhir. Solusi terpercaya untuk kebutuhan cover tambang, penutup tongkang (barge), industri kimia, tambak udang & garam, serta kolam modular di seluruh Indonesia.
+        </p>
+
+        <!-- Tombol Aksi (CTA) -->
+        <div class="flex flex-wrap items-center gap-4 pt-2">
+          <a href="https://wa.me/628114140297?text=Halo%20Korindo%20Terpal,%20saya%20butuh%20penawaran%20harga%20terpal" 
+             target="_blank"
+             class="bg-brand-500 hover:bg-brand-600 text-white font-bold px-8 py-4 rounded-2xl shadow-xl shadow-brand-500/25 transition-all duration-200 flex items-center gap-3 hover:translate-y-[-1px]">
+            <span>Konsultasi & Penawaran Harga</span>
+            <i class="fa-solid fa-arrow-right text-sm"></i>
+          </a>
+          
+          <a href="#produk" 
+             class="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white font-bold px-7 py-4 rounded-2xl border border-white/30 shadow-sm transition">
+            Lihat Katalog Produk
+          </a>
+        </div>
+
+        <!-- Metric Highlight Cards (Glassmorphism) -->
+        <div class="pt-8 border-t border-white/20 grid grid-cols-2 sm:grid-cols-3 gap-6 max-w-2xl">
+          <div class="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/15">
+            <p class="text-2xl sm:text-3xl font-black text-sky-300">10.000 m²</p>
+            <p class="text-[11px] text-slate-300 font-bold uppercase mt-1 tracking-wider">Kapasitas Jumbo / Lembar</p>
+          </div>
+          <div class="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/15">
+            <p class="text-2xl sm:text-3xl font-black text-sky-300">100%</p>
+            <p class="text-[11px] text-slate-300 font-bold uppercase mt-1 tracking-wider">Virgin Resin Murni</p>
+          </div>
+          <div class="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/15 col-span-2 sm:col-span-1">
+            <p class="text-2xl sm:text-3xl font-black text-sky-300">Nasional</p>
+            <p class="text-[11px] text-slate-300 font-bold uppercase mt-1 tracking-wider">Jaringan Pengiriman</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 Core Values (Identical to 3-column feature on reference image) -->
+  <section class="py-14 bg-white border-b border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-brand-600 font-bold text-xs uppercase tracking-widest">Keunggulan Utama</span>
+        <h2 class="text-3xl font-extrabold text-brand-navy mt-1">Mengapa Memilih Korindo Terpal?</h2>
+        <p class="text-slate-500 text-sm mt-2">Komitmen mutu tinggi, kepastian material murni, serta jangkauan pengiriman cepat ke seluruh kepulauan Indonesia.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Feature 1 -->
+        <div class="group p-8 rounded-3xl bg-[#f8fafc] hover:bg-brand-softblue border border-slate-100 hover:border-brand-200 transition-all duration-300 shadow-sm hover:shadow-md">
+          <div class="w-14 h-14 rounded-2xl bg-white border border-slate-200 shadow-sm text-brand-600 flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-600 group-hover:text-white transition duration-300">
+            <i class="fa-solid fa-atom"></i>
+          </div>
+          <h3 class="text-xl font-bold text-brand-navy mb-2">100% Virgin HDPE Resin</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Menggunakan 100% bijih plastik murni (bukan daur ulang). Kandungan 98-99% resin virgin HDPE menghasilkan serat terpal elastis, kokoh, dan tidak mudah getas.
+          </p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="group p-8 rounded-3xl bg-[#f8fafc] hover:bg-brand-softblue border border-slate-100 hover:border-brand-200 transition-all duration-300 shadow-sm hover:shadow-md">
+          <div class="w-14 h-14 rounded-2xl bg-white border border-slate-200 shadow-sm text-brand-600 flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-600 group-hover:text-white transition duration-300">
+            <i class="fa-solid fa-sun"></i>
+          </div>
+          <h3 class="text-xl font-bold text-brand-navy mb-2">Anti-UV & Cuaca Ekstrem</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Dilapisi formula pelindung sinar ultraviolet (UV coating) dan waterjet weaving berteknologi komputer dari Korea, tahan terhadap paparan panas maritim dan kimiawi.
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="group p-8 rounded-3xl bg-[#f8fafc] hover:bg-brand-softblue border border-slate-100 hover:border-brand-200 transition-all duration-300 shadow-sm hover:shadow-md">
+          <div class="w-14 h-14 rounded-2xl bg-white border border-slate-200 shadow-sm text-brand-600 flex items-center justify-center text-2xl mb-6 group-hover:bg-brand-600 group-hover:text-white transition duration-300">
+            <i class="fa-solid fa-truck-fast"></i>
+          </div>
+          <h3 class="text-xl font-bold text-brand-navy mb-2">Distribusi Logistik Nasional</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Dari Surabaya Barat hingga kantor cabang Makassar, jaringan kami melayani pengiriman darat, laut (kontainer & tongkang), hingga kargo udara dari Sumatera sampai Papua.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Profil Perusahaan & Jejak Bisnis (Split Grid Section) -->
+  <section id="profil" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left: Narrative Content -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-brand-600 bg-brand-50 px-3.5 py-1.5 rounded-full border border-brand-100">
+            Profil Perusahaan & Jejak Bisnis
+          </div>
+          
+          <h2 class="text-3xl sm:text-4xl font-black text-brand-navy leading-tight">
+            Pabrik Terpal Terpercaya dengan Solusi Berkualitas Tinggi & Harga Kompetitif
+          </h2>
+
+          <p class="text-slate-600 text-base leading-relaxed">
+            Sebagai pabrik terpal terkemuka di Indonesia, <strong>Korindo Terpal</strong> menghadirkan komitmen sebagai mitra terpercaya dalam menyediakan produk terpal premium dengan kualitas terjamin dan harga kompetitif. Kami mengutamakan presisi dalam memenuhi kebutuhan industri maupun komersial, mulai dari penjualan terpal standar hingga spesifikasi khusus (custom order).
+          </p>
+
+          <p class="text-slate-600 text-base leading-relaxed">
+            Bermula sebagai distributor lokal di wilayah <strong>Surabaya Barat</strong>, kami mengembangkan ekspansi bisnis secara nasional. Sejak tahun 2020, kami memperluas portofolio produk dengan menyediakan terpal ukuran jumbo berbahan lokal dan impor Korea Selatan. Untuk memperkuat penetrasi pasar di kawasan Indonesia Timur, kami mendirikan kantor penjualan strategis di <strong>Panakukang Mas, Makassar</strong>.
+          </p>
+
+          <!-- Key Highlights Bullet Points -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+            <div class="flex items-start gap-3 p-3.5 rounded-2xl bg-slate-50 border border-slate-100">
+              <i class="fa-solid fa-circle-check text-brand-600 mt-1"></i>
+              <div>
+                <h4 class="font-bold text-sm text-slate-800">Variasi Ketebalan Lengkap</h4>
+                <p class="text-xs text-slate-500">Mulai tipe A3, A5, A7, A8, A10, A12, A15, A20, hingga PVC semi-karet (Orchid).</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-3.5 rounded-2xl bg-slate-50 border border-slate-100">
+              <i class="fa-solid fa-circle-check text-brand-600 mt-1"></i>
+              <div>
+                <h4 class="font-bold text-sm text-slate-800">Inovasi Terpal Jepang</h4>
+                <p class="text-xs text-slate-500">PE Sheet transparan 98-99% resin virgin HDPE dengan kalsium minimal 1-2%.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Logistics Partners Strip -->
+          <div class="pt-4">
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Didukung Mitra Ekspedisi Terpercaya:</p>
+            <div class="flex flex-wrap items-center gap-3 text-xs font-semibold text-slate-600">
+              <span class="px-3 py-1 bg-slate-100 rounded-lg">Indah Cargo</span>
+              <span class="px-3 py-1 bg-slate-100 rounded-lg">Dakota Cargo</span>
+              <span class="px-3 py-1 bg-slate-100 rounded-lg">JNE / TIKI</span>
+              <span class="px-3 py-1 bg-slate-100 rounded-lg">SiCepat / J&T</span>
+              <span class="px-3 py-1 bg-slate-100 rounded-lg">Kontainer Laut & Udara</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Modern Showcase Image Frame (Reference Style) -->
+        <div class="lg:col-span-5">
+          <div class="relative">
+            <!-- Curved background element -->
+            <div class="absolute -bottom-6 -right-6 w-full h-full bg-brand-100 rounded-[3rem] -z-0"></div>
+            
+            <div class="relative bg-white p-4 rounded-[2.5rem] shadow-xl border border-slate-100 z-10 space-y-4">
+              <div class="overflow-hidden rounded-[2rem] aspect-[4/3] bg-slate-200">
+                <!-- GAMBAR SHOWCASE 2: BISA ANDA GANTI DENGAN FOTO PRODUK / GUDANG SURABAYA -->
+                <img 
+                  id="img-profil-showcase"
+                  src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1000&q=80" 
+                  alt="Gudang dan Stok Terpal Korindo Surabaya" 
+                  class="w-full h-full object-cover hover:scale-105 transition duration-500"
+                  onerror="this.src='https://placehold.co/1000x750/0b1d3a/ffffff?text=Stok+Gudang+Korindo'"
+                />
+              </div>
+
+              <!-- Achievement Card -->
+              <div class="bg-brand-softblue p-4 rounded-2xl border border-brand-200/50">
+                <div class="flex items-center gap-4">
+                  <div class="text-3xl font-black text-brand-700">100%</div>
+                  <div class="text-xs text-slate-700 leading-snug">
+                    <span class="font-bold block text-sm text-brand-navy">Jaminan Virgin Resin</span>
+                    Bahan impor Korea & Jepang bersertifikasi tahan UV & tekanan tinggi.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Portofolio Produk Unggulan -->
+  <section id="produk" class="py-20 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-4">
+        <div>
+          <span class="text-brand-600 font-bold text-xs uppercase tracking-widest">Katalog Pabrik</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy mt-1">Produk Terpal Unggulan Kami</h2>
+          <p class="text-slate-600 text-sm mt-2 max-w-xl">
+            Dari terpal lembaran standar hingga terpal raksasa 5.000 - 10.000 m² berbobot 1,5 ton per lembar. Menerima pesanan ukuran khusus (custom).
+          </p>
+        </div>
+        <div class="flex items-center gap-2">
+          <a href="https://wa.me/628114140297?text=Halo,%20saya%20ingin%20tanya%20katalog%20dan%20harga%20terpal" target="_blank" class="text-sm font-bold text-brand-600 hover:text-brand-700 flex items-center gap-2">
+            Konsultasikan Ukuran Custom Anda <i class="fa-solid fa-chevron-right text-xs"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Product Card 1: Terpal Lembaran Custom -->
+        <div class="bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group">
+          <div class="h-56 overflow-hidden relative bg-slate-100">
+            <!-- GAMBAR PRODUK 1: GANTI SESUAI TERPAL LEMBARAN -->
+            <img 
+              id="img-prod-lembaran"
+              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" 
+              alt="Terpal Lembaran Custom" 
+              class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+              onerror="this.src='https://placehold.co/800x600/0052a3/ffffff?text=Terpal+Lembaran+Custom'"
+            />
+            <span class="absolute top-4 left-4 bg-brand-navy text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase">A3 s/d A30 & PVC</span>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="text-xl font-bold text-brand-navy mb-2">Terpal Lembaran Custom</h3>
+              <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
+                Terpal lembaran dengan variasi ketebalan A3, A5, A8, A10, A12, A15, A20, A30 hingga PVC semi karet (Tarpaulin/Orchid). Menerima pesanan ukuran custom presisi tinggi.
+              </p>
+            </div>
+            <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-xs text-slate-500 font-medium">Ukuran: 2x3m s/d Custom</span>
+              <a href="https://wa.me/628114140297?text=Halo,%20saya%20tertarik%20pesan%20Terpal%20Lembaran%20Custom" target="_blank" class="text-xs font-bold text-brand-600 hover:text-brand-800 flex items-center gap-1">Pesan <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Card 2: Terpal Cover Bahan Tambang -->
+        <div class="bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group">
+          <div class="h-56 overflow-hidden relative bg-slate-100">
+            <!-- GAMBAR PRODUK 2: GANTI COVER TAMBANG / MINING -->
+            <img 
+              id="img-prod-tambang"
+              src="https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?auto=format&fit=crop&w=800&q=80" 
+              alt="Terpal Cover Tambang Nikel & Batubara" 
+              class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+              onerror="this.src='https://placehold.co/800x600/0052a3/ffffff?text=Terpal+Mining+Grade'"
+            />
+            <span class="absolute top-4 left-4 bg-amber-600 text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase">Heavy Duty Mining</span>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="text-xl font-bold text-brand-navy mb-2">Terpal Cover Bahan Tambang</h3>
+              <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
+                Proteksi stockpile material tambang seperti Nikel, Batubara, Bijih Besi, dan mineral industri. Tahan abrasi, anti-sobek, dan water-repellent maksimal.
+              </p>
+            </div>
+            <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-xs text-slate-500 font-medium">Spesifikasi: High-Tensile UV</span>
+              <a href="https://wa.me/628114140297?text=Halo,%20saya%20tertarik%20pesan%20Terpal%20Cover%20Bahan%20Tambang" target="_blank" class="text-xs font-bold text-brand-600 hover:text-brand-800 flex items-center gap-1">Pesan <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Card 3: Terpal Jumbo Tutup Tongkang / Barge -->
+        <div class="bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group">
+          <div class="h-56 overflow-hidden relative bg-slate-100">
+            <!-- GAMBAR PRODUK 3: GANTI TERPAL TONGKANG JUMBO -->
+            <img 
+              id="img-prod-jumbo"
+              src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80" 
+              alt="Terpal Jumbo Tutup Tongkang Barge" 
+              class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+              onerror="this.src='https://placehold.co/800x600/0052a3/ffffff?text=Terpal+Tutup+Tongkang+Barge'"
+            />
+            <span class="absolute top-4 left-4 bg-emerald-600 text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase">Hingga 10.000 m²</span>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="text-xl font-bold text-brand-navy mb-2">Terpal Jumbo & Tutup Tongkang</h3>
+              <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
+                Terpal berukuran raksasa hingga 10.000 m² dan berat 1,3 s/d 1,5 ton per lembar. Sangat cocok untuk penutup tongkang (barge), kontainer kapal, dan stockpile terbuka.
+              </p>
+            </div>
+            <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-xs text-slate-500 font-medium">Beban: s/d 1.5 Ton/lembar</span>
+              <a href="https://wa.me/628114140297?text=Halo,%20saya%20butuh%20Terpal%20Jumbo%20Tutup%20Tongkang" target="_blank" class="text-xs font-bold text-brand-600 hover:text-brand-800 flex items-center gap-1">Pesan <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Card 4: Terpal Dasar Tambak Udang Vaname & Garam -->
+        <div class="bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group">
+          <div class="h-56 overflow-hidden relative bg-slate-100">
+            <!-- GAMBAR PRODUK 4: GANTI TERPAL TAMBAK UDANG & GARAM -->
+            <img 
+              id="img-prod-tambak"
+              src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=800&q=80" 
+              alt="Terpal Tambak Udang Vaname dan Tambak Garam" 
+              class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+              onerror="this.src='https://placehold.co/800x600/0052a3/ffffff?text=Terpal+Alas+Tambak'"
+            />
+            <span class="absolute top-4 left-4 bg-sky-600 text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase">Double Las HDPE</span>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="text-xl font-bold text-brand-navy mb-2">Terpal Tambak Udang & Garam</h3>
+              <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
+                Terpal HDPE berukuran besar dengan sistem double las presisi tinggi. Anti-bakteri untuk tambak udang vaname dan tahan salinitas korosi garam tinggi (Madura, Pasuruan).
+              </p>
+            </div>
+            <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-xs text-slate-500 font-medium">Dimensi: 100m x 50m / Custom</span>
+              <a href="https://wa.me/628114140297?text=Halo,%20saya%20tertarik%20pesan%20Terpal%20Tambak%20Udang/Garam" target="_blank" class="text-xs font-bold text-brand-600 hover:text-brand-800 flex items-center gap-1">Pesan <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Card 5: Kolam Terpal Bulat & Kotak (Bioflok) -->
+        <div class="bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group">
+          <div class="h-56 overflow-hidden relative bg-slate-100">
+            <!-- GAMBAR PRODUK 5: GANTI KOLAM TERPAL BULAT BIOFLOK -->
+            <img 
+              id="img-prod-kolam"
+              src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80" 
+              alt="Kolam Terpal Bulat Bioflok & Kotak" 
+              class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+              onerror="this.src='https://placehold.co/800x600/0052a3/ffffff?text=Kolam+Terpal+Modular'"
+            />
+            <span class="absolute top-4 left-4 bg-indigo-600 text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase">Bioflok Lele & Nila</span>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="text-xl font-bold text-brand-navy mb-2">Kolam Bulat & Kotak Modular</h3>
+              <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
+                Kolam bulat (diameter 1m s/d 20m bahkan 30m) & kolam kotak custom depth. Pilihan material virgin HDPE Korea dan PVC Orchid semi-karet untuk budidaya ikan & udang.
+              </p>
+            </div>
+            <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-xs text-slate-500 font-medium">Bahan: Virgin HDPE & PVC Orchid</span>
+              <a href="https://wa.me/628114140297?text=Halo,%20saya%20tertarik%20pesan%20Kolam%20Terpal%20Bioflok" target="_blank" class="text-xs font-bold text-brand-600 hover:text-brand-800 flex items-center gap-1">Pesan <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Card 6: Terpal Kandang & Jemur Komoditas -->
+        <div class="bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group">
+          <div class="h-56 overflow-hidden relative bg-slate-100">
+            <!-- GAMBAR PRODUK 6: GANTI TERPAL KANDANG & JEMUR HASIL BUMI -->
+            <img 
+              id="img-prod-pertanian"
+              src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=800&q=80" 
+              alt="Terpal Kandang Ayam dan Jemur Komoditas" 
+              class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+              onerror="this.src='https://placehold.co/800x600/0052a3/ffffff?text=Terpal+Agrikultur'"
+            />
+            <span class="absolute top-4 left-4 bg-teal-600 text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase">Agro & Farm Grade</span>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="text-xl font-bold text-brand-navy mb-2">Terpal Kandang & Jemur Padi</h3>
+              <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
+                Tersedia roll maupun lembaran besar untuk dinding/lantai kandang ayam modern, serta alas jemur komoditas pertanian seperti gabah padi, cengkeh, dan biji kakao.
+              </p>
+            </div>
+            <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-xs text-slate-500 font-medium">Bentuk: Roll & Lembaran Jumbo</span>
+              <a href="https://wa.me/628114140297?text=Halo,%20saya%20tertarik%20pesan%20Terpal%20Kandang/Jemur" target="_blank" class="text-xs font-bold text-brand-600 hover:text-brand-800 flex items-center gap-1">Pesan <i class="fa-solid fa-arrow-right text-[10px]"></i></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Proses Produksi Terpal -->
+  <section id="proses" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-brand-600 font-bold text-xs uppercase tracking-widest">Quality Assurance</span>
+        <h2 class="text-3xl sm:text-4xl font-black text-brand-navy mt-1">4 Tahapan Proses Produksi Terpal</h2>
+        <p class="text-slate-500 text-sm mt-2">Dibuat dengan mesin presisi waterjet weaving controller komputer dan pengawasan mutu berkala standar Korea & Jepang.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Step 1: Our Materials -->
+        <div class="group relative bg-slate-50 rounded-3xl border border-slate-100 overflow-hidden flex flex-col justify-between hover:shadow-xl hover:border-brand-200 transition-all duration-300">
+          <div>
+            <!-- GAMBAR PROSES 1: BIJIH PLASTIK RESIN HDPE VIRGIN -->
+            <div class="relative h-44 w-full overflow-hidden bg-slate-200">
+              <img 
+                id="img-proses-material"
+                src="https://images.unsplash.com/photo-1595246140625-573b715d11dc?auto=format&fit=crop&w=600&q=80" 
+                alt="Bahan Baku Bijih Plastik HDPE Virgin Resin" 
+                class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                onerror="this.src='https://placehold.co/600x400/0b1d3a/ffffff?text=Virgin+HDPE+Resin'"
+              />
+              <div class="absolute top-3 left-3 w-10 h-10 rounded-xl bg-white/95 backdrop-blur-md text-brand-700 font-extrabold text-base flex items-center justify-center shadow-md border border-white/60">
+                01
+              </div>
+              <div class="absolute bottom-2.5 right-3 bg-brand-navy/85 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
+                Raw Material
+              </div>
+            </div>
+
+            <div class="p-5">
+              <h3 class="font-bold text-lg text-brand-navy mb-2">Our Materials</h3>
+              <p class="text-slate-600 text-xs leading-relaxed">
+                Bahan baku bijih plastik (resin) HDPE yang kami gunakan adalah <strong>100% Virgin Resin murni</strong> (Japan & Korea Grade). Kami hanya menggunakan bijih plastik murni, bukan daur ulang (recycled resin).
+              </p>
+            </div>
+          </div>
+          <div class="p-5 pt-0">
+            <div class="pt-3 border-t border-slate-200/60 text-[11px] font-semibold text-brand-600 flex items-center justify-between">
+              <span><i class="fa-solid fa-check mr-1 text-emerald-500"></i> 100% Virgin Resin</span>
+              <span class="text-[10px] text-slate-400">Tahap 1</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2: Weaving Process -->
+        <div class="group relative bg-slate-50 rounded-3xl border border-slate-100 overflow-hidden flex flex-col justify-between hover:shadow-xl hover:border-brand-200 transition-all duration-300">
+          <div>
+            <!-- GAMBAR PROSES 2: MESIN TENUN WATERJET WEAVING -->
+            <div class="relative h-44 w-full overflow-hidden bg-slate-200">
+              <img 
+                id="img-proses-weaving"
+                src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80" 
+                alt="Proses Tenun Mesin Waterjet Weaving" 
+                class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                onerror="this.src='https://placehold.co/600x400/0b1d3a/ffffff?text=Waterjet+Weaving+Process'"
+              />
+              <div class="absolute top-3 left-3 w-10 h-10 rounded-xl bg-white/95 backdrop-blur-md text-brand-700 font-extrabold text-base flex items-center justify-center shadow-md border border-white/60">
+                02
+              </div>
+              <div class="absolute bottom-2.5 right-3 bg-brand-navy/85 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
+                Weaving
+              </div>
+            </div>
+
+            <div class="p-5">
+              <h3 class="font-bold text-lg text-brand-navy mb-2">Weaving Process</h3>
+              <p class="text-slate-600 text-xs leading-relaxed">
+                Proses tenun dari benang HDPE menjadi kain terpal yang rapat dan kuat, menggunakan teknologi modern <strong>waterjet weaving machine with computer controller</strong>.
+              </p>
+            </div>
+          </div>
+          <div class="p-5 pt-0">
+            <div class="pt-3 border-t border-slate-200/60 text-[11px] font-semibold text-brand-600 flex items-center justify-between">
+              <span><i class="fa-solid fa-microchip mr-1 text-sky-500"></i> Computer Controller</span>
+              <span class="text-[10px] text-slate-400">Tahap 2</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3: Coating Process -->
+        <div class="group relative bg-slate-50 rounded-3xl border border-slate-100 overflow-hidden flex flex-col justify-between hover:shadow-xl hover:border-brand-200 transition-all duration-300">
+          <div>
+            <!-- GAMBAR PROSES 3: PROSES COATING LDPE & ANTI UV -->
+            <div class="relative h-44 w-full overflow-hidden bg-slate-200">
+              <img 
+                id="img-proses-coating"
+                src="https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&w=600&q=80" 
+                alt="Proses Pelapisan Coating LDPE dan Anti UV" 
+                class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                onerror="this.src='https://placehold.co/600x400/0b1d3a/ffffff?text=Coating+LDPE+Anti-UV'"
+              />
+              <div class="absolute top-3 left-3 w-10 h-10 rounded-xl bg-white/95 backdrop-blur-md text-brand-700 font-extrabold text-base flex items-center justify-center shadow-md border border-white/60">
+                03
+              </div>
+              <div class="absolute bottom-2.5 right-3 bg-brand-navy/85 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
+                Coating
+              </div>
+            </div>
+
+            <div class="p-5">
+              <h3 class="font-bold text-lg text-brand-navy mb-2">Coating Process</h3>
+              <p class="text-slate-600 text-xs leading-relaxed">
+                Proses pemberian coating LDPE ganda dan <strong>anti UV (UV treatment)</strong>, membuat permukaan terpal lentur, kedap air 100%, dan tahan terhadap panas matahari ekstrem.
+              </p>
+            </div>
+          </div>
+          <div class="p-5 pt-0">
+            <div class="pt-3 border-t border-slate-200/60 text-[11px] font-semibold text-brand-600 flex items-center justify-between">
+              <span><i class="fa-solid fa-shield-halved mr-1 text-amber-500"></i> Double Coated Anti-UV</span>
+              <span class="text-[10px] text-slate-400">Tahap 3</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4: Quality Control -->
+        <div class="group relative bg-slate-50 rounded-3xl border border-slate-100 overflow-hidden flex flex-col justify-between hover:shadow-xl hover:border-brand-200 transition-all duration-300">
+          <div>
+            <!-- GAMBAR PROSES 4: KONTROL KUALITAS DAN INSPEKSI QC -->
+            <div class="relative h-44 w-full overflow-hidden bg-slate-200">
+              <img 
+                id="img-proses-qc"
+                src="https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=600&q=80" 
+                alt="Quality Control dan Pengujian Kualitas Terpal" 
+                class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                onerror="this.src='https://placehold.co/600x400/0b1d3a/ffffff?text=Quality+Control+Testing'"
+              />
+              <div class="absolute top-3 left-3 w-10 h-10 rounded-xl bg-white/95 backdrop-blur-md text-brand-700 font-extrabold text-base flex items-center justify-center shadow-md border border-white/60">
+                04
+              </div>
+              <div class="absolute bottom-2.5 right-3 bg-brand-navy/85 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
+                Inspection
+              </div>
+            </div>
+
+            <div class="p-5">
+              <h3 class="font-bold text-lg text-brand-navy mb-2">Quality Control</h3>
+              <p class="text-slate-600 text-xs leading-relaxed">
+                Kontrol kualitas ketat di pabrik terpal Korea & Surabaya. Pengujian berkala pada kekuatan tarik (tensile strength) dan kerapatan las memastikan mutu sesuai standar tinggi.
+              </p>
+            </div>
+          </div>
+          <div class="p-5 pt-0">
+            <div class="pt-3 border-t border-slate-200/60 text-[11px] font-semibold text-brand-600 flex items-center justify-between">
+              <span><i class="fa-solid fa-award mr-1 text-indigo-500"></i> Uji Laboratorium Rutin</span>
+              <span class="text-[10px] text-slate-400">Tahap 4</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Raw Materials Highlight Banner -->
+      <div class="mt-12 bg-gradient-to-r from-brand-900 to-brand-800 rounded-3xl p-6 sm:p-8 text-white flex flex-col lg:flex-row items-center justify-between gap-6 shadow-xl">
+        <div class="space-y-1 text-center lg:text-left">
+          <h4 class="text-xl font-extrabold">2 Jenis Material Utama Pabrik Kami</h4>
+          <p class="text-brand-100 text-xs sm:text-sm">
+            1. Terpal Virgin HDPE (Korea/Japan Import + Anti UV Coating) &bull; 2. Terpal PVC Semi Karet / Tarpaulin Orchid
+          </p>
+        </div>
+        <a href="https://wa.me/628114140297?text=Halo,%20saya%20ingin%20tanya%20sampel%20material%20terpal" target="_blank" class="bg-white text-brand-navy hover:bg-brand-50 font-bold px-6 py-3 rounded-xl text-sm transition whitespace-nowrap">
+          Minta Sampel Material
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Proyek Strategis 2017-2023 -->
+  <section id="proyek" class="py-20 bg-slate-50 border-t border-slate-200/70">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-brand-600 font-bold text-xs uppercase tracking-widest">Track Record Teruji</span>
+        <h2 class="text-3xl sm:text-4xl font-black text-brand-navy mt-1">Proyek Strategis 2017 - 2023</h2>
+        <p class="text-slate-600 text-sm mt-2">Kepercayaan berbagai perusahaan multinasional, BUMN, pertambangan nikel & emas, migas, serta PLTU di seluruh Indonesia.</p>
+      </div>
+
+      <!-- Project Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <!-- Project 1 -->
+        <div class="bg-white p-6 rounded-3xl border border-slate-200/70 shadow-sm flex items-start gap-4 hover:border-brand-300 transition">
+          <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center text-xl shrink-0">
+            <i class="fa-solid fa-mountain"></i>
+          </div>
+          <div>
+            <span class="text-[11px] font-bold text-amber-700 uppercase tracking-wide">Tambang Nikel</span>
+            <h4 class="font-extrabold text-slate-800 text-base mt-0.5">Morowali & Weda Bay</h4>
+            <p class="text-slate-500 text-xs mt-1.5 leading-relaxed">
+              Penyediaan terpal heavy duty untuk pertambangan nikel di Morowali (Sulawesi Tengah) dan Weda Bay (Halmahera Utara).
+            </p>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="bg-white p-6 rounded-3xl border border-slate-200/70 shadow-sm flex items-start gap-4 hover:border-brand-300 transition">
+          <div class="w-12 h-12 rounded-2xl bg-red-50 text-red-600 flex items-center justify-center text-xl shrink-0">
+            <i class="fa-solid fa-oil-well"></i>
+          </div>
+          <div>
+            <span class="text-[11px] font-bold text-red-700 uppercase tracking-wide">Migas & Energi</span>
+            <h4 class="font-extrabold text-slate-800 text-base mt-0.5">PT Pertamina - Medco</h4>
+            <p class="text-slate-500 text-xs mt-1.5 leading-relaxed">
+              Kolaborasi pengadaan material penutup operasional kilang dan eksplorasi di kawasan Sulawesi.
+            </p>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="bg-white p-6 rounded-3xl border border-slate-200/70 shadow-sm flex items-start gap-4 hover:border-brand-300 transition">
+          <div class="w-12 h-12 rounded-2xl bg-yellow-50 text-yellow-600 flex items-center justify-center text-xl shrink-0">
+            <i class="fa-solid fa-gem"></i>
+          </div>
+          <div>
+            <span class="text-[11px] font-bold text-yellow-700 uppercase tracking-wide">Tambang Emas</span>
+            <h4 class="font-extrabold text-slate-800 text-base mt-0.5">Namlea, Ratatotok & Kalimantan</h4>
+            <p class="text-slate-500 text-xs mt-1.5 leading-relaxed">
+              Penyediaan material terpal khusus untuk penambangan emas di Maluku, Kotamobagu, dan wilayah Kalimantan.
+            </p>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="bg-white p-6 rounded-3xl border border-slate-200/70 shadow-sm flex items-start gap-4 hover:border-brand-300 transition">
+          <div class="w-12 h-12 rounded-2xl bg-cyan-50 text-cyan-600 flex items-center justify-center text-xl shrink-0">
+            <i class="fa-solid fa-gas-pump"></i>
+          </div>
+          <div>
+            <span class="text-[11px] font-bold text-cyan-700 uppercase tracking-wide">Megaproyek LNG</span>
+            <h4 class="font-extrabold text-slate-800 text-base mt-0.5">LNG Tangguh Expansion (Papua)</h4>
+            <p class="text-slate-500 text-xs mt-1.5 leading-relaxed">
+              Suplai heavy-duty tarpaulin spesifikasi internasional untuk proyek ekspansi Tangguh LNG di Papua Barat.
+            </p>
+          </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="bg-white p-6 rounded-3xl border border-slate-200/70 shadow-sm flex items-start gap-4 hover:border-brand-300 transition">
+          <div class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center text-xl shrink-0">
+            <i class="fa-solid fa-bolt"></i>
+          </div>
+          <div>
+            <span class="text-[11px] font-bold text-blue-700 uppercase tracking-wide">Pembangkit Listrik</span>
+            <h4 class="font-extrabold text-slate-800 text-base mt-0.5">PLTU 2 Cirebon & PLN Gorontalo</h4>
+            <p class="text-slate-500 text-xs mt-1.5 leading-relaxed">
+              Kolam pengolahan air limbah PLTU 2 Cirebon dan penutup stockpile batubara PLN Gorontalo.
+            </p>
+          </div>
+        </div>
+
+        <!-- Project 6 -->
+        <div class="bg-white p-6 rounded-3xl border border-slate-200/70 shadow-sm flex items-start gap-4 hover:border-brand-300 transition">
+          <div class="w-12 h-12 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center text-xl shrink-0">
+            <i class="fa-solid fa-building"></i>
+          </div>
+          <div>
+            <span class="text-[11px] font-bold text-purple-700 uppercase tracking-wide">Korporasi Terkemuka</span>
+            <h4 class="font-extrabold text-slate-800 text-base mt-0.5">Gudang Garam & Maspion</h4>
+            <p class="text-slate-500 text-xs mt-1.5 leading-relaxed">
+              Penyediaan terpal industri untuk PT Gudang Garam, PT CABOT Indonesia, dan PT INDAL - Maspion Group.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Tambak & Bioflok projects strip -->
+      <div class="mt-8 p-6 bg-white rounded-3xl border border-slate-200/80 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-lg">
+            <i class="fa-solid fa-water"></i>
+          </div>
+          <div>
+            <h5 class="font-bold text-slate-800 text-sm">Tambak & Pengolahan Limbah Pupuk</h5>
+            <p class="text-xs text-slate-500">Alas tambak garam di Pasuruan & Madura, tambak vaname Jawa & Sulawesi, kolam bioflok, serta pengolahan limbah pabrik pupuk Klakah Jatim.</p>
+          </div>
+        </div>
+        <a href="https://wa.me/628114140297?text=Halo,%20saya%20ingin%20tahu%20portfolio%20proyek%20Korindo" target="_blank" class="text-xs font-bold text-brand-600 hover:text-brand-800 whitespace-nowrap">
+          Konsultasi Proyek B2B <i class="fa-solid fa-arrow-right ml-1"></i>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section Kontak & Kantor -->
+  <section id="kontak" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        
+        <!-- Left: Office & Warehouse Info -->
+        <div class="lg:col-span-6 space-y-8">
+          <div>
+            <span class="text-brand-600 font-bold text-xs uppercase tracking-widest">Hubungi Kami</span>
+            <h2 class="text-3xl sm:text-4xl font-black text-brand-navy mt-1">Siap Melayani Kebutuhan Terpal Skala Besar & Retail</h2>
+            <p class="text-slate-600 text-sm mt-3 leading-relaxed">
+              Tim sales engineer kami siap membantu perhitungan kebutuhan luas lembaran, ketebalan, dan estimasi waktu kirim ke lokasi proyek Anda.
+            </p>
+          </div>
+
+          <div class="space-y-6">
+            
+            <!-- Factory & Warehouse -->
+            <div class="flex items-start gap-4 p-5 rounded-2xl bg-slate-50 border border-slate-100">
+              <div class="w-12 h-12 rounded-xl bg-brand-softblue text-brand-600 flex items-center justify-center text-xl shrink-0">
+                <i class="fa-solid fa-industry"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-brand-navy text-sm sm:text-base">Factory & Warehouse (Surabaya)</h4>
+                <p class="text-slate-600 text-xs sm:text-sm mt-1">
+                  Jl. Herculues - Simo Gunung no. 28, Putat Jaya, Kec. Sawahan, Surabaya, Jawa Timur, Indonesia
+                </p>
+              </div>
+            </div>
+
+            <!-- Branch Office Makassar -->
+            <div class="flex items-start gap-4 p-5 rounded-2xl bg-slate-50 border border-slate-100">
+              <div class="w-12 h-12 rounded-xl bg-brand-softblue text-brand-600 flex items-center justify-center text-xl shrink-0">
+                <i class="fa-solid fa-building"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-brand-navy text-sm sm:text-base">Makassar Office (Indonesia Timur)</h4>
+                <p class="text-slate-600 text-xs sm:text-sm mt-1">
+                  Panakukang Mas, Makassar 90231, Sulawesi Selatan, Indonesia
+                </p>
+              </div>
+            </div>
+
+            <!-- Online Contacts Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100">
+                <span class="text-xs text-slate-400 font-bold uppercase block">WhatsApp / Phone</span>
+                <a href="https://wa.me/628114140297" target="_blank" class="text-sm font-extrabold text-brand-600 hover:underline mt-1 block">
+                  <i class="fa-brands fa-whatsapp text-emerald-500 mr-1"></i> +62-811-4140297
+                </a>
+              </div>
+
+              <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100">
+                <span class="text-xs text-slate-400 font-bold uppercase block">Official Email</span>
+                <a href="mailto:korindoterpal@gmail.com" class="text-xs font-bold text-brand-600 hover:underline mt-1 block truncate">
+                  <i class="fa-solid fa-envelope text-slate-400 mr-1"></i> korindoterpal@gmail.com
+                </a>
+                <a href="mailto:info@terpals.com" class="text-xs font-bold text-brand-600 hover:underline block truncate">
+                  <i class="fa-solid fa-envelope text-slate-400 mr-1"></i> info@terpals.com
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Right: Inquiry Form with Direct WhatsApp Integration -->
+        <div class="lg:col-span-6">
+          <div class="bg-white p-8 sm:p-10 rounded-[2.5rem] shadow-xl border border-slate-100 relative">
+            
+            <h3 class="text-2xl font-black text-brand-navy mb-2">Form Permintaan Harga</h3>
+            <p class="text-slate-500 text-xs mb-6">Isi formulir ringkas ini, kami akan langsung merespon via WhatsApp resmi pabrik.</p>
+
+            <form id="inquiryForm" class="space-y-4" onsubmit="event.preventDefault(); sendToWhatsApp();">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1 uppercase">Nama / Perusahaan</label>
+                <input type="text" id="formNama" required placeholder="Contoh: Bapak Budi / PT Sumber Rejeki" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 bg-slate-50/50">
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 mb-1 uppercase">Nomor WhatsApp</label>
+                  <input type="tel" id="formTelepon" required placeholder="0812xxxxxxx" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 bg-slate-50/50">
+                </div>
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 mb-1 uppercase">Jenis Terpal</label>
+                  <select id="formJenis" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 bg-slate-50/50">
+                    <option value="Terpal Lembaran Custom (A3 - A30)">Terpal Lembaran (A3 - A30)</option>
+                    <option value="Terpal PVC Orchid / Tarpaulin Semi Karet">Terpal PVC Orchid Semi Karet</option>
+                    <option value="Terpal Jumbo / Tutup Tongkang (Barge)">Terpal Jumbo / Tongkang (Barge)</option>
+                    <option value="Terpal Tambak Garam / Tambak Udang HDPE">Terpal Tambak Garam / Udang</option>
+                    <option value="Kolam Terpal Bulat / Kotak Bioflok">Kolam Bulat / Kotak Bioflok</option>
+                    <option value="Terpal Kandang / Jemur Padi Cengkeh">Terpal Kandang / Jemur Padi</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1 uppercase">Perkiraan Ukuran & Keterangan Tambahan</label>
+                <textarea id="formPesan" rows="3" placeholder="Contoh: Ukuran 10m x 20m sebanyak 5 lembar, pengiriman ke Balikpapan" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 bg-slate-50/50"></textarea>
+              </div>
+
+              <button type="submit" class="w-full py-4 rounded-xl bg-brand-navy hover:bg-brand-800 text-white font-bold text-sm shadow-lg shadow-brand-navy/20 transition flex items-center justify-center gap-2">
+                <i class="fa-brands fa-whatsapp text-emerald-400 text-lg"></i>
+                <span>Kirim Permintaan ke WhatsApp Sales</span>
+              </button>
+
+              <!-- Feedback message helper -->
+              <div id="formFeedback" class="hidden text-center text-xs text-emerald-600 font-semibold pt-1">
+                Mengalihkan Anda langsung ke WhatsApp resmi Korindo Terpal...
+              </div>
+            </form>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-brand-navy text-slate-300 pt-16 pb-12 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-white/10">
+        
+        <!-- Brand Summary -->
+        <div class="lg:col-span-2 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="bg-white/95 p-1.5 rounded-xl shadow-sm inline-flex items-center justify-center">
+              <img 
+                src="https://ik.imagekit.io/e2yna5qg8/logo%20(4).png" 
+                alt="Logo Korindo Terpal Footer" 
+                class="h-8 sm:h-9 w-auto max-h-9 object-contain"
+                onerror="this.onerror=null; this.src='https://placehold.co/150x40/ffffff/0b1d3a?text=KORINDO'"
+              />
+            </div>
+            <span class="text-2xl font-black text-white tracking-tight">KORINDO<span class="text-brand-500">TERPAL</span></span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-400 leading-relaxed max-w-sm">
+            Pabrik Terpal PE, PP & PVC di Surabaya. Produsen terpal Korea dan terpal UV terpercaya dengan kapasitas jumbo hingga 10.000 m² serta jaringan distribusi nasional.
+          </p>
+          <div class="pt-2 text-xs text-slate-400">
+            <span class="font-bold text-white block mb-1">Domain Resmi:</span>
+            <a href="https://www.korindo-terpal.com" target="_blank" class="hover:text-brand-400 transition underline block">www.korindo-terpal.com</a>
+            <a href="https://www.terpals.com" target="_blank" class="hover:text-brand-400 transition underline block">www.terpals.com</a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="text-white text-sm font-bold uppercase tracking-wider mb-4">Navigasi Cepat</h4>
+          <ul class="space-y-2.5 text-xs text-slate-400">
+            <li><a href="#hero" class="hover:text-white transition">Beranda</a></li>
+            <li><a href="#profil" class="hover:text-white transition">Profil Perusahaan</a></li>
+            <li><a href="#produk" class="hover:text-white transition">Portofolio Produk</a></li>
+            <li><a href="#proses" class="hover:text-white transition">Proses Produksi</a></li>
+            <li><a href="#proyek" class="hover:text-white transition">Proyek Strategis</a></li>
+          </ul>
+        </div>
+
+        <!-- Material Spesifikasi -->
+        <div>
+          <h4 class="text-white text-sm font-bold uppercase tracking-wider mb-4">Kategori Bahan</h4>
+          <ul class="space-y-2.5 text-xs text-slate-400">
+            <li><span>Virgin HDPE Korea</span></li>
+            <li><span>PE Sheet UV Japan</span></li>
+            <li><span>Terpal PVC Orchid</span></li>
+            <li><span>Terpal Tarpaulin Semi Karet</span></li>
+            <li><span>Grade Ketebalan A3 - A30</span></li>
+          </ul>
+        </div>
+
+        <!-- Operasional -->
+        <div>
+          <h4 class="text-white text-sm font-bold uppercase tracking-wider mb-4">Jam Layanan</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Senin - Sabtu: <br><strong class="text-white">08:00 - 17:00 WIB</strong>
+          </p>
+          <p class="text-xs text-slate-400 leading-relaxed mt-3">
+            Konsultasi WhatsApp: <br><strong class="text-emerald-400">Layanan Aktif 24/7</strong>
+          </p>
+          <div class="mt-4">
+            <a href="https://wa.me/628114140297" target="_blank" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs px-4 py-2 rounded-xl font-bold transition">
+              <i class="fa-brands fa-whatsapp"></i> Chat WhatsApp
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+        <p>&copy; 2024 Korindo Terpal (Pabrik Terpal PE, PP & PVC Surabaya). All rights reserved.</p>
+        <p class="flex items-center gap-2">
+          <span>Surabaya</span> &bull; <span>Makassar</span> &bull; <span>Pengiriman Seluruh Nusantara</span>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Toggle Mobile Navigation Menu
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuIcon = document.getElementById('menuIcon');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      const isHidden = mobileMenu.classList.toggle('hidden');
+      if (isHidden) {
+        menuIcon.classList.remove('fa-xmark');
+        menuIcon.classList.add('fa-bars');
+      } else {
+        menuIcon.classList.remove('fa-bars');
+        menuIcon.classList.add('fa-xmark');
+      }
+    });
+
+    // Close mobile menu when a nav link is clicked
+    document.querySelectorAll('#mobileMenu a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuIcon.classList.remove('fa-xmark');
+        menuIcon.classList.add('fa-bars');
+      });
+    });
+
+    // Handle Form to WhatsApp Redirection
+    function sendToWhatsApp() {
+      const nama = document.getElementById('formNama').value.trim();
+      const telepon = document.getElementById('formTelepon').value.trim();
+      const jenis = document.getElementById('formJenis').value;
+      const pesan = document.getElementById('formPesan').value.trim();
+      const feedback = document.getElementById('formFeedback');
+
+      const textMessage = `Halo Korindo Terpal,%0A%0ASaya ingin meminta penawaran harga:%0A- Nama: ${encodeURIComponent(nama)}%0A- Kontak: ${encodeURIComponent(telepon)}%0A- Jenis Produk: ${encodeURIComponent(jenis)}%0A- Keterangan & Ukuran: ${encodeURIComponent(pesan || '-')}%0A%0AMohon info ketersediaan dan harganya. Terima kasih.`;
+
+      feedback.classList.remove('hidden');
+
+      setTimeout(() => {
+        window.open(`https://wa.me/628114140297?text=${textMessage}`, '_blank');
+      }, 500);
+    }
+  </script>
+
+</body>
+</html>
