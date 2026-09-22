@@ -123,6 +123,27 @@ const categoryNames = {
 const portfolioItems = [
     // --- WEBSITE DEVELOPMENT ---
     {
+        id: "supabase-live-polling",
+        title: { id: "Realtime Live Polling System (Supabase & React)", en: "Realtime Live Polling System (Supabase & React)" },
+        category: "website",
+        type: "image",
+        thumbnail: "https://ik.imagekit.io/e2yna5qg8/Screenshot_13.png",
+        mediaUrl: "https://ik.imagekit.io/e2yna5qg8/Screenshot_13.png",
+        shortDesc: {
+            id: "Sistem polling interaktif realtime untuk presentasi & perkuliahan dengan bar chart animasi, avatar presence, dan QR code.",
+            en: "Interactive realtime polling platform with animated bar charts, presence avatars, and mobile QR code voting."
+        },
+        fullDesc: {
+            id: "📖 **Latar Belakang & Tantangan**:\nDalam sesi kuliah atau presentasi publik, interaksi audiens sering kali bersifat pasif. Dibutuhkan aplikasi polling tanpa hambatan login yang dapat menampilkan perolehan suara dan kehadiran peserta secara instan di layar proyektor.\n\n💡 **Pendekatan Kreatif & Eksekusi**:\nSaya membangun aplikasi web realtime berbasis React + Vite dan PostgreSQL Supabase. Fitur utama mencakup:\n- **Layar Presentasi Proyektor**: Visualisasi bar chart dengan transisi ketinggian CSS halus, indikator pemenang suara, sinkronisasi kehadiran (Supabase Presence), dan generator QR Code.\n- **Layar Voting Mahasiswa**: Antarmuka responsif ramah smartphone dengan input nama satu kali, voting sekali klik, dan perayaan confetti animasi.\n- **Dashboard Pengelola**: Manajemen pembuatan pertanyaan dinamis dengan 2-6 opsi pilihan.\n\n🚀 **Hasil & Dampak**:\nSistem memungkinkan respon realtime dengan latensi sub-detik (<300ms) menggunakan Supabase Realtime Channels, memberikan pengalaman interaktif yang memikat bagi pembicara dan audiens.",
+            en: "📖 **Background & Challenge**:\nIn academic lectures or interactive workshops, audience engagement is often low. A frictionless polling application without mandatory logins was needed to instantly visualize audience choices and online participants.\n\n💡 **Creative & Technical Execution**:\nI built a realtime web application powered by React + Vite and Supabase PostgreSQL. Key highlights include:\n- **Projector Presentation View**: Smooth animated bar chart transitions, leading vote badges, Supabase Presence participant bubbles, and an instant QR Code modal.\n- **Student Voting View**: Mobile-first interface with lightweight name registration, one-tap voting, and celebration confetti feedback.\n- **Poll Manager Dashboard**: Dynamic poll authoring tool supporting 2 to 6 custom answer options.\n\n🚀 **Impact & Results**:\nThe platform enables sub-second realtime response latency (<300ms) via Supabase Realtime Channels, elevating speaker-audience interactivity to professional standards."
+        },
+        client: "Academic & Interactive Presentation Project",
+        year: "2025",
+        tools: ["React.js", "Vite", "Supabase Realtime", "PostgreSQL", "CSS Animations", "Presence API"],
+        liveUrl: "http://localhost:5173/",
+        featured: true
+    },
+    {
         id: "vietnam-destination-web",
         title: { id: "Vietnam Destination Travel Portal", en: "Vietnam Destination Travel Portal" },
         category: "website",

@@ -142,6 +142,10 @@
             
             <div class="hidden md:flex items-center gap-8 text-sm uppercase tracking-wider font-medium text-gray-300">
                 <a href="#about" data-i18n="navAbout" class="hover:text-agency-neon transition-colors">Tentang Saya</a>
+                <a href="#live-poll-section" class="flex items-center gap-1.5 text-agency-neon hover:text-white transition-colors font-semibold">
+                    <span class="w-2 h-2 rounded-full bg-agency-neon animate-pulse"></span>
+                    <span>Live Poll</span>
+                </a>
                 <a href="#portfolio" data-i18n="navPortfolio" class="hover:text-agency-neon transition-colors">Portofolio</a>
                 <a href="#arsenal" data-i18n="navArsenal" class="hover:text-agency-neon transition-colors">Skills & Tools</a>
                 <a href="#services" data-i18n="navServices" class="hover:text-agency-neon transition-colors">Layanan</a>
@@ -228,6 +232,140 @@
                 <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Spotify_logo_without_text.svg" alt="Spotify">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram">
             </div>
+        </div>
+    </section>
+
+    <!-- LIVE POLLING SUPABASE SPOTLIGHT SECTION -->
+    <section id="live-poll-section" class="py-20 px-6 lg:px-20 bg-gradient-to-b from-[#0b0c10] via-[#0f1424] to-[#0b0c10] border-b border-gray-800 relative overflow-hidden">
+        
+        <!-- Ambient Glowing Background Elements -->
+        <div class="absolute -top-32 left-1/4 w-80 h-80 bg-indigo-600/20 rounded-full blur-[100px] pointer-events-none"></div>
+        <div class="absolute -bottom-32 right-1/4 w-80 h-80 bg-cyan-500/15 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto relative z-10">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-14" data-aos="fade-up">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-500/15 border border-indigo-500/30 text-indigo-400 text-xs font-bold tracking-widest uppercase mb-4 shadow-sm">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>FITUR REALTIME: SUPABASE & REACT</span>
+                </div>
+                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-white tracking-tight">
+                    SISTEM <span class="text-agency-neon">LIVE POLLING</span> INTERAKTIF
+                </h2>
+                <p class="text-gray-300 mt-4 text-base sm:text-lg font-light leading-relaxed">
+                    Platform angket & voting langsung untuk kuliah atau presentasi dengan animasi bar chart dinamis, sinkronisasi kehadiran audiens (<em class="text-indigo-300 not-italic font-semibold">Supabase Presence</em>), dan QR Code voting instan.
+                </p>
+            </div>
+
+            <!-- Action Grid (3 Main Cards) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-12">
+                
+                <!-- Card 1: Dashboard Pengelola -->
+                <div class="glass-card rounded-3xl p-7 flex flex-col justify-between border border-gray-800 hover:border-agency-neon/40 transition-all duration-300 group" data-aos="fade-up" data-aos-delay="100">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-agency-neon/10 border border-agency-neon/30 text-agency-neon flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-sliders"></i>
+                        </div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-bold text-agency-neon uppercase tracking-wider">Host & Administrator</span>
+                            <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded-full font-semibold border border-emerald-500/30">Ready</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3">Dashboard Pengelola</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6 font-light">
+                            Pusat kendali host/dosen: buat pertanyaan polling baru, atur opsi 2–6 pilihan, dan pantau status koneksi database.
+                        </p>
+                    </div>
+
+                    <div class="space-y-2.5">
+                        <a href="http://localhost:5173/" target="_blank" class="w-full bg-agency-neon hover:bg-white text-agency-dark font-bold text-sm py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-[0_0_15px_rgba(221,255,0,0.2)]">
+                            <span>Buka Dashboard Pengelola</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                        </a>
+                        <button onclick="copyLink('http://localhost:5173/', 'Dashboard URL')" class="w-full bg-gray-800/80 hover:bg-gray-700 text-gray-300 text-xs font-semibold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 border border-gray-700/60 transition-all">
+                            <i class="fa-regular fa-copy text-xs"></i>
+                            <span>Salin URL Dashboard</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 2: Layar Host (Proyektor) -->
+                <div class="glass-card rounded-3xl p-7 flex flex-col justify-between border border-indigo-500/30 hover:border-indigo-400 transition-all duration-300 relative group shadow-[0_0_30px_rgba(99,102,241,0.15)]" data-aos="fade-up" data-aos-delay="200">
+                    <div class="absolute -top-3 right-6 bg-gradient-to-r from-indigo-500 to-cyan-400 text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+                        Layar Depan / Proyektor
+                    </div>
+
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-indigo-500/15 border border-indigo-500/40 text-cyan-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-chart-column"></i>
+                        </div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-bold text-cyan-400 uppercase tracking-wider">Big Screen View</span>
+                            <span class="text-[10px] bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded-full font-semibold border border-indigo-500/30">Auto Realtime</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3">Layar Host (Proyektor)</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6 font-light">
+                            Tampilan fullscreen untuk diproyeksikan: animasi grafik bar yang naik seketika saat ada vote baru, avatar mahasiswa online, dan QR Code.
+                        </p>
+                    </div>
+
+                    <div class="space-y-2.5">
+                        <a href="http://localhost:5173/#/presentation/demo-poll-01" target="_blank" class="w-full bg-gradient-to-r from-indigo-600 via-indigo-500 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white font-bold text-sm py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-[0_0_20px_rgba(99,102,241,0.35)]">
+                            <i class="fa-solid fa-expand text-xs"></i>
+                            <span>Buka Layar Proyektor</span>
+                        </a>
+                        <button onclick="copyLink('http://localhost:5173/#/presentation/demo-poll-01', 'Layar Host URL')" class="w-full bg-gray-800/80 hover:bg-gray-700 text-gray-300 text-xs font-semibold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 border border-gray-700/60 transition-all">
+                            <i class="fa-regular fa-copy text-xs"></i>
+                            <span>Salin URL Layar Host</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 3: Layar Vote Mahasiswa -->
+                <div class="glass-card rounded-3xl p-7 flex flex-col justify-between border border-gray-800 hover:border-emerald-500/50 transition-all duration-300 group" data-aos="fade-up" data-aos-delay="300">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-mobile-screen-button"></i>
+                        </div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Tampilan Peserta / Mahasiswa</span>
+                            <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded-full font-semibold border border-emerald-500/30">Mobile Ready</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3">Layar Vote Mahasiswa</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6 font-light">
+                            Halaman ringkas bagi mahasiswa: cukup masukkan nama sekali, pilih jawaban dengan 1 tap, dan terima feedback perayaan confetti.
+                        </p>
+                    </div>
+
+                    <div class="space-y-2.5">
+                        <a href="http://localhost:5173/#/vote/demo-poll-01" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-[0_0_15px_rgba(16,185,129,0.25)]">
+                            <i class="fa-solid fa-check-to-slot text-xs"></i>
+                            <span>Buka Layar Vote Peserta</span>
+                        </a>
+                        <button onclick="copyLink('http://localhost:5173/#/vote/demo-poll-01', 'Voting URL')" class="w-full bg-gray-800/80 hover:bg-gray-700 text-gray-300 text-xs font-semibold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 border border-gray-700/60 transition-all">
+                            <i class="fa-regular fa-copy text-xs"></i>
+                            <span>Salin URL Voting Mahasiswa</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bottom Interactive Helper Bar -->
+            <div class="bg-gray-900/70 border border-gray-800 rounded-2xl p-5 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-400" data-aos="fade-up" data-aos-delay="350">
+                <div class="flex items-center gap-3">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+                    <span>
+                        <strong class="text-white">Server Live Poll Aktif:</strong> Buka di 2 tab browser (<a href="http://localhost:5173/#/presentation/demo-poll-01" target="_blank" class="text-cyan-400 underline font-semibold">Layar Host</a> & <a href="http://localhost:5173/#/vote/demo-poll-01" target="_blank" class="text-emerald-400 underline font-semibold">Layar Vote</a>) untuk melihat interaksi voting realtime!
+                    </span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a href="https://github.com/gkhabibi1/PortfolioGilang/tree/main/live-poll" target="_blank" class="text-agency-neon hover:underline font-semibold flex items-center gap-1.5">
+                        <i class="fa-brands fa-github text-sm"></i>
+                        <span>Source Code di GitHub</span>
+                    </a>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -649,6 +787,15 @@
             if (activeModalId) {
                 openModal(activeModalId);
             }
+        }
+
+        // Copy Link Helper for Live Poll
+        function copyLink(url, label) {
+            navigator.clipboard.writeText(url).then(() => {
+                alert(`✅ ${label || 'Tautan'} berhasil disalin ke clipboard:\n${url}`);
+            }).catch(() => {
+                prompt('Salin tautan ini secara manual:', url);
+            });
         }
 
         // Initial Render on Load
