@@ -28,7 +28,9 @@ export default function PresentationView({ pollId, onNavigate }) {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const containerRef = useRef(null);
 
-  const voteUrl = `${window.location.origin}${window.location.pathname}#/vote/${pollId}`;
+  // Gunakan domain website portofolio utama pengguna
+  const publicDomain = (import.meta.env?.VITE_PUBLIC_DOMAIN || 'https://www.portfoliogilang.my.id').replace(/\/+$/, '');
+  const voteUrl = `${publicDomain}/vote?id=${pollId}`;
 
   // Generate QR Code untuk link vote
   useEffect(() => {

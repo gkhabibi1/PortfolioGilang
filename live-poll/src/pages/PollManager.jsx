@@ -115,7 +115,8 @@ export default function PollManager({ onNavigate }) {
   };
 
   const copyVoteLink = (pollId) => {
-    const link = `${window.location.origin}${window.location.pathname}#/vote/${pollId}`;
+    const publicDomain = (import.meta.env?.VITE_PUBLIC_DOMAIN || 'https://www.portfoliogilang.my.id').replace(/\/+$/, '');
+    const link = `${publicDomain}/vote?id=${pollId}`;
     navigator.clipboard.writeText(link);
     setCopiedId(pollId);
     setTimeout(() => setCopiedId(null), 2000);

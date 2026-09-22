@@ -140,7 +140,7 @@ const portfolioItems = [
         client: "Academic & Interactive Presentation Project",
         year: "2025",
         tools: ["React.js", "Vite", "Supabase Realtime", "PostgreSQL", "CSS Animations", "Presence API"],
-        liveUrl: "http://localhost:5173/",
+        liveUrl: "https://www.portfoliogilang.my.id/dashboard",
         featured: true
     },
     {
