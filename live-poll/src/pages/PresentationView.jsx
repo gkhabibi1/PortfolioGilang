@@ -89,6 +89,11 @@ export default function PresentationView({ pollId, onNavigate }) {
 
     fetchData();
 
+    const onClientReady = () => {
+      fetchData();
+    };
+    window.addEventListener('supabase_client_ready', onClientReady);
+
     // 2. Realtime Channel: Suara Baru & Kehadiran Mahasiswa
     channel = supabase.channel(`poll_room_${pollId}`)
       .on(
@@ -112,6 +117,7 @@ export default function PresentationView({ pollId, onNavigate }) {
       .subscribe();
 
     return () => {
+      window.removeEventListener('supabase_client_ready', onClientReady);
       if (channel) {
         supabase.removeChannel(channel);
       }

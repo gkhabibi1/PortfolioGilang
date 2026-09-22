@@ -85,7 +85,13 @@ export default function StudentVoteView({ pollId, onNavigate }) {
 
     loadPoll();
 
+    const onClientReady = () => {
+      loadPoll();
+    };
+    window.addEventListener('supabase_client_ready', onClientReady);
+
     return () => {
+      window.removeEventListener('supabase_client_ready', onClientReady);
       if (channelRef.current) {
         supabase.removeChannel(channelRef.current);
       }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { supabase, isSupabaseConfigured } from '../lib/supabaseClient';
+import { supabase, isSupabaseConfigured, getActiveCredentials, updateSupabaseConfig } from '../lib/supabaseClient';
 import { 
   Plus, 
   BarChart3, 
@@ -12,7 +12,11 @@ import {
   Radio, 
   Sparkles,
   Info,
-  ChevronRight
+  ChevronRight,
+  Settings,
+  AlertCircle,
+  CheckCircle2,
+  RefreshCw
 } from 'lucide-react';
 
 export default function PollManager({ onNavigate }) {
@@ -21,22 +25,43 @@ export default function PollManager({ onNavigate }) {
   const [copiedId, setCopiedId] = useState(null);
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showSqlGuide, setShowSqlGuide] = useState(false);
+  const [showConfigModal, setShowConfigModal] = useState(false);
 
-  // Form State
+  // Form State Polling
   const [title, setTitle] = useState('');
   const [question, setQuestion] = useState('');
   const [options, setOptions] = useState(['', '', '']);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Form State Kredensial Supabase
+  const initialCreds = getActiveCredentials();
+  const [configUrl, setConfigUrl] = useState(initialCreds.url || '');
+  const [configKey, setConfigKey] = useState(initialCreds.key || '');
+  const [configTesting, setConfigTesting] = useState(false);
+  const [configMsg, setConfigMsg] = useState('');
+  const [isConnected, setIsConnected] = useState(isSupabaseConfigured);
+
   useEffect(() => {
     loadPolls();
+
+    const handleReady = (e) => {
+      if (e?.detail?.isConfigured !== undefined) {
+        setIsConnected(e.detail.isConfigured);
+      }
+      loadPolls();
+    };
+
+    window.addEventListener('supabase_client_ready', handleReady);
+    return () => window.removeEventListener('supabase_client_ready', handleReady);
   }, []);
 
   async function loadPolls() {
     try {
       setLoading(true);
-      const { data } = await supabase.from('polls').select('*').order('created_at', { ascending: false });
-      setPolls(data || []);
+      const { data, error } = await supabase.from('polls').select('*').order('created_at', { ascending: false });
+      if (!error && data) {
+        setPolls(data);
+      }
     } catch (err) {
       console.error(err);
     } finally {
@@ -90,7 +115,7 @@ export default function PollManager({ onNavigate }) {
 
       if (pErr) {
         console.error('Error creating poll:', pErr);
-        throw new Error(pErr.message || 'Gagal menyimpan pertanyaan polling');
+        throw new Error(pErr.message || 'Gagal menyimpan pertanyaan polling ke Supabase');
       }
 
       // 2. Batch Insert Options dengan poll_id yang sama
@@ -107,7 +132,7 @@ export default function PollManager({ onNavigate }) {
 
       if (optErr) {
         console.error('Error inserting poll options:', optErr);
-        throw new Error(optErr.message || 'Gagal menyimpan pilihan jawaban');
+        throw new Error(optErr.message || 'Gagal menyimpan pilihan jawaban ke Supabase');
       }
 
       setShowCreateModal(false);
@@ -119,7 +144,7 @@ export default function PollManager({ onNavigate }) {
       onNavigate('presentation', pollId);
     } catch (err) {
       console.error('Error creating poll:', err);
-      alert(`Gagal membuat poll: ${err.message || 'Pastikan database Supabase sudah diatur atau periksa koneksi.'}`);
+      alert(`Gagal membuat poll: ${err.message || 'Periksa koneksi Supabase & pastikan skrip SQL sudah dijalankan di Supabase'}`);
     } finally {
       setIsSubmitting(false);
     }
@@ -131,6 +156,41 @@ export default function PollManager({ onNavigate }) {
     navigator.clipboard.writeText(link);
     setCopiedId(pollId);
     setTimeout(() => setCopiedId(null), 2000);
+  };
+
+  const handleSaveConfig = async (e) => {
+    e.preventDefault();
+    setConfigTesting(true);
+    setConfigMsg('');
+
+    try {
+      const valid = updateSupabaseConfig(configUrl, configKey);
+      if (!valid) {
+        setConfigMsg('Format URL atau Anon Key tidak valid. URL harus berawalan https:// dan Anon Key minimal 25 karakter.');
+        setConfigTesting(false);
+        return;
+      }
+
+      // Uji query langsung ke database Supabase
+      const { data, error } = await supabase.from('polls').select('*').limit(1);
+      if (error) {
+        throw new Error(error.message || 'Database merespons dengan kesalahan RLS / tabel belum dibuat');
+      }
+
+      setIsConnected(true);
+      setConfigMsg('✅ Sukses! Kredensial valid dan tersambung ke Supabase Cloud.');
+      await loadPolls();
+
+      setTimeout(() => {
+        setShowConfigModal(false);
+        setConfigMsg('');
+      }, 1500);
+    } catch (err) {
+      console.error('Test Supabase Error:', err);
+      setConfigMsg(`❌ Koneksi gagal: ${err.message}. Pastikan tabel di schema.sql sudah dibuat di Supabase SQL Editor.`);
+    } finally {
+      setConfigTesting(false);
+    }
   };
 
   return (
@@ -160,12 +220,20 @@ export default function PollManager({ onNavigate }) {
             </p>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
+            <button 
+              onClick={() => setShowConfigModal(true)}
+              className="btn-secondary"
+              style={{ borderColor: isConnected ? 'rgba(16, 185, 129, 0.4)' : 'rgba(245, 158, 11, 0.5)' }}
+            >
+              <Settings size={16} color={isConnected ? '#34d399' : '#fbbf24'} />
+              <span>{isConnected ? 'Koneksi: Supabase Cloud' : 'Atur Kredensial Supabase'}</span>
+            </button>
             <button 
               onClick={() => setShowSqlGuide(!showSqlGuide)}
               className="btn-secondary"
             >
-              <Database size={16} /> Panduan SQL Supabase
+              <Database size={16} /> Panduan SQL
             </button>
             <button 
               onClick={() => setShowCreateModal(true)}
@@ -183,7 +251,7 @@ export default function PollManager({ onNavigate }) {
             padding: '1rem 1.25rem', 
             borderRadius: '1rem', 
             marginBottom: '2rem',
-            border: isSupabaseConfigured ? '1px solid rgba(16, 185, 129, 0.3)' : '1px solid rgba(245, 158, 11, 0.3)',
+            border: isConnected ? '1px solid rgba(16, 185, 129, 0.3)' : '1px solid rgba(245, 158, 11, 0.4)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
@@ -192,27 +260,26 @@ export default function PollManager({ onNavigate }) {
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
-            <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: isSupabaseConfigured ? '#10b981' : '#f59e0b', boxShadow: isSupabaseConfigured ? '0 0 10px #10b981' : '0 0 10px #f59e0b' }} />
+            <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: isConnected ? '#10b981' : '#f59e0b', boxShadow: isConnected ? '0 0 10px #10b981' : '0 0 10px #f59e0b' }} />
             <div>
               <p style={{ fontWeight: 600, fontSize: '0.9rem', color: '#ffffff' }}>
-                Status Koneksi: {isSupabaseConfigured ? 'Terhubung ke Supabase Cloud' : 'Mode Live Preview (Local Broadcast Sync)'}
+                Status Database: {isConnected ? '🟢 Terhubung ke Supabase Cloud' : '🟡 Mode Demo Offline (Browser LocalStorage)'}
               </p>
               <p style={{ fontSize: '0.8rem', color: '#94a3b8' }}>
-                {isSupabaseConfigured 
-                  ? 'Aplikasi berjalan penuh menggunakan database PostgreSQL & Realtime Supabase.'
-                  : 'Anda dapat langsung mencoba vote & layar presentasi di multi-tab browser sekarang! Masukkan kredensial di .env untuk menghubungkan ke Supabase Cloud.'}
+                {isConnected 
+                  ? 'Data soal & suara tersimpan di database Supabase Cloud. Mahasiswa di mana pun (HP/laptop) dapat melihat soal secara live.'
+                  : 'Soal tersimpan di laptop ini saja. Agar mahasiswa di HP bisa melihat soal, klik tombol di kanan untuk memasukkan Supabase URL & Anon Key.'}
               </p>
             </div>
           </div>
 
-          {!isSupabaseConfigured && (
-            <button 
-              onClick={() => setShowSqlGuide(true)}
-              style={{ background: 'none', border: 'none', color: '#38bdf8', fontSize: '0.85rem', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.25rem', fontWeight: 600 }}
-            >
-              Lihat langkah setup <ChevronRight size={14} />
-            </button>
-          )}
+          <button 
+            onClick={() => setShowConfigModal(true)}
+            className="btn-secondary"
+            style={{ fontSize: '0.8rem', padding: '0.4rem 0.85rem', color: isConnected ? '#94a3b8' : '#fbbf24' }}
+          >
+            {isConnected ? 'Ubah Kredensial' : 'Hubungkan Supabase Sekarang'} <ChevronRight size={14} />
+          </button>
         </div>
 
         {/* SQL Guide Dropdown / Card */}
@@ -220,7 +287,7 @@ export default function PollManager({ onNavigate }) {
           <div className="glass-panel animate-fade-in" style={{ padding: '1.5rem', borderRadius: '1rem', marginBottom: '2rem', border: '1px solid rgba(99, 102, 241, 0.3)' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
               <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#e2e8f0', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <Database size={18} color="#818cf8" /> Langkah Menghubungkan Supabase Cloud
+                <Database size={18} color="#818cf8" /> Langkah Menyiapkan Database Supabase
               </h3>
               <button onClick={() => setShowSqlGuide(false)} className="btn-secondary" style={{ padding: '0.35rem 0.75rem', fontSize: '0.8rem' }}>Tutup</button>
             </div>
@@ -228,14 +295,8 @@ export default function PollManager({ onNavigate }) {
             <ol style={{ paddingLeft: '1.25rem', color: '#cbd5e1', fontSize: '0.9rem', display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
               <li>Buka dashboard proyek Anda di <b>https://supabase.com</b></li>
               <li>Masuk ke menu <b>SQL Editor</b> lalu paste seluruh kode dari file <code style={{ color: '#38bdf8' }}>live-poll/supabase/schema.sql</code> dan klik <b>RUN</b>.</li>
-              <li>Buka menu <b>Project Settings &gt; API</b>, lalu salin <b>Project URL</b> dan <b>anon public key</b>.</li>
-              <li>Buka file <code style={{ color: '#38bdf8' }}>live-poll/.env</code> dan tempelkan kredensial Anda:
-                <pre style={{ background: '#0f172a', padding: '0.6rem 0.8rem', borderRadius: '0.5rem', marginTop: '0.4rem', fontSize: '0.8rem', border: '1px solid rgba(255,255,255,0.08)' }}>
-                  VITE_SUPABASE_URL=https://xyzcompany.supabase.co{'\n'}
-                  VITE_SUPABASE_ANON_KEY=eyJh......
-                </pre>
-              </li>
-              <li>Restart dev server (<code style={{ color: '#38bdf8' }}>npm run dev</code>), aplikasi Anda sudah live dengan Supabase Cloud!</li>
+              <li>Buka menu <b>Project Settings &gt; Data API</b>, salin <b>Project URL</b> dan <b>anon public key</b>.</li>
+              <li>Klik tombol <b>"Atur Kredensial Supabase"</b> di atas dan masukkan URL serta Anon Key Anda. Sistem akan menguji koneksi langsung secara instan!</li>
             </ol>
           </div>
         )}
@@ -246,6 +307,14 @@ export default function PollManager({ onNavigate }) {
             <h2 style={{ fontSize: '1.25rem', fontWeight: 700, color: '#f8fafc' }}>
               Daftar Sesi Polling ({polls.length})
             </h2>
+            <button 
+              onClick={loadPolls} 
+              className="btn-secondary"
+              style={{ padding: '0.35rem 0.75rem', fontSize: '0.75rem' }}
+              title="Refresh Data"
+            >
+              <RefreshCw size={13} /> Refresh
+            </button>
           </div>
 
           {loading ? (
@@ -328,6 +397,116 @@ export default function PollManager({ onNavigate }) {
           )}
         </section>
 
+        {/* Modal Pengaturan Kredensial Supabase */}
+        {showConfigModal && (
+          <div 
+            onClick={() => setShowConfigModal(false)}
+            style={{
+              position: 'fixed',
+              inset: 0,
+              backgroundColor: 'rgba(0,0,0,0.85)',
+              backdropFilter: 'blur(8px)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              zIndex: 110,
+              padding: '1.5rem'
+            }}
+          >
+            <div 
+              onClick={(e) => e.stopPropagation()}
+              className="glass-panel animate-fade-in"
+              style={{
+                maxWidth: '540px',
+                width: '100%',
+                backgroundColor: '#0f172a',
+                padding: '2rem',
+                borderRadius: '1.5rem',
+                border: '1px solid rgba(99, 102, 241, 0.4)',
+                boxShadow: '0 25px 50px rgba(0,0,0,0.7)'
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.5rem' }}>
+                <Settings size={22} color="#818cf8" />
+                <h2 style={{ fontSize: '1.35rem', fontWeight: 800, color: '#ffffff' }}>
+                  Pengaturan Koneksi Supabase Cloud
+                </h2>
+              </div>
+              <p style={{ color: '#94a3b8', fontSize: '0.875rem', marginBottom: '1.5rem', lineHeight: 1.5 }}>
+                Masukkan <b>Project URL</b> dan <b>Anon Key</b> dari akun Supabase Anda agar soal tersimpan di database cloud dan langsung muncul di smartphone mahasiswa saat scan QR code.
+              </p>
+
+              <form onSubmit={handleSaveConfig}>
+                <div style={{ marginBottom: '1.25rem' }}>
+                  <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: '#cbd5e1', marginBottom: '0.35rem' }}>
+                    Project URL (Supabase URL) *
+                  </label>
+                  <input 
+                    type="url" 
+                    placeholder="https://xyzcompany.supabase.co"
+                    value={configUrl}
+                    onChange={(e) => setConfigUrl(e.target.value)}
+                    className="input-field"
+                    required
+                  />
+                  <span style={{ fontSize: '0.75rem', color: '#64748b' }}>
+                    Ditemukan di: Supabase Dashboard &gt; Project Settings &gt; Data API &gt; Project URL
+                  </span>
+                </div>
+
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: 600, color: '#cbd5e1', marginBottom: '0.35rem' }}>
+                    Project API Keys (Anon Public Key) *
+                  </label>
+                  <textarea 
+                    rows={3}
+                    placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                    value={configKey}
+                    onChange={(e) => setConfigKey(e.target.value)}
+                    className="input-field"
+                    style={{ fontSize: '0.85rem', fontFamily: 'monospace' }}
+                    required
+                  />
+                  <span style={{ fontSize: '0.75rem', color: '#64748b' }}>
+                    Ditemukan di: Supabase Dashboard &gt; Project Settings &gt; Data API &gt; anon public
+                  </span>
+                </div>
+
+                {configMsg && (
+                  <div style={{ 
+                    padding: '0.85rem 1rem', 
+                    borderRadius: '0.75rem', 
+                    marginBottom: '1.25rem', 
+                    fontSize: '0.85rem',
+                    backgroundColor: configMsg.startsWith('✅') ? 'rgba(16, 185, 129, 0.15)' : 'rgba(239, 68, 68, 0.15)',
+                    border: configMsg.startsWith('✅') ? '1px solid rgba(16, 185, 129, 0.4)' : '1px solid rgba(239, 68, 68, 0.4)',
+                    color: configMsg.startsWith('✅') ? '#34d399' : '#fca5a5'
+                  }}>
+                    {configMsg}
+                  </div>
+                )}
+
+                <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.75rem' }}>
+                  <button 
+                    type="button" 
+                    onClick={() => setShowConfigModal(false)}
+                    className="btn-secondary"
+                  >
+                    Batal
+                  </button>
+                  <button 
+                    type="submit" 
+                    disabled={configTesting || !configUrl.trim() || !configKey.trim()}
+                    className="btn-primary"
+                  >
+                    {configTesting ? 'Menguji Koneksi...' : 'Uji & Simpan Koneksi'}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
+
         {/* Modal Buat Polling Baru */}
         {showCreateModal && (
           <div 
@@ -335,7 +514,7 @@ export default function PollManager({ onNavigate }) {
             style={{
               position: 'fixed',
               inset: 0,
-              backgroundColor: 'rgba(0,0,0,0.8)',
+              backgroundColor: 'rgba(0,0,0,0.85)',
               backdropFilter: 'blur(8px)',
               display: 'flex',
               alignItems: 'center',

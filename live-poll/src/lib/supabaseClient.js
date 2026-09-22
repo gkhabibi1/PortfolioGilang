@@ -1,16 +1,26 @@
 import { createClient } from '@supabase/supabase-js';
 
-// Baca dari Vite ENV atau fallback Next.js ENV
-const rawUrl = (import.meta.env?.VITE_SUPABASE_URL || import.meta.env?.NEXT_PUBLIC_SUPABASE_URL || '').trim();
-const rawKey = (import.meta.env?.VITE_SUPABASE_ANON_KEY || import.meta.env?.NEXT_PUBLIC_SUPABASE_ANON_KEY || '').trim();
+// Baca kredensial dari berbagai sumber (window config, localStorage, dan ENV)
+export function getActiveCredentials() {
+  const windowConf = typeof window !== 'undefined' ? (window.__SUPABASE_CONFIG__ || {}) : {};
+  const localUrl = typeof localStorage !== 'undefined' ? (localStorage.getItem('livepoll_supabase_url') || '') : '';
+  const localKey = typeof localStorage !== 'undefined' ? (localStorage.getItem('livepoll_supabase_key') || '') : '';
+  const envUrl = (import.meta.env?.VITE_SUPABASE_URL || import.meta.env?.NEXT_PUBLIC_SUPABASE_URL || '').trim();
+  const envKey = (import.meta.env?.VITE_SUPABASE_ANON_KEY || import.meta.env?.NEXT_PUBLIC_SUPABASE_ANON_KEY || '').trim();
 
-export const isSupabaseConfigured = Boolean(
-  rawUrl &&
-  rawKey &&
-  rawUrl.startsWith('https://') &&
-  !rawUrl.includes('your-project-id') &&
-  rawKey.length > 25
-);
+  const url = (windowConf.url || localUrl || envUrl || '').trim();
+  const key = (windowConf.anonKey || localKey || envKey || '').trim();
+
+  const isValid = Boolean(
+    url &&
+    key &&
+    url.startsWith('https://') &&
+    !url.includes('your-project-id') &&
+    key.length > 25
+  );
+
+  return { url, key, isValid };
+}
 
 // Fallback Mock Store & BroadcastChannel
 const LOCAL_STORAGE_KEY_POLLS = 'livepoll_mock_polls';
@@ -82,7 +92,6 @@ function addStoredVote(vote) {
   }
 }
 
-// Simulasi Supabase Client jika belum ada kredensial Supabase Cloud
 function createMockClient() {
   const presenceRooms = new Map();
 
@@ -246,17 +255,48 @@ function createMockClient() {
   };
 }
 
-// Inisialisasi Supabase Asli jika URL dan Key valid, atau mock jika kosong
-export const supabase = isConfiguredRealSupabase(rawUrl, rawKey)
-  ? createClient(rawUrl, rawKey)
-  : createMockClient();
+// Inisialisasi awal client
+let { url, key, isValid } = getActiveCredentials();
+let internalClient = isValid ? createClient(url, key) : createMockClient();
+export let isSupabaseConfigured = isValid;
 
-function isConfiguredRealSupabase(url, key) {
-  return Boolean(
-    url &&
-    key &&
-    url.startsWith('https://') &&
-    !url.includes('your-project-id') &&
-    key.length > 25
-  );
+export function updateSupabaseConfig(newUrl, newKey) {
+  const cleanUrl = (newUrl || '').trim();
+  const cleanKey = (newKey || '').trim();
+
+  if (typeof localStorage !== 'undefined') {
+    localStorage.setItem('livepoll_supabase_url', cleanUrl);
+    localStorage.setItem('livepoll_supabase_key', cleanKey);
+  }
+
+  const valid = Boolean(cleanUrl && cleanKey && cleanUrl.startsWith('https://') && cleanKey.length > 25);
+  isSupabaseConfigured = valid;
+  internalClient = valid ? createClient(cleanUrl, cleanKey) : createMockClient();
+
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new CustomEvent('supabase_client_ready', { detail: { isConfigured: valid } }));
+  }
+
+  return valid;
 }
+
+// Coba ambil otomatis dari Vercel serverless /api/poll-config jika belum terkonfigurasi di browser
+if (!isSupabaseConfigured && typeof window !== 'undefined') {
+  fetch('/api/poll-config')
+    .then(res => res.json())
+    .then(data => {
+      if (data && data.isConfigured && data.supabaseUrl && data.supabaseAnonKey) {
+        updateSupabaseConfig(data.supabaseUrl, data.supabaseAnonKey);
+      }
+    })
+    .catch(() => {
+      // Offline / Local dev tanpa serverless
+    });
+}
+
+// Export dynamic proxy agar setiap panggilan supabase.from() dsb selalu menggunakan instance terbaru
+export const supabase = new Proxy({}, {
+  get: (target, prop) => {
+    return internalClient[prop];
+  }
+});
