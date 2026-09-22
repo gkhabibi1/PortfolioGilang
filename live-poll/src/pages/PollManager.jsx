@@ -74,27 +74,40 @@ export default function PollManager({ onNavigate }) {
 
     try {
       setIsSubmitting(true);
+      
+      // Buat UUID di client agar ID selalu pasti dan tidak undefined
+      const pollId = (typeof crypto !== 'undefined' && crypto.randomUUID) 
+        ? crypto.randomUUID() 
+        : 'poll-' + Math.random().toString(36).substring(2, 9);
+
       // 1. Insert Poll
-      const { data: pollRes, error: pErr } = await supabase.from('polls').insert({
+      const { error: pErr } = await supabase.from('polls').insert({
+        id: pollId,
         title: title.trim() || 'Sesi Polling Baru',
         question: question.trim(),
         is_active: true
       });
 
-      if (pErr) throw pErr;
+      if (pErr) {
+        console.error('Error creating poll:', pErr);
+        throw new Error(pErr.message || 'Gagal menyimpan pertanyaan polling');
+      }
 
-      const createdPoll = Array.isArray(pollRes) ? pollRes[0] : pollRes;
-      const pollId = createdPoll?.id;
+      // 2. Batch Insert Options dengan poll_id yang sama
+      const optionRows = validOptions.map((optText, idx) => ({
+        id: (typeof crypto !== 'undefined' && crypto.randomUUID) 
+          ? crypto.randomUUID() 
+          : 'opt-' + Math.random().toString(36).substring(2, 9),
+        poll_id: pollId,
+        text: optText,
+        order_index: idx + 1
+      }));
 
-      if (pollId) {
-        // 2. Insert Options
-        for (let i = 0; i < validOptions.length; i++) {
-          await supabase.from('poll_options').insert({
-            poll_id: pollId,
-            text: validOptions[i],
-            order_index: i + 1
-          });
-        }
+      const { error: optErr } = await supabase.from('poll_options').insert(optionRows);
+
+      if (optErr) {
+        console.error('Error inserting poll options:', optErr);
+        throw new Error(optErr.message || 'Gagal menyimpan pilihan jawaban');
       }
 
       setShowCreateModal(false);
@@ -103,12 +116,10 @@ export default function PollManager({ onNavigate }) {
       setOptions(['', '', '']);
       await loadPolls();
 
-      if (pollId) {
-        onNavigate('presentation', pollId);
-      }
+      onNavigate('presentation', pollId);
     } catch (err) {
       console.error('Error creating poll:', err);
-      alert('Gagal membuat poll. Pastikan database Supabase sudah diatur atau periksa koneksi.');
+      alert(`Gagal membuat poll: ${err.message || 'Pastikan database Supabase sudah diatur atau periksa koneksi.'}`);
     } finally {
       setIsSubmitting(false);
     }

@@ -37,23 +37,46 @@ export default function StudentVoteView({ pollId, onNavigate }) {
 
     async function loadPoll() {
       try {
-        const { data: pollData } = await supabase
+        const { data: pollData, error: pErr } = await supabase
           .from('polls')
           .select('*')
           .eq('id', pollId)
           .single();
 
-        const { data: optData } = await supabase
+        const { data: optData, error: optErr } = await supabase
           .from('poll_options')
           .select('*')
           .eq('poll_id', pollId)
           .order('order_index');
 
-        setPoll(pollData || {
-          id: pollId,
-          question: 'Polling Sesi Interaktif',
-          title: 'Live Session'
-        });
+        if (pollData) {
+          setPoll(pollData);
+        } else {
+          // Jika poll dengan ID spesifik tidak ditemukan, coba ambil poll aktif terbaru
+          const { data: fallbackPolls } = await supabase
+            .from('polls')
+            .select('*')
+            .order('created_at', { ascending: false });
+
+          if (fallbackPolls && fallbackPolls.length > 0) {
+            const latest = fallbackPolls[0];
+            setPoll(latest);
+            const { data: latestOpts } = await supabase
+              .from('poll_options')
+              .select('*')
+              .eq('poll_id', latest.id)
+              .order('order_index');
+            setOptions(latestOpts || []);
+            return;
+          }
+
+          setPoll({
+            id: pollId,
+            question: 'Polling Sesi Interaktif',
+            title: 'Live Session'
+          });
+        }
+
         setOptions(optData || []);
       } catch (err) {
         console.error('Error loading poll:', err);
@@ -397,8 +420,15 @@ export default function StudentVoteView({ pollId, onNavigate }) {
         {/* Options List */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
           {options.length === 0 ? (
-            <div style={{ textAlign: 'center', color: '#94a3b8', padding: '2rem' }}>
-              Memuat pilihan jawaban...
+            <div className="glass-panel" style={{ textAlign: 'center', color: '#94a3b8', padding: '2rem 1.5rem', borderRadius: '1rem' }}>
+              <p style={{ marginBottom: '0.75rem', fontSize: '0.95rem', color: '#f1f5f9' }}>Pilihan jawaban belum dimuat atau sesi belum disinkronkan.</p>
+              <button 
+                onClick={() => window.location.reload()}
+                className="btn-secondary"
+                style={{ fontSize: '0.8rem', padding: '0.5rem 1rem' }}
+              >
+                Muat Ulang Halaman
+              </button>
             </div>
           ) : (
             options.map((opt, idx) => (

@@ -7,13 +7,14 @@ const rawKey = (import.meta.env?.VITE_SUPABASE_ANON_KEY || import.meta.env?.NEXT
 export const isSupabaseConfigured = Boolean(
   rawUrl &&
   rawKey &&
-  rawUrl.startsWith('http') &&
+  rawUrl.startsWith('https://') &&
   !rawUrl.includes('your-project-id') &&
-  rawKey.length > 20
+  rawKey.length > 25
 );
 
-// Fallback Mock In-Memory Store & BroadcastChannel for seamless local offline testing
+// Fallback Mock Store & BroadcastChannel
 const LOCAL_STORAGE_KEY_POLLS = 'livepoll_mock_polls';
+const LOCAL_STORAGE_KEY_OPTIONS = 'livepoll_mock_options';
 const LOCAL_STORAGE_KEY_VOTES = 'livepoll_mock_votes';
 
 const DEFAULT_POLLS = [
@@ -22,14 +23,15 @@ const DEFAULT_POLLS = [
     title: 'Polling Kuliah Web Development',
     question: 'Framework frontend apa yang paling ingin Anda kuasai di tahun 2025?',
     is_active: true,
-    created_at: new Date().toISOString(),
-    options: [
-      { id: 'opt-1', poll_id: 'demo-poll-01', text: 'React.js / Next.js', order_index: 1 },
-      { id: 'opt-2', poll_id: 'demo-poll-01', text: 'Vue.js / Nuxt.js', order_index: 2 },
-      { id: 'opt-3', poll_id: 'demo-poll-01', text: 'Svelte / SvelteKit', order_index: 3 },
-      { id: 'opt-4', poll_id: 'demo-poll-01', text: 'Vanilla JS & Web Standards', order_index: 4 },
-    ]
+    created_at: new Date().toISOString()
   }
+];
+
+const DEFAULT_OPTIONS = [
+  { id: 'opt-1', poll_id: 'demo-poll-01', text: 'React.js / Next.js', order_index: 1 },
+  { id: 'opt-2', poll_id: 'demo-poll-01', text: 'Vue.js / Nuxt.js', order_index: 2 },
+  { id: 'opt-3', poll_id: 'demo-poll-01', text: 'Svelte / SvelteKit', order_index: 3 },
+  { id: 'opt-4', poll_id: 'demo-poll-01', text: 'Vanilla JS & Web Standards', order_index: 4 }
 ];
 
 function getStoredPolls() {
@@ -42,6 +44,20 @@ function getStoredPolls() {
     return JSON.parse(raw);
   } catch {
     return DEFAULT_POLLS;
+  }
+}
+
+function getStoredOptions(pollId) {
+  try {
+    const raw = localStorage.getItem(LOCAL_STORAGE_KEY_OPTIONS);
+    let all = raw ? JSON.parse(raw) : null;
+    if (!all) {
+      all = DEFAULT_OPTIONS;
+      localStorage.setItem(LOCAL_STORAGE_KEY_OPTIONS, JSON.stringify(all));
+    }
+    return pollId ? all.filter(o => o.poll_id === pollId) : all;
+  } catch {
+    return DEFAULT_OPTIONS;
   }
 }
 
@@ -90,13 +106,13 @@ function createMockClient() {
               return queryObj.then((res) => ({ data: res.data?.[0] || null, error: null }));
             },
             then: (resolve) => {
-              const polls = getStoredPolls();
               if (table === 'polls') {
+                const polls = getStoredPolls();
                 const filtered = currentPollId ? polls.filter(p => p.id === currentPollId) : polls;
                 resolve({ data: isSingle ? (filtered[0] || null) : filtered, error: null });
               } else if (table === 'poll_options') {
-                const poll = polls.find(p => p.id === currentPollId) || polls[0];
-                resolve({ data: poll ? poll.options : [], error: null });
+                const options = getStoredOptions(currentPollId);
+                resolve({ data: options, error: null });
               } else if (table === 'poll_votes') {
                 const votes = getStoredVotes(currentPollId);
                 resolve({ data: votes, error: null });
@@ -107,51 +123,52 @@ function createMockClient() {
           };
           return queryObj;
         },
-        insert: async (data) => {
+
+        insert: (data) => {
+          const items = Array.isArray(data) ? data : [data];
+          let createdRows = [];
+
           if (table === 'poll_votes') {
-            const row = {
-              id: 'vote-' + Math.random().toString(36).substring(2, 9),
+            createdRows = items.map(item => ({
+              id: item.id || 'vote-' + Math.random().toString(36).substring(2, 9),
               created_at: new Date().toISOString(),
-              ...data
-            };
-            addStoredVote(row);
-
-            // Broadcast via BroadcastChannel
-            const bc = new BroadcastChannel(`poll_room_${data.poll_id}`);
-            bc.postMessage({ type: 'NEW_VOTE', payload: row });
-            setTimeout(() => bc.close(), 100);
-
-            return { data: [row], error: null };
-          }
-          if (table === 'polls') {
+              ...item
+            }));
+            createdRows.forEach(row => {
+              addStoredVote(row);
+              const bc = new BroadcastChannel(`poll_room_${row.poll_id}`);
+              bc.postMessage({ type: 'NEW_VOTE', payload: row });
+              setTimeout(() => bc.close(), 100);
+            });
+          } else if (table === 'polls') {
             const polls = getStoredPolls();
-            const newPoll = {
-              id: data.id || 'poll-' + Math.random().toString(36).substring(2, 9),
-              title: data.title,
-              question: data.question,
+            createdRows = items.map(item => ({
+              id: item.id || 'poll-' + Math.random().toString(36).substring(2, 9),
+              title: item.title,
+              question: item.question,
               is_active: true,
-              created_at: new Date().toISOString(),
-              options: []
-            };
-            polls.unshift(newPoll);
+              created_at: new Date().toISOString()
+            }));
+            createdRows.forEach(row => polls.unshift(row));
             localStorage.setItem(LOCAL_STORAGE_KEY_POLLS, JSON.stringify(polls));
-            return { data: [newPoll], error: null };
+          } else if (table === 'poll_options') {
+            const allOpts = getStoredOptions();
+            createdRows = items.map(item => ({
+              id: item.id || 'opt-' + Math.random().toString(36).substring(2, 9),
+              ...item
+            }));
+            createdRows.forEach(row => allOpts.push(row));
+            localStorage.setItem(LOCAL_STORAGE_KEY_OPTIONS, JSON.stringify(allOpts));
           }
-          if (table === 'poll_options') {
-            const polls = getStoredPolls();
-            const poll = polls.find(p => p.id === data.poll_id);
-            if (poll) {
-              const opt = {
-                id: 'opt-' + Math.random().toString(36).substring(2, 9),
-                ...data
-              };
-              poll.options = poll.options || [];
-              poll.options.push(opt);
-              localStorage.setItem(LOCAL_STORAGE_KEY_POLLS, JSON.stringify(polls));
-              return { data: [opt], error: null };
-            }
-          }
-          return { data: null, error: null };
+
+          const insertResult = {
+            data: createdRows,
+            error: null,
+            select: () => Promise.resolve({ data: createdRows, error: null }),
+            then: (resolve) => resolve({ data: createdRows, error: null })
+          };
+
+          return insertResult;
         }
       };
     },
