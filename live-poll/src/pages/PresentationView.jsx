@@ -26,6 +26,7 @@ export default function PresentationView({ pollId, onNavigate }) {
   const [showQRModal, setShowQRModal] = useState(false);
   const [qrDataUrl, setQrDataUrl] = useState('');
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [activeFooterTab, setActiveFooterTab] = useState('votes');
   const containerRef = useRef(null);
 
   // Gunakan domain website portofolio utama pengguna
@@ -381,60 +382,145 @@ export default function PresentationView({ pollId, onNavigate }) {
         </div>
       </main>
 
-      {/* Footer Presence / Realtime Online Participants */}
+      {/* Footer Live Answer Feed & Realtime Online Participants */}
       <footer style={{ position: 'relative', zIndex: 10, maxWidth: '1100px', width: '100%', margin: '1rem auto 0 auto' }}>
         <div className="glass-panel" style={{ padding: '1rem 1.25rem', borderRadius: '1.25rem' }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '0.65rem', marginBottom: '0.75rem', flexWrap: 'wrap', gap: '0.5rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <Vote size={18} color="#818cf8" />
-                <span style={{ fontSize: '0.9rem', color: '#94a3b8' }}>
-                  Total Suara Masuk: <b style={{ color: '#ffffff', fontSize: '1.05rem' }}>{totalVotes}</b>
-                </span>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <Users size={18} color="#34d399" />
-                <span style={{ fontSize: '0.9rem', color: '#94a3b8' }}>
-                  Mahasiswa Online: <b style={{ color: '#34d399', fontSize: '1.05rem' }}>{participants.length}</b>
-                </span>
-              </div>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '0.65rem', marginBottom: '0.75rem', flexWrap: 'wrap', gap: '0.75rem' }}>
+            {/* Tab Switcher Buttons */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', backgroundColor: 'rgba(15, 23, 42, 0.6)', padding: '0.25rem', borderRadius: '0.75rem', border: '1px solid rgba(255,255,255,0.08)' }}>
+              <button
+                onClick={() => setActiveFooterTab('votes')}
+                style={{
+                  background: activeFooterTab === 'votes' ? 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)' : 'none',
+                  color: activeFooterTab === 'votes' ? '#ffffff' : '#94a3b8',
+                  border: 'none',
+                  padding: '0.35rem 0.85rem',
+                  borderRadius: '0.5rem',
+                  fontSize: '0.85rem',
+                  fontWeight: 700,
+                  cursor: 'pointer',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.4rem',
+                  transition: 'all 0.2s'
+                }}
+              >
+                <Vote size={15} />
+                <span>Jawaban Peserta ({totalVotes})</span>
+              </button>
+
+              <button
+                onClick={() => setActiveFooterTab('presence')}
+                style={{
+                  background: activeFooterTab === 'presence' ? 'rgba(16, 185, 129, 0.2)' : 'none',
+                  color: activeFooterTab === 'presence' ? '#34d399' : '#94a3b8',
+                  border: activeFooterTab === 'presence' ? '1px solid rgba(16, 185, 129, 0.4)' : '1px solid transparent',
+                  padding: '0.35rem 0.85rem',
+                  borderRadius: '0.5rem',
+                  fontSize: '0.85rem',
+                  fontWeight: 700,
+                  cursor: 'pointer',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.4rem',
+                  transition: 'all 0.2s'
+                }}
+              >
+                <Users size={15} />
+                <span>Mahasiswa Online ({participants.length})</span>
+              </button>
             </div>
 
             <span style={{ fontSize: '0.8rem', color: '#64748b' }}>
-              ● Live Realtime Sync via Supabase Presence
+              ● Live Realtime Sync via Supabase
             </span>
           </div>
 
-          {/* List Mahasiswa yang sedang bergabung */}
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', maxHeight: '5.5rem', overflowY: 'auto', alignItems: 'center' }}>
-            {participants.length === 0 ? (
-              <span style={{ color: '#64748b', fontSize: '0.85rem', fontStyle: 'italic' }}>
-                Menunggu mahasiswa bergabung ke sesi voting...
-              </span>
-            ) : (
-              participants.map((name, index) => (
-                <span
-                  key={index}
-                  className="animate-fade-in"
-                  style={{
-                    backgroundColor: 'rgba(99, 102, 241, 0.15)',
-                    color: '#c7d2fe',
-                    border: '1px solid rgba(99, 102, 241, 0.35)',
-                    fontSize: '0.8rem',
-                    padding: '0.3rem 0.75rem',
-                    borderRadius: '2rem',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '0.35rem',
-                    fontWeight: 500
-                  }}
-                >
-                  <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#10b981' }} />
-                  {name}
+          {/* TAB 1: Daftar Suara & Pilihan Jawaban */}
+          {activeFooterTab === 'votes' && (
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', maxHeight: '6.5rem', overflowY: 'auto', alignItems: 'center' }}>
+              {votes.length === 0 ? (
+                <span style={{ color: '#64748b', fontSize: '0.85rem', fontStyle: 'italic', padding: '0.25rem 0' }}>
+                  Belum ada suara masuk. Menunggu mahasiswa memilih jawaban...
                 </span>
-              ))
-            )}
-          </div>
+              ) : (
+                votes.map((v, index) => {
+                  const chosenOpt = options.find((o) => o.id === v.option_id);
+                  const optIndex = options.indexOf(chosenOpt);
+                  const optLetter = optIndex >= 0 ? String.fromCharCode(65 + optIndex) : '';
+                  const optText = chosenOpt ? chosenOpt.text : 'Pilihan Jawaban';
+
+                  return (
+                    <span
+                      key={v.id || index}
+                      className="animate-fade-in"
+                      style={{
+                        backgroundColor: 'rgba(30, 41, 59, 0.9)',
+                        color: '#f1f5f9',
+                        border: '1px solid rgba(99, 102, 241, 0.35)',
+                        fontSize: '0.8rem',
+                        padding: '0.35rem 0.85rem',
+                        borderRadius: '2rem',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '0.45rem',
+                        boxShadow: '0 2px 8px rgba(0,0,0,0.2)'
+                      }}
+                    >
+                      <span style={{ fontWeight: 700, color: '#ffffff' }}>👤 {v.voter_name}</span>
+                      <span style={{ color: '#64748b' }}>➔</span>
+                      <span
+                        style={{
+                          backgroundColor: 'rgba(99, 102, 241, 0.25)',
+                          color: '#38bdf8',
+                          border: '1px solid rgba(56, 189, 248, 0.35)',
+                          padding: '0.15rem 0.55rem',
+                          borderRadius: '1rem',
+                          fontSize: '0.75rem',
+                          fontWeight: 700
+                        }}
+                      >
+                        {optLetter ? `${optLetter}: ` : ''}{optText}
+                      </span>
+                    </span>
+                  );
+                })
+              )}
+            </div>
+          )}
+
+          {/* TAB 2: Mahasiswa yang sedang online (Presence) */}
+          {activeFooterTab === 'presence' && (
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', maxHeight: '6.5rem', overflowY: 'auto', alignItems: 'center' }}>
+              {participants.length === 0 ? (
+                <span style={{ color: '#64748b', fontSize: '0.85rem', fontStyle: 'italic', padding: '0.25rem 0' }}>
+                  Menunggu mahasiswa bergabung ke sesi voting...
+                </span>
+              ) : (
+                participants.map((name, index) => (
+                  <span
+                    key={index}
+                    className="animate-fade-in"
+                    style={{
+                      backgroundColor: 'rgba(16, 185, 129, 0.15)',
+                      color: '#6ee7b7',
+                      border: '1px solid rgba(16, 185, 129, 0.35)',
+                      fontSize: '0.8rem',
+                      padding: '0.3rem 0.75rem',
+                      borderRadius: '2rem',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.35rem',
+                      fontWeight: 500
+                    }}
+                  >
+                    <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#10b981' }} />
+                    👋 {name}
+                  </span>
+                ))
+              )}
+            </div>
+          )}
         </div>
       </footer>
 

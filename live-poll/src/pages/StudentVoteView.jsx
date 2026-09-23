@@ -10,7 +10,8 @@ import {
   AlertCircle,
   HelpCircle,
   ArrowRight,
-  Eye
+  Eye,
+  Lock
 } from 'lucide-react';
 
 export default function StudentVoteView({ pollId, onNavigate }) {
@@ -122,6 +123,28 @@ export default function StudentVoteView({ pollId, onNavigate }) {
 
     setErrorMsg('');
     localStorage.setItem('poll_guest_name', cleanName);
+
+    // Cek apakah mahasiswa dengan nama ini sudah pernah memilih di polling ini
+    try {
+      const { data: existingVotes } = await supabase
+        .from('poll_votes')
+        .select('*')
+        .eq('poll_id', pollId)
+        .ilike('voter_name', cleanName)
+        .limit(1);
+
+      if (existingVotes && existingVotes.length > 0) {
+        const previousVote = existingVotes[0];
+        localStorage.setItem(`poll_voted_${pollId}`, previousVote.option_id);
+        setSelectedOptionId(previousVote.option_id);
+        setHasVoted(true);
+        setIsJoined(true);
+        return;
+      }
+    } catch (err) {
+      console.warn('Could not check prior vote from server:', err);
+    }
+
     setIsJoined(true);
 
     // Kirim info Presence ke Supabase agar nama muncul live di layar Host
@@ -142,6 +165,23 @@ export default function StudentVoteView({ pollId, onNavigate }) {
     setErrorMsg('');
 
     try {
+      // Validasi server-side ganda: Pastikan nama ini belum ada di tabel poll_votes
+      const { data: checkVote } = await supabase
+        .from('poll_votes')
+        .select('id, option_id')
+        .eq('poll_id', pollId)
+        .ilike('voter_name', userName)
+        .limit(1);
+
+      if (checkVote && checkVote.length > 0) {
+        localStorage.setItem(`poll_voted_${pollId}`, checkVote[0].option_id);
+        setSelectedOptionId(checkVote[0].option_id);
+        setHasVoted(true);
+        setErrorMsg('Anda sudah pernah memberikan suara pada polling ini.');
+        setSubmitting(false);
+        return;
+      }
+
       const { error } = await supabase.from('poll_votes').insert({
         poll_id: pollId,
         option_id: optionId,
@@ -150,12 +190,12 @@ export default function StudentVoteView({ pollId, onNavigate }) {
 
       if (error) {
         console.error('Error inserting vote:', error);
-        setErrorMsg('Gagal mengirim suara. Silakan coba lagi.');
+        setErrorMsg('Gagal mengirim suara. Pastikan belum pernah memilih sebelumnya.');
         setSubmitting(false);
         return;
       }
 
-      // Tandai sudah vote di browser ini
+      // Tandai sudah vote permanen di browser ini
       localStorage.setItem(`poll_voted_${pollId}`, optionId);
       setSelectedOptionId(optionId);
       setHasVoted(true);
@@ -348,17 +388,23 @@ export default function StudentVoteView({ pollId, onNavigate }) {
             >
               <Eye size={18} /> Lihat Layar Hasil Proyektor
             </button>
-            <button 
-              onClick={() => {
-                localStorage.removeItem(`poll_voted_${pollId}`);
-                setHasVoted(false);
-                setSelectedOptionId(null);
+            <div 
+              style={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'center', 
+                gap: '0.45rem', 
+                color: '#94a3b8', 
+                fontSize: '0.8rem', 
+                padding: '0.7rem 1rem', 
+                backgroundColor: 'rgba(255, 255, 255, 0.03)', 
+                borderRadius: '0.85rem',
+                border: '1px solid rgba(255, 255, 255, 0.08)'
               }}
-              className="btn-secondary"
-              style={{ width: '100%', fontSize: '0.85rem', color: '#94a3b8' }}
             >
-              Ubah Jawaban Saya (Uji Coba)
-            </button>
+              <Lock size={14} color="#818cf8" />
+              <span>Suara terkunci (1 mahasiswa hanya dapat memilih 1 kali)</span>
+            </div>
           </div>
         </div>
       </div>
