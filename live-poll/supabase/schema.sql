@@ -57,7 +57,15 @@ CREATE POLICY "Public insert poll_options" ON poll_options FOR INSERT TO anon WI
 CREATE POLICY "Public read poll_votes" ON poll_votes FOR SELECT TO anon USING (true);
 CREATE POLICY "Public insert poll_votes" ON poll_votes FOR INSERT TO anon WITH CHECK (true);
 
--- 8. Batasi 1 mahasiswa hanya 1 kali vote per sesi poll
+-- 8. Bersihkan data duplikasi dari uji coba sebelumnya (menyisakan 1 vote per mahasiswa)
+DELETE FROM poll_votes
+WHERE id NOT IN (
+  SELECT DISTINCT ON (poll_id, lower(trim(voter_name))) id
+  FROM poll_votes
+  ORDER BY poll_id, lower(trim(voter_name)), created_at DESC
+);
+
+-- 9. Batasi 1 mahasiswa hanya 1 kali vote per sesi poll
 CREATE UNIQUE INDEX IF NOT EXISTS idx_unique_voter_poll ON poll_votes (poll_id, lower(trim(voter_name)));
 
 -- 9. Wajib: Aktifkan Realtime untuk tabel poll_votes
