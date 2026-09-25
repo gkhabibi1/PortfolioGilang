@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DUCK RUSH - Layar Host / Proyektor Balapan Bebek</title>
+  <meta name="description" content="Layar Proyektor Balapan Bebek Duck Rush Panic Race Realtime" />
+  <link rel="icon" type="image/svg+xml" href="/ducks/duck_1.svg" />
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <!-- External Libraries -->
+  <script src="/poll-config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <style>
+    @keyframes flowTrack {
+      0% { background-position: 0 0; }
+      100% { background-position: 100px 0; }
+    }
+    .water-flow {
+      background-image: radial-gradient(rgba(103, 232, 249, 0.25) 1.5px, transparent 1.5px);
+      background-size: 24px 24px;
+      animation: flowTrack 2.5s linear infinite;
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-white min-h-screen selection:bg-yellow-400 selection:text-black">
+  <div id="root">
+    <!-- Fallback Loading View -->
+    <div class="min-h-screen flex flex-col items-center justify-center p-6 text-center">
+      <div class="text-6xl animate-bounce mb-4">🦆</div>
+      <h1 class="text-2xl font-black text-yellow-400 mb-2">Memuat Duck Rush Arena...</h1>
+      <p class="text-sm text-slate-400">Menghubungkan ke server realtime</p>
+    </div>
+  </div>
+
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+
+    const DUCK_ASSETS = [
+      { id: 1, name: 'Bebek Kuning', color: '#FACC15', border: '#CA8A04', emoji: '🦆' },
+      { id: 2, name: 'Bebek Oranye', color: '#FB923C', border: '#EA580C', emoji: '🦆' },
+      { id: 3, name: 'Bebek Merah', color: '#F87171', border: '#DC2626', emoji: '🦆' },
+      { id: 4, name: 'Bebek Ungu', color: '#C084FC', border: '#9333EA', emoji: '🦆' },
+      { id: 5, name: 'Bebek Biru', color: '#60A5FA', border: '#2563EB', emoji: '🦆' },
+      { id: 6, name: 'Bebek Toska', color: '#2DD4BF', border: '#0D9488', emoji: '🦆' },
+      { id: 7, name: 'Bebek Hijau', color: '#4ADE80', border: '#16A34A', emoji: '🦆' },
+      { id: 8, name: 'Bebek Pink', color: '#F472B6', border: '#DB2777', emoji: '🦆' },
+      { id: 9, name: 'Bebek Emas', color: '#FDE047', border: '#EAB308', emoji: '👑' },
+      { id: 10, name: 'Bebek Pelangi', color: '#A78BFA', border: '#7C3AED', emoji: '⭐' },
+    ];
+
+    const QUESTIONS = [
+      { q: '2 + 5 x 2 = ?', options: ['14', '12', '10', '16'], correct: 1 },
+      { q: 'Ibukota Indonesia sekarang?', options: ['Jakarta', 'IKN', 'Surabaya', 'Bandung'], correct: 1 },
+      { q: 'Target audience B2B adalah?', options: ['Konsumen Akhir', 'Perusahaan', 'Anak-anak', 'Komunitas'], correct: 1 },
+      { q: '1 Byte terdiri dari berapa Bit?', options: ['4 Bit', '8 Bit', '16 Bit', '32 Bit'], correct: 1 },
+      { q: 'Singkatan dari AI adalah?', options: ['Auto Internet', 'Artificial Intelligence', 'Apple Intelligence', 'Action Info'], correct: 1 },
+    ];
+
+    // Helper resolusi client Supabase dengan safe fallback
+    async function initSupabase() {
+      let url = window.__SUPABASE_CONFIG__?.url;
+      let key = window.__SUPABASE_CONFIG__?.anonKey;
+
+      if (!url || !key) {
+        try {
+          const res = await fetch('/api/poll-config');
+          if (res.ok) {
+            const data = await res.json();
+            if (data && data.isConfigured) {
+              url = data.supabaseUrl;
+              key = data.supabaseAnonKey;
+            }
+          }
+        } catch (e) {}
+      }
+
+      const clientFactory = window.supabase?.createClient;
+      if (typeof clientFactory === 'function' && url && key && url.startsWith('https://') && key.length > 20) {
+        try {
+          return clientFactory(url, key);
+        } catch (e) {
+          console.warn('Gagal konek Supabase, menggunakan fallback:', e);
+        }
+      }
+
+      // Safe Fallback BroadcastChannel (in-browser real-time across tabs)
+      let bc = null;
+      try {
+        bc = new BroadcastChannel('game_BEBEK-SERU');
+      } catch (e) {}
+
+      const listeners = { broadcast: [], presence: [] };
+      const presenceState = new Map();
+
+      if (bc) {
+        bc.onmessage = (e) => {
+          const { type, event, payload } = e.data || {};
+          if (type === 'broadcast') {
+            listeners.broadcast.forEach(fn => fn({ event, payload }));
+          } else if (type === 'track') {
+            presenceState.set(payload.id, payload);
+            listeners.presence.forEach(fn => fn());
+          }
+        };
+      }
+
+      return {
+        channel: (name) => {
+          const ch = {
+            on: function(kind, filter, cb) {
+              const callback = typeof filter === 'function' ? filter : cb;
+              if (kind === 'presence') listeners.presence.push(callback);
+              if (kind === 'broadcast') {
+                listeners.broadcast.push((msg) => {
+                  if (!filter || !filter.event || filter.event === msg.event) {
+                    callback(msg);
+                  }
+                });
+              }
+              return ch;
+            },
+            presenceState: () => {
+              const out = {};
+              presenceState.forEach((val, k) => { out[k] = [val]; });
+              return out;
+            },
+            send: (msg) => {
+              if (bc) bc.postMessage(msg);
+              return 'ok';
+            },
+            subscribe: () => ch,
+          };
+          return ch;
+        },
+        removeChannel: () => {
+          if (bc) bc.close();
+        }
+      };
+    }
+
+    function HostApp() {
+      const [roomCode] = useState('BEBEK-SERU');
+      const [players, setPlayers] = useState({});
+      const [gameState, setGameState] = useState('LOBBY'); // LOBBY, RACING, FINISHED
+      const [currentQIndex, setCurrentQIndex] = useState(0);
+      const [timeLeft, setTimeLeft] = useState(5);
+      const [loser, setLoser] = useState(null);
+      const [playUrl, setPlayUrl] = useState('');
+
+      const channelRef = useRef(null);
+
+      useEffect(() => {
+        const fullUrl = `${window.location.origin}/icebreaking/play`;
+        setPlayUrl(fullUrl);
+
+        let activeChannel = null;
+
+        initSupabase().then((client) => {
+          const channel = client.channel(`game_${roomCode}`, {
+            config: { presence: { key: 'host' } },
+          });
+
+          channel.on('presence', { event: 'sync' }, () => {
+            const state = channel.presenceState();
+            setPlayers((prev) => {
+              const updated = { ...prev };
+              Object.values(state).flat().forEach((p) => {
+                if (p && p.id && !updated[p.id]) {
+                  updated[p.id] = {
+                    id: p.id,
+                    name: p.name || `Pemain #${p.duckId || 1}`,
+                    duckId: p.duckId || 1,
+                    progress: 0,
+                    speedFactor: 1,
+                  };
+                }
+              });
+              return updated;
+            });
+          });
+
+          channel.on('broadcast', { event: 'SUBMIT_ANSWER' }, ({ payload }) => {
+            const { playerId, isCorrect } = payload || {};
+            setPlayers((prev) => {
+              if (!prev[playerId]) return prev;
+              return {
+                ...prev,
+                [playerId]: {
+                  ...prev[playerId],
+                  speedFactor: isCorrect ? 0.1 : 2.5,
+                },
+              };
+            });
+
+            setTimeout(() => {
+              setPlayers((prev) => {
+                if (!prev[playerId]) return prev;
+                return {
+                  ...prev,
+                  [playerId]: { ...prev[playerId], speedFactor: 1 },
+                };
+              });
+            }, 2200);
+          });
+
+          channel.subscribe();
+          channelRef.current = channel;
+          activeChannel = channel;
+        });
+
+        return () => {
+          if (activeChannel && activeChannel.unsubscribe) {
+            activeChannel.unsubscribe();
+          }
+        };
+      }, [roomCode]);
+
+      // Game Loop
+      useEffect(() => {
+        if (gameState !== 'RACING') return;
+
+        const interval = setInterval(() => {
+          setPlayers((prev) => {
+            let firstFinished = null;
+            const updated = { ...prev };
+            const ids = Object.keys(updated);
+
+            if (ids.length === 0) return prev;
+
+            ids.forEach((id) => {
+              const current = updated[id];
+              const increment = 0.35 * (current.speedFactor || 1);
+              const newProgress = Math.min(100, (current.progress || 0) + increment);
+
+              updated[id] = { ...current, progress: newProgress };
+
+              if (newProgress >= 100 && !firstFinished) {
+                firstFinished = updated[id];
+              }
+            });
+
+            if (firstFinished) {
+              setGameState('FINISHED');
+              setLoser(firstFinished);
+              channelRef.current?.send({
+                type: 'broadcast',
+                event: 'GAME_OVER',
+                payload: { loser: firstFinished },
+              });
+
+              if (window.confetti) {
+                window.confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
+              }
+            }
+
+            return updated;
+          });
+        }, 50);
+
+        return () => clearInterval(interval);
+      }, [gameState]);
+
+      // Timer 5 Detik per Soal
+      useEffect(() => {
+        if (gameState !== 'RACING') return;
+
+        const timer = setInterval(() => {
+          setTimeLeft((prev) => {
+            if (prev <= 1) {
+              const nextIndex = (currentQIndex + 1) % QUESTIONS.length;
+              setCurrentQIndex(nextIndex);
+              channelRef.current?.send({
+                type: 'broadcast',
+                event: 'NEXT_QUESTION',
+                payload: { question: QUESTIONS[nextIndex], index: nextIndex },
+              });
+              return 5;
+            }
+            return prev - 1;
+          });
+        }, 1000);
+
+        return () => clearInterval(timer);
+      }, [gameState, currentQIndex]);
+
+      const startGame = () => {
+        setGameState('RACING');
+        setTimeLeft(5);
+        setCurrentQIndex(0);
+        channelRef.current?.send({
+          type: 'broadcast',
+          event: 'START_GAME',
+          payload: { question: QUESTIONS[0], index: 0 },
+        });
+      };
+
+      const resetGame = () => {
+        setGameState('LOBBY');
+        setLoser(null);
+        setCurrentQIndex(0);
+        setTimeLeft(5);
+        setPlayers((prev) => {
+          const reset = {};
+          Object.keys(prev).forEach((id) => {
+            reset[id] = { ...prev[id], progress: 0, speedFactor: 1 };
+          });
+          return reset;
+        });
+      };
+
+      const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(playUrl || window.location.href + '/play')}&margin=6`;
+
+      return (
+        <div className="min-h-screen bg-slate-950 text-white flex flex-col items-center p-4 sm:p-6 font-sans">
+          {/* Header Banner */}
+          <div className="w-full max-w-6xl flex flex-wrap justify-between items-center bg-slate-900/90 backdrop-blur p-4 sm:p-5 rounded-2xl shadow-xl border border-slate-800 gap-4">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 bg-yellow-400/20 border border-yellow-400/40 rounded-xl flex items-center justify-center text-3xl shadow-inner">
+                🦆
+              </div>
+              <div>
+                <h1 className="text-xl sm:text-2xl font-black tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-amber-400 to-yellow-500">
+                  DUCK RUSH - PANIC RACE
+                </h1>
+                <p className="text-xs sm:text-sm text-slate-400">
+                  ⚠️ <span className="text-rose-400 font-bold">PERINGATAN:</span> Bebek yang pertama sampai finish (Juara 1) HARUS PRESENTASI!
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-4 bg-slate-800/80 px-4 py-2 rounded-xl border border-slate-700">
+              <div className="text-right">
+                <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider block">KODE ROOM</span>
+                <span className="text-xl sm:text-2xl font-black text-cyan-400 font-mono tracking-widest">{roomCode}</span>
+              </div>
+              <div className="h-8 w-px bg-slate-700" />
+              <div className="text-center">
+                <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider block">PESERTA</span>
+                <span className="text-xl sm:text-2xl font-black text-emerald-400 font-mono">
+                  {Object.keys(players).length}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* LOBBY VIEW */}
+          {gameState === 'LOBBY' && (
+            <div className="flex flex-col lg:flex-row items-stretch gap-6 mt-8 max-w-5xl w-full">
+              {/* Kolom Kiri: QR Code */}
+              <div className="flex-1 bg-slate-900/80 border border-slate-800 p-6 sm:p-8 rounded-3xl flex flex-col items-center justify-center text-center shadow-2xl relative overflow-hidden">
+                <span className="text-xs font-bold text-cyan-400 tracking-wider uppercase mb-2">Scan Kamera HP</span>
+                <h2 className="text-2xl font-black mb-4">Gabung Balapan Sekarang!</h2>
+
+                <div className="p-3 bg-white rounded-2xl shadow-2xl border-4 border-cyan-400/40 mb-4 transition transform hover:scale-105 duration-200">
+                  <img
+                    src={qrImageUrl}
+                    alt="QR Code Masuk Balapan Bebek"
+                    className="w-48 h-48 sm:w-56 sm:h-56 rounded-lg object-contain"
+                  />
+                </div>
+
+                <p className="text-xs text-slate-400 mb-2">Atau buka link ini di HP:</p>
+                <a
+                  href="/icebreaking/play"
+                  target="_blank"
+                  className="text-sm font-mono text-yellow-400 hover:text-yellow-300 font-bold bg-slate-800/80 px-3 py-1.5 rounded-lg border border-slate-700"
+                >
+                  {playUrl || '/icebreaking/play'}
+                </a>
+              </div>
+
+              {/* Kolom Kanan: Peserta */}
+              <div className="flex-1 bg-slate-900/80 border border-slate-800 p-6 sm:p-8 rounded-3xl flex flex-col justify-between shadow-2xl">
+                <div>
+                  <div className="flex justify-between items-center mb-4">
+                    <h3 className="text-lg font-bold text-slate-200">
+                      Lobby Peserta ({Object.keys(players).length})
+                    </h3>
+                    <span className="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded-full font-bold">
+                      ● Siap Main
+                    </span>
+                  </div>
+
+                  {Object.keys(players).length === 0 ? (
+                    <div className="py-12 flex flex-col items-center justify-center text-slate-500">
+                      <div className="text-5xl animate-bounce mb-3">🦆</div>
+                      <p className="text-sm font-medium">Menunggu peserta scan QR code...</p>
+                      <p className="text-xs text-slate-600 mt-1">Gunakan HP untuk masuk ke lobby balapan</p>
+                    </div>
+                  ) : (
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 max-h-64 overflow-y-auto p-1 pr-2 mb-6">
+                      {Object.values(players).map((p) => {
+                        const duckMeta = DUCK_ASSETS.find((d) => d.id === p.duckId) || DUCK_ASSETS[0];
+                        return (
+                          <div
+                            key={p.id}
+                            className="bg-slate-800/90 border border-slate-700/80 p-2.5 rounded-xl flex items-center gap-2 shadow-sm"
+                          >
+                            <div
+                              className="w-8 h-8 rounded-lg flex items-center justify-center text-lg border"
+                              style={{ backgroundColor: `${duckMeta.color}33`, borderColor: duckMeta.border }}
+                            >
+                              {duckMeta.emoji}
+                            </div>
+                            <div className="overflow-hidden">
+                              <p className="text-xs font-bold text-white truncate">{p.name}</p>
+                              <p className="text-[10px] text-slate-400">#{p.duckId}</p>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+
+                <div className="pt-4 border-t border-slate-800">
+                  <button
+                    onClick={startGame}
+                    disabled={Object.keys(players).length === 0}
+                    className="w-full py-4 bg-gradient-to-r from-yellow-400 via-amber-400 to-yellow-500 hover:from-yellow-300 hover:to-amber-400 text-slate-950 font-black text-lg tracking-wider rounded-2xl shadow-xl hover:shadow-yellow-500/20 transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed transform active:scale-[0.98]"
+                  >
+                    MULAI BALAPAN 🏁
+                  </button>
+                  <p className="text-center text-[11px] text-slate-500 mt-2">
+                    Minimal 1 pemain untuk memulai sesi game
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* RACING VIEW */}
+          {gameState === 'RACING' && (
+            <div className="w-full max-w-6xl mt-4 flex flex-col gap-4">
+              <div className="bg-slate-900 border-2 border-slate-800 p-4 sm:p-5 rounded-2xl flex flex-wrap justify-between items-center shadow-xl gap-4">
+                <div className="flex-1 min-w-[240px]">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-yellow-400 bg-yellow-400/10 px-2 py-0.5 rounded border border-yellow-400/30">
+                      PERTANYAAN #{currentQIndex + 1}
+                    </span>
+                    <span className="text-xs text-slate-400">Jawab BENAR agar melambat, jawab SALAH auto ngebut!</span>
+                  </div>
+                  <h3 className="text-lg sm:text-2xl font-black text-white">
+                    {QUESTIONS[currentQIndex]?.q}
+                  </h3>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <div className="text-right">
+                    <span className="text-[10px] text-slate-400 uppercase font-bold block">Ganti Soal</span>
+                    <span className="text-xs text-yellow-400 font-mono font-bold">Detik</span>
+                  </div>
+                  <div className="w-14 h-14 rounded-2xl bg-yellow-400/10 border-2 border-yellow-400 flex items-center justify-center text-2xl font-black text-yellow-400 shadow-lg shadow-yellow-500/10">
+                    {timeLeft}
+                  </div>
+                </div>
+              </div>
+
+              {/* LINTASAN SUNGAI */}
+              <div className="relative w-full min-h-[500px] h-[calc(65px_*_10)] max-h-[620px] bg-gradient-to-r from-blue-900 via-cyan-800 to-blue-950 rounded-3xl overflow-hidden border-4 border-blue-950 shadow-2xl flex flex-col justify-around p-3">
+                <div className="absolute inset-0 water-flow opacity-30 pointer-events-none" />
+
+                {/* Garis Finish */}
+                <div className="absolute right-10 top-0 bottom-0 w-12 bg-[repeating-conic-gradient(#0f172a_0%_25%,#ffffff_0%_50%)] [background-size:20px_20px] border-l-4 border-yellow-400 z-20 flex items-center justify-center shadow-2xl">
+                  <span className="[writing-mode:vertical-lr] font-black text-slate-950 bg-yellow-400 px-1 py-3 text-xs tracking-widest rounded shadow uppercase border border-yellow-500">
+                    FINISH (PRESENTASI) 🎤
+                  </span>
+                </div>
+
+                {/* Jalur Bebek */}
+                <div className="relative z-10 w-full h-full flex flex-col justify-around">
+                  {Object.values(players).map((p, idx) => {
+                    const duckMeta = DUCK_ASSETS.find((d) => d.id === p.duckId) || DUCK_ASSETS[idx % 10];
+                    return (
+                      <div
+                        key={p.id}
+                        className="relative w-full h-11 flex items-center border-b border-cyan-400/15"
+                      >
+                        <div
+                          className="absolute transition-all duration-100 ease-linear flex items-center gap-2"
+                          style={{
+                            left: `calc(${p.progress}% * 0.82)`,
+                          }}
+                        >
+                          <div
+                            className="relative w-10 h-10 rounded-full flex items-center justify-center text-xl shadow-lg border-2 overflow-hidden select-none"
+                            style={{
+                              backgroundColor: duckMeta.color,
+                              borderColor: duckMeta.border,
+                            }}
+                          >
+                            <span>{duckMeta.emoji}</span>
+                            <span className="absolute bottom-0 right-0 text-[8px] bg-black/70 text-white font-black px-1 rounded-tl">
+                              #{p.duckId}
+                            </span>
+                          </div>
+
+                          <div className="bg-slate-900/90 text-white px-2.5 py-1 rounded-lg text-xs font-bold whitespace-nowrap shadow-md border border-slate-700">
+                            {p.name}
+                          </div>
+
+                          {p.speedFactor < 1 && (
+                            <span className="text-[10px] font-black text-emerald-300 bg-emerald-950/90 px-2 py-0.5 rounded-full border border-emerald-500 animate-bounce shadow">
+                              🛑 REM AKTIF!
+                            </span>
+                          )}
+                          {p.speedFactor > 1 && (
+                            <span className="text-[10px] font-black text-rose-300 bg-rose-950/90 px-2 py-0.5 rounded-full border border-rose-500 animate-pulse shadow">
+                              🔥 NGEBUT!
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* MODAL PRESENTASI */}
+          {gameState === 'FINISHED' && loser && (
+            <div className="fixed inset-0 bg-black/85 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+              <div className="bg-slate-900 border-2 border-yellow-400 p-8 rounded-3xl max-w-md w-full text-center shadow-2xl relative overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+                <div className="inline-block p-3 bg-yellow-400/10 border border-yellow-400/30 rounded-2xl mb-4">
+                  <span className="text-4xl">🏆 🦆</span>
+                </div>
+
+                <h2 className="text-3xl font-black text-yellow-400 mb-1">JUARA 1 TERCEPAT!</h2>
+                <p className="text-slate-300 text-xs sm:text-sm mb-6">
+                  Bebek pertama yang berhasil menembus arus dan melewati garis finish adalah:
+                </p>
+
+                <div className="bg-slate-800/90 p-5 rounded-2xl border border-slate-700 mb-6 shadow-inner">
+                  <div className="text-5xl mb-2">🦆</div>
+                  <h3 className="text-2xl font-black text-white">{loser.name}</h3>
+                  <p className="text-xs text-yellow-400 font-bold mt-1">Bebek #{loser.duckId}</p>
+                </div>
+
+                <div className="bg-rose-500/10 border border-rose-500/40 p-3.5 rounded-xl mb-6">
+                  <p className="text-rose-400 font-extrabold text-sm">
+                    🎤 Silakan maju ke depan kelas dan mulai presentasi materi!
+                  </p>
+                </div>
+
+                <button
+                  onClick={resetGame}
+                  className="w-full py-3 bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white rounded-xl text-sm font-bold transition border border-slate-700"
+                >
+                  🔄 Kembali ke Lobby (Main Lagi)
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    try {
+      ReactDOM.createRoot(document.getElementById('root')).render(<HostApp />);
+    } catch (e) {
+      console.error('Render error:', e);
+    }
+  </script>
+</body>
+</html>
