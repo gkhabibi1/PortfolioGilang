@@ -33,6 +33,7 @@
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
   <style>
     @keyframes flowTrack {
@@ -230,6 +231,473 @@
       };
     }
 
+    // Efek Suara Sizzling Bebek Terbakar di Oven (Web Audio API synthesis)
+    function playSizzleSound() {
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        const ctx = new AudioCtx();
+        const bufferSize = ctx.sampleRate * 2.5;
+        const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+        const data = buffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+          data[i] = (Math.random() * 2 - 1) * 0.45 * Math.exp(-i / (ctx.sampleRate * 1.2));
+        }
+        const noise = ctx.createBufferSource();
+        noise.buffer = buffer;
+
+        const filter = ctx.createBiquadFilter();
+        filter.type = 'bandpass';
+        filter.frequency.value = 2400;
+        filter.Q.value = 1.3;
+
+        const gain = ctx.createGain();
+        gain.gain.setValueAtTime(0.4, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 2.5);
+
+        noise.connect(filter);
+        filter.connect(gain);
+        gain.connect(ctx.destination);
+        noise.start();
+      } catch (e) {}
+    }
+
+    // Komponen Lintasan Balapan 3D Menggunakan Three.js & Kobaran Api Oven Finish
+    function ThreeRaceArena({ players, leaderboard, gameState }) {
+      const containerRef = useRef(null);
+      const [cameraMode, setCameraMode] = useState('PANORAMA'); // 'PANORAMA', 'FOLLOW', 'OVEN'
+      const cameraModeRef = useRef('PANORAMA');
+      const playersRef = useRef(players);
+      playersRef.current = players;
+      cameraModeRef.current = cameraMode;
+
+      useEffect(() => {
+        const container = containerRef.current;
+        if (!container || !window.THREE) return;
+
+        let width = container.clientWidth || 1000;
+        let height = container.clientHeight || 520;
+
+        // 1. Scene, Camera, Renderer
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x050b14);
+        scene.fog = new THREE.FogExp2(0x050b14, 0.007);
+
+        const camera = new THREE.PerspectiveCamera(45, width / height, 0.5, 400);
+        camera.position.set(0, 26, 38);
+        camera.lookAt(2, 0, 0);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
+        renderer.setSize(width, height);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+        renderer.shadowMap.enabled = true;
+        container.innerHTML = '';
+        container.appendChild(renderer.domElement);
+
+        // 2. Pencahayaan
+        const ambientLight = new THREE.AmbientLight(0x7dd3fc, 0.85);
+        scene.add(ambientLight);
+
+        const dirLight = new THREE.DirectionalLight(0xfffaed, 1.3);
+        dirLight.position.set(-25, 35, 20);
+        scene.add(dirLight);
+
+        // Lampu Kobaran Api Oven (Titik Nyala Finish Line)
+        const fireLight = new THREE.PointLight(0xff3300, 5.5, 50);
+        fireLight.position.set(36, 4, 0);
+        scene.add(fireLight);
+
+        const fireYellowLight = new THREE.PointLight(0xffaa00, 3.0, 35);
+        fireYellowLight.position.set(38, 2, 0);
+        scene.add(fireYellowLight);
+
+        // 3. Air Sungai Dinamis (Procedural Waves)
+        const waterGeo = new THREE.PlaneGeometry(88, 26, 48, 16);
+        const waterMat = new THREE.MeshPhongMaterial({
+          color: 0x0284c7,
+          specular: 0x38bdf8,
+          shininess: 90,
+          transparent: true,
+          opacity: 0.9,
+          flatShading: true,
+        });
+        const waterMesh = new THREE.Mesh(waterGeo, waterMat);
+        waterMesh.rotation.x = -Math.PI / 2;
+        scene.add(waterMesh);
+
+        // 4. Tebing / Tepi Sungai (North & South Green Grass)
+        const bankMat = new THREE.MeshStandardMaterial({ color: 0x14532d, roughness: 0.8 });
+        const rockMat = new THREE.MeshStandardMaterial({ color: 0x475569, roughness: 0.9 });
+        const woodMat = new THREE.MeshStandardMaterial({ color: 0x78350f, roughness: 0.7 });
+
+        [-15, 15].forEach((bankZ) => {
+          const bankGeo = new THREE.BoxGeometry(90, 4, 6);
+          const bank = new THREE.Mesh(bankGeo, bankMat);
+          bank.position.set(0, 0.5, bankZ);
+          scene.add(bank);
+
+          // Bebatuan tepi sungai
+          for (let i = 0; i < 7; i++) {
+            const rock = new THREE.Mesh(new THREE.DodecahedronGeometry(0.8 + Math.random() * 0.7), rockMat);
+            rock.position.set(-36 + i * 12 + Math.random() * 4, 2.2, bankZ + (Math.random() - 0.5) * 1.5);
+            rock.rotation.set(Math.random(), Math.random(), Math.random());
+            scene.add(rock);
+          }
+        });
+
+        // 5. Gapura Checkpoint Jarak (125m, 250m, 375m)
+        const arches = [
+          { x: -18, label: '125m JERAM 🌊' },
+          { x: 0, label: '250m PUSARAN 🌀' },
+          { x: 18, label: '375m ZONA BAHAYA ⚠️' },
+        ];
+
+        arches.forEach((arc) => {
+          const archPillarGeo = new THREE.CylinderGeometry(0.2, 0.2, 8, 8);
+          [-12, 12].forEach((pz) => {
+            const pillar = new THREE.Mesh(archPillarGeo, woodMat);
+            pillar.position.set(arc.x, 3.5, pz);
+            scene.add(pillar);
+          });
+          const beam = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.18, 25, 8), woodMat);
+          beam.rotation.x = Math.PI / 2;
+          beam.position.set(arc.x, 7.5, 0);
+          scene.add(beam);
+        });
+
+        // 6. KOBARAN API: OVEN PANGGANG RAKSASA (Finish Line di X = 34 s/d 45)
+        const furnaceStoneMat = new THREE.MeshStandardMaterial({ color: 0x18181b, roughness: 0.95 });
+        const furnaceBack = new THREE.Mesh(new THREE.BoxGeometry(4, 10, 26), furnaceStoneMat);
+        furnaceBack.position.set(44, 4.5, 0);
+        scene.add(furnaceBack);
+
+        [-13, 13].forEach((wz) => {
+          const furnaceWall = new THREE.Mesh(new THREE.BoxGeometry(16, 8, 3), furnaceStoneMat);
+          furnaceWall.position.set(38, 3.5, wz);
+          scene.add(furnaceWall);
+        });
+
+        // Arang Merah Membara di Dasar Panggangan
+        const coalMat = new THREE.MeshBasicMaterial({ color: 0xff2200 });
+        const coalMesh = new THREE.Mesh(new THREE.PlaneGeometry(14, 24), coalMat);
+        coalMesh.rotation.x = -Math.PI / 2;
+        coalMesh.position.set(39, 0.1, 0);
+        scene.add(coalMesh);
+
+        // Jeruji Besi Panggangan BBQ
+        const grateMat = new THREE.MeshStandardMaterial({ color: 0x27272a, metalness: 0.8, roughness: 0.4 });
+        for (let gz = -11; gz <= 11; gz += 1.8) {
+          const grateBar = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 14, 8), grateMat);
+          grateBar.rotation.z = Math.PI / 2;
+          grateBar.position.set(39, 1.2, gz);
+          scene.add(grateBar);
+        }
+
+        // Sistem Partikel Kobaran Api (200 Partikel Api yang Bergerak Naik)
+        const particleCount = 200;
+        const particleGeo = new THREE.BufferGeometry();
+        const particlePos = new Float32Array(particleCount * 3);
+        const particleCol = new THREE.Float32BufferAttribute(particleCount * 3, 3);
+        const particleVel = [];
+
+        for (let i = 0; i < particleCount; i++) {
+          particlePos[i * 3 + 0] = 34 + Math.random() * 9;
+          particlePos[i * 3 + 1] = 0.5 + Math.random() * 6.5;
+          particlePos[i * 3 + 2] = -11 + Math.random() * 22;
+          particleVel.push({
+            x: (Math.random() - 0.5) * 0.04,
+            y: 0.08 + Math.random() * 0.12,
+            z: (Math.random() - 0.5) * 0.04,
+          });
+          particleCol.setXYZ(i, 1.0, 0.6, 0.0);
+        }
+        particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePos, 3));
+        particleGeo.setAttribute('color', particleCol);
+
+        const particleMat = new THREE.PointsMaterial({
+          size: 1.8,
+          vertexColors: true,
+          transparent: true,
+          opacity: 0.85,
+          blending: THREE.AdditiveBlending,
+          depthWrite: false,
+        });
+        const flameSystem = new THREE.Points(particleGeo, particleMat);
+        scene.add(flameSystem);
+
+        // 7. Pengelolaan Bebek 3D
+        const duckGroups = {};
+
+        function createDuckMesh(duckMeta) {
+          const group = new THREE.Group();
+          const colorHex = parseInt(duckMeta.color.replace('#', '0x'), 16) || 0xfacc15;
+          const duckMat = new THREE.MeshStandardMaterial({
+            color: colorHex,
+            roughness: 0.35,
+            metalness: 0.08,
+          });
+          const beakMat = new THREE.MeshStandardMaterial({
+            color: 0xf97316,
+            roughness: 0.4,
+          });
+          const eyeMat = new THREE.MeshBasicMaterial({ color: 0x0f172a });
+
+          // Badan Bebek
+          const body = new THREE.Mesh(new THREE.SphereGeometry(1.0, 16, 16), duckMat);
+          body.scale.set(1.3, 0.85, 0.95);
+          body.castShadow = true;
+          group.add(body);
+
+          // Kepala Bebek
+          const head = new THREE.Mesh(new THREE.SphereGeometry(0.55, 14, 14), duckMat);
+          head.position.set(0.75, 0.75, 0);
+          head.castShadow = true;
+          group.add(head);
+
+          // Paruh Oranye
+          const beak = new THREE.Mesh(new THREE.ConeGeometry(0.24, 0.55, 10), beakMat);
+          beak.rotation.z = -Math.PI / 2;
+          beak.position.set(1.3, 0.72, 0);
+          group.add(beak);
+
+          // Mata Bebek
+          [-0.24, 0.24].forEach((ez) => {
+            const eye = new THREE.Mesh(new THREE.SphereGeometry(0.09, 8, 8), eyeMat);
+            eye.position.set(0.9, 0.86, ez);
+            group.add(eye);
+          });
+
+          // Ekor
+          const tail = new THREE.Mesh(new THREE.ConeGeometry(0.25, 0.55, 8), duckMat);
+          tail.rotation.z = Math.PI / 3;
+          tail.position.set(-1.0, 0.45, 0);
+          group.add(tail);
+
+          // Label 2D Melayang di Atas Bebek
+          const canvas = document.createElement('canvas');
+          canvas.width = 256;
+          canvas.height = 96;
+          const spriteTex = new THREE.CanvasTexture(canvas);
+          const spriteMat = new THREE.SpriteMaterial({ map: spriteTex, depthTest: false });
+          const sprite = new THREE.Sprite(spriteMat);
+          sprite.scale.set(4.5, 1.7, 1.0);
+          sprite.position.set(0, 2.4, 0);
+          group.add(sprite);
+
+          return { group, sprite, canvas, spriteTex, duckMat, originalColor: colorHex };
+        }
+
+        function updateDuckSprite(duckObj, player) {
+          const { canvas, spriteTex } = duckObj;
+          const ctx = canvas.getContext('2d');
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+          // Background box
+          ctx.fillStyle = 'rgba(15, 23, 42, 0.88)';
+          ctx.beginPath();
+          ctx.roundRect(8, 8, 240, 80, 16);
+          ctx.fill();
+          ctx.strokeStyle = player.speedFactor > 1 ? '#f43f5e' : player.speedFactor < 1 ? '#10b981' : '#38bdf8';
+          ctx.lineWidth = 4;
+          ctx.stroke();
+
+          // Nama & Jarak
+          ctx.fillStyle = '#ffffff';
+          ctx.font = 'bold 24px sans-serif';
+          ctx.textAlign = 'center';
+          const meters = Math.round((player.progress || 0) * 5);
+          ctx.fillText(`${player.name.substring(0, 12)} (${meters}m)`, 128, 42);
+
+          // Status Badge
+          ctx.font = 'bold 20px sans-serif';
+          if (player.speedFactor > 1) {
+            ctx.fillStyle = '#fda4af';
+            ctx.fillText('🔥 NGEBUT PANIK!', 128, 72);
+          } else if (player.speedFactor < 1) {
+            ctx.fillStyle = '#6ee7b7';
+            ctx.fillText('🛑 REM AMAN', 128, 72);
+          } else {
+            ctx.fillStyle = '#fde047';
+            ctx.fillText(`Bebek #${player.duckId}`, 128, 72);
+          }
+
+          spriteTex.needsUpdate = true;
+        }
+
+        // 8. Render Loop 60 FPS
+        let animId = null;
+        let clock = new THREE.Clock();
+
+        function animate() {
+          animId = requestAnimationFrame(animate);
+          const elapsed = clock.getElapsedTime();
+
+          // A. Animasi ombak air sungai
+          const pos = waterGeo.attributes.position;
+          for (let i = 0; i < pos.count; i++) {
+            const vx = pos.getX(i);
+            const vz = pos.getY(i);
+            const wave = Math.sin(vx * 0.35 + elapsed * 3.2) * 0.22 + Math.cos(vz * 0.6 + elapsed * 2.2) * 0.14;
+            pos.setZ(i, wave);
+          }
+          pos.needsUpdate = true;
+          waterGeo.computeVertexNormals();
+
+          // B. Animasi partikel kobaran api
+          const pPositions = flameSystem.geometry.attributes.position.array;
+          const pColors = flameSystem.geometry.attributes.color.array;
+          for (let i = 0; i < particleCount; i++) {
+            pPositions[i * 3 + 1] += particleVel[i].y;
+            pPositions[i * 3 + 0] += particleVel[i].x;
+            pPositions[i * 3 + 2] += particleVel[i].z;
+
+            const py = pPositions[i * 3 + 1];
+            if (py < 2.5) {
+              pColors[i * 3 + 0] = 1.0;
+              pColors[i * 3 + 1] = 0.95;
+              pColors[i * 3 + 2] = 0.1;
+            } else if (py < 5.0) {
+              pColors[i * 3 + 0] = 1.0;
+              pColors[i * 3 + 1] = 0.35;
+              pColors[i * 3 + 2] = 0.0;
+            } else {
+              pColors[i * 3 + 0] = 0.45;
+              pColors[i * 3 + 1] = 0.15;
+              pColors[i * 3 + 2] = 0.05;
+            }
+
+            if (py > 7.5) {
+              pPositions[i * 3 + 1] = 0.4 + Math.random() * 0.4;
+              pPositions[i * 3 + 0] = 34 + Math.random() * 9;
+              pPositions[i * 3 + 2] = -11 + Math.random() * 22;
+            }
+          }
+          flameSystem.geometry.attributes.position.needsUpdate = true;
+          flameSystem.geometry.attributes.color.needsUpdate = true;
+
+          // C. Kedipan intensitas lampu kobaran api
+          fireLight.intensity = 4.8 + Math.sin(elapsed * 24) * 1.6 + (Math.random() - 0.5) * 0.7;
+          fireYellowLight.intensity = 2.5 + Math.cos(elapsed * 18) * 1.0;
+
+          // D. Posisi dan Animasi Bebek
+          const currentPlayers = Object.values(playersRef.current || {});
+          const totalP = Math.max(1, currentPlayers.length);
+
+          let leaderDuckX = -36;
+
+          currentPlayers.forEach((p, idx) => {
+            if (!duckGroups[p.id]) {
+              const meta = DUCK_ASSETS.find((d) => d.id === p.duckId) || DUCK_ASSETS[idx % 10];
+              const duckObj = createDuckMesh(meta);
+              scene.add(duckObj.group);
+              duckGroups[p.id] = duckObj;
+            }
+
+            const duckObj = duckGroups[p.id];
+            const laneZ = (idx - (totalP - 1) / 2) * 2.3;
+            const targetX = -36 + ((p.progress || 0) / 100) * 72;
+
+            if (targetX > leaderDuckX) {
+              leaderDuckX = targetX;
+            }
+
+            duckObj.group.position.x += (targetX - duckObj.group.position.x) * 0.14;
+            duckObj.group.position.z += (laneZ - duckObj.group.position.z) * 0.14;
+
+            const bobbing = Math.sin(elapsed * 5.5 + idx) * 0.18;
+            duckObj.group.position.y = 0.5 + bobbing;
+            duckObj.group.rotation.z = Math.sin(elapsed * 3.5 + idx) * 0.08;
+
+            // Jika masuk ke kobaran api oven (progress >= 100)
+            if (p.progress >= 100) {
+              duckObj.group.rotation.x += 0.25;
+              duckObj.group.rotation.y += 0.35;
+              duckObj.group.position.y = 1.2 + Math.sin(elapsed * 15) * 0.6;
+              duckObj.duckMat.color.setHex(0x522e1b); // Gosong terpanggang
+            } else {
+              duckObj.group.rotation.x = 0;
+              duckObj.group.rotation.y = 0;
+            }
+
+            updateDuckSprite(duckObj, p);
+          });
+
+          // E. Mode Kamera
+          const currentMode = cameraModeRef.current;
+          if (currentMode === 'PANORAMA') {
+            camera.position.lerp(new THREE.Vector3(0, 26, 38), 0.08);
+            camera.lookAt(2, 0, 0);
+          } else if (currentMode === 'FOLLOW') {
+            const camTarget = new THREE.Vector3(leaderDuckX - 8, 16, 22);
+            camera.position.lerp(camTarget, 0.08);
+            camera.lookAt(leaderDuckX + 5, 1, 0);
+          } else if (currentMode === 'OVEN') {
+            camera.position.lerp(new THREE.Vector3(42, 9, 0), 0.08);
+            camera.lookAt(12, 1, 0);
+          }
+
+          renderer.render(scene, camera);
+        }
+
+        animate();
+
+        const handleResize = () => {
+          if (!container) return;
+          const nw = container.clientWidth;
+          const nh = container.clientHeight;
+          camera.aspect = nw / nh;
+          camera.updateProjectionMatrix();
+          renderer.setSize(nw, nh);
+        };
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+          window.removeEventListener('resize', handleResize);
+          cancelAnimationFrame(animId);
+          renderer.dispose();
+          if (container) container.innerHTML = '';
+        };
+      }, []);
+
+      return (
+        <div className="relative w-full h-[520px] rounded-3xl overflow-hidden shadow-2xl border-4 border-slate-800 bg-slate-950">
+          <div ref={containerRef} className="w-full h-full" />
+
+          {/* Controls & Labels Viewport 3D */}
+          <div className="absolute top-4 left-4 z-10 flex items-center gap-2 bg-slate-900/90 backdrop-blur px-3 py-1.5 rounded-xl border border-slate-700 text-xs shadow-lg">
+            <span className="text-[10px] uppercase font-mono font-bold text-cyan-400">3D ARENA SUNGAI & OVEN PANGGANG</span>
+          </div>
+
+          <div className="absolute top-4 right-4 z-10 flex items-center gap-1.5 bg-slate-900/90 backdrop-blur p-1.5 rounded-xl border border-slate-700 shadow-lg">
+            <span className="text-[10px] text-slate-400 font-bold px-1.5 hidden sm:inline">Kamera:</span>
+            {[
+              { id: 'PANORAMA', label: '🎥 Panoramik' },
+              { id: 'FOLLOW', label: '🎯 Kejar Bebek' },
+              { id: 'OVEN', label: '🔥 Sudut Oven' },
+            ].map((btn) => (
+              <button
+                key={btn.id}
+                onClick={() => setCameraMode(btn.id)}
+                className={`text-[11px] font-bold px-2.5 py-1 rounded-lg transition ${
+                  cameraMode === btn.id
+                    ? 'bg-yellow-400 text-slate-950 shadow-md font-black'
+                    : 'text-slate-300 hover:text-white bg-slate-800/80 hover:bg-slate-700'
+                }`}
+              >
+                {btn.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Banner Api Oven di Kanan */}
+          <div className="absolute right-4 bottom-4 z-10 bg-rose-950/90 border-2 border-rose-500/80 px-3.5 py-1.5 rounded-xl text-center shadow-xl animate-pulse">
+            <span className="text-[10px] font-black uppercase text-rose-300 tracking-wider block">FINISH LINE (500M)</span>
+            <span className="text-sm font-black text-yellow-300">🔥 OVEN PANGGANG RAKSASA 🍗</span>
+          </div>
+        </div>
+      );
+    }
+
     function HostApp() {
       const [roomCode] = useState('BEBEK-SERU');
       const [players, setPlayers] = useState({});
@@ -371,6 +839,7 @@
             if (firstFinished) {
               setGameState('FINISHED');
               setLoser(firstFinished);
+              playSizzleSound();
               channelRef.current?.send({
                 type: 'broadcast',
                 event: 'GAME_OVER',
@@ -378,7 +847,7 @@
               });
 
               if (window.confetti) {
-                window.confetti({ particleCount: 150, spread: 90, origin: { y: 0.6 } });
+                window.confetti({ particleCount: 160, spread: 90, origin: { y: 0.6 } });
               }
             }
 
@@ -413,7 +882,6 @@
       }, [gameState, currentQIndex, questions]);
 
       const startGame = () => {
-        // Acak kumpulan soal dan opsi baru setiap kali game dimulai
         const freshQuestions = generateShuffledQuestions();
         setQuestions(freshQuestions);
         setGameState('RACING');
@@ -427,7 +895,6 @@
       };
 
       const resetGame = () => {
-        // Reset soal baru secara acak
         const freshQuestions = generateShuffledQuestions();
         setQuestions(freshQuestions);
         setGameState('LOBBY');
@@ -448,17 +915,17 @@
       return (
         <div className="min-h-screen bg-slate-950 text-white flex flex-col items-center p-4 sm:p-6 font-sans">
           {/* Header Banner */}
-          <div className="w-full max-w-6xl flex flex-wrap justify-between items-center bg-slate-900/90 backdrop-blur p-4 sm:p-5 rounded-2xl shadow-xl border border-slate-800 gap-4">
+          <div className="w-full max-w-7xl flex flex-wrap justify-between items-center bg-slate-900/90 backdrop-blur p-4 sm:p-5 rounded-2xl shadow-xl border border-slate-800 gap-4">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-yellow-400/20 border border-yellow-400/40 rounded-xl flex items-center justify-center text-3xl shadow-inner">
-                🦆
+              <div className="w-12 h-12 bg-rose-500/20 border border-rose-500/40 rounded-xl flex items-center justify-center text-3xl shadow-inner">
+                🍗
               </div>
               <div>
-                <h1 className="text-xl sm:text-2xl font-black tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-amber-400 to-yellow-500">
-                  DUCK RUSH - PANIC RACE
+                <h1 className="text-xl sm:text-2xl font-black tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-amber-400 to-rose-500">
+                  DUCK RUSH - PANIC RACE 3D
                 </h1>
                 <p className="text-xs sm:text-sm text-slate-400">
-                  ⚠️ <span className="text-rose-400 font-bold">PERINGATAN:</span> Bebek yang pertama sampai finish (Juara 1) HARUS PRESENTASI!
+                  ⚠️ <span className="text-rose-400 font-bold">PERINGATAN:</span> Bebek yang pertama sampai di ujung akan <span className="text-yellow-400 font-bold">MASUK KOBARAN API & BERHASIL DIPANGGANG!</span> (Harus Presentasi! 🍗🔥)
                 </p>
               </div>
             </div>
@@ -552,9 +1019,9 @@
                   <button
                     onClick={startGame}
                     disabled={Object.keys(players).length === 0}
-                    className="w-full py-4 bg-gradient-to-r from-yellow-400 via-amber-400 to-yellow-500 hover:from-yellow-300 hover:to-amber-400 text-slate-950 font-black text-lg tracking-wider rounded-2xl shadow-xl hover:shadow-yellow-500/20 transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed transform active:scale-[0.98]"
+                    className="w-full py-4 bg-gradient-to-r from-yellow-400 via-amber-400 to-rose-500 hover:from-yellow-300 hover:to-rose-400 text-slate-950 font-black text-lg tracking-wider rounded-2xl shadow-xl hover:shadow-rose-500/20 transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed transform active:scale-[0.98]"
                   >
-                    MULAI BALAPAN 🏁
+                    MULAI BALAPAN 🏁🔥
                   </button>
                   <p className="text-center text-[11px] text-slate-500 mt-2">
                     Minimal 1 pemain untuk memulai sesi game
@@ -576,7 +1043,7 @@
                       <span className="text-[10px] font-black uppercase tracking-widest text-yellow-400 bg-yellow-400/10 px-2 py-0.5 rounded border border-yellow-400/30">
                         PERTANYAAN #{currentQIndex + 1}
                       </span>
-                      <span className="text-xs text-slate-400">Jawab BENAR = Ngerem aman | Jawab SALAH = Auto ngebut panik!</span>
+                      <span className="text-xs text-slate-400">Jawab BENAR = Ngerem aman | Jawab SALAH = Auto ngebut ke oven api!</span>
                     </div>
                     <h3 className="text-xl sm:text-2xl font-black text-white leading-snug">
                       {questions[currentQIndex]?.q}
@@ -594,12 +1061,12 @@
                   </div>
                 </div>
 
-                {/* Live Danger Board (Bebek Terdepan / Terancam Presentasi) */}
-                <div className="bg-gradient-to-r from-rose-950/60 to-slate-900 border-2 border-rose-500/40 p-4 rounded-2xl flex flex-col justify-between shadow-xl">
+                {/* Live Danger Board (Bebek Terdepan / Terancam Dipanggang) */}
+                <div className="bg-gradient-to-r from-rose-950/70 to-slate-900 border-2 border-rose-500/50 p-4 rounded-2xl flex flex-col justify-between shadow-xl">
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-xs font-black text-rose-400 uppercase tracking-wider flex items-center gap-1.5">
                       <span className="animate-ping inline-block w-2 h-2 rounded-full bg-rose-500"></span>
-                      🚨 TERANCAM MAJU PRESENTASI
+                      🔥 TERANCAM KEPANGGANG
                     </span>
                     <span className="text-[10px] bg-rose-500/20 text-rose-300 px-2 py-0.5 rounded-full font-bold">
                       Live Ranking
@@ -625,123 +1092,50 @@
                 </div>
               </div>
 
-              {/* LINTASAN SUNGAI EKSTRA PANJANG (500 METER) */}
-              <div className="relative w-full min-h-[520px] h-[calc(65px_*_10)] max-h-[640px] bg-gradient-to-r from-blue-950 via-cyan-900 to-blue-950 rounded-3xl overflow-hidden border-4 border-cyan-950 shadow-2xl flex flex-col justify-around p-3">
-                <div className="absolute inset-0 water-flow opacity-30 pointer-events-none" />
-
-                {/* Garis & Penanda Jarak (0m, 125m, 250m, 375m, 500m) */}
-                <div className="absolute inset-0 pointer-events-none flex justify-between px-6 z-0">
-                  <div className="h-full border-r border-cyan-400/20 flex flex-col justify-between py-2 text-[10px] font-mono text-cyan-400/60">
-                    <span>0m</span>
-                    <span>START</span>
-                  </div>
-                  <div className="h-full border-r border-dashed border-cyan-400/25 flex flex-col justify-between py-2 text-[10px] font-mono text-cyan-300/70">
-                    <span>125m</span>
-                    <span>JERAM 🌊</span>
-                  </div>
-                  <div className="h-full border-r border-dashed border-yellow-400/30 flex flex-col justify-between py-2 text-[10px] font-mono text-yellow-300/80">
-                    <span>250m</span>
-                    <span>PUSARAN 🌀</span>
-                  </div>
-                  <div className="h-full border-r border-dashed border-rose-400/40 flex flex-col justify-between py-2 text-[10px] font-mono text-rose-300/80">
-                    <span>375m</span>
-                    <span>BAHAYA ⚠️</span>
-                  </div>
-                  <div className="h-full w-24"></div>
-                </div>
-
-                {/* Garis Finish */}
-                <div className="absolute right-12 top-0 bottom-0 w-12 bg-[repeating-conic-gradient(#0f172a_0%_25%,#ffffff_0%_50%)] [background-size:20px_20px] border-l-4 border-yellow-400 z-20 flex items-center justify-center shadow-2xl">
-                  <span className="[writing-mode:vertical-lr] font-black text-slate-950 bg-yellow-400 px-1 py-3 text-xs tracking-widest rounded shadow uppercase border border-yellow-500">
-                    FINISH (500M) 🎤
-                  </span>
-                </div>
-
-                {/* Jalur Bebek */}
-                <div className="relative z-10 w-full h-full flex flex-col justify-around">
-                  {Object.values(players).map((p, idx) => {
-                    const duckMeta = DUCK_ASSETS.find((d) => d.id === p.duckId) || DUCK_ASSETS[idx % 10];
-                    const meters = Math.round((p.progress || 0) * 5); // 0 sampai 500 meter
-                    return (
-                      <div
-                        key={p.id}
-                        className="relative w-full h-11 flex items-center border-b border-cyan-400/15"
-                      >
-                        <div
-                          className="absolute transition-all duration-100 ease-linear flex items-center gap-2"
-                          style={{
-                            left: `calc(${p.progress}% * 0.85)`,
-                          }}
-                        >
-                          <div
-                            className="relative w-10 h-10 rounded-full flex items-center justify-center text-xl shadow-lg border-2 overflow-hidden select-none"
-                            style={{
-                              backgroundColor: duckMeta.color,
-                              borderColor: duckMeta.border,
-                            }}
-                          >
-                            <span>{duckMeta.emoji}</span>
-                            <span className="absolute bottom-0 right-0 text-[8px] bg-black/70 text-white font-black px-1 rounded-tl">
-                              #{p.duckId}
-                            </span>
-                          </div>
-
-                          <div className="bg-slate-900/95 text-white px-2.5 py-1 rounded-lg text-xs font-bold whitespace-nowrap shadow-md border border-slate-700 flex items-center gap-1.5">
-                            <span>{p.name}</span>
-                            <span className="text-[10px] font-mono text-cyan-300 font-normal">
-                              ({meters}m)
-                            </span>
-                          </div>
-
-                          {p.speedFactor < 1 && (
-                            <span className="text-[10px] font-black text-emerald-300 bg-emerald-950/90 px-2 py-0.5 rounded-full border border-emerald-500 animate-bounce shadow">
-                              🛑 REM!
-                            </span>
-                          )}
-                          {p.speedFactor > 1 && (
-                            <span className="text-[10px] font-black text-rose-300 bg-rose-950/90 px-2 py-0.5 rounded-full border border-rose-500 animate-pulse shadow">
-                              🔥 NGEBUT PANIK!
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
+              {/* THREE.JS 3D RACE ARENA DENGAN KOBARAN API FINISH */}
+              <ThreeRaceArena players={players} leaderboard={leaderboard} gameState={gameState} />
             </div>
           )}
 
-          {/* MODAL PRESENTASI */}
+          {/* MODAL BEBEK BERHASIL DIPANGGANG */}
           {gameState === 'FINISHED' && loser && (
-            <div className="fixed inset-0 bg-black/85 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-              <div className="bg-slate-900 border-2 border-yellow-400 p-8 rounded-3xl max-w-md w-full text-center shadow-2xl relative overflow-hidden animate-in fade-in zoom-in-95 duration-200">
-                <div className="inline-block p-3 bg-yellow-400/10 border border-yellow-400/30 rounded-2xl mb-4">
-                  <span className="text-4xl">🏆 🦆</span>
+            <div className="fixed inset-0 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 z-50">
+              <div className="bg-slate-900 border-4 border-rose-500 p-7 sm:p-8 rounded-3xl max-w-lg w-full text-center shadow-2xl relative overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+                <div className="inline-block p-4 bg-rose-500/20 border-2 border-rose-500/50 rounded-3xl mb-3 shadow-inner">
+                  <span className="text-5xl animate-bounce inline-block">🍗🔥</span>
                 </div>
 
-                <h2 className="text-3xl font-black text-yellow-400 mb-1">JUARA 1 TERCEPAT!</h2>
-                <p className="text-slate-300 text-xs sm:text-sm mb-6">
-                  Bebek pertama yang berhasil menembus arus dan melewati garis finish adalah:
+                <div className="inline-block bg-rose-500/20 border border-rose-500 px-3 py-1 rounded-full text-xs font-black text-rose-300 uppercase tracking-widest mb-2">
+                  MATANG SEMPURNA!
+                </div>
+
+                <h2 className="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-rose-400 to-amber-500 mb-2">
+                  BEBEK KAMU BERHASIL DIPANGGANG!
+                </h2>
+                <p className="text-slate-300 text-xs sm:text-sm mb-5">
+                  Aroma bebek panggang crispy semerbak ke seluruh ruangan! Bebek pertama yang masuk oven adalah:
                 </p>
 
-                <div className="bg-slate-800/90 p-5 rounded-2xl border border-slate-700 mb-6 shadow-inner">
-                  <div className="text-5xl mb-2">🦆</div>
-                  <h3 className="text-2xl font-black text-white">{loser.name}</h3>
-                  <p className="text-xs text-yellow-400 font-bold mt-1">Bebek #{loser.duckId}</p>
+                <div className="bg-gradient-to-b from-rose-950/80 to-slate-950 p-5 rounded-2xl border-2 border-rose-500/80 mb-5 shadow-2xl relative">
+                  <div className="text-5xl mb-2">🦆 ➔ 🍗</div>
+                  <h3 className="text-2xl sm:text-3xl font-black text-white">{loser.name}</h3>
+                  <p className="text-xs text-yellow-400 font-bold mt-1">Bebek #{loser.duckId} - GOSONG CRISPY</p>
                 </div>
 
-                <div className="bg-rose-500/10 border border-rose-500/40 p-3.5 rounded-xl mb-6">
-                  <p className="text-rose-400 font-extrabold text-sm">
-                    🎤 Silakan maju ke depan kelas dan mulai presentasi materi!
+                <div className="bg-amber-500/20 border-2 border-amber-400 p-4 rounded-2xl mb-6">
+                  <p className="text-amber-300 font-black text-xs uppercase tracking-wider">
+                    🎤 KARENA BEBEKMU GOSONG PALING PERTAMA:
+                  </p>
+                  <p className="text-white font-extrabold text-base mt-1">
+                    Silakan maju ke depan kelas dan mulai presentasi!
                   </p>
                 </div>
 
                 <button
                   onClick={resetGame}
-                  className="w-full py-3 bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white rounded-xl text-sm font-bold transition border border-slate-700"
+                  className="w-full py-4 bg-gradient-to-r from-yellow-400 via-amber-400 to-yellow-500 hover:from-yellow-300 hover:to-amber-400 text-slate-950 font-black text-base rounded-2xl shadow-xl transition transform active:scale-98"
                 >
-                  🔄 Kembali ke Lobby (Main Lagi)
+                  🔄 Panggang Bebek Lain (Main Ronde Baru)
                 </button>
               </div>
             </div>

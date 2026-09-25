@@ -343,7 +343,7 @@
             )}
           </div>
 
-          {/* KARTU STATUS KEPANIKAN REALTIME (POSISI & JARAK) */}
+          {/* KARTU STATUS KEPANIKAN REALTIME (POSISI & JARAK MENUJU OVEN) */}
           {rankInfo && (
             <div className={`rounded-2xl p-3 mb-3 border-2 shadow-lg transition-all duration-200 ${
               rankInfo.rank === 1
@@ -354,17 +354,17 @@
             }`}>
               <div className="flex justify-between items-center mb-1">
                 <span className="text-[10px] font-black uppercase tracking-wider flex items-center gap-1 text-white">
-                  {rankInfo.rank === 1 && <span className="text-rose-400 animate-bounce">🚨 GAWAT! TERDEPAN (PRESENTASI!)</span>}
-                  {rankInfo.rank === 2 && <span className="text-amber-300">⚠️ WASPADA! SEDIKIT LAGI NYALIP KE #1</span>}
-                  {rankInfo.rank === 3 && <span className="text-amber-300">⚠️ PERINGKAT #3 (ZONA BAHAYA)</span>}
-                  {rankInfo.rank > 3 && <span className="text-emerald-300">🛡️ PERINGKAT #{rankInfo.rank} (MASIH AMAN DI BELAKANG)</span>}
+                  {rankInfo.rank === 1 && <span className="text-rose-400 animate-bounce">🔥 GAWAT! SEDIKIT LAGI NYEMPLUNG KE OVEN!</span>}
+                  {rankInfo.rank === 2 && <span className="text-amber-300">⚠️ WASPADA! KOBARAN API SUDAH DEKAT</span>}
+                  {rankInfo.rank === 3 && <span className="text-amber-300">⚠️ PERINGKAT #3 (ZONA PANAS)</span>}
+                  {rankInfo.rank > 3 && <span className="text-emerald-300">🛡️ PERINGKAT #{rankInfo.rank} (AMAN DARI PANGGANGAN)</span>}
                 </span>
                 <span className="text-[10px] font-mono font-bold text-white bg-black/40 px-2 py-0.5 rounded-md">
                   {Math.round(rankInfo.progress * 5)}m / 500m
                 </span>
               </div>
 
-              {/* Progress Mini-Bar Sungai */}
+              {/* Progress Mini-Bar Menuju Oven */}
               <div className="w-full bg-black/60 rounded-full h-3 overflow-hidden border border-white/10 relative my-1.5">
                 <div
                   className={`h-full rounded-full transition-all duration-300 ${
@@ -376,10 +376,10 @@
 
               <p className="text-[11px] leading-tight text-white/90">
                 {rankInfo.rank === 1
-                  ? '😱 Kamu paling depan! Jawab BENAR sekarang agar ngerem, jangan sampai finish duluan!'
+                  ? `😱 Tinggal ${Math.max(0, 500 - Math.round(rankInfo.progress * 5))}m lagi bebekmu matang dipanggang! Jawab BENAR cepat biar ngerem!`
                   : rankInfo.rank <= 3
-                  ? `⚡ Hati-hati! ${rankInfo.ahead ? `Di depanmu: ${rankInfo.ahead}.` : ''} Jangan salah jawab agar tidak meluncur ke posisi #1!`
-                  : '👍 Bagus! Pertahankan posisi di belakang dengan terus menjawab BENAR!'}
+                  ? `⚡ Hati-hati! ${rankInfo.ahead ? `Di depanmu: ${rankInfo.ahead}.` : ''} Jangan salah jawab kalau gamau nyalip masuk oven!`
+                  : '👍 Bagus! Pertahankan posisi dingin di belakang dengan terus menjawab BENAR!'}
               </p>
             </div>
           )}
@@ -387,16 +387,45 @@
           {!currentQuestion ? (
             <div className="flex-1 flex flex-col items-center justify-center text-center p-6 bg-slate-900/60 border border-slate-800/80 rounded-3xl">
               {gameOverLoser ? (
-                <div className="animate-in fade-in zoom-in-95 duration-200">
-                  <div className="text-6xl mb-4">🏁 🦆</div>
-                  <h2 className="text-2xl font-black text-yellow-400 mb-2">BALAPAN SELESAI!</h2>
-                  <p className="text-sm text-slate-300 mb-4">
-                    Lihat layar proyektor untuk melihat siapa yang harus maju presentasi!
-                  </p>
-                  <div className="p-3 bg-slate-800 rounded-xl border border-slate-700 text-xs text-slate-400">
-                    Host sedang mempersiapkan ronde selanjutnya...
-                  </div>
-                </div>
+                (() => {
+                  const isMeGrilled = gameOverLoser && (gameOverLoser.id === playerId || gameOverLoser.duckId === selectedDuck);
+                  return isMeGrilled ? (
+                    <div className="animate-in fade-in zoom-in-95 duration-200">
+                      <div className="text-7xl mb-3 animate-bounce">🍗🔥</div>
+                      <div className="inline-block bg-rose-500/20 border-2 border-rose-500 px-3 py-1 rounded-full text-xs font-black text-rose-300 uppercase tracking-wider mb-2">
+                        GOSONG KENA API!
+                      </div>
+                      <h2 className="text-2xl font-black text-rose-400 mb-2 leading-tight">
+                        BEBEK KAMU BERHASIL DIPANGGANG!
+                      </h2>
+                      <p className="text-sm text-slate-200 mb-4">
+                        Aduh! Bebekmu adalah yang pertama menembus kobaran api dan matang sempurna jadi Bebek Panggang!
+                      </p>
+                      <div className="p-4 bg-gradient-to-r from-rose-950 to-amber-950 rounded-2xl border-2 border-yellow-400/80 text-yellow-300 font-extrabold text-sm shadow-xl">
+                        🎤 SIAPKAN DIRI! KAMU HARUS MAJU SEKARANG UNTUK PRESENTASI!
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="animate-in fade-in zoom-in-95 duration-200">
+                      <div className="text-7xl mb-3">🎉🦆</div>
+                      <div className="inline-block bg-emerald-500/20 border-2 border-emerald-500 px-3 py-1 rounded-full text-xs font-black text-emerald-300 uppercase tracking-wider mb-2">
+                        SELAMAT DARI API!
+                      </div>
+                      <h2 className="text-2xl font-black text-emerald-400 mb-2 leading-tight">
+                        BEBEK KAMU SELAMAT DARI PANGGANGAN!
+                      </h2>
+                      <p className="text-sm text-slate-200 mb-4">
+                        Bagus sekali! Bebekmu berhasil ngerem dan tetap aman di air sungai dingin.
+                      </p>
+                      <div className="p-4 bg-slate-800 rounded-2xl border border-slate-700 text-xs text-slate-300">
+                        Yang gosong dipanggang dan harus presentasi:
+                        <span className="block font-black text-rose-400 text-base mt-1">
+                          🍗 {gameOverLoser?.name || 'Temanmu'}
+                        </span>
+                      </div>
+                    </div>
+                  );
+                })()
               ) : (
                 <div>
                   <div className="text-6xl animate-bounce mb-4">🦆</div>
