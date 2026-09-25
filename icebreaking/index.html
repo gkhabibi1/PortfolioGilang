@@ -72,13 +72,81 @@
       { id: 10, name: 'Bebek Pelangi', color: '#A78BFA', border: '#7C3AED', emoji: '⭐' },
     ];
 
-    const QUESTIONS = [
+    const QUESTION_BANK = [
+      // Matematika & Logika Cepat
       { q: '2 + 5 x 2 = ?', options: ['14', '12', '10', '16'], correct: 1 },
-      { q: 'Ibukota Indonesia sekarang?', options: ['Jakarta', 'IKN', 'Surabaya', 'Bandung'], correct: 1 },
-      { q: 'Target audience B2B adalah?', options: ['Konsumen Akhir', 'Perusahaan', 'Anak-anak', 'Komunitas'], correct: 1 },
-      { q: '1 Byte terdiri dari berapa Bit?', options: ['4 Bit', '8 Bit', '16 Bit', '32 Bit'], correct: 1 },
-      { q: 'Singkatan dari AI adalah?', options: ['Auto Internet', 'Artificial Intelligence', 'Apple Intelligence', 'Action Info'], correct: 1 },
+      { q: '5 + 5 x 0 + 5 = ?', options: ['5', '10', '0', '15'], correct: 1 },
+      { q: 'Berapa jumlah sudut pada sebuah lingkaran?', options: ['0 sudut', '1 sudut', '360 sudut', 'Tak terhingga'], correct: 0 },
+      { q: 'Ada 10 bebek di kali, ditembak 1 sisa berapa?', options: ['9 ekor', '0 (kabur semua)', '1 ekor', '10 ekor'], correct: 1 },
+      { q: 'Setengah dari 2 + 2 adalah?', options: ['2', '3', '1', '4'], correct: 1 },
+      { q: '1 jam + 90 menit = berapa jam?', options: ['2.5 jam', '2 jam', '3 jam', '1.9 jam'], correct: 0 },
+      { q: 'Berapa hasil dari 3 pangkat 3?', options: ['27', '9', '18', '81'], correct: 0 },
+      { q: 'Jika kemarin hari Rabu, besok lusa hari apa?', options: ['Sabtu', 'Kamis', 'Jumat', 'Minggu'], correct: 0 },
+      { q: 'Sebuah segitiga memiliki berapa jumlah total sudut dalam?', options: ['180°', '90°', '360°', '270°'], correct: 0 },
+      { q: 'Jika 3 kucing tangkap 3 tikus dalam 3 menit, 1 kucing butuh berapa menit untuk 1 tikus?', options: ['3 menit', '1 menit', '9 menit', 'Tak terhingga'], correct: 0 },
+
+      // Teknologi, Coding & AI
+      { q: 'Apakah HTML termasuk Bahasa Pemrograman?', options: ['Bukan (Markup)', 'Iya Programming', 'Tergantung Dosen', 'Bahasa Alien'], correct: 0 },
+      { q: 'Tombol keyboard untuk Paste di Windows?', options: ['Ctrl + V', 'Ctrl + C', 'Ctrl + P', 'Ctrl + Z'], correct: 0 },
+      { q: '1 Byte terdiri dari berapa Bit?', options: ['8 Bit', '4 Bit', '16 Bit', '32 Bit'], correct: 0 },
+      { q: 'Singkatan dari AI adalah?', options: ['Artificial Intelligence', 'Auto Internet', 'Apple Intelligence', 'Action Info'], correct: 0 },
+      { q: 'RAM merupakan singkatan dari?', options: ['Random Access Memory', 'Read All Memory', 'Run Action Mode', 'Real App Module'], correct: 0 },
+      { q: 'HTTP status code untuk "Not Found" adalah?', options: ['404', '200', '403', '500'], correct: 0 },
+      { q: '1 Kilobyte (KB) tepatnya setara dengan berapa Bytes?', options: ['1024 Bytes', '1000 Bytes', '512 Bytes', '2048 Bytes'], correct: 0 },
+      { q: 'Bug pertama di komputer tahun 1947 berasal dari?', options: ['Serangga (Ngengat)', 'Kecoa', 'Virus Komputer', 'Salah Solder'], correct: 0 },
+      { q: 'Siapakah pencipta kernel sistem operasi Linux?', options: ['Linus Torvalds', 'Bill Gates', 'Steve Jobs', 'Mark Zuckerberg'], correct: 0 },
+      { q: 'Protokol aman untuk browsing website adalah?', options: ['HTTPS', 'HTTP', 'FTP', 'SMTP'], correct: 0 },
+      { q: 'Bahasa pemrograman dengan maskot ular bernama?', options: ['Python', 'Java', 'C++', 'Ruby'], correct: 0 },
+      { q: 'Perangkat penunjuk cursor laptop selain mouse?', options: ['Touchpad', 'Keyboard', 'Webcam', 'Speaker'], correct: 0 },
+
+      // Kehidupan Kampus & Mahasiswa
+      { q: 'Kepanjangan dari KRS saat awal semester?', options: ['Kartu Rencana Studi', 'Kartu Registrasi Siswa', 'Kartu Rapor Semester', 'Kelompok Riset Sains'], correct: 0 },
+      { q: 'Tugas akhir mahasiswa tingkat S1 dinamakan?', options: ['Skripsi', 'Tesis', 'Disertasi', 'Laporan Magang'], correct: 0 },
+      { q: 'Musuh terbesar mahasiswa saat malam sebelum deadline?', options: ['Semua Benar', 'Revisi Dadakan', 'Rasa Kantuk', 'WiFi Lemot'], correct: 0 },
+      { q: 'Berapa batas waktu revisi umum setelah sidang?', options: ['1 - 2 Minggu', '1 Hari', '1 Semester', 'Tidak ada batas'], correct: 0 },
+      { q: 'Singkatan dari IPK adalah?', options: ['Indeks Prestasi Kumulatif', 'Ikatan Pelajar Kreatif', 'Izin Praktik Kerja', 'Indeks Penilaian Kuliah'], correct: 0 },
+      { q: 'Dosen yang bertugas membimbing skripsi disebut?', options: ['Dosen Pembimbing', 'Dosen Penguji', 'Dosen Wali', 'Dekan'], correct: 0 },
+      { q: 'Istilah kuliah online interaktif disebut?', options: ['Daring', 'Luring', 'Hybrid', 'Overclock'], correct: 0 },
+      { q: 'Saat dosen penguji bertanya di sidang, respon terbaik?', options: ['Jawab Tenang & Lugas', 'Pura-pura Pingsan', 'Kabur Keluar Ruangan', 'Menangis Bersama'], correct: 0 },
+
+      // Pengetahuan Umum & Populer
+      { q: 'Ibukota negara Indonesia yang baru bernama?', options: ['IKN (Nusantara)', 'Jakarta', 'Surabaya', 'Bandung'], correct: 0 },
+      { q: 'Gunung tertinggi di Indonesia adalah?', options: ['Puncak Jaya (Carstensz)', 'Gunung Rinjani', 'Gunung Semeru', 'Gunung Kerinci'], correct: 0 },
+      { q: 'Berapa jumlah provinsi di Indonesia saat ini?', options: ['38 Provinsi', '34 Provinsi', '37 Provinsi', '40 Provinsi'], correct: 0 },
+      { q: 'Hewan darat tercepat di dunia saat ini?', options: ['Cheetah', 'Singa', 'Kuda Liar', 'Kijang'], correct: 0 },
+      { q: 'Bahan utama pembuatan cokelat murni adalah?', options: ['Biji Kakao', 'Biji Kopi', 'Vanili', 'Tepung Jagung'], correct: 0 },
+      { q: 'Planet terdekat dari Matahari dalam tata surya?', options: ['Merkurius', 'Venus', 'Mars', 'Bumi'], correct: 0 },
+      { q: 'Lagu kebangsaan Republik Indonesia adalah?', options: ['Indonesia Raya', 'Tanah Airku', 'Garuda Pancasila', 'Halo-Halo Bandung'], correct: 0 },
+      { q: 'Warna primer dalam seni rupa dasar adalah?', options: ['Merah, Kuning, Biru', 'Merah, Hijau, Biru', 'Hitam, Putih, Abu', 'Kuning, Hijau, Ungu'], correct: 0 },
+      { q: 'Target audience utama bisnis model B2B adalah?', options: ['Perusahaan / Bisnis', 'Konsumen Akhir', 'Anak-anak', 'Komunitas Hobi'], correct: 0 },
+      { q: 'Berapa sisi yang dimiliki bangun datar Heksagon?', options: ['6 Sisi', '5 Sisi', '7 Sisi', '8 Sisi'], correct: 0 },
     ];
+
+    // Helper untuk mengacak pertanyaan & opsi pilihan jawaban
+    function generateShuffledQuestions() {
+      const deck = [...QUESTION_BANK];
+      // Fisher-Yates shuffle array pertanyaan
+      for (let i = deck.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [deck[i], deck[j]] = [deck[j], deck[i]];
+      }
+
+      // Acak urutan 4 opsi jawaban tiap soal agar posisi jawaban benar tidak statis
+      return deck.map((item) => {
+        const originalCorrectText = item.options[item.correct];
+        const randomizedOptions = [...item.options];
+        for (let i = randomizedOptions.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [randomizedOptions[i], randomizedOptions[j]] = [randomizedOptions[j], randomizedOptions[i]];
+        }
+        const newCorrectIdx = randomizedOptions.indexOf(originalCorrectText);
+        return {
+          q: item.q,
+          options: randomizedOptions,
+          correct: newCorrectIdx,
+        };
+      });
+    }
 
     // Helper resolusi client Supabase dengan safe fallback
     async function initSupabase() {
@@ -166,12 +234,15 @@
       const [roomCode] = useState('BEBEK-SERU');
       const [players, setPlayers] = useState({});
       const [gameState, setGameState] = useState('LOBBY'); // LOBBY, RACING, FINISHED
+      const [questions, setQuestions] = useState(() => generateShuffledQuestions());
       const [currentQIndex, setCurrentQIndex] = useState(0);
-      const [timeLeft, setTimeLeft] = useState(5);
+      const [timeLeft, setTimeLeft] = useState(6);
       const [loser, setLoser] = useState(null);
       const [playUrl, setPlayUrl] = useState('');
+      const [leaderboard, setLeaderboard] = useState([]);
 
       const channelRef = useRef(null);
+      const rankBroadcastTickRef = useRef(0);
 
       useEffect(() => {
         const fullUrl = `${window.location.origin}/icebreaking/play`;
@@ -211,11 +282,13 @@
                 ...prev,
                 [playerId]: {
                   ...prev[playerId],
-                  speedFactor: isCorrect ? 0.1 : 2.5,
+                  // Salah = Ngebut panik (2.2x), Benar = Ngerem aman (0.08x)
+                  speedFactor: isCorrect ? 0.08 : 2.2,
                 },
               };
             });
 
+            // Efek rem / boost aktif selama 2.8 detik
             setTimeout(() => {
               setPlayers((prev) => {
                 if (!prev[playerId]) return prev;
@@ -224,7 +297,7 @@
                   [playerId]: { ...prev[playerId], speedFactor: 1 },
                 };
               });
-            }, 2200);
+            }, 2800);
           });
 
           channel.subscribe();
@@ -239,7 +312,7 @@
         };
       }, [roomCode]);
 
-      // Game Loop
+      // Game Loop: Jalur Lebih Panjang & Endurance (Tick 50ms)
       useEffect(() => {
         if (gameState !== 'RACING') return;
 
@@ -251,9 +324,12 @@
 
             if (ids.length === 0) return prev;
 
+            // Base increment 0.075 per tick: Balapan berlangsung ~60-80 detik (jalur jauh lebih panjang & intens)
+            const baseIncrement = 0.075;
+
             ids.forEach((id) => {
               const current = updated[id];
-              const increment = 0.35 * (current.speedFactor || 1);
+              const increment = baseIncrement * (current.speedFactor || 1);
               const newProgress = Math.min(100, (current.progress || 0) + increment);
 
               updated[id] = { ...current, progress: newProgress };
@@ -262,6 +338,35 @@
                 firstFinished = updated[id];
               }
             });
+
+            // Hitung Ranking Realtime untuk Dikirim ke HP Mahasiswa
+            const sortedByDanger = Object.values(updated)
+              .sort((a, b) => (b.progress || 0) - (a.progress || 0));
+
+            setLeaderboard(sortedByDanger);
+
+            // Broadcast posisi ranking ke semua HP setiap ~400ms (tiap 8 ticks)
+            rankBroadcastTickRef.current += 1;
+            if (rankBroadcastTickRef.current % 8 === 0) {
+              const rankMap = {};
+              const total = sortedByDanger.length;
+              sortedByDanger.forEach((p, idx) => {
+                rankMap[p.id] = {
+                  rank: idx + 1,
+                  total,
+                  progress: Math.min(100, Math.round(p.progress || 0)),
+                  ahead: idx > 0 ? sortedByDanger[idx - 1].name : null,
+                  behind: idx < total - 1 ? sortedByDanger[idx + 1].name : null,
+                  leaderName: sortedByDanger[0]?.name || '',
+                };
+              });
+
+              channelRef.current?.send({
+                type: 'broadcast',
+                event: 'RACE_UPDATE',
+                payload: { rankMap },
+              });
+            }
 
             if (firstFinished) {
               setGameState('FINISHED');
@@ -273,7 +378,7 @@
               });
 
               if (window.confetti) {
-                window.confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
+                window.confetti({ particleCount: 150, spread: 90, origin: { y: 0.6 } });
               }
             }
 
@@ -284,45 +389,51 @@
         return () => clearInterval(interval);
       }, [gameState]);
 
-      // Timer 5 Detik per Soal
+      // Timer 6 Detik per Soal Acak
       useEffect(() => {
         if (gameState !== 'RACING') return;
 
         const timer = setInterval(() => {
           setTimeLeft((prev) => {
             if (prev <= 1) {
-              const nextIndex = (currentQIndex + 1) % QUESTIONS.length;
+              const nextIndex = (currentQIndex + 1) % questions.length;
               setCurrentQIndex(nextIndex);
               channelRef.current?.send({
                 type: 'broadcast',
                 event: 'NEXT_QUESTION',
-                payload: { question: QUESTIONS[nextIndex], index: nextIndex },
+                payload: { question: questions[nextIndex], index: nextIndex },
               });
-              return 5;
+              return 6;
             }
             return prev - 1;
           });
         }, 1000);
 
         return () => clearInterval(timer);
-      }, [gameState, currentQIndex]);
+      }, [gameState, currentQIndex, questions]);
 
       const startGame = () => {
+        // Acak kumpulan soal dan opsi baru setiap kali game dimulai
+        const freshQuestions = generateShuffledQuestions();
+        setQuestions(freshQuestions);
         setGameState('RACING');
-        setTimeLeft(5);
+        setTimeLeft(6);
         setCurrentQIndex(0);
         channelRef.current?.send({
           type: 'broadcast',
           event: 'START_GAME',
-          payload: { question: QUESTIONS[0], index: 0 },
+          payload: { question: freshQuestions[0], index: 0 },
         });
       };
 
       const resetGame = () => {
+        // Reset soal baru secara acak
+        const freshQuestions = generateShuffledQuestions();
+        setQuestions(freshQuestions);
         setGameState('LOBBY');
         setLoser(null);
         setCurrentQIndex(0);
-        setTimeLeft(5);
+        setTimeLeft(6);
         setPlayers((prev) => {
           const reset = {};
           Object.keys(prev).forEach((id) => {
@@ -455,39 +566,94 @@
 
           {/* RACING VIEW */}
           {gameState === 'RACING' && (
-            <div className="w-full max-w-6xl mt-4 flex flex-col gap-4">
-              <div className="bg-slate-900 border-2 border-slate-800 p-4 sm:p-5 rounded-2xl flex flex-wrap justify-between items-center shadow-xl gap-4">
-                <div className="flex-1 min-w-[240px]">
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-yellow-400 bg-yellow-400/10 px-2 py-0.5 rounded border border-yellow-400/30">
-                      PERTANYAAN #{currentQIndex + 1}
-                    </span>
-                    <span className="text-xs text-slate-400">Jawab BENAR agar melambat, jawab SALAH auto ngebut!</span>
+            <div className="w-full max-w-7xl mt-4 flex flex-col gap-4">
+              {/* Soal & Danger Tracker */}
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                {/* Kotak Soal Aktif */}
+                <div className="lg:col-span-2 bg-slate-900 border-2 border-slate-800 p-4 sm:p-5 rounded-2xl flex flex-wrap justify-between items-center shadow-xl gap-4">
+                  <div className="flex-1 min-w-[240px]">
+                    <div className="flex items-center gap-2 mb-1.5">
+                      <span className="text-[10px] font-black uppercase tracking-widest text-yellow-400 bg-yellow-400/10 px-2 py-0.5 rounded border border-yellow-400/30">
+                        PERTANYAAN #{currentQIndex + 1}
+                      </span>
+                      <span className="text-xs text-slate-400">Jawab BENAR = Ngerem aman | Jawab SALAH = Auto ngebut panik!</span>
+                    </div>
+                    <h3 className="text-xl sm:text-2xl font-black text-white leading-snug">
+                      {questions[currentQIndex]?.q}
+                    </h3>
                   </div>
-                  <h3 className="text-lg sm:text-2xl font-black text-white">
-                    {QUESTIONS[currentQIndex]?.q}
-                  </h3>
+
+                  <div className="flex items-center gap-3">
+                    <div className="text-right">
+                      <span className="text-[10px] text-slate-400 uppercase font-bold block">Ganti Soal</span>
+                      <span className="text-xs text-yellow-400 font-mono font-bold">Detik</span>
+                    </div>
+                    <div className="w-14 h-14 rounded-2xl bg-yellow-400/10 border-2 border-yellow-400 flex items-center justify-center text-2xl font-black text-yellow-400 shadow-lg shadow-yellow-500/10 animate-pulse">
+                      {timeLeft}
+                    </div>
+                  </div>
                 </div>
 
-                <div className="flex items-center gap-3">
-                  <div className="text-right">
-                    <span className="text-[10px] text-slate-400 uppercase font-bold block">Ganti Soal</span>
-                    <span className="text-xs text-yellow-400 font-mono font-bold">Detik</span>
+                {/* Live Danger Board (Bebek Terdepan / Terancam Presentasi) */}
+                <div className="bg-gradient-to-r from-rose-950/60 to-slate-900 border-2 border-rose-500/40 p-4 rounded-2xl flex flex-col justify-between shadow-xl">
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-xs font-black text-rose-400 uppercase tracking-wider flex items-center gap-1.5">
+                      <span className="animate-ping inline-block w-2 h-2 rounded-full bg-rose-500"></span>
+                      🚨 TERANCAM MAJU PRESENTASI
+                    </span>
+                    <span className="text-[10px] bg-rose-500/20 text-rose-300 px-2 py-0.5 rounded-full font-bold">
+                      Live Ranking
+                    </span>
                   </div>
-                  <div className="w-14 h-14 rounded-2xl bg-yellow-400/10 border-2 border-yellow-400 flex items-center justify-center text-2xl font-black text-yellow-400 shadow-lg shadow-yellow-500/10">
-                    {timeLeft}
+
+                  <div className="flex items-center gap-2 text-xs">
+                    {leaderboard.slice(0, 3).map((p, idx) => {
+                      const duckMeta = DUCK_ASSETS.find((d) => d.id === p.duckId) || DUCK_ASSETS[0];
+                      const badges = ['🥇', '🥈', '🥉'];
+                      return (
+                        <div key={p.id} className="flex-1 bg-slate-800/80 border border-slate-700 p-2 rounded-xl text-center">
+                          <span className="text-xs block">{badges[idx]} #{idx + 1}</span>
+                          <span className="text-sm block">{duckMeta.emoji}</span>
+                          <p className="font-bold text-[11px] text-white truncate">{p.name}</p>
+                          <span className="text-[9px] font-mono text-rose-300 font-bold block">
+                            {Math.round(p.progress || 0)}%
+                          </span>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
 
-              {/* LINTASAN SUNGAI */}
-              <div className="relative w-full min-h-[500px] h-[calc(65px_*_10)] max-h-[620px] bg-gradient-to-r from-blue-900 via-cyan-800 to-blue-950 rounded-3xl overflow-hidden border-4 border-blue-950 shadow-2xl flex flex-col justify-around p-3">
+              {/* LINTASAN SUNGAI EKSTRA PANJANG (500 METER) */}
+              <div className="relative w-full min-h-[520px] h-[calc(65px_*_10)] max-h-[640px] bg-gradient-to-r from-blue-950 via-cyan-900 to-blue-950 rounded-3xl overflow-hidden border-4 border-cyan-950 shadow-2xl flex flex-col justify-around p-3">
                 <div className="absolute inset-0 water-flow opacity-30 pointer-events-none" />
 
+                {/* Garis & Penanda Jarak (0m, 125m, 250m, 375m, 500m) */}
+                <div className="absolute inset-0 pointer-events-none flex justify-between px-6 z-0">
+                  <div className="h-full border-r border-cyan-400/20 flex flex-col justify-between py-2 text-[10px] font-mono text-cyan-400/60">
+                    <span>0m</span>
+                    <span>START</span>
+                  </div>
+                  <div className="h-full border-r border-dashed border-cyan-400/25 flex flex-col justify-between py-2 text-[10px] font-mono text-cyan-300/70">
+                    <span>125m</span>
+                    <span>JERAM 🌊</span>
+                  </div>
+                  <div className="h-full border-r border-dashed border-yellow-400/30 flex flex-col justify-between py-2 text-[10px] font-mono text-yellow-300/80">
+                    <span>250m</span>
+                    <span>PUSARAN 🌀</span>
+                  </div>
+                  <div className="h-full border-r border-dashed border-rose-400/40 flex flex-col justify-between py-2 text-[10px] font-mono text-rose-300/80">
+                    <span>375m</span>
+                    <span>BAHAYA ⚠️</span>
+                  </div>
+                  <div className="h-full w-24"></div>
+                </div>
+
                 {/* Garis Finish */}
-                <div className="absolute right-10 top-0 bottom-0 w-12 bg-[repeating-conic-gradient(#0f172a_0%_25%,#ffffff_0%_50%)] [background-size:20px_20px] border-l-4 border-yellow-400 z-20 flex items-center justify-center shadow-2xl">
+                <div className="absolute right-12 top-0 bottom-0 w-12 bg-[repeating-conic-gradient(#0f172a_0%_25%,#ffffff_0%_50%)] [background-size:20px_20px] border-l-4 border-yellow-400 z-20 flex items-center justify-center shadow-2xl">
                   <span className="[writing-mode:vertical-lr] font-black text-slate-950 bg-yellow-400 px-1 py-3 text-xs tracking-widest rounded shadow uppercase border border-yellow-500">
-                    FINISH (PRESENTASI) 🎤
+                    FINISH (500M) 🎤
                   </span>
                 </div>
 
@@ -495,6 +661,7 @@
                 <div className="relative z-10 w-full h-full flex flex-col justify-around">
                   {Object.values(players).map((p, idx) => {
                     const duckMeta = DUCK_ASSETS.find((d) => d.id === p.duckId) || DUCK_ASSETS[idx % 10];
+                    const meters = Math.round((p.progress || 0) * 5); // 0 sampai 500 meter
                     return (
                       <div
                         key={p.id}
@@ -503,7 +670,7 @@
                         <div
                           className="absolute transition-all duration-100 ease-linear flex items-center gap-2"
                           style={{
-                            left: `calc(${p.progress}% * 0.82)`,
+                            left: `calc(${p.progress}% * 0.85)`,
                           }}
                         >
                           <div
@@ -519,18 +686,21 @@
                             </span>
                           </div>
 
-                          <div className="bg-slate-900/90 text-white px-2.5 py-1 rounded-lg text-xs font-bold whitespace-nowrap shadow-md border border-slate-700">
-                            {p.name}
+                          <div className="bg-slate-900/95 text-white px-2.5 py-1 rounded-lg text-xs font-bold whitespace-nowrap shadow-md border border-slate-700 flex items-center gap-1.5">
+                            <span>{p.name}</span>
+                            <span className="text-[10px] font-mono text-cyan-300 font-normal">
+                              ({meters}m)
+                            </span>
                           </div>
 
                           {p.speedFactor < 1 && (
                             <span className="text-[10px] font-black text-emerald-300 bg-emerald-950/90 px-2 py-0.5 rounded-full border border-emerald-500 animate-bounce shadow">
-                              🛑 REM AKTIF!
+                              🛑 REM!
                             </span>
                           )}
                           {p.speedFactor > 1 && (
                             <span className="text-[10px] font-black text-rose-300 bg-rose-950/90 px-2 py-0.5 rounded-full border border-rose-500 animate-pulse shadow">
-                              🔥 NGEBUT!
+                              🔥 NGEBUT PANIK!
                             </span>
                           )}
                         </div>

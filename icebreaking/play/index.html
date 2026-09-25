@@ -146,6 +146,7 @@
       const [playerId] = useState(() => 'player_' + Math.random().toString(36).substring(2, 9));
       const [feedback, setFeedback] = useState(null);
       const [gameOverLoser, setGameOverLoser] = useState(null);
+      const [rankInfo, setRankInfo] = useState(null); // { rank, total, progress, ahead, behind, leaderName }
 
       const channelRef = useRef(null);
 
@@ -180,6 +181,12 @@
               setHasAnswered(false);
               setSelectedOption(null);
               setFeedback(null);
+            })
+            .on('broadcast', { event: 'RACE_UPDATE' }, ({ payload }) => {
+              const myData = payload?.rankMap?.[playerId];
+              if (myData) {
+                setRankInfo(myData);
+              }
             })
             .on('broadcast', { event: 'GAME_OVER' }, ({ payload }) => {
               setCurrentQuestion(null);
@@ -304,24 +311,78 @@
       return (
         <div className="min-h-screen flex flex-col p-4 max-w-md mx-auto">
           {/* Header Status */}
-          <div className="flex justify-between items-center py-3 px-4 bg-slate-900 border border-slate-800 rounded-2xl mb-4 shadow-md">
+          <div className="flex justify-between items-center py-2.5 px-3.5 bg-slate-900 border border-slate-800 rounded-2xl mb-3 shadow-md gap-2">
             <div className="flex items-center gap-2 overflow-hidden">
               <div
-                className="w-8 h-8 rounded-lg flex items-center justify-center text-lg border"
+                className="w-8 h-8 rounded-lg flex items-center justify-center text-lg border shrink-0"
                 style={{ backgroundColor: `${currentDuckMeta.color}33`, borderColor: currentDuckMeta.border }}
               >
                 {currentDuckMeta.emoji}
               </div>
               <div className="overflow-hidden">
-                <span className="text-xs text-slate-400 block">Pemain</span>
-                <p className="text-sm font-bold text-white truncate">{name}</p>
+                <p className="text-xs font-bold text-white truncate">{name}</p>
+                <span className="text-[10px] text-yellow-400 font-semibold block">Bebek #{selectedDuck}</span>
               </div>
             </div>
 
-            <span className="text-xs bg-yellow-400/10 border border-yellow-400/30 text-yellow-400 font-bold px-2.5 py-1 rounded-lg">
-              Bebek #{selectedDuck}
-            </span>
+            {rankInfo ? (
+              <div className={`px-2.5 py-1 rounded-xl text-xs font-black border flex items-center gap-1.5 ${
+                rankInfo.rank === 1
+                  ? 'bg-rose-500/20 border-rose-500 text-rose-300 animate-pulse'
+                  : rankInfo.rank <= 3
+                  ? 'bg-amber-500/20 border-amber-500 text-amber-300'
+                  : 'bg-emerald-500/20 border-emerald-500 text-emerald-300'
+              }`}>
+                <span>{rankInfo.rank === 1 ? '🚨' : rankInfo.rank <= 3 ? '⚠️' : '🛡️'}</span>
+                <span>POSISI #{rankInfo.rank} / {rankInfo.total}</span>
+              </div>
+            ) : (
+              <span className="text-[11px] bg-slate-800 border border-slate-700 text-slate-400 font-semibold px-2 py-0.5 rounded-lg">
+                Room {roomCode}
+              </span>
+            )}
           </div>
+
+          {/* KARTU STATUS KEPANIKAN REALTIME (POSISI & JARAK) */}
+          {rankInfo && (
+            <div className={`rounded-2xl p-3 mb-3 border-2 shadow-lg transition-all duration-200 ${
+              rankInfo.rank === 1
+                ? 'bg-gradient-to-r from-rose-950 via-red-950 to-rose-950 border-rose-500 shadow-rose-950/60 animate-pulse'
+                : rankInfo.rank <= 3
+                ? 'bg-gradient-to-r from-amber-950/80 via-yellow-950/80 to-amber-950/80 border-amber-500 shadow-amber-950/40'
+                : 'bg-gradient-to-r from-emerald-950/80 via-teal-950/80 to-slate-900 border-emerald-500/60'
+            }`}>
+              <div className="flex justify-between items-center mb-1">
+                <span className="text-[10px] font-black uppercase tracking-wider flex items-center gap-1 text-white">
+                  {rankInfo.rank === 1 && <span className="text-rose-400 animate-bounce">🚨 GAWAT! TERDEPAN (PRESENTASI!)</span>}
+                  {rankInfo.rank === 2 && <span className="text-amber-300">⚠️ WASPADA! SEDIKIT LAGI NYALIP KE #1</span>}
+                  {rankInfo.rank === 3 && <span className="text-amber-300">⚠️ PERINGKAT #3 (ZONA BAHAYA)</span>}
+                  {rankInfo.rank > 3 && <span className="text-emerald-300">🛡️ PERINGKAT #{rankInfo.rank} (MASIH AMAN DI BELAKANG)</span>}
+                </span>
+                <span className="text-[10px] font-mono font-bold text-white bg-black/40 px-2 py-0.5 rounded-md">
+                  {Math.round(rankInfo.progress * 5)}m / 500m
+                </span>
+              </div>
+
+              {/* Progress Mini-Bar Sungai */}
+              <div className="w-full bg-black/60 rounded-full h-3 overflow-hidden border border-white/10 relative my-1.5">
+                <div
+                  className={`h-full rounded-full transition-all duration-300 ${
+                    rankInfo.rank === 1 ? 'bg-rose-500' : rankInfo.rank <= 3 ? 'bg-amber-400' : 'bg-emerald-400'
+                  }`}
+                  style={{ width: `${Math.max(4, rankInfo.progress)}%` }}
+                />
+              </div>
+
+              <p className="text-[11px] leading-tight text-white/90">
+                {rankInfo.rank === 1
+                  ? '😱 Kamu paling depan! Jawab BENAR sekarang agar ngerem, jangan sampai finish duluan!'
+                  : rankInfo.rank <= 3
+                  ? `⚡ Hati-hati! ${rankInfo.ahead ? `Di depanmu: ${rankInfo.ahead}.` : ''} Jangan salah jawab agar tidak meluncur ke posisi #1!`
+                  : '👍 Bagus! Pertahankan posisi di belakang dengan terus menjawab BENAR!'}
+              </p>
+            </div>
+          )}
 
           {!currentQuestion ? (
             <div className="flex-1 flex flex-col items-center justify-center text-center p-6 bg-slate-900/60 border border-slate-800/80 rounded-3xl">
