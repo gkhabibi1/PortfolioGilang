@@ -3,6 +3,10 @@
     { "source": "/dashboard", "destination": "/dashboard/index.html" },
     { "source": "/host", "destination": "/host/index.html" },
     { "source": "/vote", "destination": "/vote/index.html" },
-    { "source": "/vote/:match*", "destination": "/vote/index.html" }
+    { "source": "/vote/:match*", "destination": "/vote/index.html" },
+    { "source": "/icebreaking/play", "destination": "/icebreaking/play/index.html" },
+    { "source": "/icebreaking/play/:match*", "destination": "/icebreaking/play/index.html" },
+    { "source": "/icebreaking", "destination": "/icebreaking/index.html" },
+    { "source": "/icebreaking/:match*", "destination": "/icebreaking/index.html" }
   ]
 }
