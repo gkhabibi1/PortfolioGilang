@@ -1,4 +1,6 @@
 {
+  "framework": null,
+  "cleanUrls": true,
   "rewrites": [
     { "source": "/dashboard", "destination": "/dashboard/index.html" },
     { "source": "/host", "destination": "/host/index.html" },
