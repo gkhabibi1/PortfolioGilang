@@ -873,7 +873,95 @@
     };
   }
 
+  // BANK SOAL DUCK RUSH (50 Soal Beragam: Matematika, Coding, Kampus, Umum)
+  const DUCK_QUESTION_BANK = [
+    // Matematika & Logika Cepat
+    { q: '2 + 5 x 2 = ?', options: ['14', '12', '10', '16'], correct: 1 },
+    { q: '5 + 5 x 0 + 5 = ?', options: ['5', '10', '0', '15'], correct: 1 },
+    { q: 'Berapa jumlah sudut pada sebuah lingkaran?', options: ['0 sudut', '1 sudut', '360 sudut', 'Tak terhingga'], correct: 0 },
+    { q: 'Ada 10 bebek di kali, ditembak 1 sisa berapa?', options: ['9 ekor', '0 (kabur semua)', '1 ekor', '10 ekor'], correct: 1 },
+    { q: 'Setengah dari 2 + 2 adalah?', options: ['2', '3', '1', '4'], correct: 1 },
+    { q: '1 jam + 90 menit = berapa jam?', options: ['2.5 jam', '2 jam', '3 jam', '1.9 jam'], correct: 0 },
+    { q: 'Berapa hasil dari 3 pangkat 3?', options: ['27', '9', '18', '81'], correct: 0 },
+    { q: 'Jika kemarin hari Rabu, besok lusa hari apa?', options: ['Sabtu', 'Kamis', 'Jumat', 'Minggu'], correct: 0 },
+    { q: 'Sebuah segitiga memiliki berapa jumlah total sudut dalam?', options: ['180°', '90°', '360°', '270°'], correct: 0 },
+    { q: 'Jika 3 kucing tangkap 3 tikus dalam 3 menit, 1 kucing butuh berapa menit untuk 1 tikus?', options: ['3 menit', '1 menit', '9 menit', 'Tak terhingga'], correct: 0 },
+    { q: 'Berapa huruf dalam kata "BEBEK"?', options: ['5 huruf', '4 huruf', '6 huruf', '3 huruf'], correct: 0 },
+    { q: 'Berapa jumlah kaki pada seekor laba-laba?', options: ['8 kaki', '6 kaki', '4 kaki', '10 kaki'], correct: 0 },
+
+    // Teknologi, Coding & AI
+    { q: 'Apakah HTML termasuk Bahasa Pemrograman?', options: ['Bukan (Markup)', 'Iya Programming', 'Tergantung Dosen', 'Bahasa Alien'], correct: 0 },
+    { q: 'Tombol keyboard untuk Paste di Windows?', options: ['Ctrl + V', 'Ctrl + C', 'Ctrl + P', 'Ctrl + Z'], correct: 0 },
+    { q: '1 Byte terdiri dari berapa Bit?', options: ['8 Bit', '4 Bit', '16 Bit', '32 Bit'], correct: 0 },
+    { q: 'Singkatan dari AI adalah?', options: ['Artificial Intelligence', 'Auto Internet', 'Apple Intelligence', 'Action Info'], correct: 0 },
+    { q: 'RAM merupakan singkatan dari?', options: ['Random Access Memory', 'Read All Memory', 'Run Action Mode', 'Real App Module'], correct: 0 },
+    { q: 'HTTP status code untuk "Not Found" adalah?', options: ['404', '200', '403', '500'], correct: 0 },
+    { q: '1 Kilobyte (KB) tepatnya setara dengan berapa Bytes?', options: ['1024 Bytes', '1000 Bytes', '512 Bytes', '2048 Bytes'], correct: 0 },
+    { q: 'Bug pertama di komputer tahun 1947 berasal dari?', options: ['Serangga (Ngengat)', 'Kecoa', 'Virus Komputer', 'Salah Solder'], correct: 0 },
+    { q: 'Siapakah pencipta kernel sistem operasi Linux?', options: ['Linus Torvalds', 'Bill Gates', 'Steve Jobs', 'Mark Zuckerberg'], correct: 0 },
+    { q: 'Protokol aman untuk browsing website adalah?', options: ['HTTPS', 'HTTP', 'FTP', 'SMTP'], correct: 0 },
+    { q: 'Bahasa pemrograman dengan maskot ular bernama?', options: ['Python', 'Java', 'C++', 'Ruby'], correct: 0 },
+    { q: 'Perangkat penunjuk cursor laptop selain mouse?', options: ['Touchpad', 'Keyboard', 'Webcam', 'Speaker'], correct: 0 },
+    { q: 'Ekstensi file untuk stylesheet tampilan website?', options: ['.css', '.html', '.js', '.png'], correct: 0 },
+    { q: 'Kombinasi shortcut Ctrl + Z di komputer berfungsi untuk?', options: ['Undo (Batalkan)', 'Redo (Ulangi)', 'Save (Simpan)', 'Delete (Hapus)'], correct: 0 },
+    { q: 'Singkatan dari URL pada alamat website adalah?', options: ['Uniform Resource Locator', 'Universal Route Link', 'United Record List', 'User Read Logic'], correct: 0 },
+
+    // Kehidupan Kampus & Mahasiswa
+    { q: 'Kepanjangan dari KRS saat awal semester?', options: ['Kartu Rencana Studi', 'Kartu Registrasi Siswa', 'Kartu Rapor Semester', 'Kelompok Riset Sains'], correct: 0 },
+    { q: 'Tugas akhir mahasiswa tingkat S1 dinamakan?', options: ['Skripsi', 'Tesis', 'Disertasi', 'Laporan Magang'], correct: 0 },
+    { q: 'Musuh terbesar mahasiswa saat malam sebelum deadline?', options: ['Semua Benar', 'Revisi Dadakan', 'Rasa Kantuk', 'WiFi Lemot'], correct: 0 },
+    { q: 'Berapa batas waktu revisi umum setelah sidang?', options: ['1 - 2 Minggu', '1 Hari', '1 Semester', 'Tidak ada batas'], correct: 0 },
+    { q: 'Singkatan dari IPK adalah?', options: ['Indeks Prestasi Kumulatif', 'Ikatan Pelajar Kreatif', 'Izin Praktik Kerja', 'Indeks Penilaian Kuliah'], correct: 0 },
+    { q: 'Dosen yang bertugas membimbing skripsi disebut?', options: ['Dosen Pembimbing', 'Dosen Penguji', 'Dosen Wali', 'Dekan'], correct: 0 },
+    { q: 'Istilah kuliah online interaktif disebut?', options: ['Daring', 'Luring', 'Hybrid', 'Overclock'], correct: 0 },
+    { q: 'Saat dosen penguji bertanya di sidang, respon terbaik?', options: ['Jawab Tenang & Lugas', 'Pura-pura Pingsan', 'Kabur Keluar Ruangan', 'Menangis Bersama'], correct: 0 },
+    { q: 'Gelar akademik sarjana bidang ilmu komputer di Indonesia?', options: ['S.Kom', 'S.T', 'S.Pd', 'S.Si'], correct: 0 },
+
+    // Pengetahuan Umum & Populer
+    { q: 'Ibukota negara Indonesia yang baru bernama?', options: ['IKN (Nusantara)', 'Jakarta', 'Surabaya', 'Bandung'], correct: 0 },
+    { q: 'Gunung tertinggi di Indonesia adalah?', options: ['Puncak Jaya (Carstensz)', 'Gunung Rinjani', 'Gunung Semeru', 'Gunung Kerinci'], correct: 0 },
+    { q: 'Berapa jumlah provinsi di Indonesia saat ini?', options: ['38 Provinsi', '34 Provinsi', '37 Provinsi', '40 Provinsi'], correct: 0 },
+    { q: 'Hewan darat tercepat di dunia saat ini?', options: ['Cheetah', 'Singa', 'Kuda Liar', 'Kijang'], correct: 0 },
+    { q: 'Bahan utama pembuatan cokelat murni adalah?', options: ['Biji Kakao', 'Biji Kopi', 'Vanili', 'Tepung Jagung'], correct: 0 },
+    { q: 'Planet terdekat dari Matahari dalam tata surya?', options: ['Merkurius', 'Venus', 'Mars', 'Bumi'], correct: 0 },
+    { q: 'Lagu kebangsaan Republik Indonesia adalah?', options: ['Indonesia Raya', 'Tanah Airku', 'Garuda Pancasila', 'Halo-Halo Bandung'], correct: 0 },
+    { q: 'Warna primer dalam seni rupa dasar adalah?', options: ['Merah, Kuning, Biru', 'Merah, Hijau, Biru', 'Hitam, Putih, Abu', 'Kuning, Hijau, Ungu'], correct: 0 },
+    { q: 'Target audience utama bisnis model B2B adalah?', options: ['Perusahaan / Bisnis', 'Konsumen Akhir', 'Anak-anak', 'Komunitas Hobi'], correct: 0 },
+    { q: 'Berapa sisi yang dimiliki bangun datar Heksagon?', options: ['6 Sisi', '5 Sisi', '7 Sisi', '8 Sisi'], correct: 0 },
+    { q: 'Mata uang resmi negara Jepang adalah?', options: ['Yen', 'Won', 'Dollar', 'Rupee'], correct: 0 },
+    { q: 'Candi Borobudur secara administratif terletak di provinsi?', options: ['Jawa Tengah', 'D.I. Yogyakarta', 'Jawa Timur', 'Jawa Barat'], correct: 0 },
+    { q: 'Gas dengan persentase terbanyak di atmosfer Bumi adalah?', options: ['Nitrogen (~78%)', 'Oksigen (~21%)', 'Karbon Dioksida', 'Helium'], correct: 0 },
+    { q: 'Apa rasa alami air laut di samudera?', options: ['Asin', 'Tawar', 'Pahit', 'Manis'], correct: 0 }
+  ];
+
+  // Helper generator dek soal acak per pemain (pertanyaan dan opsi jawaban teracak unik)
+  function generatePlayerQuestionDeck() {
+    const deck = [...DUCK_QUESTION_BANK];
+    // Fisher-Yates shuffle array soal
+    for (let i = deck.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [deck[i], deck[j]] = [deck[j], deck[i]];
+    }
+
+    return deck.map((item) => {
+      const originalCorrectText = item.options[item.correct];
+      const randomizedOptions = [...item.options];
+      for (let i = randomizedOptions.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [randomizedOptions[i], randomizedOptions[j]] = [randomizedOptions[j], randomizedOptions[i]];
+      }
+      const newCorrectIdx = randomizedOptions.indexOf(originalCorrectText);
+      return {
+        q: item.q,
+        options: randomizedOptions,
+        correct: newCorrectIdx,
+      };
+    });
+  }
+
   // Daftarkan ke Global window
   window.DUCK_CHARACTERS = DUCK_CHARACTERS;
   window.createDuck3DMesh = createDuck3DMesh;
+  window.QUESTION_BANK = DUCK_QUESTION_BANK;
+  window.generatePlayerQuestionDeck = generatePlayerQuestionDeck;
 })();
