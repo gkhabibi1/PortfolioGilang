@@ -1,9 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
-  <circle cx="50" cy="50" r="46" fill="#2DD4BF" stroke="#0D9488" stroke-width="4"/>
-  <ellipse cx="45" cy="56" rx="28" ry="22" fill="#FFFFFF" fill-opacity="0.2"/>
-  <circle cx="62" cy="38" r="16" fill="#2DD4BF"/>
-  <circle cx="67" cy="34" r="3.5" fill="#0F172A"/>
-  <circle cx="68.5" cy="32.5" r="1.2" fill="#FFFFFF"/>
-  <path d="M74,38 Q88,40 82,46 Q74,47 72,42 Z" fill="#F97316" stroke="#C2410C" stroke-width="1.5"/>
-  <text x="32" y="62" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#0F172A">#6</text>
+  <!-- Badan Bebek Bajak Laut -->
+  <circle cx="50" cy="50" r="46" fill="#EA580C" stroke="#9A3412" stroke-width="3"/>
+  <ellipse cx="45" cy="56" rx="26" ry="20" fill="#FED7AA" fill-opacity="0.2"/>
+  <!-- Kepala -->
+  <circle cx="60" cy="40" r="16" fill="#F97316"/>
+  <!-- Penutup Mata (Eyepatch) & Tali -->
+  <line x1="48" y1="34" x2="72" y2="44" stroke="#0F172A" stroke-width="1.8"/>
+  <ellipse cx="61" cy="38" rx="4" ry="4.5" fill="#09090B"/>
+  <!-- Mata Kanan Normal -->
+  <circle cx="69" cy="37" r="3" fill="#0F172A"/>
+  <!-- Anting Emas -->
+  <circle cx="50" cy="46" r="3.5" fill="none" stroke="#FACC15" stroke-width="2"/>
+  <!-- Topi Bajak Laut Tricorn Hitam & Tengkorak -->
+  <path d="M44,28 Q60,18 78,28 Q68,14 54,16 Z" fill="#18181B" stroke="#FACC15" stroke-width="1"/>
+  <circle cx="61" cy="22" r="2.2" fill="#FFFFFF"/>
+  <line x1="58" y1="25" x2="64" y2="25" stroke="#FFFFFF" stroke-width="1"/>
+  <!-- Paruh -->
+  <path d="M72,40 Q86,42 80,48 Q72,49 70,44 Z" fill="#C2410C" stroke="#7C2D12" stroke-width="1.5"/>
+  <!-- Label ID -->
+  <text x="22" y="66" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="16" font-weight="900" fill="#7C2D12">#6</text>
 </svg>

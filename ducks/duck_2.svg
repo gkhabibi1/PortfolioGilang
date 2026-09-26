@@ -1,9 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
-  <circle cx="50" cy="50" r="46" fill="#FB923C" stroke="#EA580C" stroke-width="4"/>
-  <ellipse cx="45" cy="56" rx="28" ry="22" fill="#FFFFFF" fill-opacity="0.2"/>
-  <circle cx="62" cy="38" r="16" fill="#FB923C"/>
-  <circle cx="67" cy="34" r="3.5" fill="#0F172A"/>
-  <circle cx="68.5" cy="32.5" r="1.2" fill="#FFFFFF"/>
-  <path d="M74,38 Q88,40 82,46 Q74,47 72,42 Z" fill="#F97316" stroke="#C2410C" stroke-width="1.5"/>
-  <text x="32" y="62" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#0F172A">#2</text>
+  <!-- Badan Bebek Emas -->
+  <circle cx="50" cy="50" r="46" fill="#F59E0B" stroke="#B45309" stroke-width="3"/>
+  <ellipse cx="45" cy="56" rx="26" ry="20" fill="#FEF08A" fill-opacity="0.25"/>
+  <!-- Kepala -->
+  <circle cx="60" cy="40" r="16" fill="#FBBF24"/>
+  <circle cx="65" cy="37" r="3.5" fill="#0F172A"/>
+  <circle cx="66.5" cy="35.5" r="1.2" fill="#FFFFFF"/>
+  <!-- Paruh Emas -->
+  <path d="M72,40 Q86,42 80,48 Q72,49 70,44 Z" fill="#D97706" stroke="#92400E" stroke-width="1.5"/>
+  <!-- Mahkota Emas & Permata Rubi -->
+  <path d="M50,25 L53,16 L59,21 L65,14 L71,21 L77,16 L80,25 Z" fill="#FACC15" stroke="#CA8A04" stroke-width="1.5"/>
+  <circle cx="65" cy="18" r="2.5" fill="#EF4444"/>
+  <circle cx="53" cy="18" r="1.8" fill="#EF4444"/>
+  <circle cx="77" cy="18" r="1.8" fill="#EF4444"/>
+  <!-- Kerah Ungu Velvet -->
+  <path d="M50,54 Q62,59 70,52 Q62,56 50,54 Z" fill="#7C3AED" stroke="#4C1D95" stroke-width="1.5"/>
+  <!-- Label ID -->
+  <text x="24" y="66" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="16" font-weight="900" fill="#78350F">#2</text>
 </svg>

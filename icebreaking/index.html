@@ -34,6 +34,7 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="/ducks/duck-characters.js"></script>
 
   <style>
     @keyframes flowTrack {
@@ -60,17 +61,17 @@
   <script type="text/babel">
     const { useState, useEffect, useRef } = React;
 
-    const DUCK_ASSETS = [
-      { id: 1, name: 'Bebek Kuning', color: '#FACC15', border: '#CA8A04', emoji: '🦆' },
-      { id: 2, name: 'Bebek Oranye', color: '#FB923C', border: '#EA580C', emoji: '🦆' },
-      { id: 3, name: 'Bebek Merah', color: '#F87171', border: '#DC2626', emoji: '🦆' },
-      { id: 4, name: 'Bebek Ungu', color: '#C084FC', border: '#9333EA', emoji: '🦆' },
-      { id: 5, name: 'Bebek Biru', color: '#60A5FA', border: '#2563EB', emoji: '🦆' },
-      { id: 6, name: 'Bebek Toska', color: '#2DD4BF', border: '#0D9488', emoji: '🦆' },
-      { id: 7, name: 'Bebek Hijau', color: '#4ADE80', border: '#16A34A', emoji: '🦆' },
-      { id: 8, name: 'Bebek Pink', color: '#F472B6', border: '#DB2777', emoji: '🦆' },
-      { id: 9, name: 'Bebek Emas', color: '#FDE047', border: '#EAB308', emoji: '👑' },
-      { id: 10, name: 'Bebek Pelangi', color: '#A78BFA', border: '#7C3AED', emoji: '⭐' },
+    const DUCK_ASSETS = (typeof window !== 'undefined' && window.DUCK_CHARACTERS) ? window.DUCK_CHARACTERS : [
+      { id: 1, name: 'Bebek Klasik Berdasi', color: '#FACC15', border: '#CA8A04', emoji: '🎩' },
+      { id: 2, name: 'Bebek Sultan Emas', color: '#EAB308', border: '#A16207', emoji: '👑' },
+      { id: 3, name: 'Bebek Zombie Biohazard', color: '#4ADE80', border: '#15803D', emoji: '🧟' },
+      { id: 4, name: 'Bebek Ninja Bayangan', color: '#475569', border: '#0F172A', emoji: '🥷' },
+      { id: 5, name: 'Bebek Cyborg 2077', color: '#38BDF8', border: '#0284C7', emoji: '🤖' },
+      { id: 6, name: 'Bebek Bajak Laut', color: '#EA580C', border: '#9A3412', emoji: '🏴‍☠️' },
+      { id: 7, name: 'Bebek Penyihir Astral', color: '#A855F7', border: '#6B21A8', emoji: '🧙‍♂️' },
+      { id: 8, name: 'Bebek Astronaut Apollo', color: '#E2E8F0', border: '#38BDF8', emoji: '🚀' },
+      { id: 9, name: 'Bebek Gamer Retro RGB', color: '#F43F5E', border: '#BE123C', emoji: '🎧' },
+      { id: 10, name: 'Bebek Naga Magma Api', color: '#DC2626', border: '#7F1D1D', emoji: '🔥' },
     ];
 
     const QUESTION_BANK = [
@@ -429,49 +430,54 @@
         const duckGroups = {};
 
         function createDuckMesh(duckMeta) {
-          const group = new THREE.Group();
-          const colorHex = parseInt(duckMeta.color.replace('#', '0x'), 16) || 0xfacc15;
-          const duckMat = new THREE.MeshStandardMaterial({
-            color: colorHex,
-            roughness: 0.35,
-            metalness: 0.08,
-          });
-          const beakMat = new THREE.MeshStandardMaterial({
-            color: 0xf97316,
-            roughness: 0.4,
-          });
-          const eyeMat = new THREE.MeshBasicMaterial({ color: 0x0f172a });
+          let duck3D;
+          if (typeof window.createDuck3DMesh === 'function') {
+            duck3D = window.createDuck3DMesh(duckMeta, THREE, { castShadow: true });
+          } else {
+            const group = new THREE.Group();
+            const colorHex = parseInt((duckMeta.color || '#facc15').replace('#', '0x'), 16) || 0xfacc15;
+            const duckMat = new THREE.MeshStandardMaterial({
+              color: colorHex,
+              roughness: 0.35,
+              metalness: 0.08,
+            });
+            const beakMat = new THREE.MeshStandardMaterial({
+              color: 0xf97316,
+              roughness: 0.4,
+            });
+            const eyeMat = new THREE.MeshBasicMaterial({ color: 0x0f172a });
 
-          // Badan Bebek
-          const body = new THREE.Mesh(new THREE.SphereGeometry(1.0, 16, 16), duckMat);
-          body.scale.set(1.3, 0.85, 0.95);
-          body.castShadow = true;
-          group.add(body);
+            const body = new THREE.Mesh(new THREE.SphereGeometry(1.0, 16, 16), duckMat);
+            body.scale.set(1.3, 0.85, 0.95);
+            body.castShadow = true;
+            group.add(body);
 
-          // Kepala Bebek
-          const head = new THREE.Mesh(new THREE.SphereGeometry(0.55, 14, 14), duckMat);
-          head.position.set(0.75, 0.75, 0);
-          head.castShadow = true;
-          group.add(head);
+            const head = new THREE.Mesh(new THREE.SphereGeometry(0.55, 14, 14), duckMat);
+            head.position.set(0.75, 0.75, 0);
+            head.castShadow = true;
+            group.add(head);
 
-          // Paruh Oranye
-          const beak = new THREE.Mesh(new THREE.ConeGeometry(0.24, 0.55, 10), beakMat);
-          beak.rotation.z = -Math.PI / 2;
-          beak.position.set(1.3, 0.72, 0);
-          group.add(beak);
+            const beak = new THREE.Mesh(new THREE.ConeGeometry(0.24, 0.55, 10), beakMat);
+            beak.rotation.z = -Math.PI / 2;
+            beak.position.set(1.3, 0.72, 0);
+            group.add(beak);
 
-          // Mata Bebek
-          [-0.24, 0.24].forEach((ez) => {
-            const eye = new THREE.Mesh(new THREE.SphereGeometry(0.09, 8, 8), eyeMat);
-            eye.position.set(0.9, 0.86, ez);
-            group.add(eye);
-          });
+            [-0.24, 0.24].forEach((ez) => {
+              const eye = new THREE.Mesh(new THREE.SphereGeometry(0.09, 8, 8), eyeMat);
+              eye.position.set(0.9, 0.86, ez);
+              group.add(eye);
+            });
 
-          // Ekor
-          const tail = new THREE.Mesh(new THREE.ConeGeometry(0.25, 0.55, 8), duckMat);
-          tail.rotation.z = Math.PI / 3;
-          tail.position.set(-1.0, 0.45, 0);
-          group.add(tail);
+            const tail = new THREE.Mesh(new THREE.ConeGeometry(0.25, 0.55, 8), duckMat);
+            tail.rotation.z = Math.PI / 3;
+            tail.position.set(-1.0, 0.45, 0);
+            group.add(tail);
+
+            duck3D = { group, duckMat, beakMat, id: duckMeta.id };
+          }
+
+          const group = duck3D.group;
+          const duckMat = duck3D.duckMat;
 
           // Label 2D Melayang di Atas Bebek
           const canvas = document.createElement('canvas');
@@ -481,10 +487,18 @@
           const spriteMat = new THREE.SpriteMaterial({ map: spriteTex, depthTest: false });
           const sprite = new THREE.Sprite(spriteMat);
           sprite.scale.set(4.5, 1.7, 1.0);
-          sprite.position.set(0, 2.4, 0);
+          sprite.position.set(0, 2.5, 0);
           group.add(sprite);
 
-          return { group, sprite, canvas, spriteTex, duckMat, originalColor: colorHex };
+          return {
+            group,
+            sprite,
+            canvas,
+            spriteTex,
+            duckMat,
+            duck3D,
+            originalColor: duckMat?.color ? duckMat.color.getHex() : 0xfacc15
+          };
         }
 
         function updateDuckSprite(duckObj, player) {
@@ -493,7 +507,7 @@
           ctx.clearRect(0, 0, canvas.width, canvas.height);
 
           // Background box
-          ctx.fillStyle = 'rgba(15, 23, 42, 0.88)';
+          ctx.fillStyle = 'rgba(15, 23, 42, 0.92)';
           ctx.beginPath();
           ctx.roundRect(8, 8, 240, 80, 16);
           ctx.fill();
@@ -503,22 +517,25 @@
 
           // Nama & Jarak
           ctx.fillStyle = '#ffffff';
-          ctx.font = 'bold 24px sans-serif';
+          ctx.font = 'bold 22px sans-serif';
           ctx.textAlign = 'center';
           const meters = Math.round((player.progress || 0) * 5);
-          ctx.fillText(`${player.name.substring(0, 12)} (${meters}m)`, 128, 42);
+          ctx.fillText(`${player.name.substring(0, 12)} (${meters}m)`, 128, 40);
 
-          // Status Badge
-          ctx.font = 'bold 20px sans-serif';
+          // Status Badge / Character Tag
+          ctx.font = 'bold 18px sans-serif';
           if (player.speedFactor > 1) {
             ctx.fillStyle = '#fda4af';
-            ctx.fillText('🔥 NGEBUT PANIK!', 128, 72);
+            ctx.fillText('🔥 NGEBUT PANIK!', 128, 70);
           } else if (player.speedFactor < 1) {
             ctx.fillStyle = '#6ee7b7';
-            ctx.fillText('🛑 REM AMAN', 128, 72);
+            ctx.fillText('🛑 REM AMAN', 128, 70);
           } else {
+            const charMeta = (window.DUCK_CHARACTERS && window.DUCK_CHARACTERS.find((d) => d.id === player.duckId))
+              || DUCK_ASSETS.find((d) => d.id === player.duckId)
+              || { name: `Bebek #${player.duckId}`, emoji: '🦆' };
             ctx.fillStyle = '#fde047';
-            ctx.fillText(`Bebek #${player.duckId}`, 128, 72);
+            ctx.fillText(`${charMeta.emoji} ${charMeta.name.substring(0, 16)}`, 128, 70);
           }
 
           spriteTex.needsUpdate = true;
@@ -613,7 +630,13 @@
               duckObj.group.rotation.x += 0.25;
               duckObj.group.rotation.y += 0.35;
               duckObj.group.position.y = 1.2 + Math.sin(elapsed * 15) * 0.6;
-              duckObj.duckMat.color.setHex(0x522e1b); // Gosong terpanggang
+              duckObj.group.traverse((child) => {
+                if (child.isMesh && child.material && child !== duckObj.sprite) {
+                  if (child.material.color) {
+                    child.material.color.setHex(0x381e11); // Gosong terbakar oven crispy
+                  }
+                }
+              });
             } else {
               duckObj.group.rotation.x = 0;
               duckObj.group.rotation.y = 0;
@@ -996,17 +1019,19 @@
                         return (
                           <div
                             key={p.id}
-                            className="bg-slate-800/90 border border-slate-700/80 p-2.5 rounded-xl flex items-center gap-2 shadow-sm"
+                            className="bg-slate-800/90 border border-slate-700/80 p-2.5 rounded-xl flex items-center gap-2.5 shadow-sm"
                           >
                             <div
-                              className="w-8 h-8 rounded-lg flex items-center justify-center text-lg border"
+                              className="w-10 h-10 rounded-lg flex items-center justify-center text-xl border shrink-0 shadow-inner"
                               style={{ backgroundColor: `${duckMeta.color}33`, borderColor: duckMeta.border }}
                             >
                               {duckMeta.emoji}
                             </div>
-                            <div className="overflow-hidden">
+                            <div className="overflow-hidden flex-1">
                               <p className="text-xs font-bold text-white truncate">{p.name}</p>
-                              <p className="text-[10px] text-slate-400">#{p.duckId}</p>
+                              <p className="text-[10px] text-yellow-400 font-semibold truncate">
+                                #{p.duckId} {duckMeta.name}
+                              </p>
                             </div>
                           </div>
                         );
@@ -1117,9 +1142,22 @@
                 </p>
 
                 <div className="bg-gradient-to-b from-rose-950/80 to-slate-950 p-5 rounded-2xl border-2 border-rose-500/80 mb-5 shadow-2xl relative">
-                  <div className="text-5xl mb-2">🦆 ➔ 🍗</div>
-                  <h3 className="text-2xl sm:text-3xl font-black text-white">{loser.name}</h3>
-                  <p className="text-xs text-yellow-400 font-bold mt-1">Bebek #{loser.duckId} - GOSONG CRISPY</p>
+                  {(() => {
+                    const loserMeta = (window.DUCK_CHARACTERS && window.DUCK_CHARACTERS.find((d) => d.id === loser.duckId))
+                      || DUCK_ASSETS.find((d) => d.id === loser.duckId);
+                    return (
+                      <>
+                        <div className="text-5xl mb-2">{loserMeta?.emoji || '🦆'} ➔ 🍗🔥</div>
+                        <h3 className="text-2xl sm:text-3xl font-black text-white">{loser.name}</h3>
+                        <p className="text-sm text-yellow-400 font-bold mt-1">
+                          #{loser.duckId} {loserMeta?.name || 'Bebek'} ({loserMeta?.title || 'Peserta'})
+                        </p>
+                        <p className="text-xs text-rose-300 italic mt-1 font-medium">
+                          "{loserMeta?.desc || 'Bebek gosong crispy pertama yang masuk oven!'}"
+                        </p>
+                      </>
+                    );
+                  })()}
                 </div>
 
                 <div className="bg-amber-500/20 border-2 border-amber-400 p-4 rounded-2xl mb-6">

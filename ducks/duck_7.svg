@@ -1,9 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
-  <circle cx="50" cy="50" r="46" fill="#4ADE80" stroke="#16A34A" stroke-width="4"/>
-  <ellipse cx="45" cy="56" rx="28" ry="22" fill="#FFFFFF" fill-opacity="0.2"/>
-  <circle cx="62" cy="38" r="16" fill="#4ADE80"/>
-  <circle cx="67" cy="34" r="3.5" fill="#0F172A"/>
-  <circle cx="68.5" cy="32.5" r="1.2" fill="#FFFFFF"/>
-  <path d="M74,38 Q88,40 82,46 Q74,47 72,42 Z" fill="#F97316" stroke="#C2410C" stroke-width="1.5"/>
-  <text x="32" y="62" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#0F172A">#7</text>
+  <!-- Badan Bebek Penyihir Astral Ungu -->
+  <circle cx="50" cy="50" r="46" fill="#7C3AED" stroke="#4C1D95" stroke-width="3"/>
+  <ellipse cx="45" cy="56" rx="26" ry="20" fill="#DDD6FE" fill-opacity="0.2"/>
+  <!-- Bola Kristal Gaib Mengambang -->
+  <circle cx="30" cy="46" r="6" fill="#38BDF8" opacity="0.85"/>
+  <circle cx="30" cy="46" r="8" fill="none" stroke="#FACC15" stroke-width="1" stroke-dasharray="2,2"/>
+  <!-- Kepala -->
+  <circle cx="60" cy="40" r="16" fill="#8B5CF6"/>
+  <circle cx="65" cy="37" r="3.5" fill="#0F172A"/>
+  <circle cx="66.5" cy="35.5" r="1.2" fill="#FFFFFF"/>
+  <!-- Paruh Magenta -->
+  <path d="M72,40 Q86,42 80,48 Q72,49 70,44 Z" fill="#D946EF" stroke="#A21CAF" stroke-width="1.5"/>
+  <!-- Topi Penyihir Runcur Berbintang Emas -->
+  <ellipse cx="60" cy="28" rx="16" ry="3.5" fill="#1E1B4B"/>
+  <path d="M48,27 Q56,8 52,4 Q68,14 72,27 Z" fill="#1E1B4B"/>
+  <polygon points="52,3 53.5,6 56.5,6.5 54,8.5 55,11.5 52,10 49,11.5 50,8.5 47.5,6.5 50.5,6" fill="#FDE047"/>
+  <!-- Pita Emas -->
+  <path d="M51,26 Q60,28 69,26" fill="none" stroke="#FACC15" stroke-width="2"/>
+  <!-- Label ID -->
+  <text x="22" y="66" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="16" font-weight="900" fill="#4C1D95">#7</text>
 </svg>

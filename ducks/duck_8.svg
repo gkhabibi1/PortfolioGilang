@@ -1,9 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
-  <circle cx="50" cy="50" r="46" fill="#F472B6" stroke="#DB2777" stroke-width="4"/>
-  <ellipse cx="45" cy="56" rx="28" ry="22" fill="#FFFFFF" fill-opacity="0.2"/>
-  <circle cx="62" cy="38" r="16" fill="#F472B6"/>
-  <circle cx="67" cy="34" r="3.5" fill="#0F172A"/>
-  <circle cx="68.5" cy="32.5" r="1.2" fill="#FFFFFF"/>
-  <path d="M74,38 Q88,40 82,46 Q74,47 72,42 Z" fill="#F97316" stroke="#C2410C" stroke-width="1.5"/>
-  <text x="32" y="62" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#0F172A">#8</text>
+  <!-- Badan Bebek Astronaut Putih -->
+  <circle cx="50" cy="50" r="46" fill="#F8FAFC" stroke="#0284C7" stroke-width="3"/>
+  <ellipse cx="45" cy="56" rx="26" ry="20" fill="#E2E8F0" fill-opacity="0.5"/>
+  <!-- Tangki Oksigen di Punggung -->
+  <rect x="22" y="38" width="10" height="24" rx="4" fill="#E2E8F0" stroke="#0284C7" stroke-width="1.5"/>
+  <rect x="22" y="46" width="10" height="4" fill="#0284C7"/>
+  <!-- Kepala -->
+  <circle cx="60" cy="40" r="16" fill="#F8FAFC"/>
+  <!-- Helm Astronot Kaca Transparan & Refleksi -->
+  <circle cx="62" cy="40" r="19" fill="#38BDF8" fill-opacity="0.35" stroke="#0284C7" stroke-width="2"/>
+  <ellipse cx="58" cy="33" rx="7" ry="3" fill="#FFFFFF" fill-opacity="0.6"/>
+  <!-- Mata & Paruh di dalam helm -->
+  <circle cx="65" cy="39" r="3" fill="#0F172A"/>
+  <path d="M72,40 Q82,42 78,46 Q72,47 70,44 Z" fill="#38BDF8" stroke="#0284C7" stroke-width="1"/>
+  <!-- Kerah Logam Helm -->
+  <ellipse cx="61" cy="57" rx="14" ry="4" fill="#94A3B8" stroke="#475569" stroke-width="1.5"/>
+  <!-- Label ID -->
+  <text x="24" y="74" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="16" font-weight="900" fill="#0369A1">#8</text>
 </svg>

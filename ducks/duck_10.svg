@@ -1,9 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
-  <circle cx="50" cy="50" r="46" fill="#F59E0B" stroke="#B45309" stroke-width="4"/>
-  <ellipse cx="45" cy="56" rx="28" ry="22" fill="#FFFFFF" fill-opacity="0.2"/>
-  <circle cx="62" cy="38" r="16" fill="#F59E0B"/>
-  <circle cx="67" cy="34" r="3.5" fill="#0F172A"/>
-  <circle cx="68.5" cy="32.5" r="1.2" fill="#FFFFFF"/>
-  <path d="M74,38 Q88,40 82,46 Q74,47 72,42 Z" fill="#F97316" stroke="#C2410C" stroke-width="1.5"/>
-  <text x="32" y="62" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#0F172A">#10</text>
+  <!-- Badan Bebek Naga Magma Api -->
+  <circle cx="50" cy="50" r="46" fill="#1C1917" stroke="#DC2626" stroke-width="3"/>
+  <ellipse cx="45" cy="56" rx="26" ry="20" fill="#7F1D1D" fill-opacity="0.5"/>
+  <!-- Duri Magma di Punggung (Spines) -->
+  <polygon points="30,42 34,34 38,42" fill="#EF4444"/>
+  <polygon points="38,40 42,30 46,40" fill="#F97316"/>
+  <polygon points="46,38 50,32 54,38" fill="#EF4444"/>
+  <!-- Kepala Bebek Naga -->
+  <circle cx="60" cy="40" r="16" fill="#292524"/>
+  <!-- Tanduk Naga Obsidian Tajam -->
+  <path d="M52,32 Q46,16 38,18 Q46,26 50,34 Z" fill="#09090B" stroke="#DC2626" stroke-width="1"/>
+  <!-- Mata Api Membara -->
+  <ellipse cx="65" cy="38" rx="3.5" ry="3" fill="#FF5500"/>
+  <circle cx="65" cy="38" r="1.5" fill="#FEF08A"/>
+  <!-- Paruh Magma -->
+  <path d="M72,40 Q86,42 80,48 Q72,49 70,44 Z" fill="#B91C1C" stroke="#7F1D1D" stroke-width="1.5"/>
+  <!-- Label ID -->
+  <text x="18" y="66" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="16" font-weight="900" fill="#EF4444">#10</text>
 </svg>

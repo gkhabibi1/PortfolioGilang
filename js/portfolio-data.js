@@ -16,6 +16,7 @@ function getLanguage() {
 const translations = {
     id: {
         navAbout: "Tentang Saya",
+        navApps: "Aplikasi",
         navPortfolio: "Portofolio",
         navArsenal: "Skills & Tools",
         navServices: "Layanan",
@@ -64,6 +65,7 @@ const translations = {
     },
     en: {
         navAbout: "About Me",
+        navApps: "Apps",
         navPortfolio: "Portfolio",
         navArsenal: "Skills & Tools",
         navServices: "Services",

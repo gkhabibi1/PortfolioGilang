@@ -1,9 +1,21 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
-  <circle cx="50" cy="50" r="46" fill="#FACC15" stroke="#CA8A04" stroke-width="4"/>
-  <ellipse cx="45" cy="56" rx="28" ry="22" fill="#FFFFFF" fill-opacity="0.2"/>
-  <circle cx="62" cy="38" r="16" fill="#FACC15"/>
-  <circle cx="67" cy="34" r="3.5" fill="#0F172A"/>
-  <circle cx="68.5" cy="32.5" r="1.2" fill="#FFFFFF"/>
-  <path d="M74,38 Q88,40 82,46 Q74,47 72,42 Z" fill="#F97316" stroke="#C2410C" stroke-width="1.5"/>
-  <text x="32" y="62" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#0F172A">#1</text>
+  <!-- Badan Bebek Kuning -->
+  <circle cx="50" cy="50" r="46" fill="#FACC15" stroke="#CA8A04" stroke-width="3"/>
+  <ellipse cx="45" cy="56" rx="26" ry="20" fill="#FFFFFF" fill-opacity="0.2"/>
+  <!-- Kepala -->
+  <circle cx="60" cy="40" r="16" fill="#FACC15"/>
+  <circle cx="65" cy="37" r="3.5" fill="#0F172A"/>
+  <circle cx="66.5" cy="35.5" r="1.2" fill="#FFFFFF"/>
+  <!-- Paruh -->
+  <path d="M72,40 Q86,42 80,48 Q72,49 70,44 Z" fill="#F97316" stroke="#C2410C" stroke-width="1.5"/>
+  <!-- Topi Bowler Hitam & Pita Merah -->
+  <rect x="48" y="24" width="26" height="4" rx="2" fill="#18181B"/>
+  <path d="M52,24 C52,14 70,14 70,24 Z" fill="#18181B"/>
+  <rect x="52" y="21" width="18" height="3" fill="#DC2626"/>
+  <!-- Dasi Kupu-Kupu Merah -->
+  <polygon points="56,54 62,51 62,57" fill="#DC2626"/>
+  <polygon points="68,54 62,51 62,57" fill="#DC2626"/>
+  <circle cx="62" cy="54" r="2.5" fill="#991B1B"/>
+  <!-- Label ID -->
+  <text x="24" y="66" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="16" font-weight="900" fill="#713F12">#1</text>
 </svg>
