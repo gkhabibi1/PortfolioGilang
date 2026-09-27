@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Presensi Live - Anti-Fake GPS & Validasi Geolocation</title>
-    <meta name="description" content="Sistem absensi online dengan 3 proteksi: Live camera capture, GPS High Accuracy, dan cross-check ISP Geolocation.">
+    <title>Presensi Online - Verifikasi Geofence Radius 100m</title>
+    <meta name="description" content="Sistem absensi mandiri dengan validasi lokasi real handphone dalam radius 100 meter dari Gudang Mas Wakit.">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -28,27 +28,31 @@
     </script>
     <style>
         .viewfinder-face {
-            border: 2px dashed rgba(255, 255, 255, 0.4);
+            border: 2px dashed rgba(255, 255, 255, 0.45);
             border-radius: 50% / 60%;
+        }
+        @keyframes scaleIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .animate-scale-in {
+            animation: scaleIn 0.25s ease-out forwards;
         }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-sans selection:bg-agency-neon selection:text-slate-950">
 
     <!-- TOP HEADER -->
-    <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur-md px-4 sm:px-8 py-3 sticky top-0 z-50">
+    <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur-md px-4 sm:px-8 py-3.5 sticky top-0 z-40">
         <div class="max-w-4xl mx-auto flex items-center justify-between">
             <a href="/aplikasi" class="inline-flex items-center gap-2 text-xs font-semibold text-slate-400 hover:text-agency-neon transition">
                 <i class="fa-solid fa-arrow-left"></i>
                 <span>Kembali ke Halaman Fitur</span>
             </a>
             <div class="flex items-center gap-2">
-                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                <span class="text-xs font-mono text-emerald-400 font-bold">ANTI-FAKE GPS ACTIVE</span>
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span class="text-xs font-mono text-emerald-400 font-bold">GPS REALTIME ACTIVE</span>
             </div>
-            <a href="/admin-viewer" class="text-xs px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition">
-                <i class="fa-solid fa-shield-halved mr-1 text-agency-neon"></i> Admin Viewer
-            </a>
         </div>
     </header>
 
@@ -58,12 +62,14 @@
             
             <!-- Title -->
             <div class="text-center space-y-1">
-                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                    <i class="fa-solid fa-fingerprint"></i>
-                    <span>Verifikasi Multi-Lapis Presensi</span>
+                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold bg-blue-500/10 text-blue-400 border border-blue-500/20">
+                    <i class="fa-solid fa-location-crosshairs"></i>
+                    <span>Geofencing Presensi (Radius Max 100m)</span>
                 </div>
-                <h1 class="text-2xl sm:text-3xl font-extrabold text-white">Presensi Online</h1>
-                <p class="text-xs text-slate-400">Pastikan wajah berada di dalam bingkai dan izin GPS diaktifkan.</p>
+                <h1 class="text-2xl sm:text-3xl font-extrabold text-white">Presensi Kehadiran</h1>
+                <p class="text-xs text-slate-400">
+                    Titik Presensi: <strong class="text-slate-200">Gudang Mas Wakit</strong>
+                </p>
             </div>
 
             <!-- LIVE CAMERA VIEWFINDER -->
@@ -80,16 +86,16 @@
                     </div>
                 </div>
 
-                <!-- Live Tag -->
+                <!-- Live Hardware Tag -->
                 <div class="absolute top-3 left-3 flex items-center gap-1.5 bg-black/70 backdrop-blur px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold text-emerald-400 border border-white/10">
                     <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-                    LIVE HARDWARE
+                    LIVE KAMERA
                 </div>
 
                 <!-- Error Overlay if Permission Denied -->
                 <div id="camera-error" class="hidden absolute inset-0 bg-slate-950/90 p-6 flex flex-col items-center justify-center text-center space-y-3 z-10">
                     <i class="fa-solid fa-video-slash text-3xl text-rose-500"></i>
-                    <p id="camera-error-msg" class="text-xs text-rose-400 max-w-xs">Izin akses kamera diperlukan untuk absensi live.</p>
+                    <p id="camera-error-msg" class="text-xs text-rose-400 max-w-xs">Izin kamera diperlukan untuk absensi live.</p>
                     <button onclick="initCamera()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-xs font-semibold rounded-xl text-white">
                         Coba Lagi
                     </button>
@@ -99,53 +105,122 @@
                 <canvas id="snapshot-canvas" class="hidden"></canvas>
             </div>
 
-            <!-- TELEMETRY SENSORS (GPS & IP) -->
-            <div class="grid grid-cols-2 gap-3 text-xs">
-                <!-- GPS Card -->
-                <div class="p-3 bg-slate-950/80 rounded-2xl border border-slate-800/80 space-y-1">
+            <!-- REAL PHONE GPS & RADIUS AUDIT -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                
+                <!-- Sensor 1: Lokasi Real Handphone -->
+                <div class="p-3.5 bg-slate-950/80 rounded-2xl border border-slate-800/80 space-y-1">
                     <div class="flex items-center justify-between text-slate-400 font-medium text-[11px]">
-                        <span><i class="fa-solid fa-satellite text-blue-400 mr-1"></i> GPS Fisik</span>
+                        <span><i class="fa-solid fa-mobile-screen-button text-blue-400 mr-1"></i> GPS Real HP</span>
                         <span id="gps-status-badge" class="text-amber-400 font-mono">Mencari...</span>
                     </div>
-                    <p id="gps-coords-display" class="font-mono text-slate-300 text-[11px] truncate">-</p>
-                    <p id="gps-acc-display" class="text-[10px] text-slate-500">Akurasi: Menunggu sinyal</p>
+                    <p id="gps-coords-display" class="font-mono text-slate-200 text-xs font-semibold truncate">-</p>
+                    <p id="gps-acc-display" class="text-[10px] text-slate-500">Akurasi: Menunggu koordinat</p>
                 </div>
 
-                <!-- IP Card -->
-                <div class="p-3 bg-slate-950/80 rounded-2xl border border-slate-800/80 space-y-1">
+                <!-- Sensor 2: Jarak ke Lokasi Gudang Mas Wakit (Max 100m) -->
+                <div class="p-3.5 bg-slate-950/80 rounded-2xl border border-slate-800/80 space-y-1">
                     <div class="flex items-center justify-between text-slate-400 font-medium text-[11px]">
-                        <span><i class="fa-solid fa-network-wired text-sky-400 mr-1"></i> ISP Network</span>
-                        <span id="ip-city-badge" class="text-sky-400 font-mono">Mendeteksi...</span>
+                        <span><i class="fa-solid fa-route text-emerald-400 mr-1"></i> Radius Kantor</span>
+                        <span id="radius-status-badge" class="text-amber-400 font-mono">Menghitung...</span>
                     </div>
-                    <p id="ip-addr-display" class="font-mono text-slate-300 text-[11px] truncate">-</p>
-                    <p id="ip-delta-display" class="text-[10px] text-slate-500">Cross-check jarak: -</p>
+                    <p id="radius-distance-display" class="font-mono text-xs font-bold text-slate-200">
+                        Jarak: -
+                    </p>
+                    <p id="radius-limit-display" class="text-[10px] text-slate-400">
+                        Batas toleransi: Maksimal 100m
+                    </p>
                 </div>
             </div>
 
-            <!-- SECURITY WARNING BANNER -->
-            <div id="security-alert-box" class="hidden p-3 rounded-2xl border text-xs flex items-start gap-2.5">
-                <i id="security-alert-icon" class="fa-solid fa-triangle-exclamation text-base mt-0.5"></i>
+            <!-- GEOFENCE ALERT NOTIFICATION BANNER -->
+            <div id="geofence-alert-box" class="p-3.5 rounded-2xl border text-xs flex items-start gap-2.5 bg-slate-950 border-slate-800">
+                <i id="geofence-alert-icon" class="fa-solid fa-spinner animate-spin text-base mt-0.5 text-blue-400"></i>
                 <div class="space-y-0.5 flex-1">
-                    <div id="security-alert-title" class="font-bold">Status Keamanan</div>
-                    <p id="security-alert-text" class="text-slate-400 text-[11px]"></p>
+                    <div id="geofence-alert-title" class="font-bold text-slate-200">Mendeteksi Posisi Perangkat...</div>
+                    <p id="geofence-alert-text" class="text-slate-400 text-[11px]">Mohon izinkan akses lokasi (GPS) pada smartphone Anda.</p>
                 </div>
             </div>
 
             <!-- SUBMIT BUTTON -->
-            <button id="btn-submit" onclick="executeAttendance()" class="w-full py-3.5 px-4 rounded-2xl font-bold text-sm bg-blue-600 hover:bg-blue-500 active:scale-[0.99] text-white shadow-lg shadow-blue-600/30 transition-all flex items-center justify-center gap-2">
+            <button id="btn-submit" onclick="executeAttendance()" disabled class="w-full py-3.5 px-4 rounded-2xl font-bold text-sm bg-slate-800 text-slate-500 cursor-not-allowed transition-all flex items-center justify-center gap-2 shadow-lg">
                 <i class="fa-solid fa-camera"></i>
-                <span id="btn-submit-text">Ambil Foto & Catat Presensi</span>
+                <span id="btn-submit-text">Menunggu Sinyal GPS...</span>
             </button>
 
-            <!-- FOOTER INFO -->
-            <p class="text-[10px] text-center text-slate-500 leading-tight">
-                🔒 Data koordinat, stempel waktu, dan IP address dicatat secara otomatis untuk audit kepatuhan anti-fake GPS.
-            </p>
+            <!-- TARGET LOCATION LINK -->
+            <div class="flex items-center justify-between text-[11px] text-slate-500 pt-1 border-t border-slate-800/60">
+                <span>📍 Titik: Gudang Mas Wakit</span>
+                <a href="https://maps.app.goo.gl/RVFBr11kwQ6Pj2ji9" target="_blank" rel="noreferrer" class="text-blue-400 hover:text-blue-300 font-semibold flex items-center gap-1 hover:underline">
+                    <span>Buka Peta</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                </a>
+            </div>
         </div>
     </main>
 
+    <!-- ======================================================== -->
+    <!-- MODAL POPUP: TANDA SUKSES ABSEN (TIDAK REDIRECT KE ADMIN) -->
+    <!-- ======================================================== -->
+    <div id="success-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="bg-slate-900 border border-emerald-500/30 rounded-3xl max-w-md w-full p-6 sm:p-7 space-y-5 shadow-2xl animate-scale-in text-center">
+            
+            <!-- Animated Green Checkmark -->
+            <div class="w-20 h-20 rounded-full bg-emerald-500/15 border-2 border-emerald-500/40 text-emerald-400 flex items-center justify-center mx-auto text-4xl shadow-[0_0_25px_rgba(16,185,129,0.3)]">
+                <i class="fa-solid fa-check"></i>
+            </div>
+
+            <div class="space-y-1">
+                <h3 class="text-2xl font-black text-white">Presensi Berhasil!</h3>
+                <p class="text-xs text-emerald-400 font-semibold">Kehadiran fisik Anda telah terverifikasi aman di dalam radius resmi.</p>
+            </div>
+
+            <!-- Preview Foto Snapshot Bukti -->
+            <div class="relative aspect-video rounded-2xl overflow-hidden bg-black border border-slate-800 shadow-inner">
+                <img id="success-modal-photo" src="" alt="Bukti Presensi" class="w-full h-full object-cover">
+                <div class="absolute bottom-2 left-2 right-2 bg-black/75 backdrop-blur text-[10px] font-mono text-emerald-300 px-2.5 py-1 rounded-lg text-left flex items-center justify-between">
+                    <span id="success-modal-time">🕒 -</span>
+                    <span class="text-emerald-400 font-bold">✓ VERIFIED</span>
+                </div>
+            </div>
+
+            <!-- Detail Rekaman GPS Real Handphone -->
+            <div class="bg-slate-950 p-3.5 rounded-2xl border border-slate-800 text-left text-xs space-y-2">
+                <div class="flex items-center justify-between border-b border-slate-800/80 pb-1.5">
+                    <span class="text-slate-400">Lokasi Presensi:</span>
+                    <strong class="text-slate-200">Gudang Mas Wakit</strong>
+                </div>
+                <div class="flex items-center justify-between border-b border-slate-800/80 pb-1.5">
+                    <span class="text-slate-400">Jarak ke Titik:</span>
+                    <strong id="success-modal-distance" class="text-emerald-400 font-mono">0 meter</strong>
+                </div>
+                <div class="flex items-center justify-between border-b border-slate-800/80 pb-1.5">
+                    <span class="text-slate-400">GPS Handphone:</span>
+                    <span id="success-modal-coords" class="text-slate-300 font-mono text-[11px]">-</span>
+                </div>
+                <div class="flex items-center justify-between">
+                    <span class="text-slate-400">Akurasi Perangkat:</span>
+                    <span id="success-modal-accuracy" class="text-slate-300 font-mono text-[11px]">±- meter</span>
+                </div>
+            </div>
+
+            <!-- Tombol Selesai (Menutup Modal Saja) -->
+            <button onclick="closeSuccessModal()" class="w-full py-3.5 px-4 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm rounded-xl transition shadow-lg shadow-emerald-600/30">
+                Selesai
+            </button>
+        </div>
+    </div>
+
     <!-- CLIENT SCRIPT LOGIC -->
     <script>
+        // Koordinat Titik Lokasi Resmi: Gudang Mas Wakit (https://maps.app.goo.gl/RVFBr11kwQ6Pj2ji9)
+        const TARGET_LOCATION = {
+            name: "Gudang Mas Wakit",
+            latitude: -7.6079492,
+            longitude: 110.9408299,
+            maxRadiusMeters: 100 // Wajib dalam radius 100 meter
+        };
+
         const video = document.getElementById('video-feed');
         const canvas = document.getElementById('snapshot-canvas');
         const cameraErrorDiv = document.getElementById('camera-error');
@@ -154,29 +229,34 @@
         const btnSubmitText = document.getElementById('btn-submit-text');
 
         let mediaStream = null;
-        let gpsState = null;
-        let ipState = null;
-        let auditState = { isSuspicious: false, distanceKm: null, reason: '' };
+        let phoneGpsState = null;
+        let isWithinRadius = false;
+        let currentDistanceMeters = null;
 
-        // 1. Rumus Haversine: Jarak Geodesic GPS vs IP
-        function calculateHaversineDistance(lat1, lon1, lat2, lon2) {
-            if ([lat1, lon1, lat2, lon2].some(v => v === undefined || isNaN(v))) return null;
-            const R = 6371; // Radius bumi KM
-            const dLat = (lat2 - lat1) * Math.PI / 180;
-            const dLon = (lon2 - lon1) * Math.PI / 180;
-            const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-                      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
-                      Math.sin(dLon/2) * Math.sin(dLon/2);
-            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-            return Math.round(R * c * 100) / 100;
+        /**
+         * Rumus Haversine: Menghitung jarak akurat antara GPS handphone dan titik tujuan (dalam meter)
+         */
+        function calculateDistanceInMeters(lat1, lon1, lat2, lon2) {
+            const R = 6371e3; // Radius bumi dalam meter
+            const φ1 = (lat1 * Math.PI) / 180;
+            const φ2 = (lat2 * Math.PI) / 180;
+            const Δφ = ((lat2 - lat1) * Math.PI) / 180;
+            const Δλ = ((lon2 - lon1) * Math.PI) / 180;
+
+            const a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
+                      Math.cos(φ1) * Math.cos(φ2) *
+                      Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+            return Math.round(R * c); // Hasil bulat dalam satuan meter
         }
 
-        // 2. Inisialisasi Kamera Live Hardware
+        // 1. Inisialisasi Kamera Live
         async function initCamera() {
             cameraErrorDiv.classList.add('hidden');
             try {
                 if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-                    throw new Error("Perangkat tidak mendukung akses kamera browser.");
+                    throw new Error("Perangkat tidak mendukung akses hardware video stream.");
                 }
                 mediaStream = await navigator.mediaDevices.getUserMedia({
                     video: { facingMode: 'user', width: { ideal: 1280 }, height: { ideal: 720 } },
@@ -186,218 +266,240 @@
             } catch (err) {
                 console.error("Camera error:", err);
                 cameraErrorMsg.innerText = err.name === 'NotAllowedError' 
-                    ? "Izin kamera ditolak. Silakan aktifkan izin kamera di pengaturan browser Anda."
-                    : ("Gagal membuka kamera: " + err.message);
+                    ? "Izin kamera ditolak. Silakan izinkan kamera di browser."
+                    : ("Gagal mengakses kamera: " + err.message);
                 cameraErrorDiv.classList.remove('hidden');
             }
         }
 
-        // 3. High Accuracy GPS
-        function getHighAccuracyLocation() {
+        // 2. Mengambil Lokasi Real Handphone dengan High Accuracy & Tanpa Cache
+        function getRealPhoneLocation() {
             return new Promise((resolve, reject) => {
-                if (!navigator.geolocation) return reject(new Error("Browser tidak mendukung Geolocation."));
+                if (!navigator.geolocation) {
+                    return reject(new Error("Browser / perangkat Anda tidak mendukung GPS Geolocation."));
+                }
                 navigator.geolocation.getCurrentPosition(resolve, reject, {
-                    enableHighAccuracy: true,
-                    timeout: 10000,
-                    maximumAge: 0
+                    enableHighAccuracy: true, // Wajib: baca hardware GPS fisik handphone
+                    timeout: 12000,
+                    maximumAge: 0            // Wajib: jangan gunakan cache lokasi lama
                 });
             });
         }
 
-        // 4. Fetch IP Geolocation Provider
-        async function fetchIpGeolocation() {
+        // 3. Monitor & Evaluasi Radius Realtime Handphone
+        async function startLocationTracking() {
             try {
-                const res = await fetch('https://ipapi.co/json/');
-                if (res.ok) {
-                    const data = await res.json();
-                    if (data.latitude && data.longitude) return data;
-                }
-            } catch (e) { console.warn("ipapi failover:", e); }
-
-            try {
-                const res = await fetch('https://ipwho.is/');
-                const data = await res.json();
-                if (data.success !== false) {
-                    return {
-                        ip: data.ip,
-                        city: data.city,
-                        latitude: data.latitude,
-                        longitude: data.longitude,
-                        org: data.connection?.isp
-                    };
-                }
-            } catch (e) { console.error("ipwho fail:", e); }
-            return null;
-        }
-
-        // 5. Preload GPS & IP Data
-        async function initSensors() {
-            // Load IP
-            fetchIpGeolocation().then(data => {
-                if (data) {
-                    ipState = data;
-                    document.getElementById('ip-city-badge').innerText = data.city || 'OK';
-                    document.getElementById('ip-addr-display').innerText = `${data.ip} (${data.org || data.city})`;
-                    evaluateAudit();
-                }
-            });
-
-            // Load GPS
-            try {
-                const pos = await getHighAccuracyLocation();
+                const pos = await getRealPhoneLocation();
                 const coords = pos.coords;
-                gpsState = {
+
+                phoneGpsState = {
                     latitude: coords.latitude,
                     longitude: coords.longitude,
                     accuracy: Math.round(coords.accuracy)
                 };
+
+                // Update UI Telemetri GPS Handphone
                 document.getElementById('gps-status-badge').className = "text-emerald-400 font-mono";
                 document.getElementById('gps-status-badge').innerText = "Terkunci";
                 document.getElementById('gps-coords-display').innerText = `${coords.latitude.toFixed(5)}, ${coords.longitude.toFixed(5)}`;
-                document.getElementById('gps-acc-display').innerText = `Akurasi: ±${gpsState.accuracy} meter`;
-                evaluateAudit();
+                document.getElementById('gps-acc-display').innerText = `Akurasi perangkat: ±${phoneGpsState.accuracy}m`;
+
+                // Hitung jarak real handphone ke titik Gudang Mas Wakit
+                currentDistanceMeters = calculateDistanceInMeters(
+                    coords.latitude,
+                    coords.longitude,
+                    TARGET_LOCATION.latitude,
+                    TARGET_LOCATION.longitude
+                );
+
+                evaluateRadius(currentDistanceMeters);
             } catch (err) {
+                console.error("GPS tracking error:", err);
                 document.getElementById('gps-status-badge').className = "text-rose-400 font-mono";
                 document.getElementById('gps-status-badge').innerText = "Gagal";
                 document.getElementById('gps-acc-display').innerText = err.message;
+
+                const alertBox = document.getElementById('geofence-alert-box');
+                const alertIcon = document.getElementById('geofence-alert-icon');
+                const alertTitle = document.getElementById('geofence-alert-title');
+                const alertText = document.getElementById('geofence-alert-text');
+
+                alertBox.className = "p-3.5 rounded-2xl border text-xs flex items-start gap-2.5 bg-rose-500/10 border-rose-500/30 text-rose-300";
+                alertIcon.className = "fa-solid fa-circle-exclamation text-base mt-0.5 text-rose-400";
+                alertTitle.innerText = "Gagal Mengakses GPS Handphone";
+                alertText.innerText = "Pastikan izin lokasi (GPS) diaktifkan pada browser smartphone Anda.";
+
+                btnSubmit.disabled = true;
+                btnSubmit.className = "w-full py-3.5 px-4 rounded-2xl font-bold text-sm bg-slate-800 text-slate-500 cursor-not-allowed transition-all flex items-center justify-center gap-2 shadow-lg";
+                btnSubmitText.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> GPS Tidak Tersedia';
             }
         }
 
-        function evaluateAudit() {
-            if (!gpsState || !ipState) return;
+        function evaluateRadius(distanceMeters) {
+            const radiusBadge = document.getElementById('radius-status-badge');
+            const radiusDistDisplay = document.getElementById('radius-distance-display');
+            const alertBox = document.getElementById('geofence-alert-box');
+            const alertIcon = document.getElementById('geofence-alert-icon');
+            const alertTitle = document.getElementById('geofence-alert-title');
+            const alertText = document.getElementById('geofence-alert-text');
 
-            const dist = calculateHaversineDistance(
-                gpsState.latitude, gpsState.longitude,
-                parseFloat(ipState.latitude), parseFloat(ipState.longitude)
-            );
+            radiusDistDisplay.innerText = `Jarak: ${distanceMeters} meter`;
 
-            document.getElementById('ip-delta-display').innerText = `Delta jarak: ${dist !== null ? dist + ' km' : '-'}`;
+            if (distanceMeters <= TARGET_LOCATION.maxRadiusMeters) {
+                // Di dalam radius 100 meter -> BOLEH ABSEN
+                isWithinRadius = true;
+                radiusBadge.className = "text-emerald-400 font-mono font-bold";
+                radiusBadge.innerText = "Dalam Radius";
 
-            const box = document.getElementById('security-alert-box');
-            const icon = document.getElementById('security-alert-icon');
-            const title = document.getElementById('security-alert-title');
-            const text = document.getElementById('security-alert-text');
+                alertBox.className = "p-3.5 rounded-2xl border text-xs flex items-start gap-2.5 bg-emerald-500/10 border-emerald-500/30 text-emerald-300";
+                alertIcon.className = "fa-solid fa-circle-check text-base mt-0.5 text-emerald-400";
+                alertTitle.innerText = `Lokasi Valid (Jarak: ${distanceMeters}m dari Gudang Mas Wakit)`;
+                alertText.innerText = "Anda berada di dalam radius 100 meter yang diizinkan. Silakan ambil foto untuk mencatat presensi.";
 
-            if (dist > 50 || gpsState.accuracy === 0) {
-                auditState.isSuspicious = true;
-                auditState.distanceKm = dist;
-                auditState.reason = dist > 50 
-                    ? `Selisih jarak fisik GPS vs Internet > 50 km (${dist} km). Terindikasi Fake GPS / VPN.`
-                    : `Akurasi GPS 0 meter (Karakteristik Mock Location).`;
-
-                box.className = "p-3 rounded-2xl border text-xs flex items-start gap-2.5 bg-rose-500/10 border-rose-500/30 text-rose-300";
-                icon.className = "fa-solid fa-triangle-exclamation text-base mt-0.5 text-rose-400";
-                title.innerText = "Peringatan Anomali Terdeteksi";
-                text.innerText = auditState.reason;
-                box.classList.remove('hidden');
+                btnSubmit.disabled = false;
+                btnSubmit.className = "w-full py-3.5 px-4 rounded-2xl font-bold text-sm bg-blue-600 hover:bg-blue-500 active:scale-[0.99] text-white shadow-lg shadow-blue-600/30 transition-all flex items-center justify-center gap-2 cursor-pointer";
+                btnSubmitText.innerHTML = '<i class="fa-solid fa-camera"></i> Ambil Foto & Catat Presensi';
             } else {
-                auditState.isSuspicious = false;
-                auditState.distanceKm = dist;
-                auditState.reason = '';
+                // Di luar radius 100 meter -> DITOLAK
+                isWithinRadius = false;
+                radiusBadge.className = "text-rose-400 font-mono font-bold";
+                radiusBadge.innerText = "Di Luar Radius";
 
-                box.className = "p-3 rounded-2xl border text-xs flex items-start gap-2.5 bg-emerald-500/10 border-emerald-500/30 text-emerald-300";
-                icon.className = "fa-solid fa-shield-check text-base mt-0.5 text-emerald-400";
-                title.innerText = "Verifikasi Keamanan Normal";
-                text.innerText = `Jarak fisik GPS dan IP selaras (${dist} km). Akurasi memadai.`;
-                box.classList.remove('hidden');
+                alertBox.className = "p-3.5 rounded-2xl border text-xs flex items-start gap-2.5 bg-rose-500/10 border-rose-500/30 text-rose-300";
+                alertIcon.className = "fa-solid fa-circle-xmark text-base mt-0.5 text-rose-400";
+                alertTitle.innerText = `Presensi Ditolak (Jarak: ${distanceMeters} meter)`;
+                alertText.innerText = `Anda berada ${distanceMeters} meter dari Gudang Mas Wakit. Batas maksimal absensi adalah 100 meter dari lokasi resmi.`;
+
+                btnSubmit.disabled = true;
+                btnSubmit.className = "w-full py-3.5 px-4 rounded-2xl font-bold text-sm bg-rose-950/40 text-rose-400/80 border border-rose-800/40 cursor-not-allowed transition-all flex items-center justify-center gap-2";
+                btnSubmitText.innerHTML = `<i class="fa-solid fa-ban"></i> Di Luar Radius 100m (${distanceMeters}m)`;
             }
         }
 
-        // 6. Eksekusi Ambil Foto & Absensi
+        // 4. Eksekusi Presensi (Wajib verifikasi ulang lokasi real sebelum simpan)
         async function executeAttendance() {
             btnSubmit.disabled = true;
-            btnSubmitText.innerHTML = '<i class="fa-solid fa-spinner animate-spin"></i> Mengambil data akurasi...';
+            btnSubmitText.innerHTML = '<i class="fa-solid fa-spinner animate-spin"></i> Memvalidasi ulang radius GPS...';
 
             try {
-                // Ambil posisi GPS terbaru saat klik
-                const pos = await getHighAccuracyLocation();
+                // Verifikasi ulang posisi GPS fisik handphone saat tombol ditekan
+                const pos = await getRealPhoneLocation();
                 const coords = pos.coords;
-                gpsState = {
+
+                const verifiedDist = calculateDistanceInMeters(
+                    coords.latitude,
+                    coords.longitude,
+                    TARGET_LOCATION.latitude,
+                    TARGET_LOCATION.longitude
+                );
+
+                phoneGpsState = {
                     latitude: coords.latitude,
                     longitude: coords.longitude,
                     accuracy: Math.round(coords.accuracy)
                 };
 
-                // Capture snapshot dari video ke canvas
+                // VALIDASI MUTLAK: Jika di luar 100m, tolak absensi!
+                if (verifiedDist > TARGET_LOCATION.maxRadiusMeters) {
+                    evaluateRadius(verifiedDist);
+                    throw new Error(`Anda berada di luar radius lokasi resmi (${verifiedDist} meter dari Gudang Mas Wakit). Presensi hanya dapat dilakukan dalam jarak maksimal 100 meter.`);
+                }
+
+                // Ambil snapshot langsung dari video stream kamera ke canvas
                 canvas.width = video.videoWidth || 640;
                 canvas.height = video.videoHeight || 480;
                 const ctx = canvas.getContext('2d');
                 ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-                // Beri watermark cap waktu & koordinat
+                // Watermark stempel waktu ISO & koordinat real handphone di atas gambar
                 ctx.fillStyle = "rgba(0, 0, 0, 0.75)";
-                ctx.fillRect(0, canvas.height - 45, canvas.width, 45);
+                ctx.fillRect(0, canvas.height - 50, canvas.width, 50);
                 ctx.fillStyle = "#ffffff";
                 ctx.font = "bold 13px monospace";
-                const timeStr = new Date().toLocaleString('id-ID');
-                ctx.fillText(`🕒 ${timeStr}`, 15, canvas.height - 25);
+                const now = new Date();
+                const timeStr = now.toLocaleDateString('id-ID', { dateStyle: 'full' }) + ' ' + now.toLocaleTimeString('id-ID');
+                ctx.fillText(`🕒 ${timeStr}`, 15, canvas.height - 28);
                 ctx.font = "11px monospace";
-                ctx.fillStyle = "#94a3b8";
-                ctx.fillText(`📍 LAT: ${coords.latitude.toFixed(5)} | LON: ${coords.longitude.toFixed(5)} (±${gpsState.accuracy}m)`, 15, canvas.height - 10);
+                ctx.fillStyle = "#38bdf8";
+                ctx.fillText(`📍 REAL GPS: ${coords.latitude.toFixed(6)}, ${coords.longitude.toFixed(6)} | Radius: ${verifiedDist}m (Gudang Mas Wakit)`, 15, canvas.height - 12);
 
-                const photoDataUrl = canvas.toDataURL('image/jpeg', 0.85);
+                const photoDataUrl = canvas.toDataURL('image/jpeg', 0.88);
 
-                // Simpan record ke localStorage sebagai offline buffer & demo storage
+                // Record data presensi MENGGUNAKAN KOORDINAT REAL HANDPHONE
                 const attendanceRecord = {
                     id: 'att_' + Date.now(),
-                    captured_at: new Date().toISOString(),
-                    latitude: coords.latitude,
-                    longitude: coords.longitude,
-                    gps_accuracy_meters: gpsState.accuracy,
-                    ip_address: ipState?.ip || '180.252.164.21',
-                    ip_city: ipState?.city || 'Indonesia',
-                    distance_ip_gps_km: auditState.distanceKm || 3.4,
-                    is_suspicious: auditState.isSuspicious,
-                    suspicious_reason: auditState.reason || null,
+                    captured_at: now.toISOString(),
+                    latitude: coords.latitude,       // Lokasi REAL handphone
+                    longitude: coords.longitude,     // Lokasi REAL handphone
+                    gps_accuracy_meters: phoneGpsState.accuracy,
+                    distance_to_target_meters: verifiedDist,
+                    target_location_name: TARGET_LOCATION.name,
+                    is_suspicious: false,
                     photo_url: photoDataUrl
                 };
 
-                // Cek Supabase jika diinisialisasi
-                let isSavedRemote = false;
+                // Simpan ke Supabase jika konfigurasi tersedia
                 if (window.__SUPABASE_CONFIG__ && window.__SUPABASE_CONFIG__.url && window.__SUPABASE_CONFIG__.anonKey) {
                     try {
                         const sb = supabase.createClient(window.__SUPABASE_CONFIG__.url, window.__SUPABASE_CONFIG__.anonKey);
                         await sb.from('attendance').insert([{
-                            latitude: coords.latitude,
-                            longitude: coords.longitude,
-                            gps_accuracy_meters: gpsState.accuracy,
+                            latitude: attendanceRecord.latitude,
+                            longitude: attendanceRecord.longitude,
+                            gps_accuracy_meters: attendanceRecord.gps_accuracy_meters,
                             photo_url: photoDataUrl,
-                            ip_address: attendanceRecord.ip_address,
-                            ip_city: attendanceRecord.ip_city,
-                            distance_ip_gps_km: attendanceRecord.distance_ip_gps_km,
-                            is_suspicious: attendanceRecord.is_suspicious,
-                            suspicious_reason: attendanceRecord.suspicious_reason,
+                            distance_ip_gps_km: verifiedDist / 1000,
+                            is_suspicious: false,
+                            suspicious_reason: `Presensi Sukses Terverifikasi (Radius ${verifiedDist}m dari ${TARGET_LOCATION.name})`,
                             captured_at: attendanceRecord.captured_at
                         }]);
-                        isSavedRemote = true;
                     } catch (e) {
-                        console.warn("Supabase direct insert fallback ke local storage:", e);
+                        console.warn("Supabase insert:", e);
                     }
                 }
 
-                // Simpan ke local buffer
+                // Simpan ke local storage
                 const existing = JSON.parse(localStorage.getItem('attendance_records') || '[]');
                 existing.unshift(attendanceRecord);
                 localStorage.setItem('attendance_records', JSON.stringify(existing.slice(0, 50)));
 
-                alert(auditState.isSuspicious 
-                    ? `⚠️ Absensi tercatat dengan STATUS MENCURIGAKAN!\nAlasan: ${auditState.reason}` 
-                    : `✅ Presensi berhasil diverifikasi & dicatat!`
-                );
+                // TAMPILKAN POPUP TANDA SUKSES ABSEN (TIDAK REDIRECT KE ADMIN)
+                showSuccessModal(attendanceRecord, verifiedDist, timeStr);
 
-                window.location.href = '/admin-viewer';
             } catch (err) {
-                alert("Gagal presensi: " + err.message);
-            } finally {
-                btnSubmit.disabled = false;
-                btnSubmitText.innerHTML = '<i class="fa-solid fa-camera"></i> Ambil Foto & Catat Presensi';
+                alert("❌ " + err.message);
+                btnSubmit.disabled = !isWithinRadius;
+                btnSubmitText.innerHTML = isWithinRadius
+                    ? '<i class="fa-solid fa-camera"></i> Ambil Foto & Catat Presensi'
+                    : '<i class="fa-solid fa-ban"></i> Di Luar Radius 100m';
             }
         }
 
-        // Start sensors on load
+        // Tampilkan Modal Tanda Sukses Absen
+        function showSuccessModal(record, distanceMeters, timeString) {
+            document.getElementById('success-modal-photo').src = record.photo_url;
+            document.getElementById('success-modal-time').innerText = `🕒 ${new Date(record.captured_at).toLocaleTimeString('id-ID')}`;
+            document.getElementById('success-modal-distance').innerText = `${distanceMeters} meter dari Gudang Mas Wakit`;
+            document.getElementById('success-modal-coords').innerText = `${record.latitude.toFixed(6)}, ${record.longitude.toFixed(6)}`;
+            document.getElementById('success-modal-accuracy').innerText = `±${record.gps_accuracy_meters} meter`;
+
+            const modal = document.getElementById('success-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeSuccessModal() {
+            const modal = document.getElementById('success-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+
+            btnSubmit.disabled = false;
+            btnSubmitText.innerHTML = '<i class="fa-solid fa-camera"></i> Ambil Foto & Catat Presensi';
+        }
+
+        // Auto start on page load
         window.addEventListener('DOMContentLoaded', () => {
             initCamera();
-            initSensors();
+            startLocationTracking();
         });
     </script>
 </body>
