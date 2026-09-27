@@ -8,6 +8,7 @@
     { "source": "/aplikasi", "destination": "/aplikasi.html" },
     { "source": "/apps", "destination": "/aplikasi.html" },
     { "source": "/icebreaking/play", "destination": "/icebreaking/play/index.html" },
-    { "source": "/icebreaking", "destination": "/icebreaking/index.html" }
+    { "source": "/icebreaking", "destination": "/icebreaking/index.html" },
+    { "source": "/demo-travel-fantasia", "destination": "/demo-travel-fantasia/index.html" }
   ]
 }
