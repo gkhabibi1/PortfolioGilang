@@ -119,6 +119,9 @@
                 <button onclick="switchTab('icebreaking')" id="nav-tab-icebreaking" class="nav-app-tab px-3.5 py-1.5 rounded-xl transition-all text-gray-400 hover:text-white">
                     🦆 Icebreaking 3D
                 </button>
+                <button onclick="switchTab('attendance')" id="nav-tab-attendance" class="nav-app-tab px-3.5 py-1.5 rounded-xl transition-all text-gray-400 hover:text-white">
+                    🛡️ Absensi Anti-Fake GPS
+                </button>
             </div>
 
             <div class="flex items-center gap-3">
@@ -154,14 +157,14 @@
             </h1>
 
             <p id="txt-hero-desc" class="text-gray-300 max-w-3xl mx-auto text-base sm:text-lg font-light leading-relaxed mb-8" data-aos="fade-up" data-aos-delay="200">
-                Pilih dan gunakan platform web interaktif untuk kebutuhan presentasi kuliah, seminar, pengumpulan suara audiens secara realtime, hingga game icebreaking balapan 3D seru untuk mencairkan suasana.
+                Pilih dan gunakan platform web interaktif untuk kebutuhan presentasi kuliah, seminar, polling audiens realtime, game icebreaking 3D, hingga sistem absensi presensi berkeamanan tinggi dengan teknologi Anti-Fake GPS.
             </p>
 
             <!-- Feature Selector Buttons (Tabs) -->
-            <div class="flex flex-wrap items-center justify-center gap-3 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="300">
+            <div class="flex flex-wrap items-center justify-center gap-3 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="300">
                 <button onclick="switchTab('all')" id="tab-btn-all" class="app-tab-btn active-tab px-6 py-3 rounded-2xl border border-gray-700 bg-gray-900/90 text-sm font-extrabold flex items-center gap-2 transition-all">
                     <i class="fa-solid fa-shapes text-sm"></i>
-                    <span id="tab-label-all">Semua Aplikasi (2)</span>
+                    <span id="tab-label-all">Semua Aplikasi (3)</span>
                 </button>
 
                 <button onclick="switchTab('polling')" id="tab-btn-polling" class="app-tab-btn px-6 py-3 rounded-2xl border border-gray-700/80 bg-gray-900/80 hover:border-cyan-400 text-gray-300 text-sm font-extrabold flex items-center gap-2 transition-all">
@@ -173,6 +176,12 @@
                     <span class="text-base">🦆</span>
                     <span id="tab-label-icebreaking">Duck Rush 3D Icebreaking</span>
                     <span class="text-[9px] bg-yellow-400/20 text-yellow-300 px-2 py-0.5 rounded-full border border-yellow-400/40">Three.js</span>
+                </button>
+
+                <button onclick="switchTab('attendance')" id="tab-btn-attendance" class="app-tab-btn px-6 py-3 rounded-2xl border border-gray-700/80 bg-gray-900/80 hover:border-blue-400 text-gray-300 text-sm font-extrabold flex items-center gap-2 transition-all">
+                    <i class="fa-solid fa-shield-halved text-blue-400 text-sm"></i>
+                    <span id="tab-label-attendance">Absensi Anti-Fake GPS</span>
+                    <span class="text-[9px] bg-blue-500/20 text-blue-300 px-2 py-0.5 rounded-full border border-blue-500/40">Anti-Spoof</span>
                 </button>
             </div>
         </div>
@@ -544,6 +553,154 @@
             </div>
         </section>
 
+        <!-- ========================================== -->
+        <!-- FITUR 3: SISTEM ABSENSI ANTI-FAKE GPS      -->
+        <!-- ========================================== -->
+        <section id="section-attendance" class="app-section relative">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10 pb-6 border-b border-gray-800">
+                <div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-bold uppercase tracking-wider mb-2">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>ANTI-SPOOF & VERIFIKASI MULTI-FAKTOR</span>
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-white tracking-tight">
+                        SISTEM <span class="text-blue-400">ABSENSI ONLINE</span> ANTI-FAKE GPS
+                    </h2>
+                    <p class="text-gray-400 mt-2 text-sm sm:text-base font-light max-w-2xl">
+                        Aplikasi presensi online cerdas yang dirancang untuk mencegah kecurangan Fake GPS dan manipulasi gambar melalui 3 lapis pengamanan: Live Camera Feed hardware, High Accuracy GPS, dan Cross-Check jarak IP Geolocation menggunakan Rumus Haversine.
+                    </p>
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <span class="text-xs bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full font-bold border border-blue-500/30 flex items-center gap-1.5">
+                        <span class="w-2 h-2 rounded-full bg-blue-400 animate-ping"></span>
+                        <span>3 Lapis Proteksi Aktif</span>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Attendance Grid Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-8">
+                
+                <!-- Card 1: Live Capture Presensi (Karyawan) -->
+                <div class="glass-card rounded-3xl p-7 flex flex-col justify-between border border-gray-800 hover:border-blue-400/50 shadow-xl group">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-blue-500/15 border border-blue-500/30 text-blue-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-camera"></i>
+                        </div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-bold text-blue-400 uppercase tracking-wider">Karyawan / Peserta</span>
+                            <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded-full font-semibold border border-emerald-500/30">Live Ready</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3">Presensi Live Kamera</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6 font-light">
+                            Wajib mengambil foto langsung via hardware webcam (tanpa upload file), auto-stempel watermark waktu ISO & koordinat GPS di canvas, serta kunci sinyal GPS akurasi tinggi.
+                        </p>
+                    </div>
+
+                    <div class="space-y-2.5">
+                        <a href="/attendance" target="_blank" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-[0_0_15px_rgba(37,99,235,0.3)]">
+                            <span>Buka Halaman Presensi</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                        </a>
+                        <button onclick="copyToClipboard('https://www.portfoliogilang.my.id/attendance', 'URL Halaman Presensi')" class="w-full bg-gray-800/80 hover:bg-gray-700 text-gray-300 text-xs font-semibold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 border border-gray-700/60 transition-all">
+                            <i class="fa-regular fa-copy text-xs"></i>
+                            <span>Salin URL Presensi</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 2: Admin Viewer Dashboard (HRD) -->
+                <div class="glass-card rounded-3xl p-7 flex flex-col justify-between border border-blue-500/40 hover:border-blue-400 shadow-2xl relative group">
+                    <div class="absolute -top-3 right-6 bg-gradient-to-r from-blue-600 to-indigo-500 text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+                        Pusat Audit HRD
+                    </div>
+
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-indigo-500/15 border border-indigo-500/40 text-blue-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-bold text-indigo-400 uppercase tracking-wider">Admin & Pengelola</span>
+                            <span class="text-[10px] bg-blue-500/20 text-blue-300 px-2 py-0.5 rounded-full font-semibold border border-blue-500/30">Realtime Sync</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3">Admin Viewer Dashboard</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6 font-light">
+                            Pantau log presensi secara realtime, audit delta jarak IP vs GPS (peringatan jika &gt; 50 km), lihat preview bukti foto, link langsung ke Google Maps, dan ekspor laporan CSV.
+                        </p>
+                    </div>
+
+                    <div class="space-y-2.5">
+                        <a href="/admin-viewer" target="_blank" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-all shadow-[0_0_15px_rgba(99,102,241,0.3)]">
+                            <span>Buka Admin Viewer</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                        </a>
+                        <button onclick="copyToClipboard('https://www.portfoliogilang.my.id/admin-viewer', 'URL Dashboard Admin Viewer')" class="w-full bg-gray-800/80 hover:bg-gray-700 text-gray-300 text-xs font-semibold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 border border-gray-700/60 transition-all">
+                            <i class="fa-regular fa-copy text-xs"></i>
+                            <span>Salin URL Admin Viewer</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 3: Arsitektur Proteksi & Database RLS -->
+                <div class="glass-card rounded-3xl p-7 flex flex-col justify-between border border-gray-800 hover:border-emerald-500/50 shadow-xl group">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fa-solid fa-lock"></i>
+                        </div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Keamanan & Backend</span>
+                            <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded-full font-semibold border border-emerald-500/30">Next.js + Supabase</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3">Proteksi RLS & Middleware</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6 font-light">
+                            Dilengkapi Next.js Middleware untuk memblokir akses rute tanpa sesi autentikasi, Supabase Row Level Security (RLS) untuk isolasi data, dan algoritma geodesic Haversine.
+                        </p>
+                    </div>
+
+                    <div class="space-y-2.5">
+                        <a href="https://github.com/gkhabibi1/PortfolioGilang/tree/main/_reference_nextjs/app/attendance" target="_blank" class="w-full bg-slate-800 hover:bg-slate-700 text-white font-bold text-sm py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-all border border-slate-700">
+                            <i class="fa-brands fa-github text-sm"></i>
+                            <span>Lihat Source Code (Next.js)</span>
+                        </a>
+                        <button onclick="copyToClipboard('https://github.com/gkhabibi1/PortfolioGilang/tree/main/_reference_nextjs/app/attendance', 'Repository GitHub')" class="w-full bg-gray-800/80 hover:bg-gray-700 text-gray-300 text-xs font-semibold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 border border-gray-700/60 transition-all">
+                            <i class="fa-solid fa-code text-xs"></i>
+                            <span>Salin Link Source Code</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Detail 3 Lapis Keamanan Banner -->
+            <div class="bg-gradient-to-r from-blue-950/40 via-slate-900 to-indigo-950/40 border border-blue-500/20 rounded-3xl p-6 sm:p-8">
+                <h4 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                    <i class="fa-solid fa-shield-virus text-blue-400"></i>
+                    <span>Ringkasan 3 Mekanisme Anti-Manipulasi:</span>
+                </h4>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5 text-xs text-gray-300 leading-relaxed font-light">
+                    <div class="p-4 rounded-2xl bg-slate-950/60 border border-slate-800 space-y-1.5">
+                        <div class="font-bold text-blue-400 text-sm flex items-center gap-2">
+                            <span>1.</span> Live Capture (Webcam)
+                        </div>
+                        <p>Mengakses hardware video stream secara eksklusif menggunakan <code class="text-blue-300 font-mono">getUserMedia</code>. Mengeliminasi celah upload foto pre-recorded atau foto galeri yang metadata EXIF lokasinya dimanipulasi.</p>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-slate-950/60 border border-slate-800 space-y-1.5">
+                        <div class="font-bold text-blue-400 text-sm flex items-center gap-2">
+                            <span>2.</span> High Accuracy GPS
+                        </div>
+                        <p>Memaksa penggunaan chip GPS fisik perangkat melalui <code class="text-blue-300 font-mono">enableHighAccuracy: true</code> dan <code class="text-blue-300 font-mono">maximumAge: 0</code> guna menolak cache koordinat lama dan mendeteksi anomali akurasi 0m.</p>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-slate-950/60 border border-slate-800 space-y-1.5">
+                        <div class="font-bold text-blue-400 text-sm flex items-center gap-2">
+                            <span>3.</span> Cross-Check Jarak IP vs GPS
+                        </div>
+                        <p>Mencocokkan koordinat satelit GPS dengan lokasi ISP jaringan via IP Geolocation. Selisih jarak dihitung dengan <strong>Rumus Haversine</strong>; jika selisih &gt; 50 km, sistem otomatis menandai <code class="text-rose-400 font-mono">is_suspicious: true</code>.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <!-- FOOTER -->
@@ -582,44 +739,56 @@
         function switchTab(tab) {
             const pollingSec = document.getElementById('section-polling');
             const icebreakingSec = document.getElementById('section-icebreaking');
+            const attendanceSec = document.getElementById('section-attendance');
             
             // Buttons
             const btnAll = document.getElementById('tab-btn-all');
             const btnPoll = document.getElementById('tab-btn-polling');
             const btnIce = document.getElementById('tab-btn-icebreaking');
+            const btnAtt = document.getElementById('tab-btn-attendance');
 
             const navAll = document.getElementById('nav-tab-all');
             const navPoll = document.getElementById('nav-tab-polling');
             const navIce = document.getElementById('nav-tab-icebreaking');
+            const navAtt = document.getElementById('nav-tab-attendance');
 
-            [btnAll, btnPoll, btnIce].forEach(b => {
+            [btnAll, btnPoll, btnIce, btnAtt].forEach(b => {
                 if (b) {
                     b.classList.remove('active-tab');
                     b.classList.add('text-gray-300');
                 }
             });
 
-            [navAll, navPoll, navIce].forEach(n => {
+            [navAll, navPoll, navIce, navAtt].forEach(n => {
                 if (n) {
                     n.className = 'nav-app-tab px-3.5 py-1.5 rounded-xl transition-all text-gray-400 hover:text-white';
                 }
             });
 
             if (tab === 'all') {
-                pollingSec.style.display = 'block';
-                icebreakingSec.style.display = 'block';
+                if (pollingSec) pollingSec.style.display = 'block';
+                if (icebreakingSec) icebreakingSec.style.display = 'block';
+                if (attendanceSec) attendanceSec.style.display = 'block';
                 btnAll?.classList.add('active-tab');
                 if (navAll) navAll.className = 'nav-app-tab px-3.5 py-1.5 rounded-xl transition-all text-agency-dark bg-agency-neon font-bold';
             } else if (tab === 'polling') {
-                pollingSec.style.display = 'block';
-                icebreakingSec.style.display = 'none';
+                if (pollingSec) pollingSec.style.display = 'block';
+                if (icebreakingSec) icebreakingSec.style.display = 'none';
+                if (attendanceSec) attendanceSec.style.display = 'none';
                 btnPoll?.classList.add('active-tab');
                 if (navPoll) navPoll.className = 'nav-app-tab px-3.5 py-1.5 rounded-xl transition-all text-cyan-400 bg-cyan-950 font-bold border border-cyan-500/40';
             } else if (tab === 'icebreaking') {
-                pollingSec.style.display = 'none';
-                icebreakingSec.style.display = 'block';
+                if (pollingSec) pollingSec.style.display = 'none';
+                if (icebreakingSec) icebreakingSec.style.display = 'block';
+                if (attendanceSec) attendanceSec.style.display = 'none';
                 btnIce?.classList.add('active-tab');
                 if (navIce) navIce.className = 'nav-app-tab px-3.5 py-1.5 rounded-xl transition-all text-yellow-400 bg-yellow-950 font-bold border border-yellow-500/40';
+            } else if (tab === 'attendance') {
+                if (pollingSec) pollingSec.style.display = 'none';
+                if (icebreakingSec) icebreakingSec.style.display = 'none';
+                if (attendanceSec) attendanceSec.style.display = 'block';
+                btnAtt?.classList.add('active-tab');
+                if (navAtt) navAtt.className = 'nav-app-tab px-3.5 py-1.5 rounded-xl transition-all text-blue-400 bg-blue-950 font-bold border border-blue-500/40';
             }
         }
 
@@ -653,18 +822,20 @@
                 btnId.className = 'px-2.5 py-1 rounded-full transition-all text-agency-dark bg-agency-neon shadow-sm';
                 btnEn.className = 'px-2.5 py-1 rounded-full transition-all text-gray-400 hover:text-white';
                 document.getElementById('txt-hero-badge').innerText = 'PUSAT APLIKASI & INTERAKTIF REALTIME';
-                document.getElementById('txt-hero-desc').innerText = 'Pilih dan gunakan platform web interaktif untuk kebutuhan presentasi kuliah, seminar, pengumpulan suara audiens secara realtime, hingga game icebreaking balapan 3D seru untuk mencairkan suasana.';
-                document.getElementById('tab-label-all').innerText = 'Semua Aplikasi (2)';
+                document.getElementById('txt-hero-desc').innerText = 'Pilih dan gunakan platform web interaktif untuk kebutuhan presentasi kuliah, seminar, polling audiens realtime, game icebreaking 3D, hingga sistem absensi presensi berkeamanan tinggi dengan teknologi Anti-Fake GPS.';
+                document.getElementById('tab-label-all').innerText = 'Semua Aplikasi (3)';
                 document.getElementById('tab-label-polling').innerText = 'Live Polling Interaktif';
                 document.getElementById('tab-label-icebreaking').innerText = 'Duck Rush 3D Icebreaking';
+                document.getElementById('tab-label-attendance').innerText = 'Absensi Anti-Fake GPS';
             } else {
                 btnEn.className = 'px-2.5 py-1 rounded-full transition-all text-agency-dark bg-agency-neon shadow-sm';
                 btnId.className = 'px-2.5 py-1 rounded-full transition-all text-gray-400 hover:text-white';
                 document.getElementById('txt-hero-badge').innerText = 'REALTIME INTERACTIVE APPS HUB';
-                document.getElementById('txt-hero-desc').innerText = 'Select and launch interactive web apps for college presentations, seminars, live audience polling, and exciting 3D icebreaking race games to engage your audience.';
-                document.getElementById('tab-label-all').innerText = 'All Applications (2)';
+                document.getElementById('txt-hero-desc').innerText = 'Select and launch interactive web apps for college presentations, seminars, live audience polling, exciting 3D icebreaking race games, and high-security attendance system with Anti-Fake GPS.';
+                document.getElementById('tab-label-all').innerText = 'All Applications (3)';
                 document.getElementById('tab-label-polling').innerText = 'Interactive Live Polling';
                 document.getElementById('tab-label-icebreaking').innerText = 'Duck Rush 3D Icebreaking';
+                document.getElementById('tab-label-attendance').innerText = 'Anti-Fake GPS Attendance';
             }
         }
     </script>
