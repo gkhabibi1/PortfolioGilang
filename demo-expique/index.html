@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ExpiQue — Bangkok Tours & Experiences</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#202020;
+      --surface:#ffffff;
+      --soft:#f4f4f2;
+      --text:#171717;
+      --muted:#6f6f6f;
+      --line:#e8e8e5;
+      --green:#16b890;
+      --green-dark:#0d8f72;
+      --navy:#3b425f;
+      --radius:28px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:Inter,Arial,sans-serif;
+      line-height:1.45;
+    }
+
+    a{color:inherit;text-decoration:none}
+    img{display:block;width:100%;object-fit:cover}
+
+    .site{
+      width:min(1180px,calc(100% - 40px));
+      margin:36px auto;
+      background:var(--surface);
+      border-radius:32px 32px 0 0;
+      overflow:hidden;
+      min-height:100vh;
+    }
+
+    .container{
+      width:min(1010px,calc(100% - 72px));
+      margin:auto;
+    }
+
+    /* Header */
+    header{
+      padding:16px 0 12px;
+      background:#fff;
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:30px;
+    }
+
+    .logo{
+      font-size:20px;
+      font-weight:600;
+      letter-spacing:-1.2px;
+      white-space:nowrap;
+    }
+
+    .logo span{color:var(--green)}
+
+    .nav-links{
+      display:flex;
+      gap:25px;
+      align-items:center;
+      font-size:8px;
+      font-weight:500;
+      color:#3e3e3e;
+      text-transform:none;
+    }
+
+    .nav-links a:hover{color:var(--green-dark)}
+
+    /* Hero */
+    .hero{
+      position:relative;
+      height:400px;
+      border-radius:22px;
+      overflow:hidden;
+      margin-top:8px;
+      background:
+        linear-gradient(90deg,rgba(0,0,0,.78) 0%,rgba(0,0,0,.52) 38%,rgba(0,0,0,.08) 80%),
+        url("https://images.unsplash.com/photo-1528181304800-259b08848526?auto=format&fit=crop&w=1800&q=85")
+        center/cover;
+    }
+
+    .hero-content{
+      position:absolute;
+      left:34px;
+      bottom:42px;
+      max-width:510px;
+      color:#fff;
+    }
+
+    .eyebrow{
+      font-size:10px;
+      letter-spacing:.13em;
+      text-transform:uppercase;
+      font-weight:700;
+      margin-bottom:12px;
+      opacity:.9;
+    }
+
+    h1{
+      font-size:43px;
+      line-height:1.02;
+      letter-spacing:-2.2px;
+      margin:0 0 15px;
+      max-width:520px;
+    }
+
+    .hero p{
+      font-size:12px;
+      line-height:1.55;
+      max-width:440px;
+      color:#ededed;
+      margin:0 0 22px;
+    }
+
+    .hero p strong{color:#63d7b9}
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:40px;
+      padding:0 22px;
+      border-radius:999px;
+      font-size:10px;
+      font-weight:700;
+      background:#171717;
+      color:#fff;
+      transition:.2s ease;
+    }
+
+    .btn:hover{transform:translateY(-1px);background:#000}
+    .btn.light{background:#fff;color:#171717}
+    .btn.green{background:var(--green);color:#fff}
+
+    /* USP */
+    .usp{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:30px;
+      padding:42px 0 38px;
+      border-bottom:1px solid var(--line);
+    }
+
+    .usp-item small{
+      display:block;
+      font-size:8px;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      color:#929292;
+      margin-bottom:5px;
+    }
+
+    .usp-item strong{
+      display:block;
+      font-size:16px;
+      letter-spacing:-.5px;
+    }
+
+    .usp-item p{
+      margin:4px 0 0;
+      color:var(--muted);
+      font-size:9px;
+    }
+
+    /* Section */
+    section{padding:54px 0}
+
+    .section-head{
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:30px;
+      margin-bottom:25px;
+    }
+
+    .section-head h2{
+      font-size:24px;
+      line-height:1.08;
+      letter-spacing:-1px;
+      margin:0;
+    }
+
+    .section-head p{
+      font-size:9px;
+      color:var(--muted);
+      max-width:380px;
+      margin:5px 0 0;
+    }
+
+    .arrows{
+      display:flex;
+      gap:8px;
+    }
+
+    .arrow{
+      width:31px;height:31px;
+      border:1px solid #ddd;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      font-size:14px;
+      background:#fff;
+    }
+
+    .arrow.active{background:#171717;color:#fff;border-color:#171717}
+
+    /* Cards */
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+    }
+
+    .card{
+      border:1px solid #e8e8e8;
+      border-radius:17px;
+      overflow:hidden;
+      background:#fff;
+    }
+
+    .card-image{
+      height:185px;
+      position:relative;
+    }
+
+    .card-image img{height:100%}
+
+    .number{
+      position:absolute;
+      top:10px;left:10px;
+      font-size:9px;
+      font-weight:700;
+      color:#fff;
+      background:rgba(0,0,0,.55);
+      padding:5px 7px;
+      border-radius:7px;
+    }
+
+    .tag{
+      position:absolute;
+      left:10px;
+      bottom:10px;
+      background:rgba(255,255,255,.92);
+      border-radius:999px;
+      padding:5px 8px;
+      font-size:7px;
+      font-weight:700;
+      text-transform:uppercase;
+    }
+
+    .card-body{padding:13px 13px 15px}
+
+    .category{
+      color:#8b8b8b;
+      font-size:7px;
+      text-transform:uppercase;
+      letter-spacing:.06em;
+      font-weight:700;
+      margin-bottom:5px;
+    }
+
+    .card h3{
+      font-size:14px;
+      line-height:1.15;
+      letter-spacing:-.45px;
+      margin:0 0 8px;
+    }
+
+    .price{
+      font-size:11px;
+      font-weight:800;
+      margin-bottom:8px;
+    }
+
+    .card p{
+      font-size:8px;
+      color:var(--muted);
+      margin:0;
+      line-height:1.5;
+    }
+
+    .meta{
+      display:flex;
+      gap:12px;
+      margin-top:13px;
+      color:#777;
+      font-size:7px;
+    }
+
+    /* Category strip */
+    .category-strip{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:8px;
+      margin-top:2px;
+    }
+
+    .category-tile{
+      height:170px;
+      border-radius:15px;
+      overflow:hidden;
+      position:relative;
+      background:#222;
+    }
+
+    .category-tile:after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(transparent 30%,rgba(0,0,0,.75));
+    }
+
+    .category-tile img{height:100%}
+    .category-tile span{
+      position:absolute;
+      z-index:2;
+      bottom:15px;
+      left:15px;
+      color:#fff;
+      font-size:14px;
+      font-weight:700;
+    }
+
+    /* About */
+    .about{
+      background:#f5f5f3;
+      border-radius:22px;
+      padding:40px;
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:55px;
+      align-items:center;
+    }
+
+    .about h2{
+      margin:0 0 12px;
+      font-size:28px;
+      line-height:1.05;
+      letter-spacing:-1.2px;
+    }
+
+    .about p{
+      font-size:9px;
+      color:#666;
+      line-height:1.7;
+      margin:0 0 12px;
+    }
+
+    .stats{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:25px 30px;
+    }
+
+    .stat strong{
+      display:block;
+      font-size:28px;
+      letter-spacing:-1px;
+    }
+
+    .stat span{
+      display:block;
+      font-size:8px;
+      color:#777;
+      line-height:1.4;
+    }
+
+    /* Portfolio */
+    .portfolio{
+      display:grid;
+      grid-template-columns:.72fr 1fr 1fr;
+      gap:10px;
+      align-items:start;
+    }
+
+    .portfolio-intro{
+      padding-right:12px;
+    }
+
+    .portfolio-intro h2{
+      margin:0 0 10px;
+      font-size:25px;
+      line-height:1.05;
+      letter-spacing:-1.2px;
+    }
+
+    .portfolio-intro p{
+      color:#777;
+      font-size:9px;
+      line-height:1.55;
+      margin:0 0 20px;
+    }
+
+    .portfolio-main{
+      height:360px;
+      border-radius:18px;
+      overflow:hidden;
+      position:relative;
+    }
+
+    .portfolio-main img{height:100%}
+
+    .portfolio-stack{
+      display:grid;
+      grid-template-rows:1fr 1fr;
+      gap:10px;
+      height:360px;
+    }
+
+    .portfolio-small{
+      border-radius:18px;
+      overflow:hidden;
+      position:relative;
+    }
+
+    .portfolio-small img{height:100%}
+
+    .overlay-label{
+      position:absolute;
+      left:12px;
+      bottom:11px;
+      color:#fff;
+      font-size:8px;
+      font-weight:700;
+      text-shadow:0 1px 5px #000;
+    }
+
+    .more-projects{
+      margin-top:10px;
+      width:100%;
+      height:35px;
+      border:1px solid #bbb;
+      border-radius:999px;
+      background:#fff;
+      font-size:8px;
+      font-weight:700;
+    }
+
+    /* Testimonial */
+    .testimonial-section{
+      background:var(--navy);
+      color:#fff;
+      border-radius:22px;
+      padding:48px 42px;
+    }
+
+    .testimonial-section .section-head p{color:#d9d9df}
+    .testimonial-section .section-head h2{color:#fff}
+
+    .testimonial{
+      display:grid;
+      grid-template-columns:1.3fr .7fr;
+      gap:40px;
+      align-items:center;
+    }
+
+    .quote{
+      font-size:25px;
+      line-height:1.05;
+      letter-spacing:-1px;
+      margin:0 0 8px;
+    }
+
+    .reviewer{
+      font-size:10px;
+      font-weight:700;
+      margin-bottom:17px;
+    }
+
+    .review-type{
+      font-size:8px;
+      color:#bfc3d1;
+      margin-bottom:10px;
+    }
+
+    .review-copy{
+      font-size:9px;
+      line-height:1.7;
+      color:#e3e4e9;
+      max-width:570px;
+      margin:0;
+    }
+
+    .award{
+      background:#13ae8e;
+      min-height:190px;
+      display:grid;
+      place-items:center;
+      text-align:center;
+      border-radius:4px;
+      padding:25px;
+    }
+
+    .award small{
+      font-size:8px;
+      font-weight:800;
+      letter-spacing:.08em;
+    }
+
+    .award strong{
+      display:block;
+      font-family:Georgia,serif;
+      font-size:23px;
+      margin:12px 0;
+    }
+
+    .award span{
+      font-size:8px;
+      line-height:1.4;
+    }
+
+    /* CTA */
+    .cta{
+      text-align:center;
+      padding:42px 0;
+    }
+
+    .cta h2{
+      margin:0 0 9px;
+      font-size:22px;
+      letter-spacing:-.8px;
+    }
+
+    .cta p{
+      color:#777;
+      font-size:9px;
+      margin:0 0 17px;
+    }
+
+    /* Team */
+    .team{
+      position:relative;
+      height:350px;
+      border-radius:22px;
+      overflow:hidden;
+      background:
+        linear-gradient(90deg,rgba(0,0,0,.05),rgba(0,0,0,.1)),
+        url("https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1800&q=85")
+        center/cover;
+    }
+
+    .team-card{
+      position:absolute;
+      right:28px;
+      bottom:25px;
+      background:#fff;
+      width:190px;
+      border-radius:50%;
+      aspect-ratio:1;
+      display:grid;
+      place-items:center;
+      text-align:center;
+      padding:30px;
+      box-shadow:0 10px 30px rgba(0,0,0,.16);
+    }
+
+    .team-card h3{
+      font-family:"Playfair Display",Georgia,serif;
+      font-style:italic;
+      font-size:21px;
+      margin:0;
+    }
+
+    .team-card p{
+      font-size:7px;
+      color:#777;
+      margin:6px 0;
+    }
+
+    .team-card a{
+      color:var(--green-dark);
+      font-size:8px;
+      font-weight:800;
+      text-decoration:underline;
+    }
+
+    /* Articles */
+    .articles{
+      background:var(--navy);
+      color:#fff;
+      border-radius:22px;
+      padding:45px 42px;
+    }
+
+    .articles .section-head p{color:#d7d8df}
+
+    .article-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:13px;
+    }
+
+    .article{
+      background:#fff;
+      color:#171717;
+      border-radius:14px;
+      overflow:hidden;
+    }
+
+    .article img{height:170px}
+
+    .article-body{padding:14px}
+    .article h3{
+      font-size:13px;
+      line-height:1.2;
+      margin:0 0 8px;
+      letter-spacing:-.4px;
+    }
+
+    .article p{
+      color:#777;
+      font-size:8px;
+      line-height:1.55;
+      margin:0;
+    }
+
+    /* Social */
+    .social{
+      text-align:center;
+      padding:32px 0;
+    }
+
+    .tripadvisor{
+      display:inline-flex;
+      align-items:center;
+      gap:12px;
+      border:1px solid #ddd;
+      padding:10px 22px;
+      border-radius:3px;
+      font-size:8px;
+      margin-bottom:20px;
+    }
+
+    .tripadvisor strong{color:#00a680}
+
+    .social-icons{
+      display:flex;
+      justify-content:center;
+      gap:16px;
+      color:#444;
+      font-size:12px;
+    }
+
+    /* Footer */
+    footer{
+      border-top:1px solid #ddd;
+      background:#f1f1ef;
+      padding:44px 0 32px;
+    }
+
+    .footer-grid{
+      display:grid;
+      grid-template-columns:1fr 1.25fr 1fr 1fr;
+      gap:35px;
+    }
+
+    .footer-col h3{
+      font-size:14px;
+      margin:0 0 14px;
+      letter-spacing:-.4px;
+    }
+
+    .footer-col p,
+    .footer-col a{
+      display:block;
+      font-size:8px;
+      color:#666;
+      margin:0 0 8px;
+      line-height:1.5;
+    }
+
+    .footer-col a:hover{color:var(--green-dark)}
+
+    .copyright{
+      border-top:1px solid #ddd;
+      margin-top:30px;
+      padding-top:17px;
+      color:#999;
+      font-size:7px;
+      text-align:center;
+    }
+
+    /* Cookie */
+    .cookie{
+      position:fixed;
+      z-index:20;
+      left:50%;
+      bottom:0;
+      transform:translateX(-50%);
+      width:min(1180px,calc(100% - 40px));
+      background:#fff;
+      border-top:1px solid #ddd;
+      box-shadow:0 -8px 25px rgba(0,0,0,.08);
+      padding:15px 24px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:16px;
+      font-size:8px;
+    }
+
+    .cookie a{color:#79a879}
+    .cookie button{
+      border:0;
+      background:#111;
+      color:#fff;
+      padding:9px 13px;
+      font-size:8px;
+      font-weight:700;
+    }
+
+    @media(max-width:850px){
+      .site{width:calc(100% - 20px);margin:10px auto;border-radius:22px 22px 0 0}
+      .container{width:calc(100% - 34px)}
+      .nav-links{display:none}
+      .hero{height:420px}
+      h1{font-size:36px}
+      .usp,.cards,.category-strip,.article-grid{grid-template-columns:1fr 1fr}
+      .about,.testimonial{grid-template-columns:1fr}
+      .portfolio{grid-template-columns:1fr 1fr}
+      .portfolio-intro{grid-column:1/-1}
+      .footer-grid{grid-template-columns:1fr 1fr}
+    }
+
+    @media(max-width:560px){
+      .container{width:calc(100% - 26px)}
+      .usp,.cards,.category-strip,.portfolio,.article-grid,.footer-grid{grid-template-columns:1fr}
+      .hero{height:480px}
+      h1{font-size:34px}
+      .hero-content{left:23px;right:23px;bottom:28px}
+      .about{padding:27px}
+      .testimonial-section,.articles{padding:30px 22px}
+      .portfolio-main,.portfolio-stack{height:auto}
+      .portfolio-main{height:300px}
+      .portfolio-stack{height:400px}
+      .cookie{width:100%;padding:12px;flex-wrap:wrap}
+    }
+  </style>
+</head>
+
+<body>
+  <main class="site">
+
+    <!-- HEADER -->
+    <header>
+      <div class="container nav">
+        <a class="logo" href="#">ex<span>p</span>ique</a>
+
+        <nav class="nav-links">
+          <a href="#popular">Bangkok Experiences</a>
+          <a href="#favorites">Bangkok Outskirts</a>
+          <a href="#articles">Thailand Guide</a>
+          <a href="#about">About Us</a>
+          <a href="#contact">Contact Us</a>
+          <a href="#articles">Articles</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="container">
+
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero-content">
+          <div class="eyebrow">Award-Winning Bangkok Experiences</div>
+          <h1>Explore Bangkok On Our Award-Winning Tours</h1>
+          <p>
+            Including our legendary <strong>Tuk Tuk Tours</strong> and <strong>Food Tours</strong>.
+            We also have some exciting new tours including <strong>Dark Bangkok</strong> and
+            <strong>An Ayutthaya Adventure</strong>. Yippee!!!
+          </p>
+          <a class="btn light" href="#popular">Explore Our Tours</a>
+        </div>
+      </section>
+
+      <!-- USP -->
+      <section class="usp">
+        <div class="usp-item">
+          <small>Our Expertise</small>
+          <strong>Experiences Designed By Us</strong>
+          <p>– The Local Experts</p>
+        </div>
+
+        <div class="usp-item">
+          <small>Our Experiences</small>
+          <strong>All Bangkok Tours & Experiences</strong>
+          <p>Are Operated By Us</p>
+        </div>
+
+        <div class="usp-item">
+          <small>Your Experience</small>
+          <strong>Book With Us For</strong>
+          <p>The Best Bangkok Experience</p>
+        </div>
+      </section>
+
+      <!-- POPULAR TOURS -->
+      <section id="popular">
+        <div class="section-head">
+          <div>
+            <h2>Our Most Popular Bangkok Tours & Experiences</h2>
+            <p>Take a look at our best selling Tuk Tuk Tours & Food Tours</p>
+          </div>
+          <div class="arrows">
+            <div class="arrow">←</div>
+            <div class="arrow active">→</div>
+          </div>
+        </div>
+
+        <div class="cards">
+
+          <article class="card">
+            <div class="card-image">
+              <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=900&q=80" alt="Group of travelers enjoying local food together">
+              <span class="number">01</span>
+              <span class="tag">Our Yummiest Tour</span>
+            </div>
+            <div class="card-body">
+              <div class="category">Semi-Adventurous Evening Food Tour</div>
+              <h3>Evening Food and Tuk Tuk Adventure</h3>
+              <div class="price">from 2,650THB per person</div>
+              <p>Combining local food and tuk tuks! On this evening food tour we combine them for a fantastic evening of eating with adventure.</p>
+              <div class="meta"><span>◷ Every day except Monday</span><span>◷ 4 hours</span></div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-image">
+              <img src="https://images.unsplash.com/photo-1523731407965-2430cd12f5e4?auto=format&fit=crop&w=900&q=80" alt="Tuk tuk at night in Bangkok">
+              <span class="number">02</span>
+              <span class="tag">Award-Winning</span>
+            </div>
+            <div class="card-body">
+              <div class="category">Classic Evening Tuk Tuk Tour</div>
+              <h3>Bangkok Night Lights Tuk Tuk Tour</h3>
+              <div class="price">from 2,425THB per person</div>
+              <p>On this evening tuk tuk tour we will show you the beauty of Bangkok by night and discover a combination of temples, markets and food.</p>
+              <div class="meta"><span>◷ Daily</span><span>◷ 4 hours</span></div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-image">
+              <img src="https://images.unsplash.com/photo-1563492065599-3520f775eeed?auto=format&fit=crop&w=900&q=80" alt="Thai royal temple architecture">
+              <span class="number">03</span>
+            </div>
+            <div class="card-body">
+              <div class="category">The Best of Bangkok Royal Temples Tour</div>
+              <h3>Bangkok By Day: Grand Palace, Wat Pho, Wat Arun Tour</h3>
+              <div class="price">from 1,750THB per person</div>
+              <p>Explore Bangkok's Royal Temples and witness their magnificent architecture.</p>
+              <div class="meta"><span>◷ Daily</span><span>◷ 4 hours</span></div>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- FAVORITES -->
+      <section id="favorites">
+        <div class="section-head">
+          <div>
+            <h2>Our Personal Favorite Tours</h2>
+            <p>Which is the perfect tour for you?</p>
+          </div>
+          <div class="arrows">
+            <div class="arrow">←</div>
+            <div class="arrow active">→</div>
+          </div>
+        </div>
+
+        <div class="cards">
+
+          <article class="card">
+            <div class="card-image">
+              <img src="https://images.unsplash.com/photo-1598970605070-a38a6ccd3a2d?auto=format&fit=crop&w=900&q=80" alt="Buddha head surrounded by tree roots in Ayutthaya">
+              <span class="number">01</span>
+            </div>
+            <div class="card-body">
+              <div class="category">Food and History Day Tour</div>
+              <h3>An Ayutthaya Adventure: Food, Temples and History</h3>
+              <div class="price">from 2,700THB per person</div>
+              <p>This day tour to Ayutthaya allows you to discover both the history and the foods of the former capital city of Thailand.</p>
+              <div class="meta"><span>◷ Daily</span><span>◷ Approx 8 hours</span></div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-image">
+              <img src="https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?auto=format&fit=crop&w=900&q=80" alt="Child enjoying a Bangkok canal boat ride">
+              <span class="number">02</span>
+            </div>
+            <div class="card-body">
+              <div class="category">Family Focused Bangkok Adventure</div>
+              <h3>Family Canal and Tuk Tuk Adventure</h3>
+              <div class="price">from 7,000THB per booking</div>
+              <p>Bangkok is a fun city to explore for people of all ages. On this family tour you will spend the afternoon and early evening.</p>
+              <div class="meta"><span>◷ Daily</span><span>◷ 5 hours</span></div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-image">
+              <img src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?auto=format&fit=crop&w=900&q=80" alt="Bangkok railway market with train passing through">
+              <span class="number">03</span>
+            </div>
+            <div class="card-body">
+              <div class="category">Local Market, Adventure on Canal, Local Life and Food</div>
+              <h3>A Floating Market Boat Tour & Railway Market Adventure</h3>
+              <div class="price">from 2,500THB per person</div>
+              <p>This day tour to Train Market & Floating Market allows you to discover both the history and the foods of the most iconic markets.</p>
+              <div class="meta"><span>◷ Daily</span><span>◷ 7–8 hours</span></div>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+    </div>
+
+    <!-- TOUR CATEGORIES -->
+    <div class="category-strip">
+      <a class="category-tile" href="#popular">
+        <img src="https://images.unsplash.com/photo-1598970605070-a38a6ccd3a2d?auto=format&fit=crop&w=900&q=80" alt="Bangkok tuk tuk">
+        <span>Tuk Tuk Tours</span>
+      </a>
+      <a class="category-tile" href="#popular">
+        <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=900&q=80" alt="Thai food market">
+        <span>Food Tours</span>
+      </a>
+      <a class="category-tile" href="#favorites">
+        <img src="https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?auto=format&fit=crop&w=900&q=80" alt="Family travel experience">
+        <span>Family Friendly</span>
+      </a>
+      <a class="category-tile" href="#popular">
+        <img src="https://images.unsplash.com/photo-1523731407965-2430cd12f5e4?auto=format&fit=crop&w=900&q=80" alt="Bangkok at night">
+        <span>Night Tours</span>
+      </a>
+    </div>
+
+    <div class="container">
+
+      <!-- ABOUT -->
+      <section id="about">
+        <div class="about">
+          <div>
+            <h2>Experience Unique Bangkok With ExpiQue</h2>
+            <p>We love Bangkok! We Live Bangkok! ExpiQue is a boutique and innovative tour operator, with a passion for showing guests the uniqueness and beauty of Bangkok and the Thai Culture. We love Thai food, street food, local markets, sharing stories of local people and culture, tuk tuk rides, exploring in unique ways ....</p>
+            <p>We provide more than just a tour guide and a checklist of Bangkok's highlights (e.g. The Grand Palace, Wat Pho, Chinatown,...). We provide an insight in to local life, the street food scene, something off the beaten path.</p>
+            <p>We focus on offering a selection of tours and experiences which can stand out as truly memorable. These include our range of award winning night tours by tuk tuk. In addition we offer selection of walking tours and food tours. So discover more when visiting Bangkok on a tour with us.</p>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <strong>Local</strong>
+              <span>Experts who design and operate our experiences</span>
+            </div>
+            <div class="stat">
+              <strong>Bangkok</strong>
+              <span>Tours & experiences operated by us</span>
+            </div>
+            <div class="stat">
+              <strong>Award</strong>
+              <span>Winning night tours by tuk tuk</span>
+            </div>
+            <div class="stat">
+              <strong>Unique</strong>
+              <span>Ways to explore Bangkok, food and local culture</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PORTFOLIO-STYLE TOUR SHOWCASE -->
+      <section>
+        <div class="portfolio">
+          <div class="portfolio-intro">
+            <h2>Our Selection of Memorable Experiences</h2>
+            <p>Explore our selection of tours and experiences which can stand out as truly memorable, from award winning night tours to food, walking and family experiences.</p>
+            <a class="btn" href="#popular">Explore Tours</a>
+          </div>
+
+          <div class="portfolio-main">
+            <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1200&q=85" alt="Thai food experience">
+            <span class="overlay-label">Food Tours</span>
+          </div>
+
+          <div>
+            <div class="portfolio-stack">
+              <div class="portfolio-small">
+                <img src="https://images.unsplash.com/photo-1523731407965-2430cd12f5e4?auto=format&fit=crop&w=1000&q=85" alt="Bangkok night tuk tuk tour">
+                <span class="overlay-label">Bangkok Night Lights Tuk Tuk Tour</span>
+              </div>
+              <div class="portfolio-small">
+                <img src="https://images.unsplash.com/photo-1563492065599-3520f775eeed?auto=format&fit=crop&w=1000&q=85" alt="Bangkok royal temples">
+                <span class="overlay-label">Bangkok By Day</span>
+              </div>
+            </div>
+            <button class="more-projects" onclick="location.href='#favorites'">See More Experiences</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- TESTIMONIAL -->
+      <section>
+        <div class="testimonial-section">
+          <div class="section-head">
+            <div>
+              <h2>What People Say About Our Tours & Experiences</h2>
+              <p>Check out our reviews and our awards!</p>
+            </div>
+          </div>
+
+          <div class="testimonial">
+            <div>
+              <div class="quote">WOW. What a night!</div>
+              <div class="reviewer">Diana</div>
+              <div class="review-type">Review of Bangkok Night Lights Tuk Tuk Tour</div>
+              <p class="review-copy">Far exceeded our expectations! Unbelievably good value! There were 2 of us and 5 others. Jib was right there at the meeting place and full of fun ready to guide us. Remembering all our names she travelled in one of the 4 Tuk Tuks with us as we navigated traffic in convoy. We stopped at markets and sampled food as Jib gave us a knowledgeable commentary then back in the Tuk Tuk for another exhilarating ride to the many highlights of Bangkok. Our delightful driver dropped us back at our hotel which was a real bonus.</p>
+            </div>
+
+            <div class="award">
+              <div>
+                <small>NO. 1 EXPERIENCE IN THAILAND</small>
+                <strong>Travelers' Choice</strong>
+                <span>Tripadvisor<br><br>Best of the Best<br><br>“Bangkok by Night: Temples, Markets and Food by Tuk-Tuk” has been recognised as the No. 1 Experience in Thailand in the 2020 Travellers' Choice award.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CUSTOM CTA -->
+      <section id="contact" class="cta">
+        <h2>Our experience are available as small join-in groups or as private & customizable experiences</h2>
+        <p><strong>Contact us</strong> if you are interested in a custom experience.</p>
+        <a class="btn green" href="mailto:hello@expiQue.com">Contact Us</a>
+      </section>
+
+      <!-- TEAM BUILDING -->
+      <section>
+        <div class="team">
+          <div class="team-card">
+            <div>
+              <h3>Team Building!</h3>
+              <p>Turning Team Events into Unique Experiences</p>
+              <a href="#contact">Details</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ARTICLES -->
+      <section id="articles">
+        <div class="articles">
+          <div class="section-head">
+            <div>
+              <h2>Latest Articles</h2>
+              <p>Check out the latest news and articles from our blog.</p>
+            </div>
+            <div class="arrows">
+              <div class="arrow">←</div>
+              <div class="arrow active">→</div>
+            </div>
+          </div>
+
+          <div class="article-grid">
+
+            <article class="article">
+              <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=900&q=80" alt="Thai papaya salad and local dishes">
+              <div class="article-body">
+                <h3>The Ultimate Guide to Som Tum (Papaya Salad)</h3>
+                <p>Som Tum (ส้มตำ) is a form of spicy Thai salad that is associated as coming from the Isaan province in North-East Thailand. However, it originally...</p>
+              </div>
+            </article>
+
+            <article class="article">
+              <img src="https://images.unsplash.com/photo-1523731407965-2430cd12f5e4?auto=format&fit=crop&w=900&q=80" alt="Thai tuk tuks lined up">
+              <div class="article-body">
+                <h3>All About Tuk Tuks in Thailand</h3>
+                <p>The humble Thai tuk tuk is an icon of Thailand and at the heart of the authentic Thai experience for most visitors. Of course, the...</p>
+              </div>
+            </article>
+
+            <article class="article">
+              <img src="https://images.unsplash.com/photo-1562565652-a0d8f0c59eb4?auto=format&fit=crop&w=900&q=80" alt="Thai noodle dishes and ingredients">
+              <div class="article-body">
+                <h3>The Ultimate Guide to Thai Noodle Dishes</h3>
+                <p>Noodle dishes, or as the Thais call it, “guay tiew,” is always a popular option for locals when casually eating. Most noodle dishes are also...</p>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- SOCIAL -->
+      <section class="social">
+        <div class="tripadvisor">
+          <strong>★ Tripadvisor</strong>
+          <span>ExpiQue - Bangkok Tours and Experiences</span>
+          <span>● ● ● ● ●</span>
+        </div>
+
+        <div class="social-icons">
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="Twitter">𝕏</a>
+          <a href="#" aria-label="Instagram">◎</a>
+          <a href="#" aria-label="YouTube">▶</a>
+          <a href="#" aria-label="Pinterest">p</a>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+
+          <div class="footer-col">
+            <h3>Support</h3>
+            <p>Phone: +66 (0)85 873 3308</p>
+            <p>Email: hello@expiQue.com</p>
+          </div>
+
+          <div class="footer-col">
+            <h3>Our Experiences</h3>
+            <a href="#popular">Bangkok Tuk Tuk Tours</a>
+            <a href="#popular">Bangkok Food Tours</a>
+            <a href="#favorites">Bangkok Walking Tours</a>
+            <a href="#favorites">Family Experiences in Bangkok</a>
+            <a href="#favorites">Bangkok Outskirts</a>
+            <a href="#contact">Team Building Events</a>
+          </div>
+
+          <div class="footer-col">
+            <h3>About Us</h3>
+            <a href="#about">Our Story</a>
+            <a href="#contact">Frequently Asked Questions</a>
+          </div>
+
+          <div class="footer-col">
+            <h3>Other</h3>
+            <a href="#articles">Visit Our Blog</a>
+            <a href="#contact">Booking Terms & Conditions</a>
+            <a href="#contact">Privacy Policy</a>
+            <a href="#contact">Contact Us</a>
+          </div>
+
+        </div>
+
+        <div class="copyright">
+          © ExpiQue — Bangkok Tours & Experiences. All rights reserved.
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- COOKIE NOTICE -->
+  <div class="cookie" id="cookieNotice">
+    <span>This website uses cookies to improve your experience. We'll assume you're ok with this, but you can opt-out if you wish.</span>
+    <a href="#">Cookie settings</a>
+    <button onclick="document.getElementById('cookieNotice').style.display='none'">ACCEPT</button>
+  </div>
+
+</body>
+</html>
