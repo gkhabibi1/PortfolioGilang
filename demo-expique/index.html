@@ -56,6 +56,97 @@
       margin: 0 auto;
     }
 
+    /* TOP DEMO NOTICE BANNER */
+    .demo-banner {
+      background: linear-gradient(90deg, #111827 0%, #1a2238 50%, #111827 100%);
+      color: #e5e7eb;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(22, 184, 144, 0.35);
+      font-size: 13px;
+      position: relative;
+      z-index: 110;
+    }
+
+    .demo-banner-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .demo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--green);
+      color: #0d2821;
+      font-weight: 800;
+      font-size: 11px;
+      padding: 3px 12px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    .pulse-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #0d2821;
+      animation: demoPulse 1.8s infinite;
+    }
+
+    @keyframes demoPulse {
+      0% { transform: scale(0.9); opacity: 1; }
+      50% { transform: scale(1.4); opacity: 0.4; }
+      100% { transform: scale(0.9); opacity: 1; }
+    }
+
+    .demo-banner-text {
+      flex: 1;
+      text-align: center;
+      margin: 0;
+      color: #d1d5db;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .demo-banner-text strong {
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .demo-banner-text em {
+      color: #63d7b9;
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    .demo-back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+      border: 1px solid rgba(22, 184, 144, 0.4);
+      padding: 5px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      transition: all 0.25s ease;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .demo-back-btn:hover {
+      background: var(--green);
+      color: #fff;
+      border-color: var(--green);
+      transform: translateY(-1px);
+    }
+
     /* HEADER & NAVBAR */
     header {
       position: sticky;
@@ -1166,12 +1257,30 @@
       .quote { font-size: 24px; }
       .cookie { flex-direction: column; text-align: center; padding: 16px; }
       .team-card { right: 50%; transform: translateX(50%); bottom: 24px; width: 200px; padding: 24px; }
+      .demo-banner-content { justify-content: center; text-align: center; gap: 8px; }
+      .demo-banner-text { width: 100%; font-size: 12px; }
     }
   </style>
 </head>
 
 <body>
   <div class="site">
+
+    <!-- TOP DEMO NOTICE BANNER -->
+    <aside class="demo-banner" role="banner" aria-label="Demo Page Notice">
+      <div class="container demo-banner-content">
+        <div class="demo-badge">
+          <span class="pulse-dot"></span>
+          Demo Website
+        </div>
+        <p class="demo-banner-text">
+          <strong>Portfolio Showcase:</strong> Halaman ini merupakan demo preview interaktif untuk <em>ExpiQue — Bangkok Tours & Experiences</em>. Seluruh fitur & pemesanan bersifat simulasi.
+        </p>
+        <a href="/" class="demo-back-btn">
+          <span>←</span> Kembali ke Portfolio
+        </a>
+      </div>
+    </aside>
 
     <!-- HEADER / NAV -->
     <header>
