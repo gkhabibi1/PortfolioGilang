@@ -13,6 +13,11 @@
     { "source": "/absensi", "destination": "/attendance/index.html" },
     { "source": "/admin-viewer", "destination": "/admin-viewer/index.html" },
     { "source": "/demo-travel-fantasia", "destination": "/demo-travel-fantasia/index.html" },
-    { "source": "/demo-expique", "destination": "/demo-expique/index.html" }
+    { "source": "/demo-expique", "destination": "/demo-expique/index.html" },
+    { "source": "/demo-korindo-terpal", "destination": "/demo-korindo-terpal.html" },
+    { "source": "/demo-smilling-albino", "destination": "/demo-smilling-albino.html" },
+    { "source": "/demo-smiling-albino", "destination": "/demo-smilling-albino.html" },
+    { "source": "/demo", "destination": "/demo.html" },
+    { "source": "/demos", "destination": "/demo.html" }
   ]
 }
