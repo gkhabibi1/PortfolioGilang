@@ -30,7 +30,7 @@ export default function HostScreen() {
   const [players, setPlayers] = useState({}); // { [playerId]: { id, name, duckId, progress, speedFactor } }
   const [gameState, setGameState] = useState('LOBBY'); // LOBBY, RACING, FINISHED
   const [currentQIndex, setCurrentQIndex] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(5);
+  const [timeLeft, setTimeLeft] = useState(7);
   const [loser, setLoser] = useState(null);
   const [playUrl, setPlayUrl] = useState('/icebreaking/play');
 
@@ -150,7 +150,7 @@ export default function HostScreen() {
     return () => clearInterval(interval);
   }, [gameState]);
 
-  // Timer Soal (5 detik per soal)
+  // Timer Soal (7 detik per soal)
   useEffect(() => {
     if (gameState !== 'RACING') return;
 
@@ -165,7 +165,7 @@ export default function HostScreen() {
             event: 'NEXT_QUESTION',
             payload: { question: QUESTIONS[nextIndex], index: nextIndex },
           });
-          return 5;
+          return 7;
         }
         return prev - 1;
       });
@@ -176,7 +176,7 @@ export default function HostScreen() {
 
   const startGame = () => {
     setGameState('RACING');
-    setTimeLeft(5);
+    setTimeLeft(7);
     setCurrentQIndex(0);
     channelRef.current?.send({
       type: 'broadcast',
@@ -189,7 +189,7 @@ export default function HostScreen() {
     setGameState('LOBBY');
     setLoser(null);
     setCurrentQIndex(0);
-    setTimeLeft(5);
+    setTimeLeft(7);
     // Reset progress bebek pemain tanpa menghapus pemain dari lobby
     setPlayers((prev) => {
       const reset = {};

@@ -326,25 +326,40 @@
         waterMesh.rotation.x = -Math.PI / 2;
         scene.add(waterMesh);
 
-        // 4. Tebing / Tepi Sungai (North & South Green Grass)
+        // 4. Tebing / Tepi Sungai (North & South Green Grass) & Bebatuan
         const bankMat = new THREE.MeshStandardMaterial({ color: 0x14532d, roughness: 0.8 });
         const rockMat = new THREE.MeshStandardMaterial({ color: 0x475569, roughness: 0.9 });
         const woodMat = new THREE.MeshStandardMaterial({ color: 0x78350f, roughness: 0.7 });
 
-        [-15, 15].forEach((bankZ) => {
-          const bankGeo = new THREE.BoxGeometry(90, 4, 6);
-          const bank = new THREE.Mesh(bankGeo, bankMat);
-          bank.position.set(0, 0.5, bankZ);
-          scene.add(bank);
+        const northBankGroup = new THREE.Group();
+        const southBankGroup = new THREE.Group();
 
-          // Bebatuan tepi sungai
-          for (let i = 0; i < 7; i++) {
-            const rock = new THREE.Mesh(new THREE.DodecahedronGeometry(0.8 + Math.random() * 0.7), rockMat);
-            rock.position.set(-36 + i * 12 + Math.random() * 4, 2.2, bankZ + (Math.random() - 0.5) * 1.5);
-            rock.rotation.set(Math.random(), Math.random(), Math.random());
-            scene.add(rock);
-          }
-        });
+        const bankGeo = new THREE.BoxGeometry(90, 4, 8);
+        const northBank = new THREE.Mesh(bankGeo, bankMat);
+        northBank.position.set(0, 0.5, 0);
+        northBankGroup.add(northBank);
+
+        const southBank = new THREE.Mesh(bankGeo, bankMat);
+        southBank.position.set(0, 0.5, 0);
+        southBankGroup.add(southBank);
+
+        // Bebatuan tepi sungai
+        for (let i = 0; i < 8; i++) {
+          const rockN = new THREE.Mesh(new THREE.DodecahedronGeometry(0.8 + Math.random() * 0.7), rockMat);
+          rockN.position.set(-36 + i * 11 + Math.random() * 4, 2.2, (Math.random() - 0.5) * 1.5);
+          rockN.rotation.set(Math.random(), Math.random(), Math.random());
+          northBankGroup.add(rockN);
+
+          const rockS = new THREE.Mesh(new THREE.DodecahedronGeometry(0.8 + Math.random() * 0.7), rockMat);
+          rockS.position.set(-36 + i * 11 + Math.random() * 4, 2.2, (Math.random() - 0.5) * 1.5);
+          rockS.rotation.set(Math.random(), Math.random(), Math.random());
+          southBankGroup.add(rockS);
+        }
+
+        northBankGroup.position.set(0, 0, -15);
+        southBankGroup.position.set(0, 0, 15);
+        scene.add(northBankGroup);
+        scene.add(southBankGroup);
 
         // 5. Gapura Checkpoint Jarak (125m, 250m, 375m)
         const arches = [
@@ -353,46 +368,61 @@
           { x: 18, label: '375m ZONA BAHAYA ⚠️' },
         ];
 
+        const archObjects = [];
+        const archPillarGeo = new THREE.CylinderGeometry(0.24, 0.24, 8, 8);
+        const archBeamGeo = new THREE.CylinderGeometry(0.2, 0.2, 1, 8);
+
         arches.forEach((arc) => {
-          const archPillarGeo = new THREE.CylinderGeometry(0.2, 0.2, 8, 8);
-          [-12, 12].forEach((pz) => {
-            const pillar = new THREE.Mesh(archPillarGeo, woodMat);
-            pillar.position.set(arc.x, 3.5, pz);
-            scene.add(pillar);
-          });
-          const beam = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.18, 25, 8), woodMat);
+          const northPillar = new THREE.Mesh(archPillarGeo, woodMat);
+          northPillar.position.set(arc.x, 3.5, -13);
+          scene.add(northPillar);
+
+          const southPillar = new THREE.Mesh(archPillarGeo, woodMat);
+          southPillar.position.set(arc.x, 3.5, 13);
+          scene.add(southPillar);
+
+          const beam = new THREE.Mesh(archBeamGeo, woodMat);
           beam.rotation.x = Math.PI / 2;
           beam.position.set(arc.x, 7.5, 0);
+          beam.scale.set(1, 26, 1);
           scene.add(beam);
+
+          archObjects.push({ northPillar, southPillar, beam });
         });
 
         // 6. KOBARAN API: OVEN PANGGANG RAKSASA (Finish Line di X = 34 s/d 45)
         const furnaceStoneMat = new THREE.MeshStandardMaterial({ color: 0x18181b, roughness: 0.95 });
-        const furnaceBack = new THREE.Mesh(new THREE.BoxGeometry(4, 10, 26), furnaceStoneMat);
+        const furnaceBack = new THREE.Mesh(new THREE.BoxGeometry(4, 10, 1), furnaceStoneMat);
         furnaceBack.position.set(44, 4.5, 0);
+        furnaceBack.scale.set(1, 1, 28);
         scene.add(furnaceBack);
 
-        [-13, 13].forEach((wz) => {
-          const furnaceWall = new THREE.Mesh(new THREE.BoxGeometry(16, 8, 3), furnaceStoneMat);
-          furnaceWall.position.set(38, 3.5, wz);
-          scene.add(furnaceWall);
-        });
+        const furnaceNorthWall = new THREE.Mesh(new THREE.BoxGeometry(16, 8, 4), furnaceStoneMat);
+        furnaceNorthWall.position.set(38, 3.5, -14.5);
+        scene.add(furnaceNorthWall);
+
+        const furnaceSouthWall = new THREE.Mesh(new THREE.BoxGeometry(16, 8, 4), furnaceStoneMat);
+        furnaceSouthWall.position.set(38, 3.5, 14.5);
+        scene.add(furnaceSouthWall);
 
         // Arang Merah Membara di Dasar Panggangan
         const coalMat = new THREE.MeshBasicMaterial({ color: 0xff2200 });
-        const coalMesh = new THREE.Mesh(new THREE.PlaneGeometry(14, 24), coalMat);
+        const coalMesh = new THREE.Mesh(new THREE.PlaneGeometry(14, 1), coalMat);
         coalMesh.rotation.x = -Math.PI / 2;
         coalMesh.position.set(39, 0.1, 0);
+        coalMesh.scale.set(1, 26, 1);
         scene.add(coalMesh);
 
-        // Jeruji Besi Panggangan BBQ
+        // Jeruji Besi Panggangan BBQ (Dibuat lebar dari -48 s/d +48 dan disesuaikan dinamis)
+        const grateGroup = new THREE.Group();
         const grateMat = new THREE.MeshStandardMaterial({ color: 0x27272a, metalness: 0.8, roughness: 0.4 });
-        for (let gz = -11; gz <= 11; gz += 1.8) {
+        for (let gz = -48; gz <= 48; gz += 1.8) {
           const grateBar = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 14, 8), grateMat);
           grateBar.rotation.z = Math.PI / 2;
           grateBar.position.set(39, 1.2, gz);
-          scene.add(grateBar);
+          grateGroup.add(grateBar);
         }
+        scene.add(grateGroup);
 
         // Sistem Partikel Kobaran Api (200 Partikel Api yang Bergerak Naik)
         const particleCount = 200;
@@ -544,6 +574,7 @@
         // 8. Render Loop 60 FPS
         let animId = null;
         let clock = new THREE.Clock();
+        let currentHalfWidth = 14; // Default setengah lebar arena (lebar sungai 28 unit)
 
         function animate() {
           animId = requestAnimationFrame(animate);
@@ -586,7 +617,7 @@
             if (py > 7.5) {
               pPositions[i * 3 + 1] = 0.4 + Math.random() * 0.4;
               pPositions[i * 3 + 0] = 34 + Math.random() * 9;
-              pPositions[i * 3 + 2] = -11 + Math.random() * 22;
+              pPositions[i * 3 + 2] = (-currentHalfWidth + 1.5) + Math.random() * (currentHalfWidth * 2 - 3);
             }
           }
           flameSystem.geometry.attributes.position.needsUpdate = true;
@@ -596,11 +627,50 @@
           fireLight.intensity = 4.8 + Math.sin(elapsed * 24) * 1.6 + (Math.random() - 0.5) * 0.7;
           fireYellowLight.intensity = 2.5 + Math.cos(elapsed * 18) * 1.0;
 
-          // D. Posisi dan Animasi Bebek
+          // D. Posisi dan Pelebaran Dinamis Arena Balapan
           const currentPlayers = Object.values(playersRef.current || {});
           const totalP = Math.max(1, currentPlayers.length);
 
+          // Hitung jarak antar bebek & lebar arena otomatis:
+          // Jika jumlah bebek bertambah banyak (>20 s/d >30+ peserta),
+          // lintasan arena sungai, tebing tepi, gapura & oven otomatis diperlebar!
+          const laneSpacing = totalP > 40 ? 1.55 : (totalP > 25 ? 1.8 : (totalP > 12 ? 2.05 : 2.3));
+          const maxDuckZ = ((totalP - 1) / 2) * laneSpacing;
+          const targetHalfWidth = Math.max(14, maxDuckZ + 5.5);
+
+          // Interpolasi mulus (lerp) pelebaran arena
+          currentHalfWidth += (targetHalfWidth - currentHalfWidth) * 0.08;
+          const riverWidth = currentHalfWidth * 2;
+
+          // Sesuaikan skala air sungai secara dinamis
+          waterMesh.scale.y = riverWidth / 26;
+
+          // Geser tebing rumput utara dan selatan
+          northBankGroup.position.z = -currentHalfWidth - 3.5;
+          southBankGroup.position.z = currentHalfWidth + 3.5;
+
+          // Geser tiang gapura & perpanjang balok atas
+          archObjects.forEach((arc) => {
+            arc.northPillar.position.z = -currentHalfWidth + 0.6;
+            arc.southPillar.position.z = currentHalfWidth - 0.6;
+            arc.beam.scale.y = riverWidth - 1.2;
+          });
+
+          // Sesuaikan lebar oven finish line, arang, dan jeruji besi
+          furnaceBack.scale.z = riverWidth + 3.2;
+          furnaceNorthWall.position.z = -currentHalfWidth - 2.0;
+          furnaceSouthWall.position.z = currentHalfWidth + 2.0;
+          coalMesh.scale.y = riverWidth;
+
+          grateGroup.children.forEach((bar) => {
+            bar.visible = Math.abs(bar.position.z) <= currentHalfWidth + 0.4;
+          });
+
+          // Posisikan Bebek & Lacak Bebek Terdepan (#1 Leader Duck)
+          let leaderPlayer = currentPlayers[0];
           let leaderDuckX = -36;
+          let leaderDuckZ = 0;
+          let leaderDuckY = 0.5;
 
           currentPlayers.forEach((p, idx) => {
             if (!duckGroups[p.id]) {
@@ -611,11 +681,14 @@
             }
 
             const duckObj = duckGroups[p.id];
-            const laneZ = (idx - (totalP - 1) / 2) * 2.3;
+            const laneZ = (idx - (totalP - 1) / 2) * laneSpacing;
             const targetX = -36 + ((p.progress || 0) / 100) * 72;
 
             if (targetX > leaderDuckX) {
               leaderDuckX = targetX;
+              leaderPlayer = p;
+              leaderDuckZ = laneZ;
+              leaderDuckY = duckObj.group.position.y;
             }
 
             duckObj.group.position.x += (targetX - duckObj.group.position.x) * 0.14;
@@ -648,10 +721,24 @@
           // E. Mode Kamera
           const currentMode = cameraModeRef.current;
           if (currentMode === 'PANORAMA') {
-            camera.position.lerp(new THREE.Vector3(0, 26, 38), 0.08);
+            // Jarak mundur dan ketinggian kamera menyesuaikan lebar arena dinamis
+            const panoDistZ = Math.max(38, currentHalfWidth * 1.45 + 14);
+            const panoHeight = Math.max(26, currentHalfWidth * 0.72 + 12);
+            camera.position.lerp(new THREE.Vector3(0, panoHeight, panoDistZ), 0.08);
             camera.lookAt(2, 0, 0);
+          } else if (currentMode === 'LEADER') {
+            // 🥇 KAMERA SHOOT BEBEK PERTAMA: Lock-on dinamis mengikuti bebek peringkat #1
+            const leadMesh = duckGroups[leaderPlayer?.id]?.group;
+            const lx = leadMesh ? leadMesh.position.x : leaderDuckX;
+            const ly = leadMesh ? leadMesh.position.y : leaderDuckY;
+            const lz = leadMesh ? leadMesh.position.z : leaderDuckZ;
+
+            const camTarget = new THREE.Vector3(lx - 7.0, ly + 4.2, lz + 4.5);
+            camera.position.lerp(camTarget, 0.1);
+            camera.lookAt(lx + 4.5, ly + 0.8, lz);
           } else if (currentMode === 'FOLLOW') {
-            const camTarget = new THREE.Vector3(leaderDuckX - 8, 16, 22);
+            const camFollowZ = Math.min(28, currentHalfWidth * 0.75 + 8);
+            const camTarget = new THREE.Vector3(leaderDuckX - 8, 16, camFollowZ);
             camera.position.lerp(camTarget, 0.08);
             camera.lookAt(leaderDuckX + 5, 1, 0);
           } else if (currentMode === 'OVEN') {
@@ -695,7 +782,8 @@
             <span className="text-[10px] text-slate-400 font-bold px-1.5 hidden sm:inline">Kamera:</span>
             {[
               { id: 'PANORAMA', label: '🎥 Panoramik' },
-              { id: 'FOLLOW', label: '🎯 Kejar Bebek' },
+              { id: 'LEADER', label: '🥇 Bebek Pertama' },
+              { id: 'FOLLOW', label: '🎯 Kejar Rombongan' },
               { id: 'OVEN', label: '🔥 Sudut Oven' },
             ].map((btn) => (
               <button
@@ -1075,7 +1163,7 @@
                         ⚡ LIVE BLITZ ARENA
                       </span>
                       <span className="text-xs text-slate-300 font-bold hidden sm:inline">
-                        Setiap pemain menjawab soal acak unik (5 detik per soal)
+                        Setiap pemain menjawab soal acak unik (7 detik per soal)
                       </span>
                     </div>
 

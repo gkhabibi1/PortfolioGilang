@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marketing Mix — Mengeluarkan Value Produk</title>
+<style>
+:root{--green:#ddff00;--black:#111;--gray:#f5f5f2;--line:#ddd}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;font-family:Arial,Helvetica,sans-serif;background:#ddd;color:var(--black);overflow:hidden}
+.deck{width:100vw;height:100vh;display:flex;align-items:center;justify-content:center}
+.slide{display:none;width:min(100vw,177.78vh);height:min(56.25vw,100vh);aspect-ratio:16/9;background:white;padding:5.5% 6.5%;position:relative;overflow:hidden}
+.slide.active{display:block;overflow:hidden}
+.slide:after{content:"";position:absolute;bottom:0;left:0;width:100%;height:7px;background:var(--green)}
+h1{font-size:clamp(42px,5vw,76px);line-height:.98;letter-spacing:-.05em;margin:0 0 20px}
+h2{font-size:clamp(28px,3.35vw,52px);line-height:1;letter-spacing:-.04em;margin:0 0 18px}
+h3{font-size:20px;margin:0 0 8px}
+p,li{font-size:clamp(14px,1.25vw,20px);line-height:1.38} .box p{margin:7px 0}
+.small{font-size:14px;color:#555}
+.green{background:var(--green)}
+.label{display:inline-block;background:var(--black);color:white;padding:7px 11px;font-size:12px;font-weight:bold;letter-spacing:.08em;text-transform:uppercase;margin-bottom:20px}
+.box{border:2px solid var(--black);padding:16px;background:white;min-width:0;overflow:hidden}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.flow{display:flex;align-items:stretch;gap:10px}
+.flow .box{flex:1}
+.arrow{display:flex;align-items:center;font-size:30px;font-weight:bold}
+.example{background:var(--gray);padding:18px;border-left:8px solid var(--green);margin-top:20px}
+.example b{display:block;margin-bottom:7px}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{border:1px solid #222;padding:8px;text-align:left}
+th{background:var(--black);color:white}
+.footer{position:absolute;bottom:17px;right:7%;font-size:11px;font-weight:bold}
+.no{position:absolute;bottom:17px;left:7%;font-size:11px;font-weight:bold}
+ul{padding-left:23px}
+.photo{width:100%;height:100%;object-fit:cover;display:block}.photoCard{height:100%;overflow:hidden;border:2px solid var(--black);position:relative}.photoCard img{width:100%;height:100%;object-fit:cover}.photoCard:after{content:"";position:absolute;inset:auto 0 0 0;height:24%;background:linear-gradient(transparent,rgba(0,0,0,.5));pointer-events:none}.photoCaption{position:absolute;left:14px;bottom:12px;color:#fff;font-size:12px;font-weight:bold;z-index:2}.visualGrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:stretch}.visualWide{display:grid;grid-template-columns:1.45fr .8fr;gap:14px;align-items:stretch}.visualGrid .text{min-width:0}.controls{position:fixed;bottom:15px;left:50%;transform:translateX(-50%);z-index:9}
+button{border:1px solid #aaa;background:#fff;padding:7px 13px;font-weight:bold}
+button:hover{background:var(--green)}
+@media(max-width:800px){.grid4{grid-template-columns:1fr 1fr}.grid3{grid-template-columns:1fr}.grid2{grid-template-columns:1fr}.flow{display:block}.arrow{justify-content:center;padding:5px}.slide{padding:5%}}
+</style>
+</head>
+<body>
+<div class="deck">
+
+<section class="slide active">
+  <span class="label">Marketing Mix</span>
+  <div class="visualWide" style="margin-top:6px;align-items:stretch">
+    <div class="text">
+      <h1 style="margin:0 0 16px">Mengeluarkan<br>Semua Value<br>dari Produk</h1>
+      <p style="margin:0 0 14px;color:#333">Cara melihat sebuah produk lebih dalam, menemukan value yang dimiliki, lalu menggunakan <b>7P Marketing Mix</b> untuk mengkomunikasikan dan menjual value tersebut.</p>
+      <div class="example green" style="margin-top:14px;padding:14px 18px">
+        <b>Inti Materi:</b>
+        Jangan hanya bertanya: <i>“Produk kita punya apa?”</i><br>
+        Tetapi tanyakan: <i>“Apa dampak & manfaat yang pelanggan rasakan?”</i>
+      </div>
+    </div>
+    <div class="photoCard">
+      <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=85" alt="Strategi Marketing dan Value Produk">
+      <div class="photoCaption">Product Value • Marketing Mix Strategy</div>
+    </div>
+  </div>
+  <div class="no">01</div><div class="footer">MARKETING • PRODUCT VALUE</div>
+</section>
+
+<section class="slide">
+  <span class="label">Konsep Dasar</span>
+  <h2>Fitur ≠ Value</h2>
+  
+  <div class="grid2" style="margin-bottom:14px">
+    <div class="box" style="padding:14px 16px">
+      <div style="font-size:11px;font-weight:bold;color:#666;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Philip Kotler &amp; Kevin Keller (Marketing Management, 2012)</div>
+      <h3 style="margin:0 0 6px">Fitur (Product Feature)</h3>
+      <p style="font-size:13.5px;margin:0;color:#333;line-height:1.4">Karakteristik fisik, teknis, atau atribut spesifik yang disematkan untuk melengkapi fungsi dasar produk (<i><b>apa yang dibuat &amp; dimiliki produsen</b></i>).</p>
+    </div>
+    <div class="box green" style="padding:14px 16px">
+      <div style="font-size:11px;font-weight:bold;color:#222;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Customer Perceived Value (CPV)</div>
+      <h3 style="margin:0 0 6px">Value (Nilai bagi Pelanggan)</h3>
+      <p style="font-size:13.5px;margin:0;color:#111;line-height:1.4">Total evaluasi manfaat (fungsional, emosional, psikologis) yang dirasakan pelanggan dibanding biaya/pengorbanan (<i><b>solusi nyata &amp; dampak yang dinikmati pembeli</b></i>).</p>
+    </div>
+  </div>
+
+  <div class="flow" style="margin-bottom:14px">
+    <div class="box" style="padding:12px 14px"><h3>Fitur</h3><p style="margin:2px 0 0;font-size:13px">Apa yang produk punya?</p><b>“399 paket soal”</b></div>
+    <div class="arrow">→</div>
+    <div class="box" style="padding:12px 14px"><h3>Benefit</h3><p style="margin:2px 0 0;font-size:13px">Apa manfaat praktisnya?</p><b>“Banyak bahan latihan”</b></div>
+    <div class="arrow">→</div>
+    <div class="box green" style="padding:12px 14px"><h3>Value</h3><p style="margin:2px 0 0;font-size:13px">Kenapa pelanggan peduli?</p><b>“Bisa latihan konsisten &amp; lulus ujian”</b></div>
+  </div>
+
+  <div class="example" style="margin-top:0;padding:12px 16px">
+    <b>Kaidah Pokok Kotler:</b> <i>“Pelanggan pada hakikatnya tidak pernah membeli fitur fisik semata, melainkan membeli <b>value</b> berupa kepuasan, status, dan solusi atas masalah hidup mereka.”</i>
+  </div>
+  <div class="no">02</div><div class="footer">PHILIP KOTLER • FEATURE VS VALUE</div>
+</section>
+
+<section class="slide">
+  <span class="label">Contoh 1</span>
+  <h2>Produk: Botol Minum</h2>
+  <div class="visualGrid">
+    <div class="text"><div class="box">
+      <h3>Fitur</h3>
+      <ul>
+        <li>Stainless steel</li>
+        <li>Anti bocor</li>
+        <li>Menjaga suhu</li>
+        <li>Kapasitas 1 liter</li>
+      </ul>
+    </div>
+    <div class="box green" style="margin-top:14px">
+      <h3>Value yang bisa dijual</h3>
+      <ul>
+        <li>Tahan lama</li>
+        <li>Aman dibawa dalam tas</li>
+        <li>Minuman tetap dingin/panas</li>
+        <li>Tidak perlu sering isi ulang</li>
+      </ul>
+    </div></div>
+    <div class="photoCard"><img src="https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=900&q=85" alt="Botol minum stainless steel"><div class="photoCaption">Contoh produk: botol minum</div></div>
+  </div>
+  <div class="example">
+    <b>Pesan marketing:</b> “Bawa minuman dingin sepanjang hari tanpa khawatir bocor.”
+  </div>
+  <div class="no">03</div><div class="footer">CONTOH VALUE</div>
+</section>
+
+<section class="slide">
+  <span class="label">Contoh 2</span>
+  <h2>Produk: TWS Earbuds</h2>
+  <div class="visualGrid">
+    <div class="text">
+      <div class="box">
+        <h3>Fitur</h3>
+        <ul>
+          <li>Active Noise Cancelling (ANC)</li>
+          <li>Baterai tahan 30 jam + charging case</li>
+          <li>Desain ergonomis & tahan air (IPX4)</li>
+          <li>Dual mic dengan AI noise reduction</li>
+        </ul>
+      </div>
+      <div class="box green" style="margin-top:14px">
+        <h3>Value yang bisa dijual</h3>
+        <ul>
+          <li>Fokus penuh belajar/bekerja di kafe ramai</li>
+          <li>Bebas bergerak tanpa takut lowbat seharian</li>
+          <li>Nyaman dipakai berolahraga & komuter</li>
+          <li>Suara telepon/meeting online tetap jernih</li>
+        </ul>
+      </div>
+    </div>
+    <div class="photoCard">
+      <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=900&q=85" alt="TWS Wireless Earbuds">
+      <div class="photoCaption">Contoh produk: TWS Earbuds ANC</div>
+    </div>
+  </div>
+  <div class="example">
+    <b>Pesan marketing:</b> “Heningkan kebisingan kota — nikmati fokus total dan musik jernih di mana pun kamu berada.”
+  </div>
+  <div class="no">04</div><div class="footer">CONTOH VALUE</div>
+</section>
+
+<section class="slide">
+  <span class="label">Contoh 3</span>
+  <h2>Produk: Kursus Online</h2>
+  <div class="visualWide">
+    <div class="grid3">
+    <div class="box"><h3>20 Video</h3><p>Benefit: bisa dipelajari ulang.</p><p><b>Value:</b> fleksibel.</p></div>
+    <div class="box green"><h3>Mentor</h3><p>Benefit: bisa bertanya.</p><p><b>Value:</b> mengurangi trial & error.</p></div>
+    <div class="box"><h3>Grup WhatsApp</h3><p>Benefit: berdiskusi.</p><p><b>Value:</b> tidak belajar sendirian.</p></div>
+    </div>
+    <div class="photoCard"><img src="https://assets.st-note.com/production/uploads/images/243340782/rectangle_large_type_2_f212a2de380cf1f52540ff09ea09b21f.jpg?width=1280" alt="Belajar online dengan laptop"><div class="photoCaption">Contoh experience belajar online</div></div>
+  </div>
+  <div class="example">
+    <b>Pesan marketing:</b> “Belajar kapan saja, tetap bisa bertanya, dan tidak harus belajar sendirian.”
+  </div>
+  <div class="no">05</div><div class="footer">CONTOH VALUE</div>
+</section>
+
+<section class="slide">
+  <span class="label">Contoh 4</span>
+  <h2>Produk: Kopi Susu</h2>
+  <div class="visualWide">
+    <div>
+      <table>
+        <tr><th>Yang Dimiliki</th><th>Benefit</th><th>Value</th></tr>
+        <tr><td>Arabica</td><td>Rasa kopi lebih kuat</td><td>Pengalaman minum lebih premium</td></tr>
+        <tr><td>Gula aren</td><td>Rasa lebih khas</td><td>Memiliki karakter rasa</td></tr>
+        <tr><td>Dekat kampus</td><td>Mudah dijangkau</td><td>Praktis untuk mahasiswa</td></tr>
+        <tr><td>Tempat nyaman</td><td>Bisa duduk lama</td><td>Tempat belajar & nongkrong</td></tr>
+      </table>
+      <div class="example" style="margin-top:14px">
+        <b>Produk akhirnya bukan sekadar “kopi Rp18.000”.</b>
+        Value yang bisa dijual: <b>“Teman mahasiswa untuk belajar, bekerja, dan nongkrong.”</b>
+      </div>
+    </div>
+    <div class="photoCard">
+      <img src="https://tourismemauricie.com/app/uploads/2021/11/cafe-trois-rivieres.jpg" alt="Kopi dan laptop di cafe">
+      <div class="photoCaption">Experience: kopi + tempat belajar & nongkrong</div>
+    </div>
+  </div>
+  <div class="no">06</div><div class="footer">CONTOH VALUE</div>
+</section>
+
+<section class="slide">
+  <span class="label">Marketing Mix</span>
+  <h2>Setelah menemukan value, gunakan 7P.</h2>
+  <div style="display:flex;flex-direction:column;gap:12px;margin-top:6px">
+    <div class="grid4">
+      <div class="box green" style="padding:13px 15px"><h3>1. Product</h3><p style="margin:4px 0 0;font-size:13.5px">Value apa yang diberikan produk?</p></div>
+      <div class="box" style="padding:13px 15px"><h3>2. Price</h3><p style="margin:4px 0 0;font-size:13.5px">Apakah value sepadan dengan harga?</p></div>
+      <div class="box" style="padding:13px 15px"><h3>3. Place</h3><p style="margin:4px 0 0;font-size:13.5px">Seberapa mudah dijangkau pelanggan?</p></div>
+      <div class="box green" style="padding:13px 15px"><h3>4. Promotion</h3><p style="margin:4px 0 0;font-size:13.5px">Bagaimana value dikomunikasikan?</p></div>
+    </div>
+    <div class="grid3">
+      <div class="box" style="padding:13px 15px"><h3>5. People</h3><p style="margin:4px 0 0;font-size:13.5px">Siapa yang menyampaikan value?</p></div>
+      <div class="box green" style="padding:13px 15px"><h3>6. Process</h3><p style="margin:4px 0 0;font-size:13.5px">Bagaimana alur/pelayanan diberikan?</p></div>
+      <div class="box" style="padding:13px 15px"><h3>7. Physical Evidence</h3><p style="margin:4px 0 0;font-size:13.5px">Apa bukti fisik bahwa kualitasnya nyata?</p></div>
+    </div>
+  </div>
+  <div class="example" style="margin-top:14px;padding:12px 16px">
+    <b>Prinsip 7P:</b> Ketujuh elemen ini bekerja bersamaan untuk mengkomunikasikan dan membuktikan <b>value</b> utama produk ke pelanggan.
+  </div>
+  <div class="no">07</div><div class="footer">7P MARKETING MIX</div>
+</section>
+
+<section class="slide">
+  <span class="label">Contoh 7P</span>
+  <h2>Kita kembali ke produk Kopi Susu.</h2>
+  <table style="margin-top:8px">
+    <tr>
+      <th style="width:16%">7P</th>
+      <th style="width:34%">Fitur / Yang Disediakan</th>
+      <th style="width:50%">Value Spesifik bagi Pelanggan</th>
+    </tr>
+    <tr>
+      <td><b>Product</b></td>
+      <td>Arabica murni + gula aren asli</td>
+      <td>Rasa kopi kafe otentik yang aman di lambung & menyegarkan pikiran saat suntuk.</td>
+    </tr>
+    <tr>
+      <td><b>Price</b></td>
+      <td>Rp18.000 / cup ramah kantong</td>
+      <td>Bisa rutin ngopi enak setiap hari tanpa rasa bersalah menguras uang jajan.</td>
+    </tr>
+    <tr>
+      <td><b>Place</b></td>
+      <td>3 menit jalan kaki dari kampus</td>
+      <td>Hemat ongkos & waktu; tempat singgah paling praktis di jeda pergantian kelas.</td>
+    </tr>
+    <tr>
+      <td><b>Promotion</b></td>
+      <td>Kampanye “Teman Nugas Setia”</td>
+      <td>Merasa dipahami & divalidasi perjuangannya saat deadline tugas berat melanda.</td>
+    </tr>
+    <tr>
+      <td><b>People</b></td>
+      <td>Barista ramah & hafal preferensi</td>
+      <td>Merasa disambut hangat & dihargai secara personal, bukan sekadar pembeli biasa.</td>
+    </tr>
+    <tr>
+      <td><b>Process</b></td>
+      <td>Order via scan QR meja, saji &lt; 5 mnt</td>
+      <td>Fokus nugas tidak terputus antrean panjang; waktu belajar tetap produktif.</td>
+    </tr>
+    <tr>
+      <td><b>Physical Evidence</b></td>
+      <td>Wi-Fi stabil, colokan di tiap meja, cup rapi</td>
+      <td>Ketenangan pikiran bahwa tempatnya kondusif untuk nugas laptopan berjam-jam.</td>
+    </tr>
+  </table>
+  <div class="no">08</div><div class="footer">7P DALAM PRAKTIK • BEDAH VALUE</div>
+</section>
+
+<section class="slide">
+  <span class="label">Cara Praktis</span>
+  <h2>Gunakan 4 pertanyaan ini.</h2>
+  <div class="grid2">
+    <div class="box green"><h3>① Apa yang kita punya?</h3><p>Catat semua fitur, layanan, fasilitas, orang, dan proses.</p></div>
+    <div class="box"><h3>② Apa manfaatnya?</h3><p>Terjemahkan setiap fitur menjadi manfaat bagi pelanggan.</p></div>
+    <div class="box"><h3>③ Kenapa pelanggan peduli?</h3><p>Temukan value yang benar-benar penting bagi target customer.</p></div>
+    <div class="box green"><h3>④ Apa buktinya?</h3><p>Cari bukti yang membuat value tersebut dipercaya.</p></div>
+  </div>
+  <div class="example">
+    <b>Formula sederhana:</b>
+    FEATURE → BENEFIT → VALUE → PROOF
+  </div>
+  <div class="no">09</div><div class="footer">VALUE MINING</div>
+</section>
+
+<section class="slide">
+  <span class="label">Latihan</span>
+  <h2>Bedah Produk: Nescafé Ice Roast</h2>
+  <p style="margin:0 0 10px;font-size:15px">Amati gambar kemasan di samping. Analisis dan tuliskan <b>Fitur</b> yang ada, <b>Benefit</b> bagi pembeli, serta <b>Value</b> yang bisa dijual.</p>
+  <div class="visualWide">
+    <div>
+      <table>
+        <tr>
+          <th style="width:33%">Fitur<br><span style="font-weight:normal;font-size:11px;color:#eee">(Apa yang dimiliki produk?)</span></th>
+          <th style="width:33%">Benefit<br><span style="font-weight:normal;font-size:11px;color:#eee">(Apa manfaat praktisnya?)</span></th>
+          <th style="width:34%">Value<br><span style="font-weight:normal;font-size:11px;color:#eee">(Kenapa pelanggan peduli?)</span></th>
+        </tr>
+        <tr><td style="height:44px"></td><td></td><td></td></tr>
+        <tr><td style="height:44px"></td><td></td><td></td></tr>
+        <tr><td style="height:44px"></td><td></td><td></td></tr>
+        <tr><td style="height:44px"></td><td></td><td></td></tr>
+      </table>
+      <div class="example" style="margin-top:10px;padding:12px">
+        <b>Tugas Mahasiswa:</b> Dari visual gambar produk Nescafé Ice Roast, temukan minimal <b>4 pasang rantai nilai</b> (Fitur → Benefit → Value) beserta 1 rumusan pesan promosi utamanya!
+      </div>
+    </div>
+    <div class="photoCard">
+      <img src="https://ik.imagekit.io/e2yna5qg8/Gemini_Generated_Image_q63577q63577q635.jfif" alt="Nescafé Ice Roast Sachet">
+      <div class="photoCaption">Studi Kasus: Nescafé Ice Roast</div>
+    </div>
+  </div>
+  <div class="no">10</div><div class="footer">LATIHAN • BEDAH VALUE</div>
+</section>
+
+<section class="slide">
+  <span class="label">Penutup</span>
+  <h2>Intinya sederhana.</h2>
+  
+  <div class="box green" style="padding:22px 28px;margin-bottom:16px">
+    <div style="font-size:clamp(20px,2.1vw,32px);font-weight:bold;line-height:1.25;letter-spacing:-0.03em">
+      “Jangan hanya menjual apa yang dimiliki produk.<br>Jual value dan perubahan yang benar-benar dirasakan pelanggan.”
+    </div>
+  </div>
+
+  <div class="flow" style="margin-bottom:16px">
+    <div class="box"><h3>① Temukan</h3><p style="margin:4px 0 0;font-size:13.5px">Identifikasi fitur & kelebihan spesifik produk</p></div>
+    <div class="arrow">→</div>
+    <div class="box"><h3>② Gali</h3><p style="margin:4px 0 0;font-size:13.5px">Temukan kenapa konsumen benar-benar peduli</p></div>
+    <div class="arrow">→</div>
+    <div class="box"><h3>③ Buktikan</h3><p style="margin:4px 0 0;font-size:13.5px">Hadirkan bukti nyata (Proof) yang dapat dipercaya</p></div>
+    <div class="arrow">→</div>
+    <div class="box green"><h3>④ Eksekusi</h3><p style="margin:4px 0 0;font-size:13.5px">Komunikasikan dengan strategi 7P Marketing Mix</p></div>
+  </div>
+
+  <div class="example" style="margin-top:0;padding:14px 18px">
+    <b>Pertanyaan Refleksi Akhir:</b>
+    “Value apa dari produk saya yang sebenarnya sudah luar biasa, tetapi selama ini belum pernah dikomunikasikan dengan tepat kepada pelanggan?”
+  </div>
+
+  <div class="no">11</div><div class="footer">KEY TAKEAWAY • SUMMARY</div>
+</section>
+
+</div>
+<div class="controls"><button onclick="prev()">←</button><button onclick="next()">→</button></div>
+<script>
+const slides=[...document.querySelectorAll('.slide')];let i=0;
+function show(n){i=Math.max(0,Math.min(slides.length-1,n));slides.forEach((s,x)=>s.classList.toggle('active',x===i))}
+function next(){show(i+1)} function prev(){show(i-1)}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();next()}if(e.key==='ArrowLeft'){e.preventDefault();prev()}});
+</script>
+</body>
+</html>
