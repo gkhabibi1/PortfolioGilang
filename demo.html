@@ -155,11 +155,13 @@
       margin-bottom:18px;
       background:linear-gradient(180deg, #ffffff 40%, #cbd5e1 100%);
       -webkit-background-clip:text;
+      background-clip:text;
       -webkit-text-fill-color:transparent;
     }
     .hero h1 span{
       background:linear-gradient(135deg, var(--neon) 0%, #14b8a6 100%);
       -webkit-background-clip:text;
+      background-clip:text;
       -webkit-text-fill-color:transparent;
     }
     .hero p{
@@ -594,7 +596,7 @@
         <!-- Stats -->
         <div class="stats-bar">
           <div class="stat-item">
-            <div class="stat-val">8+</div>
+            <div class="stat-val">9+</div>
             <div class="stat-label">Live Interactive Demos</div>
           </div>
           <div class="stat-item">
@@ -614,7 +616,7 @@
         <!-- Controls (Filter & Search) -->
         <div class="controls-wrapper">
           <div class="filters" id="filterContainer">
-            <button class="filter-btn active" data-filter="all">Semua Demo (8)</button>
+            <button class="filter-btn active" data-filter="all">Semua Demo (9)</button>
             <button class="filter-btn" data-filter="travel">Travel &amp; Hospitality</button>
             <button class="filter-btn" data-filter="apps">Realtime &amp; Apps</button>
             <button class="filter-btn" data-filter="corporate">Corporate &amp; UMKM</button>
@@ -629,6 +631,43 @@
 
         <!-- GRID -->
         <div class="demo-grid" id="demoGrid">
+
+          <!-- 0. JOHN GRAY'S SEA CANOE -->
+          <article class="demo-card" data-category="travel" data-title="john gray sea canoe phuket thailand kayaking canoeing sea caves hongs starlight bioluminescent">
+            <div class="card-thumb">
+              <img src="images/john-gray/hero-phangnga.jpg" alt="John Gray's Sea Canoe Demo Preview" loading="lazy">
+              <div class="card-thumb-overlay"></div>
+              <span class="thumb-tag">Eco Kayaking &amp; Caves</span>
+              <span class="thumb-status"><span class="status-dot"></span> Live Demo</span>
+            </div>
+            <div class="card-body">
+              <div class="card-eyebrow">Natural History &amp; Sea Kayak</div>
+              <h3 class="card-title">John Gray's Sea Canoe — Phuket &amp; Phang Nga Bay</h3>
+              <p class="card-desc">
+                Website wisata kayak legendaris Phuket sejak 1983 dengan penjelajahan gua laut (hongs), air bioluminescence malam hari, award-winning eco-tourism, galeri foto resolusi tinggi, dan paket tur interaktif.
+              </p>
+              <div class="card-features">
+                <div><i class="fa-solid fa-check"></i> Hong by Starlight &amp; Bioluminescent Plankton</div>
+                <div><i class="fa-solid fa-check"></i> Interactive Tour Package Grid &amp; Route Tabs</div>
+                <div><i class="fa-solid fa-check"></i> High Fidelity Generated Scenery &amp; Visuals</div>
+              </div>
+              <div class="stack-tags">
+                <span class="stack-pill">HTML5</span>
+                <span class="stack-pill">Vanilla CSS</span>
+                <span class="stack-pill">Interactive FAQ</span>
+                <span class="stack-pill">Responsive Layout</span>
+              </div>
+              <div class="card-actions">
+                <a href="/demo-john-grays-sea-canoe" class="btn-launch">
+                  <span>Buka Live Demo</span>
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+                <button class="btn-copy" onclick="copyLink('/demo-john-grays-sea-canoe', 'John Gray\'s Sea Canoe')" title="Salin Link Demo">
+                  <i class="fa-regular fa-copy"></i>
+                </button>
+              </div>
+            </div>
+          </article>
 
           <!-- 1. SMILING ALBINO -->
           <article class="demo-card" data-category="travel" data-title="smiling albino luxury experiential travel thailand vietnam cambodia laos">

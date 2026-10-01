@@ -17,6 +17,9 @@
     { "source": "/demo-korindo-terpal", "destination": "/demo-korindo-terpal.html" },
     { "source": "/demo-smilling-albino", "destination": "/demo-smilling-albino.html" },
     { "source": "/demo-smiling-albino", "destination": "/demo-smilling-albino.html" },
+    { "source": "/demo-john-grays-sea-canoe", "destination": "/demo-john-grays-sea-canoe.html" },
+    { "source": "/demo-john-gray-sea-canoe", "destination": "/demo-john-grays-sea-canoe.html" },
+    { "source": "/demo-john-gray", "destination": "/demo-john-grays-sea-canoe.html" },
     { "source": "/demo", "destination": "/demo.html" },
     { "source": "/demos", "destination": "/demo.html" }
   ]

@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="John Gray's Sea Canoe — Natural History By Sea Kayak Since 1983. Interactive demo showcase by Gilang Habib.">
+<title>John Gray's Sea Canoe — Phuket Kayaking &amp; Canoeing</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+<style>
+:root{
+  --ink:#171717;
+  --muted:#6f6f6b;
+  --cream:#f5f4ef;
+  --paper:#ffffff;
+  --gold:#d9ae35;
+  --gold-dark:#b38a1e;
+  --gold-soft:#f1df9d;
+  --line:#e9e7df;
+  --dark:#292929;
+  --radius:28px;
+  --shadow:0 18px 60px rgba(0,0,0,.10);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:#242424;
+  color:var(--ink);
+  font-family:"DM Sans",sans-serif;
+  line-height:1.55;
+  overflow-x:hidden;
+}
+img{display:block;width:100%;height:100%;object-fit:cover}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer}
+
+/* TOP DEMO NOTICE BANNER (ENGLISH) */
+.demo-banner{
+  background:linear-gradient(90deg, #182329 0%, #20353d 50%, #182329 100%);
+  color:#e2edf0;
+  padding:10px 0;
+  border-bottom:1px solid rgba(217, 174, 53, 0.4);
+  font-size:12.5px;
+  position:relative;
+  z-index:1100;
+}
+.demo-banner-content{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  flex-wrap:wrap;
+}
+.demo-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:var(--gold);
+  color:#111;
+  font-weight:800;
+  font-size:11px;
+  padding:4px 12px;
+  border-radius:999px;
+  letter-spacing:0.07em;
+  text-transform:uppercase;
+  white-space:nowrap;
+  box-shadow:0 2px 10px rgba(217,174,53,0.35);
+}
+.pulse-dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#111;
+  animation:demoPulse 1.8s infinite;
+}
+@keyframes demoPulse{
+  0%{transform:scale(0.8);opacity:1}
+  50%{transform:scale(1.4);opacity:0.4}
+  100%{transform:scale(0.8);opacity:1}
+}
+.demo-banner-text{
+  flex:1;
+  text-align:center;
+  margin:0;
+  color:#cbdde2;
+  font-size:12.5px;
+  line-height:1.4;
+}
+.demo-banner-text strong{color:#ffffff;font-weight:700}
+.demo-banner-text em{color:var(--gold-soft);font-style:normal;font-weight:600}
+.demo-banner-actions{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.demo-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:5px 14px;
+  border-radius:999px;
+  font-size:11.5px;
+  font-weight:700;
+  transition:all .25s ease;
+  text-decoration:none;
+  white-space:nowrap;
+}
+.demo-btn-all{
+  background:rgba(217,174,53,0.2);
+  border:1px solid rgba(217,174,53,0.6);
+  color:#fbeec4;
+}
+.demo-btn-all:hover{
+  background:var(--gold);
+  color:#111;
+  transform:translateY(-1px);
+}
+.demo-btn-back{
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.22);
+  color:#fff;
+}
+.demo-btn-back:hover{
+  background:rgba(255,255,255,0.2);
+  transform:translateY(-1px);
+}
+
+.site-shell{
+  max-width:1440px;
+  margin:0 auto;
+  background:var(--cream);
+  overflow:hidden;
+  box-shadow:0 0 80px rgba(0,0,0,.25);
+  position:relative;
+}
+.container{width:min(1180px,calc(100% - 48px));margin:auto}
+
+.topbar{
+  background:var(--gold);
+  color:#fff;
+  font-size:12px;
+  padding:9px 0;
+}
+.topbar .container{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.topbar-left,.topbar-right{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.topbar span{opacity:.96;display:inline-flex;align-items:center;gap:6px}
+.nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(0,0,0,.06);
+  transition:box-shadow .3s ease;
+}
+.nav.scrolled{
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+.nav-inner{height:78px;display:flex;align-items:center;justify-content:space-between;gap:30px}
+.logo{
+  display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:-.04em;
+}
+.logo-mark{
+  width:44px;height:32px;position:relative;
+}
+.logo-mark:before{
+  content:"";position:absolute;width:35px;height:13px;left:2px;top:8px;
+  border-radius:100% 20% 100% 20%;background:#1781a1;transform:rotate(-16deg);
+}
+.logo-mark:after{
+  content:"";position:absolute;width:20px;height:7px;right:0;top:4px;
+  background:#f29b2f;transform:skew(-28deg) rotate(-8deg);
+}
+.logo small{display:block;font-size:8px;letter-spacing:.08em;color:#777;text-transform:uppercase}
+.nav-links{display:flex;align-items:center;gap:25px;font-size:13px;font-weight:600}
+.nav-links a{position:relative;padding:30px 0;color:#565652;transition:color .25s ease}
+.nav-links a:after{content:"";position:absolute;left:0;right:0;bottom:20px;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:.3s}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a:hover:after,.nav-links a.active:after{transform:scaleX(1)}
+.nav-actions{display:flex;gap:8px;align-items:center}
+.pill{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:11px 18px;border-radius:999px;background:var(--ink);color:#fff;
+  font-size:12px;font-weight:700;transition:.3s;border:none;
+}
+.pill:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.18);background:#000}
+.menu-btn{display:none;border:0;background:#111;color:#fff;border-radius:50%;width:42px;height:42px}
+
+.hero{padding:18px 0 0}
+.hero-card{
+  position:relative;height:min(650px,64vw);min-height:480px;border-radius:32px;overflow:hidden;
+  background:#183b48;
+}
+.hero-card:before{
+  content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.68),rgba(0,0,0,.1) 62%),linear-gradient(0deg,rgba(0,0,0,.55),transparent 45%);
+  z-index:1;
+}
+.hero-img{position:absolute;inset:0;animation:heroZoom 18s ease-in-out infinite alternate}
+.hero-content{position:absolute;z-index:2;left:54px;bottom:50px;color:#fff;max-width:690px}
+.eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--gold)}
+.hero h1{
+  margin:12px 0 15px;font-family:"Manrope",sans-serif;font-size:clamp(44px,6vw,82px);
+  line-height:.94;letter-spacing:-.065em;font-weight:800;
+}
+.hero-copy{max-width:570px;color:rgba(255,255,255,.9);font-size:16px}
+.hero-buttons{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:999px;
+  background:#fff;color:#111;font-weight:700;font-size:13px;transition:.3s;border:none;
+}
+.btn.gold{background:var(--gold);color:#fff}
+.btn.gold:hover{background:var(--gold-dark)}
+.btn:hover{transform:translateY(-3px);box-shadow:0 10px 25px rgba(0,0,0,0.15)}
+.hero-note{
+  position:absolute;z-index:3;right:28px;top:28px;background:rgba(255,255,255,.92);
+  backdrop-filter:blur(14px);border-radius:22px;padding:13px;width:230px;box-shadow:0 12px 30px rgba(0,0,0,.18);
+  border:1px solid rgba(255,255,255,0.4);
+}
+.hero-note img{height:115px;border-radius:15px;margin-bottom:10px}
+.hero-note strong{font-size:13px;display:block;line-height:1.25;color:#111}
+.hero-note span{font-size:11px;color:#666;display:block;margin-top:3px}
+
+.section{padding:110px 0}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:40px}
+.section-kicker{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8b8b85;font-weight:800}
+.section-title{
+  margin:8px 0 0;font-family:"Manrope",sans-serif;font-size:clamp(34px,4vw,58px);line-height:.98;letter-spacing:-.06em;
+}
+.section-desc{max-width:520px;color:var(--muted);font-size:15px}
+.intro-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:64px;align-items:center}
+.mosaic{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:190px 130px;gap:12px}
+.mosaic .wide{grid-column:1/3}
+.mosaic .photo{border-radius:25px;overflow:hidden;position:relative}
+.mosaic .photo:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent,rgba(0,0,0,.18))}
+.mosaic .photo img{transition:transform .6s ease}
+.mosaic .photo:hover img{transform:scale(1.05)}
+.copy h2{font-family:"Manrope",sans-serif;font-size:clamp(34px,4vw,56px);line-height:.98;letter-spacing:-.06em;margin:10px 0 18px}
+.copy p{color:var(--muted);font-size:15px;max-width:620px;margin-bottom:12px}
+.icon-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:30px}
+.icon-item{padding:15px 10px;border-top:1px solid var(--line);font-size:11px;text-align:center;color:#555}
+.icon{width:38px;height:38px;border:1px solid #ddd;border-radius:50%;display:grid;place-items:center;margin:0 auto 8px;font-size:16px;color:var(--gold)}
+
+.feature-panel{
+  background:#fff;border-radius:32px;padding:24px;box-shadow:var(--shadow);
+  display:grid;grid-template-columns:.78fr 1.22fr;gap:24px;align-items:stretch;
+}
+.route-copy{padding:30px 20px;display:flex;flex-direction:column;justify-content:space-between}
+.route-copy h2{font-family:"Manrope",sans-serif;font-size:clamp(34px,4vw,55px);line-height:.95;letter-spacing:-.065em;margin:18px 0}
+.tabs{display:flex;gap:8px;flex-wrap:wrap}
+.tab{padding:8px 14px;border:1px solid #ddd;border-radius:999px;font-size:11px;font-weight:600;color:#666;cursor:pointer;transition:.25s}
+.tab.active,.tab:hover{background:#111;color:#fff;border-color:#111}
+.route-image-grid{display:grid;grid-template-columns:1.2fr .8fr;grid-template-rows:1fr 1fr;gap:14px;min-height:480px}
+.route-image{position:relative;border-radius:22px;overflow:hidden;background:#1a2b32}
+.route-image:first-child{grid-row:1/3}
+.route-image img{transition:transform .7s ease}
+.route-image:hover img{transform:scale(1.05)}
+.overlay-label{position:absolute;left:14px;bottom:14px;background:rgba(0,0,0,.65);color:#fff;border-radius:999px;padding:7px 14px;font-size:11px;backdrop-filter:blur(8px);font-weight:600}
+
+.dark-section{background:#232323;color:#fff}
+.dark-section .section-desc{color:#b8b8b2}
+.dark-section .section-kicker{color:#d4bd76}
+.cards-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.image-card{height:470px;position:relative;border-radius:28px;overflow:hidden;background:#333;cursor:pointer}
+.image-card:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.85),transparent 65%)}
+.image-card img{transition:transform .7s}
+.image-card:hover img{transform:scale(1.06)}
+.image-card .card-content{position:absolute;z-index:2;left:24px;right:24px;bottom:24px}
+.card-content h3{font-family:"Manrope",sans-serif;font-size:28px;line-height:1;margin:0 0 10px;letter-spacing:-.04em}
+.card-content p{font-size:13px;color:#ddd;margin:0;line-height:1.45}
+.circle-arrow{position:absolute;z-index:3;right:18px;top:18px;width:40px;height:40px;background:#fff;color:#111;border-radius:50%;display:grid;place-items:center;font-weight:700;transition:.3s}
+.image-card:hover .circle-arrow{background:var(--gold);color:#fff;transform:scale(1.1)}
+
+.tours{background:#fff}
+.tour-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.tour-card{display:grid;grid-template-columns:42% 58%;min-height:300px;border:1px solid var(--line);border-radius:25px;overflow:hidden;background:#fff;transition:.35s}
+.tour-card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.tour-card img{height:100%;min-height:300px}
+.tour-info{padding:26px;display:flex;flex-direction:column}
+.tour-tag{font-size:10px;text-transform:uppercase;letter-spacing:.13em;color:#9b8a52;font-weight:800}
+.tour-info h3{font-family:"Manrope",sans-serif;font-size:24px;line-height:1.08;letter-spacing:-.045em;margin:9px 0}
+.price{font-weight:800;font-size:18px;margin-bottom:12px;color:var(--ink)}
+.tour-info p{font-size:12.5px;color:var(--muted);margin:0 0 18px;line-height:1.5}
+.text-link{margin-top:auto;font-size:12.5px;font-weight:800;display:inline-flex;align-items:center;gap:8px;color:var(--ink);transition:.2s}
+.text-link:hover{color:var(--gold-dark);gap:12px}
+
+.eco-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.eco-box{background:#fff;border-radius:28px;padding:34px;box-shadow:var(--shadow)}
+.eco-box h3{font-family:"Manrope",sans-serif;font-size:31px;line-height:1.05;letter-spacing:-.05em;margin:0 0 15px}
+.checks{display:grid;gap:14px;margin-top:22px}
+.check{display:flex;gap:12px;align-items:flex-start;font-size:13.5px;color:#555}
+.check b{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:#fff;flex:0 0 auto;font-size:11px}
+
+.faq-wrap{max-width:900px;margin:auto}
+.faq{border-top:1px solid #ddd}
+.faq-item{border-bottom:1px solid #ddd}
+.faq-q{width:100%;background:none;border:0;padding:22px 0;text-align:left;display:flex;justify-content:space-between;gap:20px;font-weight:700;font-size:16px;cursor:pointer}
+.faq-q span:last-child{width:28px;height:28px;border-radius:50%;background:#111;color:#fff;display:grid;place-items:center;flex:0 0 auto;font-size:16px;transition:.3s}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .45s ease}
+.faq-a p{padding:0 55px 22px 0;color:var(--muted);font-size:14.5px;margin:0;line-height:1.6}
+.faq-item.open .faq-a{max-height:220px}
+.faq-item.open .faq-q span:last-child{background:var(--gold)}
+
+.awards{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;align-items:center}
+.award{background:#fff;border-radius:20px;min-height:125px;padding:16px;display:grid;place-items:center;text-align:center;border:1px solid var(--line);font-size:10px;font-weight:700;color:#777;box-shadow:0 8px 20px rgba(0,0,0,0.03)}
+.award strong{display:block;font-size:18px;color:#222;margin-bottom:2px}
+
+.about-band{
+  min-height:540px;border-radius:32px;overflow:hidden;position:relative;
+  background:url("../images/john-gray/sunset-expedition.jpg") center/cover no-repeat;
+  color:#fff;display:flex;align-items:end;
+}
+.about-band:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.75),rgba(0,0,0,.15) 70%),linear-gradient(0deg,rgba(0,0,0,.65),transparent 55%)}
+.about-content{position:relative;z-index:2;padding:48px;max-width:780px}
+.about-content h2{font-family:"Manrope",sans-serif;font-size:clamp(42px,6vw,72px);line-height:.93;letter-spacing:-.065em;margin:8px 0 28px}
+.benefits{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.benefit{background:rgba(255,255,255,.14);backdrop-filter:blur(10px);padding:18px;border:1px solid rgba(255,255,255,.2);border-radius:18px}
+.benefit strong{display:block;font-size:13px;margin-bottom:5px;font-weight:700}.benefit span{font-size:11px;color:#eee}
+
+.gallery-section{background:var(--gold);color:#fff}
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:180px;gap:14px}
+.gallery-item{border-radius:20px;overflow:hidden;position:relative;background:rgba(0,0,0,0.15)}
+.gallery-item:nth-child(1){grid-row:span 2}
+.gallery-item:nth-child(5){grid-column:span 2}
+.gallery-item:nth-child(8){grid-row:span 2}
+.gallery-item img{transition:.6s ease}.gallery-item:hover img{transform:scale(1.07)}
+
+.reviews{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.review{background:#fff;border-radius:28px;padding:34px;border:1px solid var(--line);box-shadow:var(--shadow)}
+.quote{font-family:Georgia,serif;font-size:48px;line-height:.7;color:#222}
+.review p{font-size:14.5px;color:#555;margin:20px 0 26px;line-height:1.6}
+.review-meta{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:16px}
+.stars{color:#c89d2c;letter-spacing:3px}.source{font-size:11px;font-weight:800;color:#222}
+
+.articles{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.article{background:#fff;border-radius:25px;overflow:hidden;border:1px solid var(--line);transition:.35s;cursor:pointer}
+.article:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.article img{height:250px}.article-body{padding:24px}.article-date{font-size:11px;color:#999;font-weight:600}.article h3{font-family:"Manrope",sans-serif;font-size:20px;line-height:1.15;letter-spacing:-.04em;margin:9px 0 0;color:#111}
+
+.cta{
+  margin:0 0 80px;background:#151515;color:#fff;border-radius:32px;padding:58px;
+  display:flex;justify-content:space-between;align-items:center;gap:30px;position:relative;overflow:hidden
+}
+.cta:before{content:"";position:absolute;width:380px;height:380px;border-radius:50%;background:var(--gold);right:-130px;top:-190px;opacity:.8;filter:blur(2px)}
+.cta > *{position:relative;z-index:2}.cta h2{font-family:"Manrope",sans-serif;font-size:clamp(34px,4vw,55px);line-height:.95;letter-spacing:-.06em;margin:8px 0}.cta p{color:#bbb;max-width:560px}
+
+footer{background:#222222;color:#fff}
+.footer-main{padding:65px 0 45px;display:grid;grid-template-columns:1.4fr .8fr .9fr;gap:60px}
+.footer-brand p{color:#aaa;font-size:12.5px;max-width:360px;margin-top:14px;line-height:1.6}
+.footer-title{font-size:11px;text-transform:uppercase;letter-spacing:.13em;color:#d9ae35;font-weight:800;margin-bottom:15px}
+.footer-links{display:grid;gap:10px}.footer-links a{font-size:12.5px;color:#bbb;transition:.2s}.footer-links a:hover{color:#fff}
+.footer-links span{font-size:12.5px;color:#999;line-height:1.5}
+.footer-bottom{border-top:1px solid #333333;padding:22px 0;color:#888;font-size:11px}
+.footer-bottom .container{display:flex;justify-content:space-between;gap:20px}
+
+.chat{
+  position:fixed;right:22px;bottom:22px;z-index:100;width:58px;height:58px;border-radius:50%;
+  background:var(--gold);color:#111;display:grid;place-items:center;font-size:22px;box-shadow:0 12px 35px rgba(0,0,0,.3);
+  transition:all .3s ease;
+}
+.chat:hover{transform:scale(1.1) rotate(6deg);background:#fff;color:var(--ink)}
+
+/* Modal Dialog */
+.modal-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,0.7);backdrop-filter:blur(8px);
+  z-index:9999;display:none;place-items:center;padding:20px;
+}
+.modal-overlay.active{display:grid}
+.modal-box{
+  background:#fff;border-radius:28px;max-width:520px;width:100%;padding:32px;
+  position:relative;box-shadow:0 25px 60px rgba(0,0,0,0.3);text-align:left;
+  animation:modalIn .3s ease;
+}
+@keyframes modalIn{from{transform:scale(0.92);opacity:0}to{transform:scale(1);opacity:1}}
+.modal-close{
+  position:absolute;top:20px;right:20px;width:34px;height:34px;border-radius:50%;
+  background:#f0f0f0;border:none;display:grid;place-items:center;font-size:16px;color:#555;
+}
+.modal-close:hover{background:#111;color:#fff}
+.modal-box h3{font-family:"Manrope",sans-serif;font-size:24px;margin:0 0 10px;color:#111}
+.modal-box p{color:#666;font-size:13.5px;line-height:1.55;margin:0 0 20px}
+.modal-actions{display:flex;gap:10px;flex-wrap:wrap}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
+.reveal.visible{opacity:1;transform:none}
+@keyframes heroZoom{from{transform:scale(1.02)}to{transform:scale(1.08)}}
+
+@media(max-width:980px){
+  .nav-links{display:none}.menu-btn{display:block}
+  .hero-card{min-height:580px}.hero-content{left:32px;right:25px;bottom:35px}
+  .hero-note{right:18px;top:18px}
+  .intro-grid,.feature-panel,.eco-grid{grid-template-columns:1fr}
+  .route-image-grid{min-height:500px}
+  .tour-grid{grid-template-columns:1fr}
+  .cards-3,.articles{grid-template-columns:1fr}
+  .image-card{height:390px}
+  .awards{grid-template-columns:repeat(3,1fr)}
+  .about-content{padding:35px}.benefits{grid-template-columns:repeat(2,1fr)}
+  .gallery-grid{grid-template-columns:repeat(3,1fr)}
+  .reviews{grid-template-columns:1fr}
+  .footer-main{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  body{background:var(--cream)}
+  .site-shell{box-shadow:none}
+  .container{width:min(100% - 28px,1180px)}
+  .demo-banner-content{flex-direction:column;align-items:flex-start;gap:10px}
+  .topbar-left span:nth-child(n+2){display:none}
+  .topbar .container{justify-content:center}.topbar-right{display:none}
+  .nav-inner{height:68px}
+  .nav-actions .pill{display:none}
+  .logo{font-size:13px}
+  .hero{padding-top:8px}.hero-card{height:610px;min-height:0;border-radius:24px}
+  .hero-content{left:22px;right:18px;bottom:24px}.hero h1{font-size:46px}.hero-copy{font-size:13px}
+  .hero-note{width:185px;padding:10px}.hero-note img{height:85px}.hero-note strong{font-size:11px}
+  .section{padding:72px 0}.section-head{display:block}.section-head .section-desc{margin-top:15px}
+  .mosaic{grid-template-rows:145px 105px}.copy h2{font-size:42px}
+  .icon-row{grid-template-columns:repeat(2,1fr)}
+  .feature-panel{padding:12px;border-radius:25px}.route-copy{padding:25px 16px}.route-image-grid{grid-template-columns:1fr 1fr;min-height:370px;gap:8px}.route-image:first-child{grid-row:1/3}
+  .cards-3{gap:10px}.image-card{height:340px}
+  .tour-card{grid-template-columns:1fr}.tour-card img{height:240px;min-height:0}
+  .awards{grid-template-columns:repeat(2,1fr)}
+  .about-band{min-height:680px;border-radius:24px}.about-content{padding:25px 20px}.benefits{grid-template-columns:1fr 1fr}
+  .gallery-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:145px}.gallery-item:nth-child(5){grid-column:span 1}
+  .reviews{gap:10px}.review{padding:25px}.review p{font-size:13px}
+  .articles{gap:10px}.article img{height:210px}
+  .cta{padding:35px 24px;display:block;border-radius:25px;margin-bottom:45px}.cta .btn{margin-top:14px}
+  .footer-main{grid-template-columns:1fr;gap:35px;padding:45px 0}.footer-bottom .container{display:block}.footer-bottom span{display:block;margin-top:6px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+
+<body>
+
+  <!-- TOP DEMO NOTICE BANNER (ENGLISH) -->
+  <aside class="demo-banner" role="banner" aria-label="Demo Page Notice">
+    <div class="container demo-banner-content">
+      <div class="demo-badge">
+        <span class="pulse-dot"></span>
+        Demo Showcase
+      </div>
+      <p class="demo-banner-text">
+        <strong>Interactive Portfolio Demo:</strong> This page is a high-fidelity concept preview for <em>John Gray's Sea Canoe — Phuket Kayaking &amp; Canoeing</em>. Built by Gilang Habib.
+      </p>
+      <div class="demo-banner-actions">
+        <a href="/demo" class="demo-btn demo-btn-all" title="View all interactive web demos">
+          <span>✦</span> All Demos
+        </a>
+        <a href="/" class="demo-btn demo-btn-back" title="Back to Gilang's Portfolio">
+          <span>←</span> Portfolio
+        </a>
+      </div>
+    </div>
+  </aside>
+
+<div class="site-shell">
+
+  <div class="topbar">
+    <div class="container">
+      <div class="topbar-left">
+        <span><i class="fa-solid fa-phone"></i> 063 124 3404</span>
+        <span><i class="fa-solid fa-envelope"></i> reservations@johngray-seacanoe.com</span>
+        <span><i class="fa-solid fa-location-dot"></i> 80/25-28 Moo 6, Ao Por, Phuket 83110</span>
+      </div>
+      <div class="topbar-right">
+        <span><i class="fa-brands fa-facebook-f"></i></span>
+        <span><i class="fa-brands fa-instagram"></i></span>
+        <span><i class="fa-brands fa-tripadvisor"></i></span>
+      </div>
+    </div>
+  </div>
+
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="logo" href="#home">
+        <span class="logo-mark"></span>
+        <span>JOHN GRAY'S<br><small>Sea Canoe</small></span>
+      </a>
+      <div class="nav-links">
+        <a class="active" href="#home">HOME</a>
+        <a href="#about">ABOUT US</a>
+        <a href="#tours">TRIP &amp; PRICE</a>
+        <a href="#gallery">GALLERY</a>
+        <a href="#faq">F.A.Q</a>
+        <a href="#vdo">VDO</a>
+        <a href="#blog">BLOG</a>
+        <a href="#newsletter">NEWSLETTER</a>
+        <a href="#contact">CONTACT</a>
+      </div>
+      <div class="nav-actions">
+        <button class="pill" onclick="openDemoModal('Book an Adventure')">Book Now ↗</button>
+        <button class="menu-btn" aria-label="Menu">☰</button>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero container reveal" id="home">
+      <div class="hero-card">
+        <img class="hero-img" alt="Kayakers exploring Phang Nga Bay with John Gray Sea Canoe" src="../images/john-gray/hero-phangnga.jpg">
+        <div class="hero-note">
+          <img alt="Hong by Starlight bioluminescent waters" src="../images/john-gray/hong-starlight.jpg">
+          <strong>Hong by Starlight</strong>
+          <span>Bioluminescent waters · hidden lagoons · sea caves</span>
+        </div>
+        <div class="hero-content">
+          <div class="eyebrow">Natural History · By Sea Kayak Since 1983</div>
+          <h1>Thailand &amp; Phuket<br>Kayaking &amp; Canoeing</h1>
+          <p class="hero-copy">Authentic sea-canoe adventures through limestone caves, hidden lagoons and emerald-green waters with John Gray's Sea Canoe.</p>
+          <div class="hero-buttons">
+            <a class="btn gold" href="#tours">Explore the tours ↗</a>
+            <a class="btn" href="#about">Our story</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="section container reveal" id="about">
+      <div class="intro-grid">
+        <div class="mosaic">
+          <div class="photo"><img alt="Kayakers with expert guide in Phang Nga" src="../images/john-gray/eco-guide.jpg"></div>
+          <div class="photo"><img alt="Sea canoe entering low limestone sea cave" src="../images/john-gray/sea-cave-entry.jpg"></div>
+          <div class="photo wide"><img alt="Breathtaking hidden lagoon inside limestone karst" src="../images/john-gray/hidden-lagoon.jpg"></div>
+        </div>
+        <div class="copy">
+          <div class="section-kicker">Practice Makes Perfect</div>
+          <h2>Welcome to<br>John Gray's Sea Canoe</h2>
+          <p>Since 1983, John Gray's Sea Canoe has been offering unforgettable Thailand and Phuket kayaking and canoeing tours through breathtaking limestone caves, hidden lagoons, and emerald-green waters. Known for authentic experiences and a genuine commitment to nature, this isn't your average kayak tour.</p>
+          <p>Whether you're a seasoned explorer or a curious first-timer, you'll leave with memories that last a lifetime.</p>
+          <div class="icon-row">
+            <div class="icon-item"><div class="icon"><i class="fa-solid fa-water"></i></div>Sea Kayaking</div>
+            <div class="icon-item"><div class="icon"><i class="fa-solid fa-leaf"></i></div>Eco Tours</div>
+            <div class="icon-item"><div class="icon"><i class="fa-solid fa-compass"></i></div>Adventure</div>
+            <div class="icon-item"><div class="icon"><i class="fa-solid fa-people-group"></i></div>Community</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROUTES FEATURE PANEL -->
+    <section class="section container reveal">
+      <div class="feature-panel">
+        <div class="route-copy">
+          <div>
+            <div class="tabs">
+              <span class="tab active" data-filter="all">All tours</span>
+              <span class="tab" data-filter="day">Day trips</span>
+              <span class="tab" data-filter="expedition">Expeditions</span>
+              <span class="tab" data-filter="private">Private</span>
+            </div>
+            <div class="section-kicker" style="margin-top:30px">A Sea Canoe Trip You'll Never Forget</div>
+            <h2>Routes to the perfect wave</h2>
+            <p class="section-desc">Paddle through ancient sea caves, drift past lush mangroves and discover hidden lagoons that most visitors never see.</p>
+          </div>
+          <a class="text-link" href="#tours">View recommended tours →</a>
+        </div>
+        <div class="route-image-grid">
+          <div class="route-image"><img alt="Hidden lagoon hong" src="../images/john-gray/hidden-lagoon.jpg"><span class="overlay-label">Explore the hongs</span></div>
+          <div class="route-image"><img alt="Sea caves exploration" src="../images/john-gray/sea-cave-entry.jpg"><span class="overlay-label">Sea caves</span></div>
+          <div class="route-image"><img alt="Expedition vessel in Phang Nga Bay" src="../images/john-gray/expedition-boat.jpg"><span class="overlay-label">Phang Nga Bay</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DARK IMMERSION SECTION -->
+    <section class="section dark-section reveal" id="vdo">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">More than sightseeing</div>
+            <h2 class="section-title">More than<br>just sea canoeing</h2>
+          </div>
+          <p class="section-desc">Our tours are a cultural and ecological immersion — with passionate guides, local knowledge, fresh food and a deep respect for nature.</p>
+        </div>
+        <div class="cards-3">
+          <article class="image-card" onclick="openDemoModal('Sea-cave trips')">
+            <img alt="Bioluminescent sea cave" src="../images/john-gray/hong-starlight.jpg">
+            <span class="circle-arrow">↗</span>
+            <div class="card-content"><h3>Sea-cave trips</h3><p>Explore hidden lagoons, limestone caves and magical bioluminescent waters.</p></div>
+          </article>
+          <article class="image-card" onclick="openDemoModal('Experience & Story')">
+            <img alt="Expedition boat experience" src="../images/john-gray/expedition-boat.jpg">
+            <span class="circle-arrow">↗</span>
+            <div class="card-content"><h3>Experience &amp; story</h3><p>Local knowledge, experienced guides and decades of sea-canoe expertise.</p></div>
+          </article>
+          <article class="image-card" onclick="openDemoModal('Community & Eco-tours')">
+            <img alt="Community and guide with guest" src="../images/john-gray/eco-guide.jpg">
+            <span class="circle-arrow">↗</span>
+            <div class="card-content"><h3>Community</h3><p>Connect with Thailand's ecosystems, traditions and people.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOURS SECTION -->
+    <section class="section tours reveal" id="tours">
+      <div class="container">
+        <div class="section-head">
+          <div><div class="section-kicker">Our Recommended</div><h2 class="section-title">Choose your<br>adventure</h2></div>
+          <p class="section-desc">From a magical evening under the stars to multi-day expeditions, each experience is crafted around Phuket's extraordinary natural landscape.</p>
+        </div>
+
+        <div class="tour-grid">
+          <!-- Tour 1 -->
+          <article class="tour-card">
+            <img alt="Hong Island Tour with Bioluminescent Plankton" src="../images/john-gray/hong-starlight.jpg">
+            <div class="tour-info">
+              <span class="tour-tag">Daily Departure</span>
+              <h3>Hong Island Tour in Phuket with Bioluminescent Plankton</h3>
+              <div class="price">From ฿3,950</div>
+              <p>Explore dramatic sea caves and hidden lagoons of Phang Nga Bay, with a magical paddle through bioluminescent waters and a visit to iconic James Bond Island.</p>
+              <button class="text-link" onclick="openDemoModal('Hong Island Tour with Bioluminescent Plankton')">View tour →</button>
+            </div>
+          </article>
+
+          <!-- Tour 2 -->
+          <article class="tour-card">
+            <img alt="1-Day Phuket Day Tours and Island Hopping" src="../images/john-gray/pristine-beach.jpg">
+            <div class="tour-info">
+              <span class="tour-tag">Full day</span>
+              <h3>1-Day Phuket Day Tours &amp; Island Hopping Adventures</h3>
+              <div class="price">From ฿35,000</div>
+              <p>Enjoy a full-day kayaking and beach exploration experience. Discover hidden islands and relax on pristine beaches in a peaceful setting.</p>
+              <button class="text-link" onclick="openDemoModal('1-Day Phuket Day Tours & Island Hopping')">View tour →</button>
+            </div>
+          </article>
+
+          <!-- Tour 3 -->
+          <article class="tour-card">
+            <img alt="Expedition Express 2D1N" src="../images/john-gray/sunset-expedition.jpg">
+            <div class="tour-info">
+              <span class="tour-tag">2D1N</span>
+              <h3>Expedition Express</h3>
+              <div class="price">From ฿45,900</div>
+              <p>A thrilling two-day sea canoe trip through Phang Nga Bay with dramatic caves, iconic sites, expert storytelling, fresh meals and sustainable travel.</p>
+              <button class="text-link" onclick="openDemoModal('Expedition Express 2D1N')">View tour →</button>
+            </div>
+          </article>
+
+          <!-- Tour 4 -->
+          <article class="tour-card">
+            <img alt="Mini-Expedition 3D2N" src="../images/john-gray/hero-phangnga.jpg">
+            <div class="tour-info">
+              <span class="tour-tag">3D2N</span>
+              <h3>Mini-Expedition</h3>
+              <div class="price">From ฿59,900</div>
+              <p>Immerse yourself in a three-day Phuket sea canoe expedition through Phang Nga Bay, caves, lagoons and James Bond Island.</p>
+              <button class="text-link" onclick="openDemoModal('Mini-Expedition 3D2N')">View tour →</button>
+            </div>
+          </article>
+
+          <!-- Tour 5 (Full Width) -->
+          <article class="tour-card" style="grid-column:1/-1">
+            <img alt="Hong by Starlight Private Charter" src="../images/john-gray/expedition-boat.jpg">
+            <div class="tour-info">
+              <span class="tour-tag">Private Charter</span>
+              <h3>Hong by Starlight — Private Charter</h3>
+              <div class="price">From ฿62,750</div>
+              <p>Experience Phang Nga Bay in ultimate privacy with a personalised sea canoe tour. Paddle through sea caves and hidden lagoons with expert guides — perfect for couples, families or small groups.</p>
+              <button class="text-link" onclick="openDemoModal('Hong by Starlight — Private Charter')">View private charter →</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ECO TOUR SECTION -->
+    <section class="section container reveal">
+      <div class="eco-grid">
+        <div class="eco-box">
+          <div class="section-kicker">Award-Winning Eco Tours</div>
+          <h3>Adventure with a lighter footprint.</h3>
+          <p class="section-desc">John Gray's Sea Canoe proudly received the SKAL International Eco Tourism Award in 2008, recognised for its contribution to ethical and sustainable tourism.</p>
+          <div class="checks">
+            <div class="check"><b>✓</b><span>Deeply connect travellers with Thailand's stunning ecosystems.</span></div>
+            <div class="check"><b>✓</b><span>Minimise environmental impact at every step.</span></div>
+            <div class="check"><b>✓</b><span>Support local traditions and communities.</span></div>
+          </div>
+        </div>
+        <div class="eco-box">
+          <div class="section-kicker">Why Choose John Gray's Sea Canoe?</div>
+          <h3>Passion, knowledge &amp; decades of experience.</h3>
+          <div class="checks">
+            <div class="check"><b>✓</b><span>Experienced, safety-focused guides with expert knowledge of the local environment.</span></div>
+            <div class="check"><b>✓</b><span>Freshly prepared, chemical-free meals made with local ingredients.</span></div>
+            <div class="check"><b>✓</b><span>High-quality equipment and safety-focused best practices throughout.</span></div>
+            <div class="check"><b>✓</b><span>Eco-friendly practices that protect the landscapes you've come to explore.</span></div>
+            <div class="check"><b>✓</b><span>Tour prices that are fair, affordable and fully transparent.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section class="section container reveal" id="faq">
+      <div class="section-head">
+        <div><div class="section-kicker">Questions before you go</div><h2 class="section-title">FAQs</h2></div>
+        <p class="section-desc">Everything you need to know before you paddle into Thailand's extraordinary seascapes.</p>
+      </div>
+      <div class="faq-wrap">
+        <div class="faq">
+          <div class="faq-item open">
+            <button class="faq-q"><span>What's the best kayaking and canoeing tour in Phuket?</span><span>−</span></button>
+            <div class="faq-a"><p>John Gray's Sea Canoe offers award-winning tours through stunning sea caves, hidden lagoons and breathtaking island scenery. With experienced guides and a genuine eco-friendly approach, it's one of the most distinctive ways to explore Thailand's natural beauty.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q"><span>Are John Gray's Sea Canoe tours eco-friendly?</span><span>+</span></button>
+            <div class="faq-a"><p>Our eco tours are built around education, conservation and authentic connection with the natural world, while aiming to minimise environmental impact and support local traditions and communities.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q"><span>Is sea canoeing in Phuket suitable for beginners?</span><span>+</span></button>
+            <div class="faq-a"><p>Absolutely. Tours are guided by experienced staff, so guests can explore sea caves, hidden lagoons and scenic islands without prior paddling experience.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q"><span>What should I bring on a sea canoe trip?</span><span>+</span></button>
+            <div class="faq-a"><p>We recommend a hat, sunglasses, sunscreen, insect repellent, reusable water bottle, swimwear and a towel. Safety equipment is provided.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q"><span>Are meals included?</span><span>+</span></button>
+            <div class="faq-a"><p>Meals are included on many tours and are freshly prepared using local, chemical-free ingredients. Dietary requirements can be communicated in advance.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AWARDS -->
+    <section class="section container reveal">
+      <div class="section-head"><div><div class="section-kicker">Recognised for our work</div><h2 class="section-title">Awards</h2></div></div>
+      <div class="awards">
+        <div class="award"><strong>2022</strong>TRAVELERS' CHOICE<br>Tripadvisor</div>
+        <div class="award"><strong>2020</strong>TRAVELERS' CHOICE<br>Tripadvisor</div>
+        <div class="award"><strong>2019</strong>CERTIFICATE OF EXCELLENCE<br>Tripadvisor</div>
+        <div class="award"><strong>SHA</strong>Safety &amp; Health<br>Administration</div>
+        <div class="award"><strong>2008</strong>ECOTOURS<br>AWARD WINNER</div>
+        <div class="award"><strong>★</strong>International<br>Recognition</div>
+      </div>
+    </section>
+
+    <!-- ABOUT BAND -->
+    <section class="section container reveal">
+      <div class="about-band">
+        <div class="about-content">
+          <div class="section-kicker" style="color:var(--gold)">More About Us</div>
+          <h2>Launch yourself<br>on a trip of a lifetime.</h2>
+          <div class="benefits">
+            <div class="benefit"><strong>Free Round Trip</strong><span>To your Phuket hotel</span></div>
+            <div class="benefit"><strong>National Park Fees</strong><span>Included in initial charges</span></div>
+            <div class="benefit"><strong>Light Lunch &amp; Dinner</strong><span>Quality food for adventurers</span></div>
+            <div class="benefit"><strong>Qualified Guides</strong><span>Safety and lasting memories</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY SECTION -->
+    <section class="section gallery-section reveal" id="gallery">
+      <div class="container">
+        <div class="section-head">
+          <div><div class="section-kicker" style="color:#fff">Moments from the water</div><h2 class="section-title">Gallery</h2></div>
+          <button class="btn" onclick="openDemoModal('Photo Gallery')">View all ↗</button>
+        </div>
+        <div class="gallery-grid">
+          <div class="gallery-item"><img alt="Sea canoe entering stalactite cave" src="../images/john-gray/sea-cave-entry.jpg" loading="lazy"></div>
+          <div class="gallery-item"><img alt="Bioluminescent night waters" src="../images/john-gray/hong-starlight.jpg" loading="lazy"></div>
+          <div class="gallery-item"><img alt="Expedition mother boat" src="../images/john-gray/expedition-boat.jpg" loading="lazy"></div>
+          <div class="gallery-item"><img alt="Pristine white sand cove" src="../images/john-gray/pristine-beach.jpg" loading="lazy"></div>
+          <div class="gallery-item"><img alt="Hidden lagoon sheer limestone walls" src="../images/john-gray/hidden-lagoon.jpg" loading="lazy"></div>
+          <div class="gallery-item"><img alt="Traditional floating Krathong candle ritual" src="../images/john-gray/floating-krathong.jpg" loading="lazy"></div>
+          <div class="gallery-item"><img alt="Friendly eco-guide paddling with guest" src="../images/john-gray/eco-guide.jpg" loading="lazy"></div>
+          <div class="gallery-item"><img alt="Golden sunset over limestone islands" src="../images/john-gray/sunset-expedition.jpg" loading="lazy"></div>
+          <div class="gallery-item"><img alt="Famous James Bond Island Koh Tapu" src="../images/john-gray/james-bond-island.jpg" loading="lazy"></div>
+          <div class="gallery-item"><img alt="Kayaking team in turquoise waters" src="../images/john-gray/hero-phangnga.jpg" loading="lazy"></div>
+          <div class="gallery-item"><img alt="Navigating natural sea cave formations" src="../images/john-gray/sea-cave-entry.jpg" loading="lazy"></div>
+          <div class="gallery-item"><img alt="Glowing night cave exploration" src="../images/john-gray/hong-starlight.jpg" loading="lazy"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS SECTION -->
+    <section class="section container reveal">
+      <div class="section-head">
+        <div><div class="section-kicker">Words from explorers</div><h2 class="section-title">Reviews</h2></div>
+      </div>
+      <div class="reviews">
+        <article class="review">
+          <div class="quote">“</div>
+          <p>Lying flat in my kayak to float under the rock wall just inches above my nose, I couldn't help wondering how long until the tide would rise, trapping my fellow kayakers and me on the far side of the bat-filled cave we had just paddled through. But after emerging into the secluded, pristine lagoon, with sheer limestone cliffs rising up to the blue sky above, and a family of macaque monkeys descending from the trees, I was in no hurry to leave.</p>
+          <div class="review-meta"><span class="source">TRAVELWEEKLY.COM</span><span class="stars">★★★★★</span></div>
+        </article>
+        <article class="review">
+          <div class="quote">“</div>
+          <p>There are not too many people in the world who would choose to call themselves “Ling Yai” — Thai for Big Monkey — or have their employees refer to them by that name. But John Gray is proud of the nickname. He signs off his emails with it, even adding another nickname, “Caveman”, which was given to him by fellow runners in the Hash House Harriers.</p>
+          <div class="review-meta"><span class="source">PHUKET MAGAZINE</span><span class="stars">★★★★★</span></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- BLOG SECTION -->
+    <section class="section container reveal" id="blog">
+      <div class="section-head">
+        <div><div class="section-kicker">From the journal</div><h2 class="section-title">Recent Articles</h2></div>
+        <button class="text-link" onclick="openDemoModal('Journal Blog Articles')">Read the blog →</button>
+      </div>
+      <div class="articles">
+        <article class="article" onclick="openDemoModal('James Bond Island Kayaking Tour Article')">
+          <img alt="James Bond Island kayaking" src="../images/john-gray/james-bond-island.jpg" loading="lazy">
+          <div class="article-body">
+            <span class="article-date">August 3, 2026</span>
+            <h3>James Bond Island Kayaking Tour: What to Expect from a Phang Nga Bay Adventure</h3>
+          </div>
+        </article>
+        <article class="article" onclick="openDemoModal('Best Kayaking and Canoeing Tours in Phuket')">
+          <img alt="Sea cave kayaking" src="../images/john-gray/sea-cave-entry.jpg" loading="lazy">
+          <div class="article-body">
+            <span class="article-date">August 3, 2026</span>
+            <h3>Best Kayaking and Canoeing Tours in Phuket, Top Sea Cave Adventures</h3>
+          </div>
+        </article>
+        <article class="article" onclick="openDemoModal('Phang Nga Bay Kayaking Guide')">
+          <img alt="Phang Nga Bay kayaking guide" src="../images/john-gray/hidden-lagoon.jpg" loading="lazy">
+          <div class="article-body">
+            <span class="article-date">June 23, 2026</span>
+            <h3>Phang Nga Bay Kayaking Guide, Sea Caves, Canoeing Tours and Hidden Lagoons</h3>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- CTA NEWSLETTER -->
+    <section class="container reveal" id="newsletter">
+      <div class="cta">
+        <div>
+          <div class="section-kicker" style="color:var(--gold)">Book Your Adventure Today</div>
+          <h2>Come for the caves.<br>Stay for the stories.</h2>
+          <p>Ready to stop reading about it and actually paddle into one of Thailand's most extraordinary seascapes?</p>
+        </div>
+        <button class="btn gold" onclick="openDemoModal('Book an Adventure')">Contact us ↗</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="contact">
+    <div class="footer-main container">
+      <div class="footer-brand">
+        <a class="logo" href="#home" style="color:#fff">
+          <span class="logo-mark"></span>
+          <span>JOHN GRAY'S<br><small style="color:#999">Sea Canoe</small></span>
+        </a>
+        <p>Uniquely enjoyable excursions to uniquely wonderful destinations are only part of the magic of a John Gray Sea-canoe experience. Meet new friends and discover your place in this amazing place we call Earth.</p>
+        <a class="footer-links" href="javascript:void(0)" onclick="openDemoModal('Privacy Policy')" style="font-size:12px;color:#bbb">Privacy Policy</a>
+      </div>
+      <div>
+        <div class="footer-title">Packages</div>
+        <div class="footer-links">
+          <a href="#tours">Hong By Starlight TH</a>
+          <a href="#tours">Hong By Starlight TH — Private Charter</a>
+          <a href="#tours">Day In The Islands</a>
+          <a href="#tours">Mini-Expedition (3 วัน 2 คืน)</a>
+          <a href="#tours">Expedition Express (2 วัน 1 คืน)</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-title">Contact &amp; Location</div>
+        <div class="footer-links">
+          <span>80/25-28 Moo 6, Ao Por, Tambon Pa Klok, Thalang District, Phuket 83110</span>
+          <a href="tel:+66631243404">(+66) 63-124-3404</a>
+          <a href="mailto:reservations@johngray-seacanoe.com">reservations@johngray-seacanoe.com</a>
+          <div style="display:flex;gap:12px;margin-top:6px;font-size:14px">
+            <a href="javascript:void(0)" onclick="openDemoModal('Social Facebook')"><i class="fa-brands fa-facebook"></i></a>
+            <a href="javascript:void(0)" onclick="openDemoModal('Social Instagram')"><i class="fa-brands fa-instagram"></i></a>
+            <a href="javascript:void(0)" onclick="openDemoModal('Social TripAdvisor')"><i class="fa-brands fa-tripadvisor"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <span>&copy; 2026 John Gray's Sea Canoe All Rights Reserved. Concept Demo by Gilang Habib.</span>
+        <span>Follow Us On · Natural History By Sea Kayak Since 1983</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- Floating Chat Button -->
+<a class="chat" href="https://wa.me/6285764187873" target="_blank" aria-label="Contact via WhatsApp">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<!-- Interactive Demo Modal -->
+<div class="modal-overlay" id="demoModal" onclick="closeDemoModal(event)">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeDemoModal()">&times;</button>
+    <div style="font-size:11px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:8px">Portfolio Interactive Demo</div>
+    <h3 id="modalTitle">Tour Booking &amp; Inquiry</h3>
+    <p id="modalDesc">You clicked on an interactive item. In this live concept showcase for <strong>John Gray's Sea Canoe</strong>, inquiries and bookings can be seamlessly directed to a custom CRM or WhatsApp concierge.</p>
+    <div class="modal-actions">
+      <a href="https://wa.me/6285764187873?text=Halo%20Gilang,%20saya%20tertarik%20dengan%20demo%20John%20Gray%27s%20Sea%20Canoe%20di%20portofolio%20Anda." target="_blank" class="btn gold">
+        <i class="fa-brands fa-whatsapp"></i> Hubungi Gilang di WhatsApp
+      </a>
+      <a href="/demo" class="btn" style="background:#eee">
+        Lihat Semua Demo (Portfolio)
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+// Reveal on scroll
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+// Sticky nav shadow
+window.addEventListener('scroll', ()=>{
+  const nav = document.querySelector('.nav');
+  if(window.scrollY > 30){
+    nav.classList.add('scrolled');
+  } else {
+    nav.classList.remove('scrolled');
+  }
+});
+
+// FAQ Accordion
+document.querySelectorAll('.faq-q').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const item=btn.parentElement;
+    const open=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(x=>{
+      x.classList.remove('open');
+      const icon=x.querySelector('.faq-q span:last-child');
+      if(icon) icon.textContent='+';
+    });
+    if(!open){
+      item.classList.add('open');
+      btn.querySelector('span:last-child').textContent='−';
+    }
+  });
+});
+
+// Mobile menu toggle
+const menu=document.querySelector('.menu-btn');
+const nav=document.querySelector('.nav-links');
+menu?.addEventListener('click',()=>{
+  const visible=nav.style.display==='flex';
+  nav.style.display=visible?'none':'flex';
+  if(!visible){
+    nav.style.position='absolute';
+    nav.style.top='68px';
+    nav.style.left='14px';
+    nav.style.right='14px';
+    nav.style.padding='18px';
+    nav.style.flexDirection='column';
+    nav.style.alignItems='flex-start';
+    nav.style.background='#fff';
+    nav.style.borderRadius='20px';
+    nav.style.boxShadow='0 15px 45px rgba(0,0,0,.14)';
+    nav.querySelectorAll('a').forEach(a=>a.style.padding='8px 0');
+  }
+});
+
+// Interactive Route Tabs
+document.querySelectorAll('.tabs .tab').forEach(tab=>{
+  tab.addEventListener('click', ()=>{
+    document.querySelectorAll('.tabs .tab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+  });
+});
+
+// Modal helpers
+function openDemoModal(title){
+  document.getElementById('modalTitle').textContent = title || 'Tour Booking & Inquiry';
+  document.getElementById('modalOverlay') || document.getElementById('demoModal').classList.add('active');
+}
+function closeDemoModal(e){
+  document.getElementById('demoModal').classList.remove('active');
+}
+</script>
+</body>
+</html>
