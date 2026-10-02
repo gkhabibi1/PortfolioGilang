@@ -433,7 +433,7 @@ export default function AttendancePage() {
       </div>
 
       {/* =================================================== */}
-      <!-- MODAL TANDA SUKSES ABSEN (TIDAK REDIRECT KE ADMIN)  -->
+      {/* MODAL TANDA SUKSES ABSEN (TIDAK REDIRECT KE ADMIN) */}
       {/* =================================================== */}
       {successRecord && (
         <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4">

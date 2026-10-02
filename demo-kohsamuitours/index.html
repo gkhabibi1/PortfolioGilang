@@ -1,0 +1,2793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>Koh Samui Tours — Authentic Thai Experiences &amp; Island Adventures</title>
+  <meta name="description" content="Premium day trips, Ang Thong Marine Park speed boat, Pig Island snorkeling, 4x4 safaris and authentic Thai experiences around Koh Samui. Live demo showcase by Gilang Habib." />
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400;1,9..40,600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <style>
+    :root{
+      --ink:#0b1720;
+      --ink-dark:#050c12;
+      --muted:#66737b;
+      --muted-light:#8b99a3;
+      --blue:#087eb4;
+      --blue-hover:#066997;
+      --blue-dark:#045c83;
+      --blue-soft:#e6f3f9;
+      --orange:#f36d27;
+      --orange-hover:#db5c18;
+      --orange-soft:#fef0e9;
+      --cream:#f7f6f1;
+      --cream-warm:#f3f1e9;
+      --white:#ffffff;
+      --line:#e5e8e8;
+      --line-dark:rgba(255,255,255,0.14);
+      --radius-sm:14px;
+      --radius:24px;
+      --radius-lg:32px;
+      --shadow-sm:0 6px 20px rgba(8,31,43,.06);
+      --shadow:0 20px 50px rgba(8,31,43,.12);
+      --shadow-hover:0 28px 65px rgba(8,31,43,.18);
+      --transition:all .32s cubic-bezier(.22,1,.36,1);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      color:var(--ink);
+      background:#ffffff;
+      font-family:"DM Sans",system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
+      line-height:1.6;
+      overflow-x:hidden;
+      -webkit-font-smoothing:antialiased;
+    }
+    img{display:block;width:100%;height:100%;object-fit:cover}
+    a{text-decoration:none;color:inherit}
+    button{font:inherit;cursor:pointer;border:none;background:none}
+
+    .container{
+      width:min(1180px, calc(100% - 44px));
+      margin:auto;
+      position:relative;
+    }
+
+    /* TOP DEMO NOTICE BANNER (SHOWCASE LABS) */
+    .demo-banner{
+      background:linear-gradient(90deg, #071720 0%, #0d2c3e 50%, #071720 100%);
+      color:#d7e7ee;
+      padding:9px 0;
+      border-bottom:1px solid rgba(243, 109, 39, 0.4);
+      font-size:12.5px;
+      position:relative;
+      z-index:1001;
+    }
+    .demo-banner-content{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+    .demo-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:var(--orange);
+      color:#fff;
+      font-weight:800;
+      font-size:11px;
+      padding:4px 12px;
+      border-radius:999px;
+      letter-spacing:0.07em;
+      text-transform:uppercase;
+      white-space:nowrap;
+      box-shadow:0 2px 12px rgba(243,109,39,0.38);
+    }
+    .pulse-dot{
+      width:7px;
+      height:7px;
+      border-radius:50%;
+      background:#fff;
+      animation:demoPulse 1.8s infinite;
+    }
+    @keyframes demoPulse{
+      0%{transform:scale(0.8);opacity:1}
+      50%{transform:scale(1.4);opacity:0.4}
+      100%{transform:scale(0.8);opacity:1}
+    }
+    .demo-banner-text{
+      flex:1;
+      text-align:center;
+      margin:0;
+      color:#d1e1e8;
+      font-size:12.5px;
+      line-height:1.4;
+    }
+    .demo-banner-text strong{color:#ffffff;font-weight:700}
+    .demo-banner-text em{color:#ffd0b2;font-style:normal;font-weight:600}
+    .demo-banner-actions{
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .demo-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:5px 14px;
+      border-radius:999px;
+      font-size:11.5px;
+      font-weight:700;
+      transition:var(--transition);
+      text-decoration:none;
+      white-space:nowrap;
+    }
+    .demo-btn-all{
+      background:rgba(243,109,39,0.22);
+      border:1px solid rgba(243,109,39,0.65);
+      color:#ffe0cb;
+    }
+    .demo-btn-all:hover{
+      background:var(--orange);
+      color:#fff;
+      transform:translateY(-1px);
+    }
+    .demo-btn-back{
+      background:rgba(255,255,255,0.09);
+      border:1px solid rgba(255,255,255,0.24);
+      color:#fff;
+    }
+    .demo-btn-back:hover{
+      background:rgba(255,255,255,0.22);
+      transform:translateY(-1px);
+    }
+
+    /* HEADER & NAV */
+    .nav-wrap{
+      position:absolute;
+      top:42px;
+      inset-inline:0;
+      z-index:900;
+      padding:18px 0;
+      color:#fff;
+      transition:background .3s ease, padding .3s ease, box-shadow .3s ease;
+    }
+    .nav-wrap.scrolled{
+      position:fixed;
+      top:0;
+      background:rgba(7, 25, 36, 0.94);
+      backdrop-filter:blur(16px);
+      -webkit-backdrop-filter:blur(16px);
+      padding:12px 0;
+      box-shadow:0 10px 30px rgba(0,0,0,0.22);
+      border-bottom:1px solid rgba(255,255,255,0.08);
+    }
+    nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
+    .logo{
+      font-size:20px;
+      font-weight:700;
+      letter-spacing:-.6px;
+      display:flex;
+      align-items:center;
+      gap:9px;
+      white-space:nowrap;
+      color:#fff;
+      transition:transform .25s ease;
+    }
+    .logo:hover{transform:scale(1.02)}
+    .logo-mark{
+      width:30px;
+      height:30px;
+      border:2px solid #fff;
+      border-radius:9px 9px 12px 12px;
+      transform:rotate(-8deg);
+      display:grid;
+      place-items:center;
+      font-size:14px;
+      background:rgba(255,255,255,0.12);
+      transition:var(--transition);
+    }
+    .logo:hover .logo-mark{
+      transform:rotate(0deg) scale(1.08);
+      background:var(--orange);
+      border-color:var(--orange);
+    }
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:28px;
+      font-size:13.5px;
+      font-weight:600;
+    }
+    .nav-links a{
+      color:rgba(255,255,255,0.9);
+      transition:var(--transition);
+      position:relative;
+      padding:4px 0;
+    }
+    .nav-links a:hover{
+      color:#fff;
+      transform:translateY(-2px);
+    }
+    .nav-links a::after{
+      content:"";
+      position:absolute;
+      bottom:0;
+      left:0;
+      width:0%;
+      height:2px;
+      background:var(--orange);
+      transition:width .25s ease;
+      border-radius:2px;
+    }
+    .nav-links a:hover::after{width:100%}
+
+    .nav-actions{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      font-size:13px;
+    }
+    .currency-switch{
+      display:inline-flex;
+      align-items:center;
+      background:rgba(255,255,255,0.12);
+      border:1px solid rgba(255,255,255,0.22);
+      border-radius:999px;
+      padding:3px 8px;
+      gap:4px;
+      font-size:11.5px;
+      font-weight:700;
+      color:#fff;
+      transition:var(--transition);
+    }
+    .currency-switch:hover{
+      background:rgba(255,255,255,0.22);
+    }
+    .currency-select{
+      background:transparent;
+      border:none;
+      color:#fff;
+      font-weight:700;
+      font-size:11.5px;
+      outline:none;
+      cursor:pointer;
+    }
+    .currency-select option{
+      color:var(--ink);
+      background:#fff;
+    }
+
+    .login{
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
+      color:rgba(255,255,255,0.9);
+      font-weight:600;
+      transition:var(--transition);
+    }
+    .login:hover{color:#fff;transform:translateY(-1px)}
+    .login-icon{
+      width:26px;
+      height:26px;
+      border:1px solid rgba(255,255,255,.6);
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      font-size:11px;
+      transition:var(--transition);
+    }
+    .login:hover .login-icon{
+      background:#fff;
+      color:var(--ink);
+      border-color:#fff;
+    }
+
+    /* Mobile Menu Toggle */
+    .mobile-toggle{
+      display:none;
+      width:40px;
+      height:40px;
+      border-radius:10px;
+      background:rgba(255,255,255,0.14);
+      border:1px solid rgba(255,255,255,0.25);
+      color:#fff;
+      font-size:18px;
+      align-items:center;
+      justify-content:center;
+      transition:var(--transition);
+    }
+    .mobile-toggle:hover{
+      background:rgba(255,255,255,0.26);
+    }
+
+    /* Mobile Drawer */
+    .mobile-drawer{
+      position:fixed;
+      inset:0;
+      background:rgba(5, 15, 23, 0.7);
+      backdrop-filter:blur(8px);
+      z-index:2000;
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .35s ease;
+      display:flex;
+      justify-content:flex-end;
+    }
+    .mobile-drawer.open{
+      opacity:1;
+      pointer-events:auto;
+    }
+    .drawer-panel{
+      width:min(340px, 86%);
+      height:100%;
+      background:#0a1e2b;
+      color:#fff;
+      padding:28px 24px;
+      display:flex;
+      flex-direction:column;
+      gap:24px;
+      transform:translateX(100%);
+      transition:transform .35s cubic-bezier(.22,1,.36,1);
+      box-shadow:-10px 0 40px rgba(0,0,0,0.5);
+      overflow-y:auto;
+    }
+    .mobile-drawer.open .drawer-panel{
+      transform:translateX(0);
+    }
+    .drawer-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      border-bottom:1px solid rgba(255,255,255,0.1);
+      padding-bottom:16px;
+    }
+    .drawer-close{
+      width:36px;
+      height:36px;
+      border-radius:50%;
+      background:rgba(255,255,255,0.1);
+      color:#fff;
+      display:grid;
+      place-items:center;
+      font-size:16px;
+    }
+    .drawer-nav{
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+      font-size:16px;
+      font-weight:600;
+    }
+    .drawer-nav a{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:10px 14px;
+      border-radius:12px;
+      color:#e3f1f7;
+      background:rgba(255,255,255,0.04);
+      transition:var(--transition);
+    }
+    .drawer-nav a:hover{
+      background:var(--orange);
+      color:#fff;
+      padding-left:18px;
+    }
+    .drawer-footer{
+      margin-top:auto;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      border-top:1px solid rgba(255,255,255,0.1);
+      padding-top:18px;
+    }
+
+    /* BUTTONS */
+    .btn{
+      border:0;
+      border-radius:999px;
+      padding:14px 26px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      font-size:13px;
+      font-weight:700;
+      cursor:pointer;
+      transition:var(--transition);
+      gap:8px;
+      white-space:nowrap;
+      letter-spacing:0.02em;
+    }
+    .btn-light{
+      background:#fff;
+      color:var(--ink);
+      box-shadow:0 6px 20px rgba(0,0,0,0.12);
+    }
+    .btn-light:hover{
+      transform:translateY(-3px);
+      box-shadow:0 12px 30px rgba(0,0,0,.22);
+      background:#f8faff;
+    }
+    .btn-orange{
+      background:var(--orange);
+      color:#fff;
+      box-shadow:0 8px 24px rgba(243,109,39,0.36);
+    }
+    .btn-orange:hover{
+      background:var(--orange-hover);
+      transform:translateY(-3px);
+      box-shadow:0 14px 32px rgba(243,109,39,0.48);
+    }
+    .btn-blue{
+      background:var(--blue);
+      color:#fff;
+      box-shadow:0 8px 24px rgba(8,126,180,0.32);
+    }
+    .btn-blue:hover{
+      background:var(--blue-hover);
+      transform:translateY(-3px);
+      box-shadow:0 14px 32px rgba(8,126,180,0.44);
+    }
+    .btn-outline{
+      background:transparent;
+      border:1.5px solid rgba(255,255,255,0.4);
+      color:#fff;
+    }
+    .btn-outline:hover{
+      border-color:#fff;
+      background:rgba(255,255,255,0.12);
+      transform:translateY(-3px);
+    }
+
+    /* HERO */
+    .hero{
+      min-height:820px;
+      position:relative;
+      display:flex;
+      align-items:center;
+      overflow:hidden;
+      color:#fff;
+      background:#071a25;
+    }
+    .hero-media{
+      position:absolute;
+      inset:0;
+      transform:scale(1.05);
+      transition:transform 8s cubic-bezier(.2,.8,.2,1);
+    }
+    .hero:hover .hero-media{
+      transform:scale(1.12);
+    }
+    .hero-media img{
+      filter:brightness(0.92) contrast(1.06) saturate(1.1);
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+    .hero-overlay{
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, rgba(3,20,30,0.58) 0%, rgba(3,18,27,0.28) 40%, rgba(3,14,22,0.85) 100%);
+    }
+    .hero-glow{
+      position:absolute;
+      top:20%;
+      left:50%;
+      transform:translateX(-50%);
+      width:600px;
+      height:300px;
+      background:radial-gradient(ellipse, rgba(8,126,180,0.24) 0%, transparent 70%);
+      pointer-events:none;
+    }
+    .hero-content{
+      position:relative;
+      z-index:2;
+      text-align:center;
+      padding:170px 0 100px;
+      max-width:1040px;
+      margin:auto;
+    }
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 18px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.14);
+      border:1px solid rgba(255,255,255,0.3);
+      backdrop-filter:blur(14px);
+      -webkit-backdrop-filter:blur(14px);
+      font-size:11.5px;
+      font-weight:700;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      box-shadow:0 6px 20px rgba(0,0,0,0.15);
+      margin-bottom:20px;
+      animation:floatSoft 4s ease-in-out infinite;
+    }
+    @keyframes floatSoft{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-6px)}
+    }
+    .eyebrow i{color:var(--orange)}
+    h1{
+      font-size:clamp(44px, 6.8vw, 84px);
+      line-height:1.02;
+      letter-spacing:-.055em;
+      max-width:960px;
+      margin:0 auto 24px;
+      font-weight:500;
+      text-shadow:0 4px 24px rgba(0,0,0,0.35);
+    }
+    h1 em, .section-title em{
+      font-family:"Playfair Display",serif;
+      font-weight:500;
+      font-style:italic;
+      color:#ffe7d6;
+    }
+    .hero-copy{
+      max-width:650px;
+      margin:auto;
+      font-size:16px;
+      line-height:1.75;
+      color:rgba(255,255,255,0.92);
+      text-shadow:0 2px 10px rgba(0,0,0,0.3);
+    }
+    .hero-actions{
+      display:flex;
+      justify-content:center;
+      gap:14px;
+      margin-top:34px;
+      flex-wrap:wrap;
+    }
+    .hero-stats-row{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:36px;
+      margin-top:46px;
+      padding-top:28px;
+      border-top:1px solid rgba(255,255,255,0.18);
+      flex-wrap:wrap;
+    }
+    .hero-stat{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-size:13px;
+      color:rgba(255,255,255,0.9);
+      font-weight:500;
+    }
+    .hero-stat i{
+      color:var(--orange);
+      font-size:16px;
+    }
+
+    /* SEARCH / FILTER PILL */
+    .hero-quick-search{
+      max-width:640px;
+      margin:30px auto 0;
+      background:rgba(255,255,255,0.12);
+      border:1px solid rgba(255,255,255,0.25);
+      border-radius:999px;
+      padding:6px 6px 6px 20px;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      backdrop-filter:blur(16px);
+      box-shadow:0 12px 35px rgba(0,0,0,0.2);
+    }
+    .hero-quick-search i{
+      color:#fff;
+      font-size:14px;
+      opacity:0.8;
+    }
+    .hero-quick-search input{
+      flex:1;
+      background:transparent;
+      border:none;
+      color:#fff;
+      font-size:13.5px;
+      outline:none;
+    }
+    .hero-quick-search input::placeholder{
+      color:rgba(255,255,255,0.7);
+    }
+
+    /* SECTION SHARED */
+    .section{
+      padding:110px 0;
+      position:relative;
+    }
+    .section-kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      margin:0 auto 16px;
+      padding:7px 16px;
+      border-radius:999px;
+      background:#eaf2f5;
+      color:var(--blue-dark);
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+    .section-head{
+      text-align:center;
+      max-width:800px;
+      margin:0 auto 55px;
+    }
+    .section-title{
+      font-size:clamp(36px, 5.2vw, 64px);
+      line-height:1.05;
+      letter-spacing:-.05em;
+      font-weight:500;
+      margin:0 auto 20px;
+      color:var(--ink);
+    }
+    .section-intro{
+      max-width:740px;
+      margin:0 auto;
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.8;
+    }
+
+    /* FILTER TABS FOR TOURS */
+    .tour-filter-bar{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:40px;
+    }
+    .tour-filter-btn{
+      padding:9px 20px;
+      border-radius:999px;
+      background:#fff;
+      border:1px solid var(--line);
+      color:var(--muted);
+      font-size:13px;
+      font-weight:700;
+      transition:var(--transition);
+      cursor:pointer;
+      box-shadow:var(--shadow-sm);
+    }
+    .tour-filter-btn:hover{
+      border-color:var(--blue);
+      color:var(--blue);
+      transform:translateY(-2px);
+    }
+    .tour-filter-btn.active{
+      background:var(--blue);
+      border-color:var(--blue);
+      color:#fff;
+      box-shadow:0 6px 20px rgba(8,126,180,0.28);
+    }
+
+    /* TOUR CARDS */
+    .tours-section{
+      background:var(--cream);
+      overflow:hidden;
+    }
+    .tour-track{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:26px;
+      margin-top:20px;
+    }
+    .tour-card{
+      background:#fff;
+      border-radius:28px;
+      overflow:hidden;
+      position:relative;
+      box-shadow:0 10px 32px rgba(12,30,39,.08);
+      transition:var(--transition);
+      display:flex;
+      flex-direction:column;
+      border:1px solid rgba(0,0,0,0.04);
+    }
+    .tour-card:hover{
+      transform:translateY(-10px);
+      box-shadow:var(--shadow-hover);
+    }
+    .tour-img{
+      height:310px;
+      position:relative;
+      overflow:hidden;
+    }
+    .tour-img img{
+      transition:transform .7s cubic-bezier(.22,1,.36,1);
+    }
+    .tour-card:hover .tour-img img{
+      transform:scale(1.08);
+    }
+    .tour-img:after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, rgba(0,0,0,0.1) 0%, transparent 40%, rgba(4,21,29,.7) 100%);
+      pointer-events:none;
+    }
+    .badge-ribbon{
+      position:absolute;
+      top:16px;
+      left:16px;
+      z-index:2;
+      background:var(--orange);
+      color:#fff;
+      padding:6px 13px;
+      border-radius:999px;
+      font-size:10.5px;
+      font-weight:800;
+      letter-spacing:.05em;
+      text-transform:uppercase;
+      box-shadow:0 4px 14px rgba(243,109,39,0.4);
+      display:flex;
+      align-items:center;
+      gap:5px;
+    }
+    .price-pill{
+      position:absolute;
+      z-index:2;
+      right:16px;
+      top:16px;
+      background:rgba(4,21,29,.85);
+      backdrop-filter:blur(8px);
+      color:#fff;
+      padding:7px 15px;
+      border-radius:999px;
+      font-size:12.5px;
+      font-weight:700;
+      border:1px solid rgba(255,255,255,0.2);
+      box-shadow:0 4px 15px rgba(0,0,0,0.25);
+    }
+    .price-pill .converted-price{
+      color:#ffd0b2;
+      font-size:11px;
+      margin-left:4px;
+      font-weight:500;
+    }
+    .tour-rating-overlay{
+      position:absolute;
+      bottom:16px;
+      left:18px;
+      z-index:2;
+      color:#fff;
+      font-size:12px;
+      font-weight:700;
+      display:flex;
+      align-items:center;
+      gap:6px;
+      text-shadow:0 2px 6px rgba(0,0,0,0.5);
+    }
+    .tour-rating-overlay i{color:#f59e0b}
+    .tour-duration{
+      position:absolute;
+      bottom:16px;
+      right:18px;
+      z-index:2;
+      color:#fff;
+      font-size:11.5px;
+      font-weight:600;
+      background:rgba(0,0,0,0.4);
+      padding:3px 10px;
+      border-radius:999px;
+      backdrop-filter:blur(4px);
+    }
+
+    .tour-body{
+      padding:24px 26px 26px;
+      display:flex;
+      flex-direction:column;
+      flex:1;
+    }
+    .tour-body h3{
+      font-size:22px;
+      line-height:1.18;
+      letter-spacing:-.035em;
+      margin:0 0 12px;
+      color:var(--ink);
+      font-weight:700;
+      transition:color .25s ease;
+    }
+    .tour-card:hover .tour-body h3{
+      color:var(--blue);
+    }
+    .tour-body p{
+      font-size:13px;
+      line-height:1.68;
+      color:var(--muted);
+      margin:0 0 20px;
+      flex:1;
+    }
+    .tour-features{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-bottom:20px;
+      padding-bottom:16px;
+      border-bottom:1px solid var(--line);
+      font-size:11.5px;
+      color:var(--muted);
+    }
+    .tour-features span{
+      display:inline-flex;
+      align-items:center;
+      gap:5px;
+    }
+    .tour-features i{color:var(--blue)}
+    .tour-card-actions{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-top:auto;
+    }
+    .tour-card-actions .btn{
+      flex:1;
+      padding:11px 18px;
+      font-size:12px;
+    }
+    .tour-footer{
+      text-align:center;
+      margin-top:48px;
+    }
+
+    /* CATEGORIES GRID */
+    .categories{
+      padding:100px 0;
+      background:#ffffff;
+    }
+    .category-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+      margin-top:45px;
+    }
+    .category{
+      height:240px;
+      border-radius:24px;
+      overflow:hidden;
+      position:relative;
+      isolation:isolate;
+      box-shadow:0 10px 25px rgba(0,0,0,.08);
+      transition:var(--transition);
+      cursor:pointer;
+      border:1px solid rgba(0,0,0,0.05);
+    }
+    .category img{
+      transition:transform .7s cubic-bezier(.22,1,.36,1);
+    }
+    .category:after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(0deg, rgba(3,18,27,0.85) 0%, rgba(3,18,27,0.3) 55%, rgba(0,0,0,0.05) 100%);
+      transition:background .35s ease;
+    }
+    .category:hover{
+      transform:translateY(-8px) scale(1.015);
+      box-shadow:var(--shadow);
+    }
+    .category:hover img{
+      transform:scale(1.1);
+    }
+    .category:hover:after{
+      background:linear-gradient(0deg, rgba(8,126,180,0.85) 0%, rgba(3,18,27,0.3) 60%, rgba(0,0,0,0.05) 100%);
+    }
+    .category-content{
+      position:absolute;
+      z-index:2;
+      inset-inline:20px;
+      bottom:20px;
+      color:#fff;
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+    .category-count{
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      color:rgba(255,255,255,0.75);
+      font-weight:700;
+    }
+    .category span{
+      font-weight:700;
+      font-size:17.5px;
+      line-height:1.15;
+      letter-spacing:-.025em;
+    }
+    .category-arrow{
+      position:absolute;
+      top:16px;
+      right:16px;
+      z-index:2;
+      width:32px;
+      height:32px;
+      border-radius:50%;
+      background:rgba(255,255,255,0.18);
+      backdrop-filter:blur(8px);
+      display:grid;
+      place-items:center;
+      color:#fff;
+      font-size:12px;
+      opacity:0;
+      transform:translateX(-6px);
+      transition:var(--transition);
+    }
+    .category:hover .category-arrow{
+      opacity:1;
+      transform:translateX(0);
+      background:#fff;
+      color:var(--blue);
+    }
+
+    /* STORY SECTION */
+    .story{
+      position:relative;
+      min-height:640px;
+      display:flex;
+      align-items:center;
+      overflow:hidden;
+      color:#fff;
+      background:#041a23;
+      padding:90px 0;
+    }
+    .story-bg{
+      position:absolute;
+      inset:0;
+    }
+    .story-bg img{
+      filter:brightness(0.55) contrast(1.1);
+    }
+    .story-bg:after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(90deg, rgba(2,20,28,0.92) 0%, rgba(2,20,28,0.78) 50%, rgba(2,20,28,0.3) 100%);
+    }
+    .story-grid{
+      display:grid;
+      grid-template-columns:1.15fr 0.85fr;
+      gap:50px;
+      align-items:center;
+      position:relative;
+      z-index:2;
+    }
+    .story-content{
+      max-width:640px;
+    }
+    .story .section-kicker{
+      margin:0 0 18px;
+      background:rgba(255,255,255,.14);
+      color:#ffd0b2;
+      border:1px solid rgba(255,255,255,0.2);
+    }
+    .story .section-title{
+      text-align:left;
+      margin:0 0 16px;
+      color:#fff;
+    }
+    .story h3{
+      font-size:22px;
+      margin:0 0 18px;
+      letter-spacing:-.03em;
+      color:rgba(255,255,255,0.95);
+      font-weight:600;
+    }
+    .story p{
+      font-size:14.5px;
+      line-height:1.85;
+      color:rgba(255,255,255,.88);
+      margin-bottom:16px;
+    }
+    .story-badges{
+      display:flex;
+      gap:24px;
+      margin:24px 0 28px;
+      flex-wrap:wrap;
+    }
+    .story-badge-item{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-size:13px;
+      color:#fff;
+      font-weight:600;
+    }
+    .story-badge-icon{
+      width:36px;
+      height:36px;
+      border-radius:10px;
+      background:rgba(243,109,39,0.22);
+      border:1px solid rgba(243,109,39,0.5);
+      color:var(--orange);
+      display:grid;
+      place-items:center;
+      font-size:15px;
+    }
+    .story-image-card{
+      position:relative;
+      border-radius:28px;
+      overflow:hidden;
+      box-shadow:0 25px 60px rgba(0,0,0,0.5);
+      border:3px solid rgba(255,255,255,0.18);
+      height:440px;
+    }
+    .story-image-card img{
+      transition:transform .8s ease;
+    }
+    .story-image-card:hover img{
+      transform:scale(1.05);
+    }
+    .story-image-caption{
+      position:absolute;
+      bottom:0;
+      inset-inline:0;
+      background:linear-gradient(0deg, rgba(4,21,29,0.92) 0%, transparent 100%);
+      padding:24px 20px 18px;
+      color:#fff;
+    }
+    .story-image-caption h4{
+      font-size:16px;
+      font-weight:700;
+      margin-bottom:3px;
+    }
+    .story-image-caption p{
+      font-size:12px;
+      color:#cbdde2;
+      margin:0;
+    }
+
+    /* PARTNERS CAROUSEL */
+    .partners{
+      padding:65px 0;
+      background:#fff;
+      border-bottom:1px solid var(--line);
+    }
+    .partner-wrapper{
+      position:relative;
+      overflow:hidden;
+    }
+    .partner-row{
+      display:flex;
+      align-items:center;
+      gap:24px;
+      overflow-x:auto;
+      scroll-behavior:smooth;
+      padding:10px 4px;
+      scrollbar-width:none;
+    }
+    .partner-row::-webkit-scrollbar{display:none}
+    .partner{
+      flex:0 0 160px;
+      height:72px;
+      border:1px solid #e2e8e7;
+      border-radius:16px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      padding:8px 14px;
+      background:#fdfdfd;
+      color:#505e66;
+      font-size:11.5px;
+      font-weight:800;
+      text-align:center;
+      letter-spacing:.02em;
+      filter:grayscale(0.85);
+      opacity:0.85;
+      transition:var(--transition);
+      cursor:pointer;
+      user-select:none;
+      box-shadow:0 3px 12px rgba(0,0,0,0.03);
+    }
+    .partner i{
+      font-size:18px;
+      margin-bottom:4px;
+      color:var(--blue);
+    }
+    .partner:hover{
+      filter:grayscale(0);
+      opacity:1;
+      transform:translateY(-4px);
+      border-color:var(--blue);
+      box-shadow:0 8px 24px rgba(8,126,180,0.15);
+      color:var(--blue-dark);
+      background:#fff;
+    }
+    .carousel-controls{
+      display:flex;
+      justify-content:center;
+      gap:14px;
+      margin-top:28px;
+    }
+    .circle-btn{
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      border:1px solid var(--line);
+      background:#fff;
+      color:var(--ink);
+      cursor:pointer;
+      display:grid;
+      place-items:center;
+      font-size:14px;
+      box-shadow:var(--shadow-sm);
+      transition:var(--transition);
+    }
+    .circle-btn:hover{
+      background:var(--blue);
+      color:#fff;
+      border-color:var(--blue);
+      transform:scale(1.08);
+    }
+
+    /* LOCAL BANNER */
+    .local-banner{
+      margin:30px auto 90px;
+      max-width:1180px;
+      min-height:290px;
+      border-radius:28px;
+      overflow:hidden;
+      position:relative;
+      color:#fff;
+      box-shadow:var(--shadow);
+    }
+    .local-banner img{
+      position:absolute;
+      inset:0;
+      filter:brightness(0.9) contrast(1.05);
+    }
+    .local-banner:after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(90deg, rgba(3,24,35,0.2) 0%, rgba(3,24,35,0.82) 55%, rgba(3,24,35,0.92) 100%);
+    }
+    .local-banner-content{
+      position:relative;
+      z-index:2;
+      min-height:290px;
+      display:flex;
+      flex-direction:column;
+      align-items:flex-end;
+      justify-content:center;
+      text-align:right;
+      padding:40px 7%;
+    }
+    .local-banner .logo{
+      font-size:30px;
+      margin-bottom:8px;
+    }
+    .local-banner h3{
+      font-size:clamp(26px, 3.8vw, 40px);
+      letter-spacing:-.04em;
+      margin:0 0 14px;
+      font-weight:600;
+    }
+    .local-banner p{
+      max-width:480px;
+      font-size:14px;
+      color:rgba(255,255,255,0.88);
+      margin-bottom:20px;
+      line-height:1.6;
+    }
+
+    /* REVIEWS SECTION */
+    .reviews-section{
+      background:var(--cream);
+      padding:90px 0;
+    }
+    .reviews-grid{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:24px;
+      margin-top:40px;
+    }
+    .review-card{
+      background:#fff;
+      border-radius:22px;
+      padding:28px 26px;
+      box-shadow:0 8px 28px rgba(0,0,0,0.05);
+      border:1px solid rgba(0,0,0,0.04);
+      display:flex;
+      flex-direction:column;
+      transition:var(--transition);
+    }
+    .review-card:hover{
+      transform:translateY(-6px);
+      box-shadow:var(--shadow);
+    }
+    .review-stars{
+      color:#f59e0b;
+      font-size:14px;
+      margin-bottom:14px;
+      display:flex;
+      gap:3px;
+    }
+    .review-text{
+      font-size:13.5px;
+      line-height:1.7;
+      color:var(--ink);
+      margin-bottom:20px;
+      flex:1;
+      font-style:italic;
+    }
+    .reviewer{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      border-top:1px solid var(--line);
+      padding-top:16px;
+    }
+    .reviewer-avatar{
+      width:40px;
+      height:40px;
+      border-radius:50%;
+      background:var(--blue-soft);
+      color:var(--blue);
+      font-weight:700;
+      display:grid;
+      place-items:center;
+      font-size:14px;
+    }
+    .reviewer-info h5{
+      font-size:13.5px;
+      margin:0;
+      color:var(--ink);
+      font-weight:700;
+    }
+    .reviewer-info span{
+      font-size:11px;
+      color:var(--muted);
+    }
+
+    /* BENEFITS / TRUST */
+    .benefits{
+      background:#fafafa;
+      padding:90px 0;
+      border-top:1px solid var(--line);
+    }
+    .benefit-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:22px;
+    }
+    .benefit{
+      text-align:center;
+      padding:32px 20px;
+      background:#fff;
+      border-radius:24px;
+      border:1px solid var(--line);
+      box-shadow:var(--shadow-sm);
+      transition:var(--transition);
+    }
+    .benefit:hover{
+      transform:translateY(-8px);
+      box-shadow:var(--shadow);
+      border-color:var(--blue);
+    }
+    .benefit-icon{
+      width:76px;
+      height:76px;
+      border-radius:50%;
+      background:#eaf5f9;
+      color:var(--blue);
+      margin:0 auto 20px;
+      display:grid;
+      place-items:center;
+      font-size:26px;
+      font-weight:800;
+      transition:var(--transition);
+    }
+    .benefit:hover .benefit-icon{
+      background:var(--blue);
+      color:#fff;
+      transform:rotate(8deg) scale(1.08);
+    }
+    .benefit h4{
+      margin:0 0 10px;
+      font-size:15px;
+      font-weight:700;
+      color:var(--ink);
+    }
+    .benefit p{
+      margin:0;
+      color:var(--muted);
+      font-size:12.5px;
+      line-height:1.6;
+    }
+
+    /* CONTACT CTA */
+    .contact-cta{
+      padding:80px 0;
+      background:#fff;
+    }
+    .cta-box{
+      border-radius:32px;
+      background:linear-gradient(135deg, #092331 0%, #0d384d 100%);
+      padding:55px 65px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:34px;
+      color:#fff;
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .cta-box::after{
+      content:"";
+      position:absolute;
+      right:-50px;
+      bottom:-50px;
+      width:260px;
+      height:260px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(243,109,39,0.25) 0%, transparent 70%);
+      pointer-events:none;
+    }
+    .cta-text{
+      max-width:620px;
+      position:relative;
+      z-index:2;
+    }
+    .cta-box h2{
+      font-size:clamp(32px, 4vw, 50px);
+      letter-spacing:-.045em;
+      margin:0 0 12px;
+      font-weight:500;
+      line-height:1.12;
+    }
+    .cta-box h2 em{
+      font-family:"Playfair Display",serif;
+      color:#ffd0b2;
+    }
+    .cta-box p{
+      font-size:14.5px;
+      color:#cbdde5;
+      margin:0;
+    }
+    .cta-actions{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      position:relative;
+      z-index:2;
+      flex-wrap:wrap;
+    }
+
+    /* FOOTER */
+    footer{
+      background:#07202c;
+      color:#fff;
+      padding:80px 0 30px;
+      border-top:1px solid rgba(255,255,255,0.08);
+    }
+    .footer-grid{
+      display:grid;
+      grid-template-columns:1.3fr 1fr .8fr;
+      gap:55px;
+    }
+    footer h4{
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      margin:0 0 18px;
+      color:#9ab5c3;
+      font-weight:700;
+    }
+    footer p, footer a{
+      font-size:13px;
+      line-height:1.75;
+      color:rgba(255,255,255,.82);
+    }
+    footer a{
+      display:block;
+      margin:6px 0;
+      transition:var(--transition);
+    }
+    footer a:hover{
+      color:#fff;
+      transform:translateX(4px);
+    }
+    .footer-logo{
+      font-size:24px;
+      font-weight:700;
+      margin-bottom:14px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+    }
+    .footer-socials{
+      display:flex;
+      gap:10px;
+      margin-top:18px;
+    }
+    .footer-social-btn{
+      width:36px;
+      height:36px;
+      border-radius:50%;
+      background:rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.15);
+      color:#fff;
+      display:grid;
+      place-items:center;
+      font-size:13px;
+      transition:var(--transition);
+    }
+    .footer-social-btn:hover{
+      background:var(--orange);
+      border-color:var(--orange);
+      transform:translateY(-2px);
+    }
+    .partner-seal{
+      width:105px;
+      height:105px;
+      border:2px dashed rgba(255,255,255,.6);
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      text-align:center;
+      font-size:9.5px;
+      font-weight:800;
+      letter-spacing:.05em;
+      margin-bottom:18px;
+      padding:10px;
+      line-height:1.3;
+      background:rgba(255,255,255,0.04);
+      transition:var(--transition);
+    }
+    .partner-seal:hover{
+      transform:rotate(12deg) scale(1.05);
+      border-color:var(--orange);
+      color:var(--orange);
+    }
+    .footer-bottom{
+      border-top:1px solid rgba(255,255,255,.14);
+      margin-top:50px;
+      padding-top:24px;
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      font-size:11.5px;
+      color:rgba(255,255,255,.65);
+      flex-wrap:wrap;
+    }
+
+    /* INTERACTIVE BOOKING MODAL */
+    .modal-overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(4,18,26,0.78);
+      backdrop-filter:blur(8px);
+      z-index:2500;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .3s ease;
+    }
+    .modal-overlay.active{
+      opacity:1;
+      pointer-events:auto;
+    }
+    .booking-modal{
+      background:#fff;
+      border-radius:28px;
+      width:min(620px, 100%);
+      max-height:90vh;
+      overflow-y:auto;
+      box-shadow:0 30px 80px rgba(0,0,0,0.4);
+      transform:scale(0.92) translateY(20px);
+      transition:transform .35s cubic-bezier(.22,1,.36,1);
+      position:relative;
+    }
+    .modal-overlay.active .booking-modal{
+      transform:scale(1) translateY(0);
+    }
+    .modal-header{
+      position:relative;
+      height:170px;
+      background:var(--blue-dark);
+      color:#fff;
+      overflow:hidden;
+      padding:24px;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+    }
+    .modal-header img{
+      position:absolute;
+      inset:0;
+      filter:brightness(0.5);
+    }
+    .modal-header-content{
+      position:relative;
+      z-index:2;
+    }
+    .modal-header h3{
+      font-size:22px;
+      margin:0 0 4px;
+      line-height:1.2;
+    }
+    .modal-header p{
+      font-size:13px;
+      color:#d8ecf5;
+      margin:0;
+    }
+    .modal-close-btn{
+      position:absolute;
+      top:16px;
+      right:16px;
+      z-index:3;
+      width:34px;
+      height:34px;
+      border-radius:50%;
+      background:rgba(0,0,0,0.5);
+      color:#fff;
+      display:grid;
+      place-items:center;
+      font-size:14px;
+      transition:var(--transition);
+    }
+    .modal-close-btn:hover{
+      background:var(--orange);
+      transform:rotate(90deg);
+    }
+    .modal-body{
+      padding:26px 28px 30px;
+    }
+    .form-group{
+      margin-bottom:18px;
+    }
+    .form-group label{
+      display:block;
+      font-size:12px;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:.05em;
+      margin-bottom:6px;
+      color:var(--ink);
+    }
+    .form-control{
+      width:100%;
+      padding:12px 16px;
+      border:1.5px solid var(--line);
+      border-radius:12px;
+      font-size:13.5px;
+      font-family:inherit;
+      color:var(--ink);
+      outline:none;
+      transition:border-color .2s;
+    }
+    .form-control:focus{
+      border-color:var(--blue);
+      box-shadow:0 0 0 3px rgba(8,126,180,0.12);
+    }
+    .form-row{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
+    .modal-price-calc{
+      background:var(--cream);
+      border-radius:14px;
+      padding:16px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin:20px 0;
+    }
+    .modal-price-calc span{
+      font-size:13px;
+      color:var(--muted);
+      font-weight:600;
+    }
+    .modal-price-calc strong{
+      font-size:22px;
+      color:var(--orange);
+      font-weight:800;
+    }
+    .modal-submit-btn{
+      width:100%;
+      padding:15px;
+      border-radius:999px;
+      background:var(--orange);
+      color:#fff;
+      font-weight:700;
+      font-size:14px;
+      letter-spacing:.03em;
+      transition:var(--transition);
+      box-shadow:0 6px 20px rgba(243,109,39,0.35);
+    }
+    .modal-submit-btn:hover{
+      background:var(--orange-hover);
+      transform:translateY(-2px);
+    }
+
+    /* TOAST ALERT */
+    .toast-popup{
+      position:fixed;
+      bottom:28px;
+      left:50%;
+      transform:translateX(-50%) translateY(100px);
+      background:#0c2534;
+      color:#fff;
+      padding:12px 24px;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:600;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      box-shadow:0 12px 35px rgba(0,0,0,0.35);
+      border:1px solid rgba(243,109,39,0.5);
+      z-index:3000;
+      opacity:0;
+      transition:all .35s cubic-bezier(.22,1,.36,1);
+    }
+    .toast-popup.show{
+      transform:translateX(-50%) translateY(0);
+      opacity:1;
+    }
+    .toast-popup i{color:var(--orange)}
+
+    /* FLOATING ACTIONS (WHATSAPP & BACK TO TOP) */
+    .floating-actions{
+      position:fixed;
+      bottom:25px;
+      right:25px;
+      z-index:990;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .float-btn{
+      width:48px;
+      height:48px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      box-shadow:0 8px 24px rgba(0,0,0,0.22);
+      transition:var(--transition);
+      font-size:18px;
+    }
+    .float-wa{
+      background:#25d366;
+      color:#fff;
+    }
+    .float-wa:hover{
+      transform:scale(1.1);
+      box-shadow:0 10px 28px rgba(37,211,102,0.45);
+    }
+    .float-top{
+      background:#fff;
+      color:var(--ink);
+      border:1px solid var(--line);
+      opacity:0;
+      pointer-events:none;
+      transform:translateY(15px);
+    }
+    .float-top.visible{
+      opacity:1;
+      pointer-events:auto;
+      transform:translateY(0);
+    }
+    .float-top:hover{
+      background:var(--blue);
+      color:#fff;
+      border-color:var(--blue);
+      transform:translateY(-3px);
+    }
+
+    /* SCROLL REVEAL */
+    .reveal{
+      opacity:0;
+      transform:translateY(36px);
+      transition:opacity .75s cubic-bezier(.22,1,.36,1), transform .75s cubic-bezier(.22,1,.36,1);
+      will-change:opacity, transform;
+    }
+    .reveal.visible{
+      opacity:1;
+      transform:none;
+    }
+
+    /* RESPONSIVE STYLES */
+    @media(max-width:1080px){
+      .tour-track{grid-template-columns:repeat(2,1fr)}
+      .category-grid{grid-template-columns:repeat(3,1fr)}
+      .benefit-grid{grid-template-columns:repeat(2,1fr)}
+      .story-grid{grid-template-columns:1fr;gap:40px}
+      .story-image-card{height:360px}
+    }
+
+    @media(max-width:900px){
+      .nav-links{display:none}
+      .mobile-toggle{display:flex}
+      .nav-actions .login{display:none}
+      .hero{min-height:740px}
+      .reviews-grid{grid-template-columns:1fr}
+      .footer-grid{grid-template-columns:1fr 1fr;gap:35px}
+      .footer-grid > div:last-child{grid-column:1 / -1}
+      .cta-box{padding:42px 34px;flex-direction:column;align-items:flex-start}
+    }
+
+    @media(max-width:680px){
+      .container{width:min(100% - 32px, 1180px)}
+      .demo-banner{font-size:11.5px;padding:8px 0}
+      .demo-banner-content{flex-direction:column;gap:8px;text-align:center}
+      .nav-wrap{top:64px;padding:14px 0}
+      .hero{min-height:680px}
+      .hero-content{padding:140px 0 70px}
+      h1{font-size:42px;letter-spacing:-.04em}
+      .hero-copy{font-size:14px}
+      .hero-actions{flex-direction:column;align-items:center}
+      .hero-actions .btn{width:100%;max-width:280px}
+      .hero-stats-row{gap:16px;flex-direction:column;align-items:center}
+      .section{padding:75px 0}
+      .section-title{font-size:36px}
+      .tour-track{grid-template-columns:1fr}
+      .tour-img{height:250px}
+      .category-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+      .category{height:180px;border-radius:18px}
+      .category span{font-size:14px}
+      .category-content{inset-inline:14px;bottom:14px}
+      .story{min-height:auto;padding:70px 0}
+      .story-image-card{height:280px}
+      .local-banner{margin:10px 16px 60px;min-height:240px;border-radius:22px}
+      .local-banner-content{min-height:240px;align-items:flex-start;text-align:left;padding:30px 22px}
+      .local-banner .logo{font-size:24px}
+      .local-banner h3{font-size:24px}
+      .benefit-grid{grid-template-columns:1fr;gap:14px}
+      .benefit{padding:24px 18px}
+      .benefit-icon{width:64px;height:64px;font-size:22px}
+      .cta-box{padding:32px 22px;border-radius:24px}
+      .cta-actions{width:100%}
+      .cta-actions .btn{width:100%}
+      .footer-grid{grid-template-columns:1fr;gap:30px}
+      .footer-bottom{flex-direction:column;gap:8px}
+      .form-row{grid-template-columns:1fr}
+      .modal-body{padding:20px}
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- 1. TOP DEMO NOTICE BANNER (SHOWCASE PORTFOLIO) -->
+  <aside class="demo-banner">
+    <div class="container demo-banner-content">
+      <span class="demo-badge"><span class="pulse-dot"></span> LIVE SHOWCASE DEMO</span>
+      <p class="demo-banner-text">
+        <strong>Koh Samui Tours</strong> — Authentic Thai Experiences, Ang Thong Island Trips &amp; Jungle Safaris. Crafted by <em>Gilang Habib Azky Pratama</em>.
+      </p>
+      <div class="demo-banner-actions">
+        <a href="/demo" class="demo-btn demo-btn-all"><i class="fa-solid fa-layer-group"></i> Semua Demo</a>
+        <a href="/" class="demo-btn demo-btn-back"><i class="fa-solid fa-arrow-left"></i> Portofolio</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- 2. HEADER & NAVIGATION -->
+  <header class="nav-wrap" id="mainHeader">
+    <div class="container">
+      <nav>
+        <a class="logo" href="#">
+          <span class="logo-mark">✦</span>
+          <span>KohSamuiTours.com</span>
+        </a>
+
+        <!-- Desktop Links -->
+        <div class="nav-links">
+          <a href="#">Home</a>
+          <a href="#tours">Top Tours</a>
+          <a href="#categories">Categories</a>
+          <a href="#about">About</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <!-- Action Items (Currency Switcher & Book Now) -->
+        <div class="nav-actions">
+          <!-- Currency Switcher -->
+          <div class="currency-switch" title="Ganti Mata Uang">
+            <i class="fa-solid fa-coins" style="font-size:10px;"></i>
+            <select class="currency-select" id="currencySelector" aria-label="Select Currency">
+              <option value="THB" selected>THB ฿</option>
+              <option value="USD">USD $</option>
+              <option value="EUR">EUR €</option>
+              <option value="IDR">IDR Rp</option>
+            </select>
+          </div>
+
+          <a class="login" href="javascript:void(0)" onclick="openBookingModal('General Inquiry', 0)">
+            <span class="login-icon"><i class="fa-regular fa-user"></i></span> Login
+          </a>
+          <a class="btn btn-orange" href="javascript:void(0)" onclick="openBookingModal('Ang Thong National Marine Park by Speed Boat', 2200)">BOOK NOW</a>
+
+          <!-- Mobile Hamburger Toggle -->
+          <button class="mobile-toggle" id="mobileMenuBtn" aria-label="Open Mobile Menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MOBILE NAVIGATION DRAWER -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="drawer-panel">
+      <div class="drawer-header">
+        <div class="logo">
+          <span class="logo-mark">✦</span>
+          <span>KohSamuiTours</span>
+        </div>
+        <button class="drawer-close" id="drawerCloseBtn" aria-label="Close Mobile Menu">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <nav class="drawer-nav">
+        <a href="#" class="drawer-link"><i class="fa-solid fa-house"></i> Home <i class="fa-solid fa-angle-right"></i></a>
+        <a href="#tours" class="drawer-link"><i class="fa-solid fa-compass"></i> Top Tours <i class="fa-solid fa-angle-right"></i></a>
+        <a href="#categories" class="drawer-link"><i class="fa-solid fa-layer-group"></i> Categories <i class="fa-solid fa-angle-right"></i></a>
+        <a href="#about" class="drawer-link"><i class="fa-solid fa-heart"></i> Our Story <i class="fa-solid fa-angle-right"></i></a>
+        <a href="#reviews" class="drawer-link"><i class="fa-solid fa-star"></i> Reviews <i class="fa-solid fa-angle-right"></i></a>
+        <a href="#contact" class="drawer-link"><i class="fa-solid fa-envelope"></i> Contact <i class="fa-solid fa-angle-right"></i></a>
+      </nav>
+
+      <div class="drawer-footer">
+        <button class="btn btn-orange" style="width:100%" onclick="openBookingModal('Ang Thong National Marine Park by Speed Boat', 2200); closeMobileMenu();">
+          <i class="fa-solid fa-calendar-check"></i> BOOK TOUR NOW
+        </button>
+        <a href="https://wa.me/66936465801" target="_blank" class="btn btn-outline" style="width:100%; border-color:rgba(255,255,255,0.25);">
+          <i class="fa-brands fa-whatsapp" style="color:#25d366"></i> Chat WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- 3. HERO SECTION -->
+    <section class="hero">
+      <div class="hero-media">
+        <img src="images/kohsamui/hero-aerial.jpg" alt="Koh Samui tropical coastline aerial view with traditional Thai longtail boat">
+      </div>
+      <div class="hero-overlay"></div>
+      <div class="hero-glow"></div>
+
+      <div class="container hero-content reveal">
+        <span class="eyebrow"><i class="fa-solid fa-sparkles"></i> Authentic Thai Experiences Since 2010</span>
+        <h1>Day Trips <em>In and Around</em> Koh Samui, Thailand</h1>
+        <p class="hero-copy">
+          Be enchanted by authentic Thai hospitality, handpicked island adventures, crystal emerald lagoons, and unforgettable days across Koh Samui and Ang Thong Marine Park.
+        </p>
+
+        <!-- Quick Search Filter in Hero -->
+        <div class="hero-quick-search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="heroSearchInput" placeholder="Search tours (e.g. Pig Island, Ang Thong, Safari, Snorkel)..." onkeyup="handleQuickSearch(this.value)">
+          <a class="btn btn-orange" href="#tours" style="padding:10px 20px; font-size:12px;">EXPLORE</a>
+        </div>
+
+        <div class="hero-actions">
+          <a class="btn btn-light" href="#tours"><i class="fa-solid fa-compass"></i> VIEW OUR TOURS</a>
+          <a class="btn btn-orange" href="javascript:void(0)" onclick="openBookingModal('General Booking Inquiry', 2200)"><i class="fa-solid fa-calendar-plus"></i> BOOK NOW</a>
+        </div>
+
+        <div class="hero-stats-row">
+          <div class="hero-stat">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>100% Certified Local Operators</span>
+          </div>
+          <div class="hero-stat">
+            <i class="fa-solid fa-star"></i>
+            <span>4.9 / 5.0 TripAdvisor Rating</span>
+          </div>
+          <div class="hero-stat">
+            <i class="fa-solid fa-rotate-left"></i>
+            <span>Free 24hr Cancellation</span>
+          </div>
+          <div class="hero-stat">
+            <i class="fa-solid fa-van-shuttle"></i>
+            <span>Free Hotel Roundtrip Transfer</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. FEATURED TOURS -->
+    <section class="section tours-section" id="tours">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker reveal"><i class="fa-solid fa-route"></i> Your Journey</span>
+          <h2 class="section-title reveal">Explore Thailand’s <em>Many Islands</em> on Our Premium Day Trips</h2>
+          <p class="section-intro reveal">
+            Here at Koh Samui Tours, we handpick the best Koh Samui day tours and neighbouring island experiences so you can get the most out of your holiday to gorgeous Thailand.
+          </p>
+        </div>
+
+        <!-- Filter Category Tabs -->
+        <div class="tour-filter-bar reveal">
+          <button class="tour-filter-btn active" data-filter="all" onclick="filterTours('all', this)">All Day Trips (3)</button>
+          <button class="tour-filter-btn" data-filter="island" onclick="filterTours('island', this)">Island Hopping</button>
+          <button class="tour-filter-btn" data-filter="snorkel" onclick="filterTours('snorkel', this)">Snorkeling &amp; Beaches</button>
+          <button class="tour-filter-btn" data-filter="adventure" onclick="filterTours('adventure', this)">Off-Road &amp; Safari</button>
+        </div>
+
+        <div class="tour-track" id="tourCardsContainer">
+          
+          <!-- TOUR CARD 1: ANG THONG -->
+          <article class="tour-card reveal" data-category="island snorkel" data-title="ang thong national marine park speed boat lagoon limestone emerald lake">
+            <div class="tour-img">
+              <img src="images/kohsamui/angthong-marine-park.jpg" alt="Ang Thong National Marine Park by Speed Boat" loading="lazy">
+              <span class="badge-ribbon"><i class="fa-solid fa-fire"></i> Best Seller</span>
+              <div class="price-pill">
+                <span class="tour-price-display" data-thb="2200">2,200 THB</span>
+              </div>
+              <div class="tour-rating-overlay">
+                <i class="fa-solid fa-star"></i>
+                <span>4.9 / 5 (384 reviews)</span>
+              </div>
+              <span class="tour-duration"><i class="fa-regular fa-clock"></i> 8 Hours</span>
+            </div>
+            <div class="tour-body">
+              <h3>Ang Thong National Marine Park by Speed Boat</h3>
+              <p>Cruise around the enchanting 42 limestone islands of Ang Thong, discover the hidden Emerald Green Lagoon (Talay Nai), and snorkel in crystal turquoise waters.</p>
+              
+              <div class="tour-features">
+                <span><i class="fa-solid fa-utensils"></i> Thai Buffet Lunch</span>
+                <span><i class="fa-solid fa-water"></i> Kayak &amp; Snorkel Gear</span>
+                <span><i class="fa-solid fa-bus"></i> Hotel Transfer</span>
+              </div>
+
+              <div class="tour-card-actions">
+                <button class="btn btn-outline" style="color:var(--ink); border-color:var(--line); background:#fcfcfc;" onclick="showTourDetails('angthong')">
+                  <i class="fa-regular fa-eye"></i> Details
+                </button>
+                <button class="btn btn-orange" onclick="openBookingModal('Ang Thong National Marine Park by Speed Boat', 2200)">
+                  <i class="fa-solid fa-ticket"></i> BOOK TOUR
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- TOUR CARD 2: PIG ISLAND -->
+          <article class="tour-card reveal" data-category="island snorkel" data-title="pig island koh madsum koh taen snorkelling coral reef friendly pigs beach">
+            <div class="tour-img">
+              <img src="images/kohsamui/pig-island.jpg" alt="Pig Island and Koh Taen Snorkelling Experience" loading="lazy">
+              <span class="badge-ribbon" style="background:#087eb4;"><i class="fa-solid fa-wand-magic-sparkles"></i> Top Rated</span>
+              <div class="price-pill">
+                <span class="tour-price-display" data-thb="1500">1,500 THB</span>
+              </div>
+              <div class="tour-rating-overlay">
+                <i class="fa-solid fa-star"></i>
+                <span>4.8 / 5 (290 reviews)</span>
+              </div>
+              <span class="tour-duration"><i class="fa-regular fa-clock"></i> 5 Hours</span>
+            </div>
+            <div class="tour-body">
+              <h3>Pig Island &amp; Koh Taen Snorkelling Experience</h3>
+              <p>Meet the famous friendly pot-bellied pigs on the white sand beaches of Koh Madsum, snorkel among colorful coral reefs in Koh Taen, and cruise on a longtail boat.</p>
+
+              <div class="tour-features">
+                <span><i class="fa-solid fa-camera"></i> Pig Island Beach Visit</span>
+                <span><i class="fa-solid fa-fish"></i> Coral Snorkeling</span>
+                <span><i class="fa-solid fa-sailboat"></i> Speedboat / Longtail</span>
+              </div>
+
+              <div class="tour-card-actions">
+                <button class="btn btn-outline" style="color:var(--ink); border-color:var(--line); background:#fcfcfc;" onclick="showTourDetails('pigisland')">
+                  <i class="fa-regular fa-eye"></i> Details
+                </button>
+                <button class="btn btn-orange" onclick="openBookingModal('Pig Island & Koh Taen Snorkelling Experience', 1500)">
+                  <i class="fa-solid fa-ticket"></i> BOOK TOUR
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- TOUR CARD 3: SAFARI TOUR -->
+          <article class="tour-card reveal" data-category="adventure" data-title="koh samui full day safari tour 4x4 mountain jungle waterfall offroad elephant namuang">
+            <div class="tour-img">
+              <img src="images/kohsamui/safari-tour.jpg" alt="Koh Samui Full-Day Safari Tour" loading="lazy">
+              <span class="badge-ribbon" style="background:#16a34a;"><i class="fa-solid fa-tree"></i> Eco Adventure</span>
+              <div class="price-pill">
+                <span class="tour-price-display" data-thb="1700">1,700 THB</span>
+              </div>
+              <div class="tour-rating-overlay">
+                <i class="fa-solid fa-star"></i>
+                <span>4.9 / 5 (410 reviews)</span>
+              </div>
+              <span class="tour-duration"><i class="fa-regular fa-clock"></i> 7 Hours</span>
+            </div>
+            <div class="tour-body">
+              <h3>Koh Samui Full-Day 4x4 Safari Tour</h3>
+              <p>Go off-road in open 4x4 trucks, explore secret jungle mountain peaks, swim at Na Muang Waterfalls, visit coconut plantations, and discover the real Samui beyond the beach.</p>
+
+              <div class="tour-features">
+                <span><i class="fa-solid fa-truck-monster"></i> Open 4x4 Safari</span>
+                <span><i class="fa-solid fa-mountain"></i> Mountain Viewpoint</span>
+                <span><i class="fa-solid fa-utensils"></i> Traditional Thai Lunch</span>
+              </div>
+
+              <div class="tour-card-actions">
+                <button class="btn btn-outline" style="color:var(--ink); border-color:var(--line); background:#fcfcfc;" onclick="showTourDetails('safari')">
+                  <i class="fa-regular fa-eye"></i> Details
+                </button>
+                <button class="btn btn-orange" onclick="openBookingModal('Koh Samui Full-Day Safari Tour', 1700)">
+                  <i class="fa-solid fa-ticket"></i> BOOK TOUR
+                </button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="tour-footer reveal">
+          <a class="btn btn-blue" href="javascript:void(0)" onclick="openBookingModal('Custom Island Day Trip', 2500)">
+            <i class="fa-solid fa-magnifying-glass-plus"></i> EXPLORE ALL 20+ SAMUI EXPERIENCES
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. CATEGORIES -->
+    <section class="section categories" id="categories">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker reveal"><i class="fa-solid fa-compass"></i> Explore More</span>
+          <h2 class="section-title reveal">Find Your <em>Perfect</em> Thai Adventure</h2>
+          <p class="section-intro reveal">
+            From secluded coral bays and dramatic limestone archipelagos to off-road mountain trails and tranquil temples, select your ideal journey below.
+          </p>
+        </div>
+
+        <div class="category-grid">
+          <!-- 1. Angthong Marine Park -->
+          <a class="category reveal" href="#tours" onclick="filterTours('island')">
+            <img src="images/kohsamui/angthong-marine-park.jpg" alt="Angthong Marine Park Tours" loading="lazy">
+            <div class="category-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            <div class="category-content">
+              <span class="category-count">6 Day Trips</span>
+              <span>Angthong Marine Park Tours</span>
+            </div>
+          </a>
+
+          <!-- 2. Koh Nangyuan & Koh Tao -->
+          <a class="category reveal" href="#tours" onclick="filterTours('island')">
+            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=80" alt="Koh Nangyuan & Koh Tao Tours" loading="lazy">
+            <div class="category-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            <div class="category-content">
+              <span class="category-count">4 Day Trips</span>
+              <span>Koh Nangyuan &amp; Koh Tao Tours</span>
+            </div>
+          </a>
+
+          <!-- 3. Jungle Tours & Safaris -->
+          <a class="category reveal" href="#tours" onclick="filterTours('adventure')">
+            <img src="images/kohsamui/safari-tour.jpg" alt="Jungle Tours & Safaris" loading="lazy">
+            <div class="category-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            <div class="category-content">
+              <span class="category-count">5 Off-Road Trips</span>
+              <span>Jungle Tours &amp; Safaris</span>
+            </div>
+          </a>
+
+          <!-- 4. Snorkeling Tours -->
+          <a class="category reveal" href="#tours" onclick="filterTours('snorkel')">
+            <img src="https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?auto=format&fit=crop&w=900&q=80" alt="Snorkeling Tours" loading="lazy">
+            <div class="category-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            <div class="category-content">
+              <span class="category-count">8 Reef Excursions</span>
+              <span>Snorkeling &amp; Diving Tours</span>
+            </div>
+          </a>
+
+          <!-- 5. Thai Culture Tours -->
+          <a class="category reveal" href="#tours" onclick="filterTours('all')">
+            <img src="https://images.unsplash.com/photo-1563492065599-3520f775eeed?auto=format&fit=crop&w=900&q=80" alt="Thai Culture Tours" loading="lazy">
+            <div class="category-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            <div class="category-content">
+              <span class="category-count">3 Cultural Routes</span>
+              <span>Thai Culture &amp; Temples</span>
+            </div>
+          </a>
+
+          <!-- 6. Junk Boat Tours -->
+          <a class="category reveal" href="#tours" onclick="filterTours('island')">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80" alt="Traditional Junk Boat Tours" loading="lazy">
+            <div class="category-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            <div class="category-content">
+              <span class="category-count">4 Sunset Sails</span>
+              <span>Traditional Junk Boat Cruises</span>
+            </div>
+          </a>
+
+          <!-- 7. Nature & Wildlife Tours -->
+          <a class="category reveal" href="#tours" onclick="filterTours('adventure')">
+            <img src="https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?auto=format&fit=crop&w=900&q=80" alt="Nature & Wildlife Tours" loading="lazy">
+            <div class="category-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            <div class="category-content">
+              <span class="category-count">3 Sanctuary Trips</span>
+              <span>Nature &amp; Wildlife Sanctuaries</span>
+            </div>
+          </a>
+
+          <!-- 8. Sports & Ziplines -->
+          <a class="category reveal" href="#tours" onclick="filterTours('adventure')">
+            <img src="https://images.unsplash.com/photo-1526232761682-d26e03ac148e?auto=format&fit=crop&w=900&q=80" alt="Sports, Adventure and Zip-lines" loading="lazy">
+            <div class="category-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            <div class="category-content">
+              <span class="category-count">6 Action Outings</span>
+              <span>Sports, Ziplines &amp; ATV</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. STORY -->
+    <section class="story" id="about">
+      <div class="story-bg">
+        <img src="images/kohsamui/hero-aerial.jpg" alt="Tropical Koh Samui sea backdrop">
+      </div>
+      <div class="container">
+        <div class="story-grid">
+          <div class="story-content reveal">
+            <span class="section-kicker"><i class="fa-solid fa-heart"></i> Our Story</span>
+            <h2 class="section-title">Our Story is <em>Family</em></h2>
+            <h3>The Passionate Team Behind Koh Samui Tours</h3>
+            <p>
+              We're a husband and wife team originally from the mountains of Chiang Rai province in northern Thailand. We decided to move to Koh Samui in 2008 to work in the tourism industry—we even started our own tour company in 2010.
+            </p>
+            <p>
+              Over the years, our business has grown steadily through word-of-mouth and honest recommendations. We now take immense pride in showing our guests the natural, historical, and cultural splendors of our beautiful tropical paradise, treating every traveler like personal family.
+            </p>
+
+            <div class="story-badges">
+              <div class="story-badge-item">
+                <div class="story-badge-icon"><i class="fa-solid fa-award"></i></div>
+                <div>15+ Years on Koh Samui</div>
+              </div>
+              <div class="story-badge-item">
+                <div class="story-badge-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+                <div>100% Family-Owned</div>
+              </div>
+              <div class="story-badge-item">
+                <div class="story-badge-icon"><i class="fa-solid fa-users"></i></div>
+                <div>45,000+ Happy Guests</div>
+              </div>
+            </div>
+
+            <a class="btn btn-light" href="javascript:void(0)" onclick="openBookingModal('General Inquiry', 0)">
+              <i class="fa-solid fa-message"></i> GET IN TOUCH WITH US
+            </a>
+          </div>
+
+          <div class="story-image-card reveal">
+            <img src="images/kohsamui/founders-story.jpg" alt="Somchai and Malai - Founders of Koh Samui Tours" loading="lazy">
+            <div class="story-image-caption">
+              <h4>Somchai &amp; Malai</h4>
+              <p>Founders &amp; Island Directors, KohSamuiTours.com</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. PARTNERS -->
+    <section class="partners">
+      <div class="container">
+        <div style="text-align:center; margin-bottom:24px;">
+          <span style="font-size:11px; text-transform:uppercase; letter-spacing:.12em; color:var(--muted); font-weight:700;">
+            OFFICIAL ACCREDITED OPERATORS &amp; FLEET PARTNERS
+          </span>
+        </div>
+
+        <div class="partner-wrapper">
+          <div class="partner-row" id="partnerScrollRow">
+            <div class="partner">
+              <i class="fa-solid fa-ship"></i>
+              <div>LOMPRAYAH<br>HIGH SPEED</div>
+            </div>
+            <div class="partner">
+              <i class="fa-solid fa-motorcycle"></i>
+              <div>QUAD<br>ATV TOUR</div>
+            </div>
+            <div class="partner">
+              <i class="fa-solid fa-futbol"></i>
+              <div>SAMUI<br>FOOTBALL GOLF</div>
+            </div>
+            <div class="partner">
+              <i class="fa-solid fa-paw"></i>
+              <div>SAMUI<br>SAFARI 4X4</div>
+            </div>
+            <div class="partner">
+              <i class="fa-solid fa-mountain-sun"></i>
+              <div>SKYHAWK<br>ADVENTURE</div>
+            </div>
+            <div class="partner">
+              <i class="fa-solid fa-truck-monster"></i>
+              <div>SAMUI QUAD<br>MOTOR</div>
+            </div>
+            <div class="partner">
+              <i class="fa-solid fa-sailboat"></i>
+              <div>BLUE STARS<br>KAYAKING</div>
+            </div>
+            <div class="partner">
+              <i class="fa-solid fa-anchor"></i>
+              <div>ANG THONG<br>SPEED CAT</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-controls">
+          <button class="circle-btn" id="partnerPrevBtn" aria-label="Previous Partner" onclick="scrollPartners(-1)">
+            <i class="fa-solid fa-arrow-left"></i>
+          </button>
+          <button class="circle-btn" id="partnerNextBtn" aria-label="Next Partner" onclick="scrollPartners(1)">
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. LOCAL BANNER -->
+    <section class="local-banner reveal">
+      <img src="images/kohsamui/hero-aerial.jpg" alt="Koh Samui tropical coastline" loading="lazy">
+      <div class="local-banner-content">
+        <div class="logo">✦ KohSamuiTours.com</div>
+        <h3>Book locally for peace of mind</h3>
+        <p>No middlemen, no hidden fees, and instant personal assistance from island locals on Koh Samui 7 days a week.</p>
+        <button class="btn btn-orange" onclick="openBookingModal('Local Booking Guarantee', 1500)">
+          <i class="fa-solid fa-shield-heart"></i> BOOK DIRECT &amp; SAVE
+        </button>
+      </div>
+    </section>
+
+    <!-- 9. REVIEWS SECTION -->
+    <section class="section reviews-section" id="reviews">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-kicker reveal"><i class="fa-solid fa-star"></i> Traveler Reviews</span>
+          <h2 class="section-title reveal">Loved by Over <em>45,000+</em> Travelers</h2>
+          <p class="section-intro reveal">
+            Read what recent guests have to say about our Ang Thong boat charters, Pig Island tours, and jungle safaris.
+          </p>
+        </div>
+
+        <div class="reviews-grid">
+          <!-- Review 1 -->
+          <div class="review-card reveal">
+            <div class="review-stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="review-text">
+              "The Ang Thong Marine Park speed boat tour was hands down the best day of our 2-week Thailand vacation. The view over Emerald Lake took my breath away. Somchai and his crew were attentive, safe, and made sure everyone had gear and fresh fruit!"
+            </p>
+            <div class="reviewer">
+              <div class="reviewer-avatar">CW</div>
+              <div class="reviewer-info">
+                <h5>Charlotte &amp; Will</h5>
+                <span>London, United Kingdom • TripAdvisor Review</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Review 2 -->
+          <div class="review-card reveal">
+            <div class="review-stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="review-text">
+              "Pig Island is so much fun! Our kids loved swimming with the friendly piglets on Koh Madsum beach and snorkeling around Koh Taen coral reefs. Booking via WhatsApp was seamless, pickup at our Chaweng resort was right on time!"
+            </p>
+            <div class="reviewer">
+              <div class="reviewer-avatar">MS</div>
+              <div class="reviewer-info">
+                <h5>Markus &amp; Sophie</h5>
+                <span>Munich, Germany • Verified Traveler</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Review 3 -->
+          <div class="review-card reveal">
+            <div class="review-stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="review-text">
+              "The 4x4 Mountain Safari tour was an absolute blast. Driving up into the misty mountains of Koh Samui, tasting authentic northern Thai dishes prepared by Malai, and swimming in Na Muang waterfall was sheer perfection!"
+            </p>
+            <div class="reviewer">
+              <div class="reviewer-avatar">AL</div>
+              <div class="reviewer-info">
+                <h5>Aria Lestari</h5>
+                <span>Jakarta, Indonesia • Google Review</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. BENEFITS & TRUST -->
+    <section class="benefits">
+      <div class="container">
+        <div class="benefit-grid">
+          <div class="benefit reveal">
+            <div class="benefit-icon">15</div>
+            <h4>Local, tried &amp; trusted</h4>
+            <p>15 years of local experience helping international guests safely discover Koh Samui and surrounding islands.</p>
+          </div>
+
+          <div class="benefit reveal">
+            <div class="benefit-icon"><i class="fa-solid fa-bolt"></i></div>
+            <h4>Instant e-ticket booking</h4>
+            <p>Powered by Peak Pro with zero booking fee, instant QR e-ticket vouchers, and seamless hotel roundtrips.</p>
+          </div>
+
+          <div class="benefit reveal">
+            <div class="benefit-icon"><i class="fa-solid fa-lock"></i></div>
+            <h4>Secure &amp; safe payment</h4>
+            <p>All major credit cards, Apple Pay, and PromptPay accepted with 256-bit SSL encrypted checkout.</p>
+          </div>
+
+          <div class="benefit reveal">
+            <div class="benefit-icon"><i class="fa-brands fa-whatsapp"></i></div>
+            <h4>WhatsApp chat &amp; email</h4>
+            <p>Daily 6:00am - 10:00pm<br><strong>+66 093 646 5801</strong><br>Fast response in English &amp; Thai.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. CONTACT CTA -->
+    <section class="contact-cta" id="contact">
+      <div class="container">
+        <div class="cta-box reveal">
+          <div class="cta-text">
+            <h2>Have more <em>questions?</em></h2>
+            <p>Speak directly with our local tour specialists in Koh Samui. We can tailor custom private charters, group discounts, or advise on the best tour for your schedule.</p>
+          </div>
+          <div class="cta-actions">
+            <a class="btn btn-light" href="mailto:kohsamuitours1@gmail.com">
+              <i class="fa-solid fa-envelope"></i> EMAIL US
+            </a>
+            <a class="btn btn-orange" href="https://wa.me/66936465801" target="_blank">
+              <i class="fa-brands fa-whatsapp"></i> WHATSAPP CHAT
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 12. FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">✦ KohSamuiTours.com</div>
+          <p style="margin-bottom:14px;">The most in-depth, authentic review and booking guide of Koh Samui day trips online.</p>
+          <p>Learn all about the hidden islands, wildlife sanctuaries, and adventures of our island at the most comprehensive blog on Koh Samui.</p>
+          <div class="footer-socials">
+            <a href="#" class="footer-social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="footer-social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="footer-social-btn" aria-label="TripAdvisor"><i class="fa-brands fa-tripadvisor"></i></a>
+            <a href="https://wa.me/66936465801" target="_blank" class="footer-social-btn" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4>Quick Navigation</h4>
+          <a href="#tours"><i class="fa-solid fa-angle-right"></i> Top Day Tours</a>
+          <a href="#categories"><i class="fa-solid fa-angle-right"></i> Island Categories</a>
+          <a href="#about"><i class="fa-solid fa-angle-right"></i> About Somchai &amp; Malai</a>
+          <a href="#reviews"><i class="fa-solid fa-angle-right"></i> Customer Reviews</a>
+          <a href="#contact"><i class="fa-solid fa-angle-right"></i> Contact Us</a>
+          <a href="javascript:void(0)" onclick="openBookingModal('General Inquiry', 0)"><i class="fa-solid fa-angle-right"></i> FAQ &amp; Cancellation Policy</a>
+        </div>
+
+        <div>
+          <h4>Local Island Office</h4>
+          <p style="margin-bottom:12px;">
+            <i class="fa-solid fa-location-dot" style="color:var(--orange);"></i> 9/1 Moo 3 Tambon Bophut<br>
+            Koh Samui, Surat Thani 84320<br>Thailand
+          </p>
+          <p style="margin-bottom:6px;"><i class="fa-solid fa-phone" style="color:var(--orange);"></i> +66 093 646 5801</p>
+          <p style="margin-bottom:18px;"><i class="fa-solid fa-envelope" style="color:var(--orange);"></i> kohsamuitours1@gmail.com</p>
+
+          <div class="partner-seal">
+            KOH SAMUI<br>OFFICIAL<br>TOURISM<br>PARTNER
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 KohSamuiTours.com — All rights reserved. Portfolio demo showcase built by Gilang Habib.</span>
+        <span>Authentic experiences. Local knowledge. Memorable days in Thailand.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 13. INTERACTIVE BOOKING / INQUIRY MODAL -->
+  <div class="modal-overlay" id="bookingModal">
+    <div class="booking-modal">
+      <div class="modal-header">
+        <img src="images/kohsamui/angthong-marine-park.jpg" alt="Tour modal preview" id="modalHeaderImg">
+        <div class="modal-header-content">
+          <h3 id="modalTourTitle">Book Your Koh Samui Tour</h3>
+          <p id="modalTourSubtitle">Instant confirmation • No booking fee • Free cancellation</p>
+        </div>
+        <button class="modal-close-btn" onclick="closeBookingModal()" aria-label="Close Modal">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <form id="tourBookingForm" onsubmit="handleBookingSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="bookDate"><i class="fa-regular fa-calendar"></i> Tour Date</label>
+              <input type="date" id="bookDate" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="bookGuests"><i class="fa-solid fa-user-group"></i> Guests (Adults)</label>
+              <select id="bookGuests" class="form-control" onchange="updateModalPrice()">
+                <option value="1">1 Person</option>
+                <option value="2" selected>2 Persons</option>
+                <option value="3">3 Persons</option>
+                <option value="4">4 Persons</option>
+                <option value="5">5+ Persons (Group)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="bookHotel"><i class="fa-solid fa-hotel"></i> Hotel / Resort for Pickup</label>
+            <input type="text" id="bookHotel" class="form-control" placeholder="e.g. Chaweng Regent Beach Resort / Villa name" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="bookName"><i class="fa-solid fa-user"></i> Full Name</label>
+              <input type="text" id="bookName" class="form-control" placeholder="John Doe" required>
+            </div>
+            <div class="form-group">
+              <label for="bookPhone"><i class="fa-brands fa-whatsapp"></i> WhatsApp / Phone</label>
+              <input type="tel" id="bookPhone" class="form-control" placeholder="+66 ... or +62 ..." required>
+            </div>
+          </div>
+
+          <div class="modal-price-calc">
+            <div>
+              <span>Estimated Total:</span>
+              <div style="font-size:11.5px; color:var(--muted);">Includes national park fee, lunch &amp; roundtrip transfer</div>
+            </div>
+            <strong id="modalTotalPriceDisplay">4,400 THB</strong>
+          </div>
+
+          <button type="submit" class="modal-submit-btn">
+            <i class="fa-solid fa-circle-check"></i> CONFIRM &amp; GET E-TICKET
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- 14. TOAST NOTIFICATION -->
+  <div class="toast-popup" id="toastNotice">
+    <i class="fa-solid fa-circle-check"></i>
+    <span id="toastMsg">Tour successfully booked! Check your WhatsApp for the e-ticket.</span>
+  </div>
+
+  <!-- 15. FLOATING ACTIONS -->
+  <div class="floating-actions">
+    <a href="https://wa.me/66936465801" target="_blank" class="float-btn float-wa" title="Chat on WhatsApp (+66 093 646 5801)">
+      <i class="fa-brands fa-whatsapp"></i>
+    </a>
+    <button class="float-btn float-top" id="backToTopBtn" onclick="window.scrollTo({top:0, behavior:'smooth'})" title="Back to top">
+      <i class="fa-solid fa-arrow-up"></i>
+    </button>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // Exchange rates against 1 THB
+    const exchangeRates = {
+      THB: { rate: 1, symbol: '฿', prefix: '', suffix: ' THB' },
+      USD: { rate: 0.029, symbol: '$', prefix: '$', suffix: ' USD' },
+      EUR: { rate: 0.027, symbol: '€', prefix: '€', suffix: ' EUR' },
+      IDR: { rate: 465, symbol: 'Rp', prefix: 'Rp ', suffix: '' }
+    };
+
+    let currentCurrency = 'THB';
+    let activeTourBasePrice = 2200;
+
+    // Currency Switcher
+    const currencySelector = document.getElementById('currencySelector');
+    if (currencySelector) {
+      currencySelector.addEventListener('change', (e) => {
+        currentCurrency = e.target.value;
+        updateAllPriceDisplays();
+        showToast(`Currency updated to ${currentCurrency}!`);
+      });
+    }
+
+    function formatPrice(thbAmount, currency) {
+      const config = exchangeRates[currency] || exchangeRates.THB;
+      const converted = Math.round(thbAmount * config.rate);
+      return `${config.prefix}${converted.toLocaleString()}${config.suffix}`;
+    }
+
+    function updateAllPriceDisplays() {
+      document.querySelectorAll('.tour-price-display').forEach(el => {
+        const thb = parseFloat(el.getAttribute('data-thb'));
+        if (!isNaN(thb)) {
+          el.textContent = formatPrice(thb, currentCurrency);
+        }
+      });
+      updateModalPrice();
+    }
+
+    // Scroll Reveal Intersection Observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Sticky Nav & Parallax & Back to top visibility
+    const header = document.getElementById('mainHeader');
+    const hero = document.querySelector('.hero');
+    const heroImg = document.querySelector('.hero-media img');
+    const backToTopBtn = document.getElementById('backToTopBtn');
+
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+
+      // Header scrolled state
+      if (header) {
+        if (scrollY > 50) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      }
+
+      // Parallax on hero
+      if (hero && heroImg && scrollY < 900) {
+        heroImg.style.transform = `scale(1.05) translateY(${scrollY * 0.18}px)`;
+      }
+
+      // Back to top button
+      if (backToTopBtn) {
+        if (scrollY > 400) {
+          backToTopBtn.classList.add('visible');
+        } else {
+          backToTopBtn.classList.remove('visible');
+        }
+      }
+    }, { passive: true });
+
+    // Mobile Drawer Navigation
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    const drawerCloseBtn = document.getElementById('drawerCloseBtn');
+
+    function openMobileMenu() {
+      if (mobileDrawer) mobileDrawer.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMobileMenu() {
+      if (mobileDrawer) mobileDrawer.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', openMobileMenu);
+    if (drawerCloseBtn) drawerCloseBtn.addEventListener('click', closeMobileMenu);
+    if (mobileDrawer) {
+      mobileDrawer.addEventListener('click', (e) => {
+        if (e.target === mobileDrawer) closeMobileMenu();
+      });
+    }
+    document.querySelectorAll('.drawer-link').forEach(link => {
+      link.addEventListener('click', closeMobileMenu);
+    });
+
+    // Tour Filter Tabs
+    function filterTours(category, btnElement) {
+      if (btnElement) {
+        document.querySelectorAll('.tour-filter-btn').forEach(b => b.classList.remove('active'));
+        btnElement.classList.add('active');
+      }
+
+      const cards = document.querySelectorAll('.tour-card');
+      cards.forEach(card => {
+        const cats = card.getAttribute('data-category') || '';
+        if (category === 'all' || cats.includes(category)) {
+          card.style.display = 'flex';
+          card.classList.add('visible');
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Hero Quick Search
+    function handleQuickSearch(query) {
+      const q = query.trim().toLowerCase();
+      const cards = document.querySelectorAll('.tour-card');
+      cards.forEach(card => {
+        const title = card.getAttribute('data-title') || '';
+        const text = card.textContent.toLowerCase();
+        if (q === '' || title.includes(q) || text.includes(q)) {
+          card.style.display = 'flex';
+          card.classList.add('visible');
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Partner Carousel Scroll
+    const partnerScrollRow = document.getElementById('partnerScrollRow');
+    function scrollPartners(direction) {
+      if (partnerScrollRow) {
+        partnerScrollRow.scrollBy({ left: direction * 280, behavior: 'smooth' });
+      }
+    }
+
+    // Auto-scroll partners subtly
+    let partnerScrollTimer = setInterval(() => {
+      if (partnerScrollRow) {
+        if (partnerScrollRow.scrollLeft + partnerScrollRow.clientWidth >= partnerScrollRow.scrollWidth - 10) {
+          partnerScrollRow.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          partnerScrollRow.scrollBy({ left: 160, behavior: 'smooth' });
+        }
+      }
+    }, 4500);
+
+    if (partnerScrollRow) {
+      partnerScrollRow.addEventListener('mouseenter', () => clearInterval(partnerScrollTimer));
+      partnerScrollRow.addEventListener('mouseleave', () => {
+        partnerScrollTimer = setInterval(() => {
+          if (partnerScrollRow.scrollLeft + partnerScrollRow.clientWidth >= partnerScrollRow.scrollWidth - 10) {
+            partnerScrollRow.scrollTo({ left: 0, behavior: 'smooth' });
+          } else {
+            partnerScrollRow.scrollBy({ left: 160, behavior: 'smooth' });
+          }
+        }, 4500);
+      });
+    }
+
+    // Modal Details & Booking
+    const bookingModal = document.getElementById('bookingModal');
+    const modalTourTitle = document.getElementById('modalTourTitle');
+    const modalHeaderImg = document.getElementById('modalHeaderImg');
+    const modalTotalPriceDisplay = document.getElementById('modalTotalPriceDisplay');
+
+    function openBookingModal(tourName, basePrice = 2200) {
+      activeTourBasePrice = basePrice > 0 ? basePrice : 2200;
+      if (modalTourTitle) modalTourTitle.textContent = tourName || 'Book Your Koh Samui Tour';
+      
+      // Update image according to tour
+      if (modalHeaderImg) {
+        if (tourName.toLowerCase().includes('pig')) {
+          modalHeaderImg.src = 'images/kohsamui/pig-island.jpg';
+        } else if (tourName.toLowerCase().includes('safari')) {
+          modalHeaderImg.src = 'images/kohsamui/safari-tour.jpg';
+        } else {
+          modalHeaderImg.src = 'images/kohsamui/angthong-marine-park.jpg';
+        }
+      }
+
+      // Default date to tomorrow
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      const dateInput = document.getElementById('bookDate');
+      if (dateInput && !dateInput.value) {
+        dateInput.value = tomorrow.toISOString().split('T')[0];
+      }
+
+      updateModalPrice();
+      if (bookingModal) bookingModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeBookingModal() {
+      if (bookingModal) bookingModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    if (bookingModal) {
+      bookingModal.addEventListener('click', (e) => {
+        if (e.target === bookingModal) closeBookingModal();
+      });
+    }
+
+    function updateModalPrice() {
+      const guests = parseInt(document.getElementById('bookGuests')?.value || '2', 10);
+      const totalThb = activeTourBasePrice * guests;
+      if (modalTotalPriceDisplay) {
+        modalTotalPriceDisplay.textContent = formatPrice(totalThb, currentCurrency);
+      }
+    }
+
+    function showTourDetails(type) {
+      if (type === 'angthong') {
+        openBookingModal('Ang Thong National Marine Park by Speed Boat', 2200);
+      } else if (type === 'pigisland') {
+        openBookingModal('Pig Island & Koh Taen Snorkelling Experience', 1500);
+      } else if (type === 'safari') {
+        openBookingModal('Koh Samui Full-Day Safari Tour', 1700);
+      }
+    }
+
+    function handleBookingSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('bookName').value;
+      const hotel = document.getElementById('bookHotel').value;
+      const guests = document.getElementById('bookGuests').value;
+      const date = document.getElementById('bookDate').value;
+      const tour = modalTourTitle.textContent;
+
+      closeBookingModal();
+      showToast(`Thank you, ${name}! Your booking for ${tour} (${guests} guests) on ${date} is received!`);
+
+      // Reset form
+      e.target.reset();
+    }
+
+    // Toast Notice
+    function showToast(message) {
+      const toast = document.getElementById('toastNotice');
+      const toastMsg = document.getElementById('toastMsg');
+      if (toast && toastMsg) {
+        toastMsg.textContent = message;
+        toast.classList.add('show');
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, 4000);
+      }
+    }
+
+    // Set today as minimum booking date
+    const dateInput = document.getElementById('bookDate');
+    if (dateInput) {
+      const today = new Date().toISOString().split('T')[0];
+      dateInput.min = today;
+    }
+  </script>
+</body>
+</html>

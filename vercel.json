@@ -20,6 +20,9 @@
     { "source": "/demo-john-grays-sea-canoe", "destination": "/demo-john-grays-sea-canoe.html" },
     { "source": "/demo-john-gray-sea-canoe", "destination": "/demo-john-grays-sea-canoe.html" },
     { "source": "/demo-john-gray", "destination": "/demo-john-grays-sea-canoe.html" },
+    { "source": "/demo-kohsamuitours", "destination": "/demo-kohsamuitours.html" },
+    { "source": "/demo-kohsamui", "destination": "/demo-kohsamuitours.html" },
+    { "source": "/demo-koh-samui-tours", "destination": "/demo-kohsamuitours.html" },
     { "source": "/demo", "destination": "/demo.html" },
     { "source": "/demos", "destination": "/demo.html" }
   ]
