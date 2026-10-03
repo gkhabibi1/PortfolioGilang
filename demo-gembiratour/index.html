@@ -1,0 +1,2462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Gembira Tour — Phuket tours, island hopping, private boat charters, Muslim-friendly travel and Thailand holiday packages." />
+  <title>Gembira Tour | Phuket Tours & Thailand Travel</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,600&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    :root {
+      --green: #063f3b;
+      --green-2: #0b5d55;
+      --green-3: #e8f2ec;
+      --green-light: #f0f7f3;
+      --gold: #d99a2b;
+      --gold-light: #fff5e3;
+      --cream: #faf9f4;
+      --cream-dark: #f2f0e6;
+      --white: #ffffff;
+      --ink: #173b38;
+      --muted: #627772;
+      --line: #dfe7e3;
+      --shadow-sm: 0 4px 16px rgba(3, 52, 48, 0.06);
+      --shadow: 0 18px 50px rgba(3, 52, 48, 0.12);
+      --shadow-lg: 0 24px 60px rgba(3, 52, 48, 0.18);
+      --radius: 20px;
+      --radius-sm: 12px;
+      --container: min(1180px, calc(100% - 40px));
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: var(--ink);
+      background: var(--cream);
+      line-height: 1.65;
+      overflow-x: hidden;
+      width: 100%;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: color 0.2s ease, opacity 0.2s ease;
+    }
+
+    button {
+      font: inherit;
+      border: 0;
+      cursor: pointer;
+      background: none;
+    }
+
+    .container {
+      width: var(--container);
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .serif {
+      font-family: "Playfair Display", Georgia, serif;
+    }
+
+    /* ---------- PORTFOLIO DEMO BANNER ---------- */
+    .demo-bar {
+      background: linear-gradient(90deg, #042523 0%, #063f3b 50%, #094d47 100%);
+      color: #e5f2ee;
+      padding: 9px 0;
+      font-size: 12px;
+      border-bottom: 1px solid rgba(217, 154, 43, 0.35);
+      position: relative;
+      z-index: 100;
+    }
+    .demo-bar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .demo-bar-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 500;
+    }
+    .demo-pill {
+      background: var(--gold);
+      color: #1a1608;
+      font-weight: 800;
+      font-size: 10px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .demo-pill-dot {
+      width: 6px;
+      height: 6px;
+      background: #1a1608;
+      border-radius: 50%;
+      animation: pulseDemo 1.8s infinite;
+    }
+    @keyframes pulseDemo {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+    }
+    .demo-bar-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .demo-btn-link {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 4px 11px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.2s ease;
+    }
+    .demo-btn-link:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: #1a1608;
+      transform: translateY(-1px);
+    }
+
+    /* ---------- HEADER & NAV ---------- */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      width: 100%;
+      padding: 14px 0;
+      transition: background 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
+      background: transparent;
+    }
+    .site-header.scrolled {
+      background: rgba(250, 249, 244, 0.95);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 8px 30px rgba(3, 52, 48, 0.08);
+      padding: 9px 0;
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(223, 231, 227, 0.85);
+      border-radius: 16px;
+      padding: 10px 18px;
+      box-shadow: 0 10px 32px rgba(3, 52, 48, 0.08);
+      position: relative;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 190px;
+    }
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #e8f5ee 0%, #d4ebe0 100%);
+      color: var(--green);
+      font-size: 20px;
+      flex-shrink: 0;
+      box-shadow: 0 3px 10px rgba(6, 63, 59, 0.12);
+    }
+    .brand-info strong {
+      display: block;
+      font-family: "Playfair Display", serif;
+      font-size: 18px;
+      line-height: 1.1;
+      color: var(--green);
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+    .brand-info span {
+      font-size: 9px;
+      letter-spacing: 2.2px;
+      color: #728c86;
+      font-weight: 700;
+      display: block;
+      margin-top: 1px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .nav-links a {
+      position: relative;
+      padding: 6px 0;
+      color: #344f4a;
+    }
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0%;
+      height: 2.5px;
+      background: var(--gold);
+      border-radius: 2px;
+      transition: width 0.25s ease;
+    }
+    .nav-links a.active::after,
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .socials {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: #4b6863;
+    }
+    .socials a {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #f0f6f3;
+      transition: all 0.2s ease;
+    }
+    .socials a:hover {
+      background: var(--green);
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+    .plan-btn, .btn {
+      background: var(--green);
+      color: #ffffff;
+      padding: 11px 20px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 14px rgba(6, 63, 59, 0.2);
+      transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .plan-btn:hover, .btn:hover {
+      background: #09544e;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba(6, 63, 59, 0.28);
+    }
+    .btn-gold {
+      background: var(--gold);
+      color: #1a1608;
+    }
+    .btn-gold:hover {
+      background: #c58920;
+      color: #1a1608;
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: #f0f6f3;
+      color: var(--green);
+      font-size: 19px;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease;
+    }
+    .menu-toggle:hover {
+      background: #e2ede8;
+    }
+
+    /* ---------- HERO SECTION ---------- */
+    .hero {
+      min-height: 720px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: #d6e8e0;
+      margin-top: -85px;
+      padding-top: 100px;
+      padding-bottom: 70px;
+    }
+    .hero-slides {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+    .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transform: scale(1.04);
+      transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), transform 6s ease-out;
+    }
+    .slide.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(1.05);
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background: linear-gradient(
+        90deg,
+        rgba(250, 249, 244, 0.98) 0%,
+        rgba(250, 249, 244, 0.92) 38%,
+        rgba(250, 249, 244, 0.45) 68%,
+        rgba(6, 63, 59, 0.25) 100%
+      );
+    }
+    .brush {
+      position: absolute;
+      z-index: 3;
+      right: 2%;
+      bottom: -60px;
+      width: 52%;
+      height: 320px;
+      background: rgba(255, 255, 255, 0.88);
+      clip-path: polygon(4% 15%, 20% 7%, 35% 14%, 49% 5%, 66% 17%, 81% 7%, 100% 19%, 96% 100%, 2% 100%);
+      transform: rotate(-2deg);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 4;
+      max-width: 580px;
+      padding: 40px 0;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 11px;
+      letter-spacing: 2.8px;
+      font-weight: 800;
+      color: #5c7e77;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .eyebrow i {
+      color: var(--gold);
+      font-size: 10px;
+    }
+    h1 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(38px, 5.2vw, 68px);
+      font-weight: 700;
+      line-height: 1.04;
+      color: var(--green);
+      letter-spacing: -1.5px;
+      margin-bottom: 22px;
+    }
+    .hero-content p {
+      max-width: 500px;
+      color: #49635f;
+      font-size: 15.5px;
+      line-height: 1.7;
+      margin-bottom: 30px;
+    }
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .btn-wa-hero {
+      background: #25d366;
+      color: #ffffff;
+      padding: 11px 20px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.28);
+      transition: all 0.25s ease;
+    }
+    .btn-wa-hero:hover {
+      background: #1eb956;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba(37, 211, 102, 0.35);
+    }
+
+    .hero-controls {
+      position: absolute;
+      z-index: 5;
+      right: 5%;
+      bottom: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 12px;
+    }
+    .hero-arrows {
+      display: flex;
+      gap: 8px;
+    }
+    .arrow {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #ffffff;
+      color: var(--green);
+      box-shadow: var(--shadow);
+      display: grid;
+      place-items: center;
+      font-size: 14px;
+      transition: all 0.2s ease;
+    }
+    .arrow:hover {
+      background: var(--green);
+      color: #ffffff;
+      transform: scale(1.06);
+    }
+    .hero-dots {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .hero-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1.5px solid var(--green);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .hero-dot.active {
+      background: var(--green);
+      width: 24px;
+      border-radius: 10px;
+    }
+
+    /* ---------- COMMON SECTION STYLES ---------- */
+    section {
+      padding: 95px 0;
+      position: relative;
+    }
+    .section-head {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 52px;
+    }
+    .section-head h2,
+    .about-copy h2,
+    .destination-copy h2 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(30px, 3.8vw, 48px);
+      font-weight: 700;
+      color: var(--green);
+      line-height: 1.15;
+      letter-spacing: -0.8px;
+    }
+    .section-head p {
+      color: var(--muted);
+      font-size: 15px;
+      margin-top: 14px;
+      line-height: 1.65;
+    }
+    .gold-line {
+      width: 52px;
+      height: 3px;
+      background: var(--gold);
+      border-radius: 2px;
+      margin: 16px auto 0;
+    }
+
+    /* ---------- ABOUT SECTION ---------- */
+    .about {
+      background: #ffffff;
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 70px;
+      align-items: center;
+    }
+    .about-images {
+      position: relative;
+      min-height: 480px;
+      display: flex;
+      align-items: center;
+    }
+    .about-main {
+      width: 80%;
+      height: 420px;
+      border-radius: 6px 60px 6px 6px;
+      box-shadow: var(--shadow);
+      transform: rotate(-1.5deg);
+      border: 5px solid #ffffff;
+      overflow: hidden;
+    }
+    .about-small {
+      position: absolute;
+      width: 46%;
+      height: 210px;
+      right: 0;
+      bottom: 20px;
+      border-radius: 14px;
+      border: 8px solid #ffffff;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+      transform: rotate(2.5deg);
+      overflow: hidden;
+    }
+    .tat-badge {
+      position: absolute;
+      left: 10px;
+      bottom: 25px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--line);
+      padding: 10px 14px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      max-width: 220px;
+      z-index: 5;
+    }
+    .tat-badge i {
+      color: var(--gold);
+      font-size: 22px;
+    }
+    .tat-badge div {
+      font-size: 10px;
+      line-height: 1.3;
+    }
+    .tat-badge strong {
+      display: block;
+      color: var(--green);
+      font-size: 11px;
+    }
+    .about-copy p {
+      color: var(--muted);
+      margin: 18px 0;
+      font-size: 14.5px;
+      line-height: 1.75;
+    }
+    .about-copy p strong {
+      color: var(--green);
+    }
+    .feature-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: 65px;
+      border-top: 1px solid var(--line);
+      padding-top: 36px;
+    }
+    .feature {
+      padding: 0 24px;
+      text-align: center;
+      border-right: 1px solid var(--line);
+    }
+    .feature:last-child {
+      border-right: 0;
+    }
+    .feature i {
+      font-size: 26px;
+      color: var(--green);
+      margin-bottom: 12px;
+      display: inline-block;
+      transition: transform 0.25s ease;
+    }
+    .feature:hover i {
+      transform: translateY(-4px);
+      color: var(--gold);
+    }
+    .feature h4 {
+      font-size: 13.5px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: var(--green);
+    }
+    .feature p {
+      font-size: 11.5px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ---------- DESTINATIONS SECTION ---------- */
+    .destinations {
+      background: #f4f7f4;
+    }
+    .destination-feature {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 60px;
+      align-items: center;
+      margin-bottom: 55px;
+    }
+    .destination-copy p {
+      color: var(--muted);
+      font-size: 14.5px;
+      margin: 18px 0 26px;
+      max-width: 480px;
+    }
+    .brush-image {
+      position: relative;
+      padding: 10px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .brush-image img {
+      height: 410px;
+      border-radius: 16px;
+      transition: transform 0.6s ease;
+    }
+    .brush-image:hover img {
+      transform: scale(1.04);
+    }
+    .destination-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .destination-card {
+      height: 270px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      background: #092c28;
+      box-shadow: var(--shadow-sm);
+      display: block;
+    }
+    .destination-card img {
+      height: 100%;
+      transition: transform 0.65s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .destination-card:hover img {
+      transform: scale(1.09);
+    }
+    .destination-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(6, 63, 59, 0.88) 0%, rgba(6, 63, 59, 0.3) 50%, transparent 100%);
+      transition: opacity 0.3s ease;
+    }
+    .destination-card:hover::after {
+      background: linear-gradient(0deg, rgba(6, 63, 59, 0.95) 0%, rgba(6, 63, 59, 0.45) 60%, transparent 100%);
+    }
+    .destination-card .card-text {
+      position: absolute;
+      z-index: 2;
+      left: 22px;
+      bottom: 20px;
+      right: 22px;
+      color: #ffffff;
+    }
+    .card-text small {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 700;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .card-text h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    /* ---------- DAY TOURS SECTION ---------- */
+    .tours {
+      background: #ffffff;
+    }
+    .tour-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
+    }
+    .tour-card {
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    .tour-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow);
+      border-color: #c9dbd5;
+    }
+    .tour-image {
+      height: 220px;
+      position: relative;
+      overflow: hidden;
+      background: #eaf1ed;
+    }
+    .tour-image img {
+      height: 100%;
+      transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .tour-card:hover .tour-image img {
+      transform: scale(1.08);
+    }
+    .tour-tag {
+      position: absolute;
+      left: 14px;
+      top: 14px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      color: var(--green);
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      z-index: 2;
+    }
+    .tour-body {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .tour-body h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 21px;
+      font-weight: 700;
+      color: var(--green);
+      margin-bottom: 8px;
+      line-height: 1.25;
+    }
+    .tour-body p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 16px;
+      flex: 1;
+    }
+    .tour-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid #edf2ee;
+      padding-top: 14px;
+      margin-top: auto;
+    }
+    .tour-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 700;
+      transition: gap 0.2s ease, color 0.2s ease;
+    }
+    .tour-card:hover .tour-link {
+      color: var(--gold);
+      gap: 10px;
+    }
+    .tour-inquire-btn {
+      background: #edf7f3;
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 999px;
+      transition: all 0.2s ease;
+    }
+    .tour-inquire-btn:hover {
+      background: var(--green);
+      color: #ffffff;
+    }
+
+    /* ---------- PACKAGES SECTION ---------- */
+    .packages {
+      background: var(--cream);
+    }
+    .package-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
+    }
+    .package {
+      position: relative;
+      overflow: hidden;
+      height: 320px;
+      border-radius: 20px;
+      display: block;
+      box-shadow: var(--shadow-sm);
+      background: #092f2b;
+    }
+    .package img {
+      height: 100%;
+      transition: transform 0.65s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .package:hover img {
+      transform: scale(1.08);
+    }
+    .package::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(6, 63, 59, 0.92) 0%, rgba(6, 63, 59, 0.35) 55%, transparent 100%);
+      transition: opacity 0.3s ease;
+    }
+    .package-caption {
+      position: absolute;
+      z-index: 2;
+      left: 24px;
+      bottom: 22px;
+      right: 24px;
+      color: #ffffff;
+    }
+    .package-caption small {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 700;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .package-caption h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1.15;
+    }
+    .package-caption span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      margin-top: 10px;
+      color: #e5f5f0;
+      font-weight: 600;
+      opacity: 0.9;
+    }
+
+    /* ---------- WHY CHOOSE SECTION ---------- */
+    .why {
+      background: #ffffff;
+    }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+    .why-card {
+      padding: 28px 24px;
+      background: var(--cream);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .why-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+      border-color: #c9dbd5;
+      background: #ffffff;
+    }
+    .why-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #e4f2eb;
+      color: var(--green);
+      font-size: 22px;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 12px rgba(6, 63, 59, 0.08);
+    }
+    .why-card h3 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--green);
+      line-height: 1.35;
+    }
+    .why-card p {
+      font-size: 12.5px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ---------- URGENT NOTICE BAR ---------- */
+    .notice {
+      background: linear-gradient(90deg, #fff7eb 0%, #ffeed1 100%);
+      border-top: 1px solid #f3d4a6;
+      border-bottom: 1px solid #f3d4a6;
+      padding: 24px 0;
+    }
+    .notice-inner {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      justify-content: center;
+      text-align: center;
+    }
+    .notice i {
+      color: #d98218;
+      font-size: 26px;
+      flex-shrink: 0;
+    }
+    .notice p {
+      font-size: 12px;
+      color: #8b5314;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      line-height: 1.6;
+      max-width: 900px;
+    }
+
+    /* ---------- GALLERY SECTION ---------- */
+    .gallery {
+      background: #f2f7f4;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+    }
+    .gallery-item {
+      height: 220px;
+      overflow: hidden;
+      border-radius: 12px;
+      background: #092c28;
+      box-shadow: var(--shadow-sm);
+    }
+    .gallery-item img {
+      height: 100%;
+      transition: transform 0.5s ease;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+
+    /* GUEST GALLERY INTERACTIVE */
+    .guest-gallery {
+      margin-top: 65px;
+    }
+    .guest-main {
+      height: 460px;
+      border-radius: 18px;
+      overflow: hidden;
+      position: relative;
+      background: #063f3b;
+      box-shadow: var(--shadow);
+    }
+    .guest-main img {
+      height: 100%;
+      transition: opacity 0.4s ease;
+    }
+    .guest-caption {
+      position: absolute;
+      left: 32px;
+      bottom: 28px;
+      right: 32px;
+      color: #ffffff;
+      text-shadow: 0 3px 12px rgba(0, 0, 0, 0.6);
+      z-index: 2;
+    }
+    .guest-caption small {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 800;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .guest-caption h3 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(26px, 3.5vw, 38px);
+      font-weight: 700;
+    }
+    .thumbs {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .thumb {
+      height: 75px;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      opacity: 0.6;
+      border: 2px solid transparent;
+      transition: all 0.25s ease;
+      background: #092c28;
+    }
+    .thumb.active,
+    .thumb:hover {
+      opacity: 1;
+      border-color: var(--green);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(6, 63, 59, 0.15);
+    }
+    .thumb img {
+      height: 100%;
+    }
+
+    /* ---------- NEWSLETTER / CONTACT CTA ---------- */
+    .newsletter {
+      background: linear-gradient(135deg, #053632 0%, #063f3b 50%, #0b5d55 100%);
+      color: #ffffff;
+      padding: 68px 0;
+    }
+    .newsletter-inner {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 50px;
+      align-items: center;
+    }
+    .newsletter h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(28px, 3.5vw, 40px);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+    .newsletter p {
+      font-size: 14px;
+      color: #c7ded8;
+      line-height: 1.6;
+    }
+    .subscribe {
+      display: flex;
+      background: #ffffff;
+      border-radius: 999px;
+      padding: 6px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+    .subscribe input {
+      flex: 1;
+      border: 0;
+      outline: 0;
+      padding: 12px 20px;
+      border-radius: 999px;
+      font-size: 13px;
+      color: var(--ink);
+      font-family: inherit;
+    }
+    .subscribe input::placeholder {
+      color: #8c9e9a;
+    }
+    .subscribe button {
+      background: var(--gold);
+      color: #1a1608;
+      border-radius: 999px;
+      padding: 12px 24px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .subscribe button:hover {
+      background: #bf841b;
+      transform: translateY(-1px);
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      background: #042623;
+      color: #c5d5d1;
+      padding: 60px 0 25px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr 1fr;
+      gap: 50px;
+    }
+    .footer-brand .brand-mark {
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+    }
+    .footer-brand strong {
+      color: #ffffff;
+    }
+    .footer-brand span {
+      color: #8dafa8;
+    }
+    .footer-brand p {
+      margin-top: 18px;
+      font-size: 12.5px;
+      color: #a4beba;
+      line-height: 1.8;
+      max-width: 380px;
+    }
+    footer h4 {
+      color: #ffffff;
+      margin-bottom: 16px;
+      font-size: 13px;
+      letter-spacing: 1.2px;
+      font-weight: 700;
+    }
+    footer p, footer li {
+      font-size: 12px;
+      line-height: 2;
+      color: #a4beba;
+    }
+    footer ul {
+      list-style: none;
+    }
+    footer li a {
+      color: #a4beba;
+      transition: color 0.2s ease, padding-left 0.2s ease;
+      display: inline-block;
+    }
+    footer li a:hover {
+      color: #ffffff;
+      padding-left: 4px;
+    }
+    .footer-contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .footer-contact-item i {
+      color: var(--gold);
+      margin-top: 4px;
+      font-size: 13px;
+    }
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      margin-top: 42px;
+      padding-top: 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: #8dafa8;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* ---------- FLOATING WHATSAPP BUTTON ---------- */
+    .whatsapp {
+      position: fixed;
+      z-index: 100;
+      right: 22px;
+      bottom: 22px;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #25d366;
+      color: #ffffff;
+      font-size: 28px;
+      box-shadow: 0 12px 35px rgba(37, 211, 102, 0.4);
+      animation: pulseWa 2.4s infinite;
+      transition: transform 0.25s ease;
+    }
+    .whatsapp:hover {
+      transform: scale(1.1);
+      color: #ffffff;
+    }
+    @keyframes pulseWa {
+      0%, 100% {
+        box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+      }
+      50% {
+        box-shadow: 0 14px 45px rgba(37, 211, 102, 0.6);
+      }
+    }
+
+    /* ---------- INQUIRY MODAL ---------- */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(3, 52, 48, 0.7);
+      backdrop-filter: blur(8px);
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .modal-card {
+      background: #ffffff;
+      border-radius: 20px;
+      max-width: 520px;
+      width: 100%;
+      padding: 30px;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      transform: translateY(20px);
+      transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .modal-overlay.active .modal-card {
+      transform: translateY(0);
+    }
+    .modal-close {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #f0f4f2;
+      color: var(--ink);
+      font-size: 14px;
+      display: grid;
+      place-items: center;
+    }
+    .modal-close:hover {
+      background: #e2ede8;
+    }
+    .modal-card h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 24px;
+      color: var(--green);
+      margin-bottom: 6px;
+    }
+    .modal-card p {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .form-group {
+      margin-bottom: 14px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--green);
+      margin-bottom: 5px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      font-family: inherit;
+      font-size: 13px;
+      outline: 0;
+      transition: border-color 0.2s ease;
+      background: #fafcfb;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--green);
+      background: #ffffff;
+    }
+    .modal-submit {
+      width: 100%;
+      background: #25d366;
+      color: #ffffff;
+      padding: 13px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      margin-top: 18px;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+      transition: all 0.2s ease;
+    }
+    .modal-submit:hover {
+      background: #1eb956;
+      transform: translateY(-2px);
+    }
+
+    /* ---------- TOAST NOTIFICATION ---------- */
+    .toast {
+      position: fixed;
+      bottom: 90px;
+      right: 22px;
+      background: var(--green);
+      color: #ffffff;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-size: 12.5px;
+      font-weight: 600;
+      box-shadow: var(--shadow);
+      z-index: 300;
+      transform: translateY(30px);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .toast i {
+      color: var(--gold);
+    }
+
+    /* ---------- SCROLL REVEAL ANIMATIONS ---------- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+    .delay-1 { transition-delay: 0.12s; }
+    .delay-2 { transition-delay: 0.24s; }
+    .delay-3 { transition-delay: 0.36s; }
+
+    /* ---------- RESPONSIVE MEDIA QUERIES ---------- */
+    @media (max-width: 1024px) {
+      .nav-links { gap: 16px; font-size: 12px; }
+      .brand { min-width: auto; }
+      .socials { display: none; }
+      .about-grid, .destination-feature, .newsletter-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .about-images { min-height: 420px; }
+      .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+      .thumbs { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    @media (max-width: 820px) {
+      .container { width: min(100% - 30px, 1180px); }
+      .demo-bar-inner { justify-content: center; text-align: center; }
+      .site-header { padding: 10px 0; }
+      .nav { padding: 8px 14px; }
+      
+      /* Mobile Drawer Nav */
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: calc(100% + 10px);
+        left: 0;
+        right: 0;
+        background: #ffffff;
+        padding: 20px 22px;
+        border-radius: 16px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+        box-shadow: 0 16px 45px rgba(3, 52, 48, 0.16);
+        border: 1px solid var(--line);
+        z-index: 99;
+      }
+      .nav-links.mobile-open {
+        display: flex;
+        animation: slideDown 0.25s ease-out;
+      }
+      @keyframes slideDown {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .nav-links a {
+        width: 100%;
+        font-size: 14px;
+        padding: 8px 0;
+        border-bottom: 1px solid #f0f4f2;
+      }
+      .nav-links a:last-child {
+        border-bottom: 0;
+      }
+
+      .nav-right .socials,
+      .plan-btn {
+        display: none;
+      }
+      .menu-toggle {
+        display: flex;
+      }
+
+      .hero {
+        min-height: 640px;
+        padding-top: 90px;
+        padding-bottom: 60px;
+      }
+      .hero-content {
+        padding: 20px 0;
+      }
+      h1 {
+        font-size: 42px;
+        letter-spacing: -1px;
+      }
+      .hero-overlay {
+        background: linear-gradient(
+          90deg,
+          rgba(250, 249, 244, 0.96) 0%,
+          rgba(250, 249, 244, 0.88) 60%,
+          rgba(250, 249, 244, 0.4) 100%
+        );
+      }
+      .brush {
+        width: 90%;
+        height: 240px;
+        right: -10%;
+        bottom: -50px;
+      }
+      .hero-controls {
+        right: 20px;
+        bottom: 25px;
+      }
+
+      section {
+        padding: 68px 0;
+      }
+      .about-main { width: 88%; height: 340px; }
+      .about-small { width: 48%; height: 180px; }
+      .feature-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+      .feature {
+        border-right: 0;
+        text-align: center;
+        padding: 0 10px;
+      }
+
+      .destination-grid,
+      .tour-grid,
+      .package-grid,
+      .why-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .destination-card { height: 260px; }
+      .package { height: 280px; }
+      
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-item { height: 170px; }
+      .guest-main { height: 320px; }
+      .thumbs { grid-template-columns: repeat(4, 1fr); }
+
+      .notice-inner {
+        flex-direction: column;
+        gap: 12px;
+        padding: 0 10px;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container { width: min(100% - 24px, 1180px); }
+      .brand strong { font-size: 16px; }
+      .brand span { font-size: 8px; }
+      h1 { font-size: 34px; line-height: 1.08; }
+      .hero-content p { font-size: 14px; }
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .hero-actions .btn, .hero-actions .btn-wa-hero { justify-content: center; }
+      .about-images { min-height: 350px; }
+      .about-main { height: 280px; width: 92%; }
+      .about-small { height: 140px; width: 50%; right: -5px; bottom: 10px; }
+      .tat-badge { left: 0; bottom: 5px; font-size: 9px; padding: 6px 10px; }
+      .brush-image img { height: 280px; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+      .gallery-item { height: 135px; }
+      .guest-main { height: 260px; }
+      .guest-caption { left: 16px; bottom: 16px; right: 16px; }
+      .thumbs { grid-template-columns: repeat(4, 1fr); gap: 6px; }
+      .thumb { height: 55px; }
+      .subscribe { flex-direction: column; border-radius: 16px; background: transparent; padding: 0; gap: 8px; }
+      .subscribe input { border-radius: 999px; background: #ffffff; }
+      .subscribe button { border-radius: 999px; padding: 13px; text-align: center; }
+      .whatsapp { bottom: 18px; right: 18px; width: 52px; height: 52px; font-size: 26px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- PORTFOLIO DEMO TOP BAR -->
+<aside class="demo-bar" role="banner" aria-label="Demo Notice">
+  <div class="container demo-bar-inner">
+    <div class="demo-bar-left">
+      <span class="demo-pill"><span class="demo-pill-dot"></span> LIVE DEMO</span>
+      <span><strong>Gembira Tour</strong> &mdash; Phuket Tours &amp; Travel Website Showcase</span>
+    </div>
+    <div class="demo-bar-right">
+      <a href="/demo" class="demo-btn-link" title="Lihat semua live demo website"><i class="fa-solid fa-grid-2"></i> Semua Demo</a>
+      <a href="/" class="demo-btn-link" title="Kembali ke Portofolio Gilang Habib"><i class="fa-solid fa-arrow-left"></i> Portofolio</a>
+    </div>
+  </div>
+</aside>
+
+<!-- MAIN SITE HEADER -->
+<header class="site-header" id="header">
+  <div class="container">
+    <nav class="nav">
+      <a href="#home" class="brand" aria-label="Gembira Tour Home">
+        <div class="brand-mark"><i class="fa-solid fa-mountain-sun"></i></div>
+        <div class="brand-info">
+          <strong>Gembira Tour</strong>
+          <span>TRAVEL &amp; TOURS</span>
+        </div>
+      </a>
+
+      <!-- Desktop & Mobile Navigation Links -->
+      <div class="nav-links" id="navLinks">
+        <a class="active" href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#destinations">Destinations</a>
+        <a href="#tours">Day Tours</a>
+        <a href="#packages">Packages</a>
+        <a href="#why">Why Us</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <div class="nav-right">
+        <div class="socials">
+          <a href="https://wa.me/66845392885" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+        <button class="plan-btn" onclick="openInquiryModal('General Inquiry — Phuket Trip')">
+          <span>Plan Your Trip</span> <i class="fa-solid fa-arrow-right"></i>
+        </button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation Menu">
+          <i class="fa-solid fa-bars" id="menuIcon"></i>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- HERO CAROUSEL -->
+  <section class="hero" id="home">
+    <div class="hero-slides">
+      <!-- Slide 1: Phi Phi Maya Bay -->
+      <div class="slide active">
+        <img src="https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?auto=format&fit=crop&w=1920&q=85" alt="Turquoise sea in Maya Bay Phi Phi Islands Thailand">
+      </div>
+      <!-- Slide 2: Traditional Longtail Boat in crystal clear water -->
+      <div class="slide">
+        <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&w=1920&q=85" alt="Longtail boat on emerald tropical water in Southern Thailand">
+      </div>
+      <!-- Slide 3: Thailand Coastline and limestone cliffs -->
+      <div class="slide">
+        <img src="https://images.unsplash.com/photo-1528181304800-259b08848526?auto=format&fit=crop&w=1920&q=85" alt="Tropical Andaman sea coastline in Phuket Thailand">
+      </div>
+    </div>
+    
+    <div class="hero-overlay"></div>
+    <div class="brush"></div>
+
+    <div class="container">
+      <div class="hero-content reveal visible">
+        <div class="eyebrow"><i class="fa-solid fa-compass"></i> Explore • Dream • Discover</div>
+        <h1>Phuket Tour<br>Packages &amp;<br>Day Trips</h1>
+        <p>Discover authentic local experiences across Phuket and Southern Thailand &mdash; from island hopping and cultural tours to private charters and Muslim-friendly holiday packages.</p>
+        
+        <div class="hero-actions">
+          <a class="btn" href="#tours">Explore Tours <i class="fa-solid fa-arrow-right"></i></a>
+          <a class="btn-wa-hero" href="https://wa.me/66845392885?text=Hello%20Gembira%20Tour,%20I%20would%20like%20to%20plan%20a%20trip%20to%20Phuket." target="_blank" rel="noopener">
+            <i class="fa-brands fa-whatsapp"></i> Chat WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="hero-controls">
+      <div class="hero-arrows">
+        <button class="arrow" id="prev" aria-label="Previous Slide"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="arrow" id="next" aria-label="Next Slide"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+      <div class="hero-dots" id="dots"></div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-images reveal">
+          <div class="about-main">
+            <img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=1100&q=85" alt="Phuket tropical beach coastline">
+          </div>
+          <div class="about-small">
+            <img src="https://images.unsplash.com/photo-1528181304800-259b08848526?auto=format&fit=crop&w=700&q=85" alt="Traveler exploring Thailand islands">
+          </div>
+          <div class="tat-badge">
+            <i class="fa-solid fa-shield-halved"></i>
+            <div>
+              <strong>TAT Licensed Agency</strong>
+              <span>License No. 34/01668</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-copy reveal delay-1">
+          <div class="eyebrow"><i class="fa-solid fa-star"></i> Welcome to Gembira Tour</div>
+          <h2>Phuket Tour Packages<br>&amp; Day Tours</h2>
+          <p><strong>Gembira Tour</strong> is a trusted local travel agency in Thailand, founded by Phuket locals with deep knowledge of the country's top destinations. We are fully licensed by the Tourism Authority of Thailand <strong>(TAT License No. 34/01668)</strong>, ensuring professional, insured, and reliable service.</p>
+          <p>Our mission is to offer authentic local experiences at competitive prices, from island-hopping and cultural tours to halal-friendly Phuket holiday packages, Phuket day trips, and private luxury travel packages.</p>
+          <p>We focus on personalized service, transparent pricing, and well-planned itineraries for every travel style, family vacation, and budget.</p>
+          <a class="btn" href="#why">Why Choose Gembira Tour <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Feature highlights row -->
+      <div class="feature-row reveal">
+        <div class="feature">
+          <i class="fa-solid fa-tags"></i>
+          <h4>Best Price Guarantee</h4>
+          <p>Direct local rates for your dream tropical trips.</p>
+        </div>
+        <div class="feature">
+          <i class="fa-solid fa-shield-heart"></i>
+          <h4>Safe &amp; Licensed</h4>
+          <p>Your safety and insurance is our top priority.</p>
+        </div>
+        <div class="feature">
+          <i class="fa-solid fa-headset"></i>
+          <h4>24/7 Support</h4>
+          <p>Fast responses via WhatsApp and phone assistance.</p>
+        </div>
+        <div class="feature">
+          <i class="fa-solid fa-map-location-dot"></i>
+          <h4>Expert Local Guides</h4>
+          <p>Deep knowledge for rich, authentic experiences.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED DESTINATIONS -->
+  <section class="destinations" id="destinations">
+    <div class="container">
+      <div class="destination-feature">
+        <div class="destination-copy reveal">
+          <div class="eyebrow"><i class="fa-solid fa-umbrella-beach"></i> Featured Destinations</div>
+          <h2>Amazing Places<br>Around Thailand</h2>
+          <p>From stunning turquoise lagoons to dramatic limestone mountains, explore the most breathtaking destinations across Southern Thailand with Gembira Tour's local expertise. Our handpicked locations offer the perfect mix of adventure, relaxation, and culture.</p>
+          <a class="btn" href="#packages">View Tour Packages <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        <div class="brush-image reveal delay-1">
+          <img src="https://images.unsplash.com/photo-1539367628448-4bc5c9d171c8?auto=format&fit=crop&w=1200&q=85" alt="Tropical resort in Southern Thailand">
+        </div>
+      </div>
+
+      <div class="destination-grid">
+        <a class="destination-card reveal" href="#tours">
+          <img src="https://images.unsplash.com/photo-1589394815804-964ed0be2eb5?auto=format&fit=crop&w=900&q=85" alt="James Bond Island Phang Nga Bay">
+          <div class="card-text">
+            <small>Phang Nga Bay</small>
+            <h3>James Bond Island</h3>
+          </div>
+        </a>
+        <a class="destination-card reveal delay-1" href="#tours">
+          <img src="https://images.unsplash.com/photo-1530789253388-582c481c54b0?auto=format&fit=crop&w=900&q=85" alt="Khao Sok rainforest and lake">
+          <div class="card-text">
+            <small>Nature Escape</small>
+            <h3>Khao Sok National Park</h3>
+          </div>
+        </a>
+        <a class="destination-card reveal delay-2" href="#tours">
+          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=85" alt="Krabi Railay beach coastline">
+          <div class="card-text">
+            <small>Beach Paradise</small>
+            <h3>Krabi Islands</h3>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- DAY TOURS SECTION (12 DISTINCT TOURS) -->
+  <section class="tours" id="tours">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow"><i class="fa-solid fa-sailboat"></i> One Day Trip From Phuket</div>
+        <h2>Find Your Perfect Day Tour</h2>
+        <div class="gold-line"></div>
+        <p>Choose from island adventures, private charters, scuba diving, scenic ATV trails, and cultural city sightseeing around Phuket.</p>
+      </div>
+
+      <div class="tour-grid">
+        <!-- Tour 1 -->
+        <article class="tour-card reveal">
+          <div class="tour-image">
+            <img src="https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?auto=format&fit=crop&w=900&q=85" alt="Phi Phi Island Maya Bay Tour">
+            <span class="tour-tag">ISLAND TOUR</span>
+          </div>
+          <div class="tour-body">
+            <h3>Phi Phi Island Tours</h3>
+            <p>Explore turquoise water, dramatic limestone cliffs, Maya Bay, and iconic snorkeling spots.</p>
+            <div class="tour-footer">
+              <span class="tour-link">Details &amp; Route <i class="fa-solid fa-arrow-right"></i></span>
+              <button class="tour-inquire-btn" onclick="openInquiryModal('Phi Phi Island Tours')">Book Now</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Tour 2 -->
+        <article class="tour-card reveal delay-1">
+          <div class="tour-image">
+            <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&w=900&q=85" alt="James Bond Island Phang Nga Bay">
+            <span class="tour-tag">POPULAR</span>
+          </div>
+          <div class="tour-body">
+            <h3>James Bond Island Tours</h3>
+            <p>Cruise Phang Nga Bay by longtail or speedboat and visit Koh Tapu and sea-canoe caves.</p>
+            <div class="tour-footer">
+              <span class="tour-link">Details &amp; Route <i class="fa-solid fa-arrow-right"></i></span>
+              <button class="tour-inquire-btn" onclick="openInquiryModal('James Bond Island Tours')">Book Now</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Tour 3 -->
+        <article class="tour-card reveal delay-2">
+          <div class="tour-image">
+            <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=900&q=85" alt="Phuket ATV Jungle Adventure">
+            <span class="tour-tag">ADVENTURE</span>
+          </div>
+          <div class="tour-body">
+            <h3>ATV Riding Tour</h3>
+            <p>Ride through tropical jungle trails, hills, and experience Phuket's adventurous side.</p>
+            <div class="tour-footer">
+              <span class="tour-link">Details &amp; Route <i class="fa-solid fa-arrow-right"></i></span>
+              <button class="tour-inquire-btn" onclick="openInquiryModal('ATV Riding Tour')">Book Now</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Tour 4 -->
+        <article class="tour-card reveal">
+          <div class="tour-image">
+            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=900&q=85" alt="Raya Island Scuba Diving">
+            <span class="tour-tag">DIVING</span>
+          </div>
+          <div class="tour-body">
+            <h3>Raya Diving Trip</h3>
+            <p>Discover vibrant underwater coral reefs, tropical fish, and marine life around Raya Island.</p>
+            <div class="tour-footer">
+              <span class="tour-link">Details &amp; Route <i class="fa-solid fa-arrow-right"></i></span>
+              <button class="tour-inquire-btn" onclick="openInquiryModal('Raya Diving Trip')">Book Now</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Tour 5 -->
+        <article class="tour-card reveal delay-1">
+          <div class="tour-image">
+            <img src="https://images.unsplash.com/photo-1540202404-a2f29016b523?auto=format&fit=crop&w=900&q=85" alt="Phi Phi Private Speedboat Charter">
+            <span class="tour-tag">PRIVATE</span>
+          </div>
+          <div class="tour-body">
+            <h3>Phi Phi Private Tour</h3>
+            <p>A private charter speedboat experience designed entirely around your schedule and private group.</p>
+            <div class="tour-footer">
+              <span class="tour-link">Details &amp; Route <i class="fa-solid fa-arrow-right"></i></span>
+              <button class="tour-inquire-btn" onclick="openInquiryModal('Phi Phi Private Tour')">Book Now</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Tour 6 -->
+        <article class="tour-card reveal delay-2">
+          <div class="tour-image">
+            <img src="https://images.unsplash.com/photo-1589394815804-964ed0be2eb5?auto=format&fit=crop&w=900&q=85" alt="James Bond Private Tour Phang Nga">
+            <span class="tour-tag">PRIVATE</span>
+          </div>
+          <div class="tour-body">
+            <h3>James Bond Private Tour</h3>
+            <p>Enjoy Phang Nga Bay, floating Muslim village of Panyee, and mangrove lagoons in privacy.</p>
+            <div class="tour-footer">
+              <span class="tour-link">Details &amp; Route <i class="fa-solid fa-arrow-right"></i></span>
+              <button class="tour-inquire-btn" onclick="openInquiryModal('James Bond Private Tour')">Book Now</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Tour 7 -->
+        <article class="tour-card reveal">
+          <div class="tour-image">
+            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=85" alt="Raya and Coral Island Catamaran Sailing">
+            <span class="tour-tag">SAILING</span>
+          </div>
+          <div class="tour-body">
+            <h3>Raya &amp; Coral Island Tour</h3>
+            <p>Combine two spectacular tropical island destinations in one relaxing, memorable day trip.</p>
+            <div class="tour-footer">
+              <span class="tour-link">Details &amp; Route <i class="fa-solid fa-arrow-right"></i></span>
+              <button class="tour-inquire-btn" onclick="openInquiryModal('Raya and Coral Island Tour')">Book Now</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Tour 8 -->
+        <article class="tour-card reveal delay-1">
+          <div class="tour-image">
+            <img src="https://images.unsplash.com/photo-1565967511849-76a60a516170?auto=format&fit=crop&w=900&q=85" alt="Sunset yacht cruise over Andaman sea">
+            <span class="tour-tag">SUNSET</span>
+          </div>
+          <div class="tour-body">
+            <h3>Coral Island Tour in Sunset</h3>
+            <p>Finish your island adventure with golden-hour sailing views, refreshing breezes, and dinner at sea.</p>
+            <div class="tour-footer">
+              <span class="tour-link">Details &amp; Route <i class="fa-solid fa-arrow-right"></i></span>
+              <button class="tour-inquire-btn" onclick="openInquiryModal('Coral Island Tour in Sunset')">Book Now</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Tour 9 -->
+        <article class="tour-card reveal delay-2">
+          <div class="tour-image">
+            <img src="https://images.unsplash.com/photo-1512100356356-de1b84283e18?auto=format&fit=crop&w=900&q=85" alt="Khai Island white sand beach">
+            <span class="tour-tag">HALF DAY</span>
+          </div>
+          <div class="tour-body">
+            <h3>Half Day Khai Island Tour</h3>
+            <p>Relax on powdery white sand beaches, feed harmless fish, and swim in shallow clear water.</p>
+            <div class="tour-footer">
+              <span class="tour-link">Details &amp; Route <i class="fa-solid fa-arrow-right"></i></span>
+              <button class="tour-inquire-btn" onclick="openInquiryModal('Half Day Khai Island Tour')">Book Now</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Tour 10 -->
+        <article class="tour-card reveal">
+          <div class="tour-image">
+            <img src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=900&q=85" alt="Phuket cultural performance and show">
+            <span class="tour-tag">SHOWS</span>
+          </div>
+          <div class="tour-body">
+            <h3>Shows &amp; Tickets</h3>
+            <p>Discover world-class Thai entertainment, cultural dances, Siam Niramit, and Phuket FantaSea.</p>
+            <div class="tour-footer">
+              <span class="tour-link">Details &amp; Route <i class="fa-solid fa-arrow-right"></i></span>
+              <button class="tour-inquire-btn" onclick="openInquiryModal('Shows and Tickets')">Book Now</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Tour 11 -->
+        <article class="tour-card reveal delay-1">
+          <div class="tour-image">
+            <img src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=900&q=85" alt="Old Phuket Town Sino-Portuguese architecture">
+            <span class="tour-tag">CITY TOUR</span>
+          </div>
+          <div class="tour-body">
+            <h3>Half Day Phuket City Tour</h3>
+            <p>See Sino-Portuguese Old Phuket Town, vibrant street murals, local viewpoints, and cashew factories.</p>
+            <div class="tour-footer">
+              <span class="tour-link">Details &amp; Route <i class="fa-solid fa-arrow-right"></i></span>
+              <button class="tour-inquire-btn" onclick="openInquiryModal('Half Day Phuket City Tour')">Book Now</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Tour 12 -->
+        <article class="tour-card reveal delay-2">
+          <div class="tour-image">
+            <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=900&q=85" alt="Wat Chalong and Big Buddha Phuket">
+            <span class="tour-tag">FULL DAY</span>
+          </div>
+          <div class="tour-body">
+            <h3>Full Day Phuket City Tour</h3>
+            <p>A comprehensive Phuket sightseeing trip including Big Buddha, Wat Chalong, Promthep Cape, and shopping.</p>
+            <div class="tour-footer">
+              <span class="tour-link">Details &amp; Route <i class="fa-solid fa-arrow-right"></i></span>
+              <button class="tour-inquire-btn" onclick="openInquiryModal('Full Day Phuket City Tour')">Book Now</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOUR PACKAGES ACROSS THAILAND -->
+  <section class="packages" id="packages">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow"><i class="fa-solid fa-layer-group"></i> Explore Multi-Day Trips</div>
+        <h2>Tour Packages Across Thailand</h2>
+        <div class="gold-line"></div>
+        <p>Explore curated 3D2N and 4D3N holiday packages for Phuket, Krabi, and Hatyai with airport transfers included.</p>
+      </div>
+
+      <div class="package-grid">
+        <a class="package reveal" href="javascript:void(0)" onclick="openInquiryModal('Krabi Tour Packages (3D2N / 4D3N)')">
+          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1100&q=85" alt="Krabi Tour Packages">
+          <div class="package-caption">
+            <small>ANDAMAN PARADISE</small>
+            <h3>Krabi Tour Packages</h3>
+            <span>Inquire Custom Package <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </a>
+        <a class="package reveal delay-1" href="javascript:void(0)" onclick="openInquiryModal('Phuket Tour Packages (3D2N / 4D3N / 5D4N)')">
+          <img src="https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?auto=format&fit=crop&w=1100&q=85" alt="Phuket Tour Packages">
+          <div class="package-caption">
+            <small>TOP DESTINATION</small>
+            <h3>Phuket Tour Packages</h3>
+            <span>Inquire Custom Package <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </a>
+        <a class="package reveal delay-2" href="javascript:void(0)" onclick="openInquiryModal('Hatyai Tour Packages')">
+          <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=1100&q=85" alt="Hatyai Tour Packages">
+          <div class="package-caption">
+            <small>SOUTHERN THAI CULTURE</small>
+            <h3>Hatyai Tour Packages</h3>
+            <span>Inquire Custom Package <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE GEMBIRA TOUR -->
+  <section class="why" id="why">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow"><i class="fa-solid fa-medal"></i> Why Choose Gembira Tour?</div>
+        <h2>Travel With Complete Confidence</h2>
+        <div class="gold-line"></div>
+      </div>
+
+      <div class="why-grid">
+        <div class="why-card reveal">
+          <div class="why-icon"><i class="fa-solid fa-tree"></i></div>
+          <h3>Local Experts with Over 20 Years Experience</h3>
+          <p>Our experienced Phuket team knows Phang Nga, Krabi, and Koh Yao inside out. We carefully craft authentic Southern Thailand experiences.</p>
+        </div>
+
+        <div class="why-card reveal delay-1">
+          <div class="why-icon"><i class="fa-solid fa-award"></i></div>
+          <h3>Fully Licensed by Tourism Authority of Thailand</h3>
+          <p>Gembira Tour is an officially registered and fully insured travel operator (TAT License No. 34/01668).</p>
+        </div>
+
+        <div class="why-card reveal delay-2">
+          <div class="why-icon"><i class="fa-solid fa-mosque"></i></div>
+          <h3>Muslim-Friendly Travel Specialists</h3>
+          <p>Halal-certified dining, prayer-stop scheduling, Muslim-friendly accommodations, and customized halal family itineraries.</p>
+        </div>
+
+        <div class="why-card reveal">
+          <div class="why-icon"><i class="fa-solid fa-van-shuttle"></i></div>
+          <h3>Private &amp; Customizable Tours</h3>
+          <p>Honeymoons, family vacations, corporate incentive trips, or private group speedboats customized to your exact timeline.</p>
+        </div>
+
+        <div class="why-card reveal delay-1">
+          <div class="why-icon"><i class="fa-solid fa-handshake"></i></div>
+          <h3>Trusted by Travelers Worldwide</h3>
+          <p>Thousands of international travelers trust Gembira Tour for genuine hospitality, courteous drivers, and memorable moments.</p>
+        </div>
+
+        <div class="why-card reveal delay-2">
+          <div class="why-icon"><i class="fa-solid fa-comments"></i></div>
+          <h3>Fast &amp; Personalized WhatsApp Support</h3>
+          <p>Our dedicated travel consultants are available via WhatsApp and phone for immediate responses and local tips.</p>
+        </div>
+
+        <div class="why-card reveal">
+          <div class="why-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+          <h3>100% Transparent &mdash; No Hidden Costs</h3>
+          <p>Our quotations clearly outline national park fees, transfers, meals, and gear so you travel without unexpected surprises.</p>
+        </div>
+
+        <div class="why-card reveal delay-1">
+          <div class="why-icon"><i class="fa-solid fa-water"></i></div>
+          <h3>Wide Range of Southern Thailand Tours</h3>
+          <p>From Phi Phi speedboat tours to yacht charters, elephant sanctuaries, cultural sightseeing, and airport transfers.</p>
+        </div>
+
+        <div class="why-card reveal delay-2">
+          <div class="why-icon"><i class="fa-solid fa-heart"></i></div>
+          <h3>Customer Happiness Always Comes First</h3>
+          <p>Your comfort, personal safety, and happiness are our priority. We go the extra mile to make your trip unforgettable.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- URGENT NOTICE BAR -->
+  <section class="notice">
+    <div class="container notice-inner">
+      <i class="fa-solid fa-circle-exclamation"></i>
+      <p><strong>LIMITED SEATS AVAILABLE FOR ALL HIGH-SEASON TOURS:</strong> Speedboat tickets and private charters can sell out rapidly. Please book early to secure your preferred dates. Direct WhatsApp Booking: <strong>+66 84 539 2885</strong></p>
+    </div>
+  </section>
+
+  <!-- GUEST MOMENTS & GALLERY -->
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow"><i class="fa-solid fa-camera"></i> Our Gallery</div>
+        <h2>Gembira Guests &amp; Scenery</h2>
+        <div class="gold-line"></div>
+        <p>A glimpse into the stunning places, crystal waters, and happy memories shared by our guests.</p>
+      </div>
+
+      <!-- Scenery highlights -->
+      <div class="gallery-grid">
+        <div class="gallery-item reveal">
+          <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=700&q=85" alt="Southern Thailand nature view">
+        </div>
+        <div class="gallery-item reveal delay-1">
+          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=85" alt="Tropical white sand beach">
+        </div>
+        <div class="gallery-item reveal delay-2">
+          <img src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=700&q=85" alt="Thailand traditional temple pagoda">
+        </div>
+        <div class="gallery-item reveal">
+          <img src="https://images.unsplash.com/photo-1539367628448-4bc5c9d171c8?auto=format&fit=crop&w=700&q=85" alt="Luxury island resort in Thailand">
+        </div>
+        <div class="gallery-item reveal delay-1">
+          <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=700&q=85" alt="Scenic coastal bay in Thailand">
+        </div>
+      </div>
+
+      <!-- Interactive Guest Gallery -->
+      <div class="guest-gallery reveal">
+        <div class="guest-main" id="guestMain">
+          <img id="guestMainImg" src="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=1500&q=85" alt="Gembira guests enjoying Thailand holiday">
+          <div class="guest-caption">
+            <small>HAPPY GEMBIRA GUESTS</small>
+            <h3>Moments Worth Remembering</h3>
+          </div>
+        </div>
+
+        <!-- 8 Clickable Thumbnails -->
+        <div class="thumbs" id="thumbs">
+          <div class="thumb active" data-caption="Moments Worth Remembering">
+            <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=400&q=80" alt="Guests smiling on tour">
+          </div>
+          <div class="thumb" data-caption="Island Hopping Adventures">
+            <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=400&q=80" alt="Group of friends exploring Thailand">
+          </div>
+          <div class="thumb" data-caption="Unforgettable Andaman Sunsets">
+            <img src="https://images.unsplash.com/photo-1504150558240-0b4fd8946624?auto=format&fit=crop&w=400&q=80" alt="Couple on tropical holiday">
+          </div>
+          <div class="thumb" data-caption="Joyful Travel Companions">
+            <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=400&q=80" alt="Friends laughing at the beach">
+          </div>
+          <div class="thumb" data-caption="Thrilling Nature Excursions">
+            <img src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=400&q=80" alt="Backpacker explorer on island">
+          </div>
+          <div class="thumb" data-caption="Family Holidays in Paradise">
+            <img src="https://images.unsplash.com/photo-1539635278303-d4002c07eae3?auto=format&fit=crop&w=400&q=80" alt="Travel group photo">
+          </div>
+          <div class="thumb" data-caption="Scenic Viewpoint Snapshots">
+            <img src="https://images.unsplash.com/photo-1528543606781-2f6e6857f318?auto=format&fit=crop&w=400&q=80" alt="Solo traveler admiring tropical view">
+          </div>
+          <div class="thumb" data-caption="Pure Relaxation by the Sea">
+            <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=400&q=80" alt="Relaxing at Andaman coast">
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 36px;">
+        <button class="btn" onclick="openInquiryModal('Guest Gallery Inquiry')">
+          <span>Inquire &amp; Join Our Next Tour</span> <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER / INQUIRY CTA -->
+  <section class="newsletter" id="contact">
+    <div class="container newsletter-inner">
+      <div>
+        <div class="eyebrow" style="color: #9cd4c7;"><i class="fa-solid fa-paper-plane"></i> Plan Your Trip</div>
+        <h2>Ready for Your Next Phuket Adventure?</h2>
+        <p>Get in touch with Gembira Tour for custom itineraries, group quotations, and seasonal promotional rates.</p>
+      </div>
+
+      <form class="subscribe" id="newsletterForm" onsubmit="handleNewsletter(event)">
+        <input type="email" id="newsEmail" placeholder="Enter your email address..." aria-label="Email address" required>
+        <button type="submit">Get Updates</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <!-- Col 1: Brand Info -->
+      <div class="footer-brand">
+        <a class="brand" href="#home">
+          <div class="brand-mark"><i class="fa-solid fa-mountain-sun"></i></div>
+          <div class="brand-info">
+            <strong>Gembira Tour</strong>
+            <span>TRAVEL &amp; TOURS</span>
+          </div>
+        </a>
+        <p>Your licensed local travel partner in Thailand for Phuket day tours, island adventures, private yacht charters, and tailor-made halal holiday packages.</p>
+        <p style="margin-top: 10px; color: #7ca89f; font-size: 11px;">
+          <i class="fa-solid fa-shield-halved" style="color:var(--gold);"></i> TAT License No. 34/01668
+        </p>
+      </div>
+
+      <!-- Col 2: Contact Details -->
+      <div>
+        <h4>CONTACT US</h4>
+        <div class="footer-contact-item">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>62/3 M.6 Sakdidet Rd., T. Vichit, A. Meung Phuket, Thailand 83000</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fa-brands fa-whatsapp"></i>
+          <span>WhatsApp: <a href="https://wa.me/66845392885" target="_blank" rel="noopener" style="color:#ffffff;font-weight:600;">+66 84 539 2885</a></span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fa-solid fa-envelope"></i>
+          <span>Email: <a href="mailto:gembiratour@gmail.com" style="color:#ffffff;">gembiratour@gmail.com</a></span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fa-regular fa-clock"></i>
+          <span>Office Hours: 8:00 AM &ndash; 7:00 PM (Thailand Time)</span>
+        </div>
+      </div>
+
+      <!-- Col 3: Navigation Links -->
+      <div>
+        <h4>TOURS &amp; PACKAGES</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About Gembira Tour</a></li>
+          <li><a href="#tours">Phuket Day Tours</a></li>
+          <li><a href="#packages">Phuket Packages</a></li>
+          <li><a href="#destinations">Phang Nga Bay</a></li>
+          <li><a href="#packages">Krabi &amp; Hatyai Packages</a></li>
+          <li><a href="#why">Why Choose Us</a></li>
+          <li><a href="#gallery">Guest Gallery</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>COPYRIGHT &copy; 2026 GEMBIRA TOUR &bull; ALL RIGHTS RESERVED</span>
+      <span>TAT LICENSE NO. 34/01668</span>
+      <span>INTERACTIVE DEMO BY GILANG HABIB AZKY PRATAMA</span>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING WHATSAPP BUTTON -->
+<a class="whatsapp" href="https://wa.me/66845392885?text=Hello%20Gembira%20Tour,%20I%20am%20interested%20in%20booking%20a%20tour%20in%20Phuket." target="_blank" rel="noopener" aria-label="Contact Gembira Tour via WhatsApp">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<!-- INQUIRY & BOOKING MODAL -->
+<div class="modal-overlay" id="inquiryModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-card">
+    <button class="modal-close" onclick="closeInquiryModal()" aria-label="Close Modal"><i class="fa-solid fa-xmark"></i></button>
+    <h3 id="modalTitle">Plan Your Tour</h3>
+    <p>Submit your preferred tour details and we will connect you directly to WhatsApp for rapid confirmation.</p>
+    
+    <form id="tourInquiryForm" onsubmit="submitInquiry(event)">
+      <div class="form-group">
+        <label for="inqTourName">Selected Tour</label>
+        <input type="text" id="inqTourName" required readonly style="background:#edf4f0;font-weight:600;color:var(--green);">
+      </div>
+      <div class="form-group">
+        <label for="inqName">Your Name</label>
+        <input type="text" id="inqName" placeholder="e.g. John Doe" required>
+      </div>
+      <div class="form-group">
+        <label for="inqDate">Preferred Tour Date</label>
+        <input type="date" id="inqDate" required>
+      </div>
+      <div class="form-group">
+        <label for="inqPax">Number of Guests (Pax)</label>
+        <select id="inqPax">
+          <option value="1 Adult">1 Person</option>
+          <option value="2 Adults" selected>2 Adults (Couple)</option>
+          <option value="3-4 Persons (Small Group/Family)">3 - 4 Persons</option>
+          <option value="5-8 Persons (Group)">5 - 8 Persons</option>
+          <option value="9+ Persons (Private Group)">9+ Persons (Large Group)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="inqNotes">Special Requests (Halal food, Hotel pickup, etc.)</label>
+        <textarea id="inqNotes" rows="2" placeholder="e.g. Need hotel pickup in Patong and halal lunch..."></textarea>
+      </div>
+
+      <button type="submit" class="modal-submit">
+        <i class="fa-brands fa-whatsapp"></i> Send Inquiry via WhatsApp
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <i class="fa-solid fa-circle-check"></i>
+  <span id="toastMsg">Thank you! We received your request.</span>
+</div>
+
+<!-- JAVASCRIPT LOGIC -->
+<script>
+  // 1. Sticky Header
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+
+  // 2. Hero Carousel
+  const slides = [...document.querySelectorAll('.slide')];
+  const dotsWrap = document.getElementById('dots');
+  let current = 0;
+  let timer;
+
+  slides.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'hero-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+    dot.onclick = () => goTo(i);
+    dotsWrap.appendChild(dot);
+  });
+
+  function goTo(index) {
+    slides[current].classList.remove('active');
+    dotsWrap.children[current].classList.remove('active');
+    current = (index + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dotsWrap.children[current].classList.add('active');
+  }
+
+  function nextSlide() { goTo(current + 1); }
+  function prevSlide() { goTo(current - 1); }
+
+  document.getElementById('next').onclick = nextSlide;
+  document.getElementById('prev').onclick = prevSlide;
+
+  function startAuto() { timer = setInterval(nextSlide, 5500); }
+  startAuto();
+
+  const heroSection = document.querySelector('.hero');
+  heroSection.addEventListener('mouseenter', () => clearInterval(timer));
+  heroSection.addEventListener('mouseleave', startAuto);
+
+  // 3. Scroll Reveal Observer
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // 4. Guest Gallery Interactive switcher
+  const guestMainImg = document.getElementById('guestMainImg');
+  const guestCaption = document.querySelector('.guest-caption h3');
+  const thumbs = document.querySelectorAll('.thumb');
+
+  thumbs.forEach(thumb => {
+    thumb.addEventListener('click', () => {
+      thumbs.forEach(t => t.classList.remove('active'));
+      thumb.classList.add('active');
+      
+      const thumbImg = thumb.querySelector('img');
+      const largeSrc = thumbImg.src.replace('w=400', 'w=1500');
+      
+      guestMainImg.style.opacity = '0.3';
+      setTimeout(() => {
+        guestMainImg.src = largeSrc;
+        guestMainImg.style.opacity = '1';
+      }, 150);
+
+      const cap = thumb.getAttribute('data-caption');
+      if (cap && guestCaption) {
+        guestCaption.textContent = cap;
+      }
+    });
+  });
+
+  // 5. Mobile Navigation Menu
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  const menuIcon = document.getElementById('menuIcon');
+
+  menuToggle.addEventListener('click', () => {
+    const isOpen = navLinks.classList.contains('mobile-open');
+    if (isOpen) {
+      navLinks.classList.remove('mobile-open');
+      menuIcon.className = 'fa-solid fa-bars';
+    } else {
+      navLinks.classList.add('mobile-open');
+      menuIcon.className = 'fa-solid fa-xmark';
+    }
+  });
+
+  // Close menu when clicking link
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => {
+      navLinks.classList.remove('mobile-open');
+      menuIcon.className = 'fa-solid fa-bars';
+    });
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!navLinks.contains(e.target) && !menuToggle.contains(e.target) && navLinks.classList.contains('mobile-open')) {
+      navLinks.classList.remove('mobile-open');
+      menuIcon.className = 'fa-solid fa-bars';
+    }
+  });
+
+  // 6. Modal Functions
+  const inquiryModal = document.getElementById('inquiryModal');
+  const inqTourName = document.getElementById('inqTourName');
+
+  function openInquiryModal(tourName) {
+    inqTourName.value = tourName || 'Phuket Tour Package';
+    inquiryModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeInquiryModal() {
+    inquiryModal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  inquiryModal.addEventListener('click', (e) => {
+    if (e.target === inquiryModal) closeInquiryModal();
+  });
+
+  function submitInquiry(e) {
+    e.preventDefault();
+    const tour = document.getElementById('inqTourName').value;
+    const name = document.getElementById('inqName').value;
+    const date = document.getElementById('inqDate').value;
+    const pax = document.getElementById('inqPax').value;
+    const notes = document.getElementById('inqNotes').value;
+
+    const message = `Hello Gembira Tour! I would like to book / inquire about:%0A%0A` +
+      `*Tour:* ${encodeURIComponent(tour)}%0A` +
+      `*Name:* ${encodeURIComponent(name)}%0A` +
+      `*Date:* ${encodeURIComponent(date)}%0A` +
+      `*Guests:* ${encodeURIComponent(pax)}%0A` +
+      (notes ? `*Notes:* ${encodeURIComponent(notes)}%0A%0A` : '%0A') +
+      `Please let me know availability and pricing. Thank you!`;
+
+    closeInquiryModal();
+    showToast('Redirecting to WhatsApp for instant confirmation...');
+    
+    setTimeout(() => {
+      window.open(`https://wa.me/66845392885?text=${message}`, '_blank');
+    }, 700);
+  }
+
+  // 7. Newsletter Toast
+  function handleNewsletter(e) {
+    e.preventDefault();
+    const email = document.getElementById('newsEmail').value;
+    showToast(`Thank you! Updates will be sent to ${email}`);
+    document.getElementById('newsletterForm').reset();
+  }
+
+  function showToast(msg) {
+    const toast = document.getElementById('toast');
+    document.getElementById('toastMsg').textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3800);
+  }
+</script>
+
+</body>
+</html>

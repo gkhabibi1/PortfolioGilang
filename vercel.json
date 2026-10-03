@@ -23,6 +23,8 @@
     { "source": "/demo-kohsamuitours", "destination": "/demo-kohsamuitours.html" },
     { "source": "/demo-kohsamui", "destination": "/demo-kohsamuitours.html" },
     { "source": "/demo-koh-samui-tours", "destination": "/demo-kohsamuitours.html" },
+    { "source": "/demo-gembiratour", "destination": "/demo-gembiratour.html" },
+    { "source": "/demo-gembira-tour", "destination": "/demo-gembiratour.html" },
     { "source": "/demo", "destination": "/demo.html" },
     { "source": "/demos", "destination": "/demo.html" }
   ]
